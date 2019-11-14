@@ -1,6 +1,6 @@
 # 3. Top 100 - HARD
 
-|  \# |  qstnId | Title | freqStars |
+| \# | qstnId | Title | freqStars |
 | :--- | :--- | :--- | :--- |
 | 1 | 4 | [Median of Two Sorted Arrays    ](https://leetcode.com/problems/median-of-two-sorted-arrays) | \*\*\*\*\*\* |
 | 2 | 42 | [Trapping Rain Water    ](https://leetcode.com/problems/trapping-rain-water) | \*\*\*\*\* |

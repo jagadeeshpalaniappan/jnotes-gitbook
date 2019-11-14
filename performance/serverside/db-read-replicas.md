@@ -18,7 +18,6 @@
 
 - Asynchronous replication – highly scalable
 - Can be manually promoted to a standalone database instance
-
 ```
 
 ## Why do we need Read Replicas?
@@ -33,22 +32,19 @@
   * Because the Amazon RDS for MySQL engine also allows you to perform table-wide actions like adding indexes or new columns to read replicas, you can use its replica-promotion capability to minimize the impact of these actions. 
   * You would direct the DDL for the action to a read replica, promote that read replica to master status, and then redirect database traffic to the new master.
 
-  
 **Increased Availability**
 
 * You can promote a read replica if the source DB instance fails. 
 * You can also replicate DB instances across AWS Regions as part of your disaster recovery strategy. 
 * This functionality complements the synchronous replication, automatic failure detection, and failover provided with Multi-AZ deployments.
 
-  
 **Designed for Security**
 
 * **Read replicas also as secured as the main instance**
 
-  
 **Pricing**
 
 * Read replicas are billed at the same rates as standard DB instances.
 
-{% embed url="https://aws.amazon.com/rds/details/read-replicas/" %}
+{% embed url="https://aws.amazon.com/rds/details/read-replicas/" caption="" %}
 

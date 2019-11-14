@@ -4,10 +4,6 @@ description: Where Node.js Should Be Used? and Where Node.js Shouldn’t Be Used
 
 # Where Node.js Fits?
 
-
-
-
-
 ```bash
 # Where Node.js Should Be Used
 - Any 'I/O bound Applications' [read/write (files, database), network/socket connections]
@@ -15,7 +11,7 @@ description: Where Node.js Should Be Used? and Where Node.js Shouldn’t Be Used
 
 - "Server-Side Web Applications"
     # Examples:
-    
+
     - Real-Time Chat Application
     - API based Application - on top of Object DB (Mongo DB)
     - Proxy Application (Just Pass Through)
@@ -31,12 +27,7 @@ description: Where Node.js Should Be Used? and Where Node.js Shouldn’t Be Used
     # Examples:
     - Video Games, VideoProcessing (Editing, Converting), ImageProcessing
     - Complex Algorithms, Fibonacci computations
-
-
-
 ```
-
-###  <a id="examples-of-where-nodejs-should-be-used"></a>
 
 ## Where Node.js Should Be Used
 
@@ -137,17 +128,13 @@ Now, let’s visit the infrastructure side of things. Imagine, for example, an S
 
 Both internal \(intra-company\) and public services’ statuses can be reported live and in real-time using this technology. Push that idea a little further and try to imagine a [Network Operations Center \(NOC\)](https://en.wikipedia.org/wiki/Network_operations_center) monitoring applications in a telecommunications operator, cloud/network/hosting provider, or some financial institution, all run on the open web stack backed by Node.js and websockets instead of Java and/or Java Applets._Note: Don't try to build hard real-time systems in Node \(i.e., systems requiring consistent response times\)._ [_Erlang is probably a better choice_](http://nodeguide.com/convincing_the_boss.html) _for that class of application._
 
-###  <a id="where-nodejs-can-be-used"></a>
-
-####  <a id="server-side-web-applications"></a>
-
 ## Where Node.js Shouldn’t Be Used
 
 ### Heavy "ServerSide Computation" - "CPU-Intensive" Operations
 
 When it comes to heavy computation, Node.js is not the best platform around. No, you definitely don’t want to build a [Fibonacci computation server in Node.js](http://zef.me/4561/node-js-and-the-case-of-the-blocked-event-loop). In general, any `CPU intensive operation` annuls all the throughput benefits Node offers with its event-driven, non-blocking I/O model because any incoming requests will be blocked while the thread is occupied with your number-crunching—assuming you’re trying to run your computations in the same Node instance you’re responding to requests with.
 
-As stated previously, Node.js is `single-threaded` and uses only a `single CPU core`. When it comes to adding concurrency on a `multi-core server`, there is some work being done by the Node core team in the form of a `cluster module` \[ref: http://nodejs.org/api/cluster.html\]. You can also run several Node.js server instances pretty easily behind a [reverse proxy via nginx](http://blog.argteam.com/coding/hardening-node-js-for-production-part-2-using-nginx-to-avoid-node-js-load/).
+As stated previously, Node.js is `single-threaded` and uses only a `single CPU core`. When it comes to adding concurrency on a `multi-core server`, there is some work being done by the Node core team in the form of a `cluster module` \[ref: [http://nodejs.org/api/cluster.html\](http://nodejs.org/api/cluster.html\)\]. You can also run several Node.js server instances pretty easily behind a [reverse proxy via nginx](http://blog.argteam.com/coding/hardening-node-js-for-production-part-2-using-nginx-to-avoid-node-js-load/).
 
 With clustering, you should still offload all heavy computation to background processes written in a more appropriate environment for that, and having them communicate via a message queue server like `RabbitMQ`.
 
@@ -159,9 +146,7 @@ Of course, you’d use the same approach on other platforms too, but with Node.j
 
 In olden days, Relational DB tools for Node.js were limited. On the other hand, Java, Python, Rails has much more better support
 
-But now things have changed. [Sequelize](http://sequelizejs.com/), [TypeORM](https://github.com/typeorm/typeorm), and [Bookshelf](https://github.com/bookshelf/bookshelf) have gone a long way towards becoming mature ORM solutions.  Now Node.js also has capability to generate SQL from GraphQL queries using [Join Monster](https://github.com/acarl005/join-monster)
-
-
+But now things have changed. [Sequelize](http://sequelizejs.com/), [TypeORM](https://github.com/typeorm/typeorm), and [Bookshelf](https://github.com/bookshelf/bookshelf) have gone a long way towards becoming mature ORM solutions. Now Node.js also has capability to generate SQL from GraphQL queries using [Join Monster](https://github.com/acarl005/join-monster)
 
 ## Conclusion
 

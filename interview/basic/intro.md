@@ -6,16 +6,12 @@
 * I have more than `8 years` of experience in developing highly scalable web applications. 
 * In this 8+ years of time, I have got a `wonderful opportunities`, 
   * to Learn and Work with End -to- End software web applications.
-* * I’m a **FullStack Developer**, I have developed applications starting from scratch 
-
+* * I’m a **FullStack Developer**, I have developed applications starting from scratch
   * designing, developing \(Front-End & Back-End\) application and deploying them on cloud
-
 * But I have more passion towards working Front-End development
-
   * in-fact, FrontEnd development is my hobby, 
   * I really enjoy working with Front-End web technologies
-
-* In terms of `Front-End` experience, 
+* In terms of `Front-End` experience,
 
 ```javascript
 - developing 'Single Page Web Application'
@@ -40,7 +36,6 @@
     - This can helps us,
     - appsCan: horizontallyScale, independenltyUpgradeOrDowngrade -without affecting other apps
     - teamsCan: workIndependenlty, deployIndependenlty, ChooseTechnologyIndependenlty
-
 ```
 
 * In terms of `Back-End` experience,
@@ -76,16 +71,15 @@ Apart from my daily office work, I also have done cool projects....
     2. the core part is, I created API (for UI itself) (soundsStrange)
         // Just like 'DOM Tree', 'Accessibility Tree'
         // This API gives interaction to WebUI
-        
+
         // Example: 'Click That Btn', 'Choose this Option from Dropdown', 'Focus on 2nd Chart', 'Scroll Down'
-    
+
     3. Now, user voice --> will call --> frontEnd API --> frontEnd responds to it 
         // Open 'Analysis Template' (voiceInput) --> Alexa (NLP) --> Backend API --websocket--> FronEnd API --> Opens up the UI
 
 // Goal of this POC is, Users can natively speak: to the Web
 - This is not only helpful for 'disabled-person' // This helps normal user as well
-- I have a strong beleif that, This will bring up 'new-standard' in Web // Just like Web Accessibility  
- 
+- I have a strong beleif that, This will bring up 'new-standard' in Web // Just like Web Accessibility
 ```
 
 ```javascript
@@ -93,20 +87,18 @@ Apart from my daily office work, I also have done cool projects....
     - In Cisco, we had many hyperion windows servers
     - There are no proper monitoring apps available for it
     - Infact, one dedicated person used login each servers and monitor manually
-    
+
     - I automated this process, provided the 'Dashboard' to View All the Servers one place
     - This logins all servers update the server status information
 ```
 
 ```javascript
-// ...... my website, 
+// ...... my website,
 ```
 
 In my free-time, I also **volunteer** and take 'free classes' to college students \(to give back my knowledge to society\)
 
 All these activities motivates me to learn and keep up-to-date with latest technologies.
-
-
 
 ## Achievements
 

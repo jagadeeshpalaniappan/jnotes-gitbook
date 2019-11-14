@@ -58,13 +58,11 @@ $ ping google.com
 64 bytes from 172.217.16.174: icmp_seq=7 ttl=52 time=27.846 ms
 ```
 
-Similarly programming languages like Java or Python uses **MultiThreading** to achieve this functionality. For example reading a file synchronously in Java or Python is a blocking operation. Your program cannot do anything else while it is waiting for the network / disk communication to finish. All you can do is to fire up a different thread then notify your main thread when the operation has finished. It is tedious, complicated, but gets the job done. 
-
-
+Similarly programming languages like Java or Python uses **MultiThreading** to achieve this functionality. For example reading a file synchronously in Java or Python is a blocking operation. Your program cannot do anything else while it is waiting for the network / disk communication to finish. All you can do is to fire up a different thread then notify your main thread when the operation has finished. It is tedious, complicated, but gets the job done.
 
 **Solution:** is to `use 'Asynchronous IO'` operations
 
-Most Operating Systems \(OS\) provide some kind of an **Asynchronous IO** interface, In this model _open/read/write_ operation on devices and resources \(sockets, filesystem, etc.\) managed by the file-system don't block the calling thread  and just mark the process \(in kernel/OS level data structure\). Once the requested data or events are available, it will send a notification.
+Most Operating Systems \(OS\) provide some kind of an **Asynchronous IO** interface, In this model _open/read/write_ operation on devices and resources \(sockets, filesystem, etc.\) managed by the file-system don't block the calling thread and just mark the process \(in kernel/OS level data structure\). Once the requested data or events are available, it will send a notification.
 
 ## Why Node.js, why not other languages?
 
@@ -77,7 +75,6 @@ We saw using `'Asynchronous IO'` operations helps to avoid blocking \(or waiting
 whereas, Node.js uses `Single-Threaded` - `Event-Driven` approach makes it easier to achieve **Non-Blocking IO**
 
 ```bash
-
 # Every Node application runs on a 'single thread' 
  - only one task/event is processed at a time
  - You can imagine this event loop to be a queue of callbacks that are processed by Node on every 'tick' of the event loop. 
@@ -87,15 +84,12 @@ you can simply define a callback that will get added to the event queue.
  - The callback will fire when the I/O operation is done, 
 and in the mean time, 
  - the application can continue to process other I/O bound requests without blocking the other request
- 
 ```
 
 * **Single-Threaded:** approach helps to avoid code accessing the same resources at the same time
 * **Event-Driven:** approach makes it easier to write and understand `asynchronous code` via 'callbacks'
   * Event-Driven approach is nothing but registering the ‘Event’ and callback functions gets called when the event occurs. `[who is invoking the callback? its 'EventLoop']`
   * This approach makes it easier to achieve Asynchronous IO operations
-
-
 
 > Sometimes this single threaded, async nature does make things complicated. But do you honestly think it's more complicated than threading? One race condition can ruin your entire month! Or empty out your thread pool due to some setting somewhere and watch your response time slow to a crawl! Not to mention deadlocks, priority inversions, and all the other gyrations that go with multithreading.
 
@@ -140,31 +134,26 @@ This helps to achieve 'very memory efficient'
 - Node.js accepts all the user request network connections in a 'Asynchrnous' - 'Non-Blocking' way 
 - And executes one by one by using 'Event Loop'
 - This approach helps to achieve 'Huge Number Of Concurrent Connections' - which makes the system "Highly Scalable"
-
 ```
 
 Javascript is a single-threaded, event-driven language. This means that we can attach listeners to events, and when a said event fires, the listener executes the callback we provided.
 
 Whenever you call `setTimeout`, `http.get` or `fs.readFile`, Node.js sends these operations to a different thread allowing V8 to keep executing our code. Node also calls the callback when the counter has run down or the IO / http operation has finished.
 
-These callbacks can enqueue other tasks and those functions can enqueue others and so on. This way you can read a file while processing a request in your server, and then make an http call based on the read contents without blocking other requests from being handled. This programming model helps to achieve `Non-Blocking -I/O operations` 
+These callbacks can enqueue other tasks and those functions can enqueue others and so on. This way you can read a file while processing a request in your server, and then make an http call based on the read contents without blocking other requests from being handled. This programming model helps to achieve `Non-Blocking -I/O operations`
 
 * Compared to traditional web-serving techniques where each connection \(request\) spawns a new thread, taking up system RAM and eventually maxing-out at the amount of RAM available, 
 * Node.js operates on a single-thread, using non-blocking I/O calls, allowing it to support tens of thousands of concurrent connections held in the event loop.
 
 ![Diagram of traditional vs. Node.js server thread](https://uploads.toptal.io/blog/image/50/toptal-blog-1_B.png)
 
-
-
 ## Why '**WebApp' should use Node.js backends ?**
 
-* Most of the **WebApp - backends** does **`IO operations`** __more
+* Most of the **WebApp - backends** does **`IO operations`** \_\_more
   * read/write \(files, database\), and \(accepts or make new Network/Socket connections\)
   * it doesn't do heavy computations \(CPU intensive tasks\)
 
 > You definitely don’t want to use Node.js for CPU-intensive operations \(heavy computation\). Where Node really shines is in building **fast**, **scalable network applications,** as it’s capable of handling a **huge number of simultaneous connections** with **high throughput**, which equates to **high scalability**.
-
-
 
 ## Summary
 
@@ -207,11 +196,11 @@ Node.js uses 'single-threaded', 'event-driven', 'asynchronous' programming appro
 * Node.js eliminates the waiting, and simply continues with the next request.
 * Node.js runs single-threaded, non-blocking, asynchronously programming, which is very memory efficient.
 
-{% embed url="http://debuggable.com/posts/understanding-node-js:4bd98440-45e4-4a9a-8ef7-0f7ecbdd56cb" %}
+{% embed url="http://debuggable.com/posts/understanding-node-js:4bd98440-45e4-4a9a-8ef7-0f7ecbdd56cb" caption="" %}
 
-{% embed url="https://www.toptal.com/nodejs/why-the-hell-would-i-use-node-js" %}
+{% embed url="https://www.toptal.com/nodejs/why-the-hell-would-i-use-node-js" caption="" %}
 
-{% embed url="https://www.freecodecamp.org/news/what-exactly-is-node-js-ae36e97449f5/" %}
+{% embed url="https://www.freecodecamp.org/news/what-exactly-is-node-js-ae36e97449f5/" caption="" %}
 
-{% embed url="https://www.slideshare.net/marcusf/nonblocking-io-event-loops-and-nodejs" %}
+{% embed url="https://www.slideshare.net/marcusf/nonblocking-io-event-loops-and-nodejs" caption="" %}
 

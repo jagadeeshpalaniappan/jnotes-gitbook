@@ -16,7 +16,6 @@ Browser has
 
 - JavaScript Runtime - can do only 'one thing at a time'
 - But browser can do 'more than one thing at a time'
-
 ```
 
 ![](../../../.gitbook/assets/browser.gif)
@@ -43,7 +42,6 @@ it looks at
 On every 'Event Loop' iteration, 
 - if the current CallStack is empty and MicroTaskQueue is empty,
 - it takes the "first Task's callback fn" from the 'Task Queue' and executes in the current CallStack
-
 ```
 
 ```javascript
@@ -51,94 +49,72 @@ On every 'Event Loop' iteration,
  - setTimeout(..), setInterval(..)
  - XMLHttpRequest, fetch(..)
  - 'click/change/load ...' event
- 
+
  - setImmediate(..)    // Node.js Only
- 
+
 
 #### Micro Task: ####
  - Promise [.then(..), .catch(..) .finally(..)]
  - Object.observe
- 
+
  - process.nextTick    // Node.js Only
 ```
-
-
 
 ## Call Stack
 
 {% tabs %}
-{% tab title="Sync" %}
+
+
+
 #### Synchronous: Simple Code \(Call Stack\)
 
-{% embed url="https://drive.google.com/open?id=1UG5Ir-MM1MFxKJQGgV-IBpgTphbmd\_06sBmLguUOgT0" %}
+{% embed url="https://drive.google.com/open?id=1UG5Ir-MM1MFxKJQGgV-IBpgTphbmd\_06sBmLguUOgT0" caption="" %}
 
- 
-{% endtab %}
-
-{% tab title="Error \(Call Stack\) " %}
 #### Error \(Call Stack\)
 
 ![](../../../.gitbook/assets/js-callstack-err.png)
-{% endtab %}
 
-{% tab title="Maximum \(Call Stack\) exceeded" %}
+
+
 #### Maximum \(Call Stack\) exceeded
 
-{% embed url="https://drive.google.com/open?id=1s0c98XHB1oB9G7jEVwkIrcoVoXrgMgWCEaxeLACuwdg" %}
-{% endtab %}
+{% embed url="https://drive.google.com/open?id=1s0c98XHB1oB9G7jEVwkIrcoVoXrgMgWCEaxeLACuwdg" caption="" %}
 
-{% tab title="setTimeout" %}
-#### setTimeout \(Call Stack\) 
 
-{% embed url="https://drive.google.com/open?id=1jllxkq3EscDnGgwiCYeDQ3jbi3YM8j67cSg7P8THfis" %}
 
-#### 
+#### setTimeout \(Call Stack\)
+
+{% embed url="https://drive.google.com/open?id=1jllxkq3EscDnGgwiCYeDQ3jbi3YM8j67cSg7P8THfis" caption="" %}
 
 #### setTimeout \(Call Stack\)  -Detailed
 
-{% embed url="https://drive.google.com/open?id=15lQyXn2sTOK4bqgy28bS9ODsXHQNNnISpwMvq\_jrV0M" %}
-{% endtab %}
-
-{% tab title="setTimeout-0" %}
-### setTimeout\(..., 0\) \(Call Stack\) 
-
-{% embed url="https://drive.google.com/open?id=1LlsveY1Cw12-ghSYjdeRGAhtwZJM9XYk2bLMsGmnU6E" %}
-{% endtab %}
-
-{% tab title="AJAX" %}
-### AJAX \(Call Stack\) 
-
-{% embed url="https://drive.google.com/open?id=1oPSV9H\_D8fOwFTajhys5pGX8oexmbmd8BEMYujTCa00" %}
-{% endtab %}
-{% endtabs %}
+{% embed url="https://drive.google.com/open?id=15lQyXn2sTOK4bqgy28bS9ODsXHQNNnISpwMvq\_jrV0M" caption="" %}
 
 
+
+### setTimeout\(..., 0\) \(Call Stack\)
+
+{% embed url="https://drive.google.com/open?id=1LlsveY1Cw12-ghSYjdeRGAhtwZJM9XYk2bLMsGmnU6E" caption="" %}
+
+### AJAX \(Call Stack\)
+
+{% embed url="https://drive.google.com/open?id=1oPSV9H\_D8fOwFTajhys5pGX8oexmbmd8BEMYujTCa00" caption="" %}
 
 ## Event Loop -\(Jag Detailed\):
 
-{% embed url="https://drive.google.com/open?id=1ZLyawPiRcA-llgP0NobUGPBPTZ1y0cK8TgFjhNVeCWc" %}
-
-
-
-### 
-
-
-
-
+{% embed url="https://drive.google.com/open?id=1ZLyawPiRcA-llgP0NobUGPBPTZ1y0cK8TgFjhNVeCWc" caption="" %}
 
 ## Must Watch Videos \[Event Loop\]
 
-{% embed url="https://www.youtube.com/watch?v=8aGhZQkoFbQ&t=166s" %}
+{% embed url="https://www.youtube.com/watch?v=8aGhZQkoFbQ&t=166s" caption="" %}
 
-{% embed url="https://www.youtube.com/watch?v=cCOL7MC4Pl0" %}
+{% embed url="https://www.youtube.com/watch?v=cCOL7MC4Pl0" caption="" %}
 
-{% embed url="https://jakearchibald.com/2015/tasks-microtasks-queues-and-schedules/" %}
+{% embed url="https://jakearchibald.com/2015/tasks-microtasks-queues-and-schedules/" caption="" %}
 
-{% embed url="http://voidcanvas.com/nodejs-event-loop/" %}
+{% embed url="http://voidcanvas.com/nodejs-event-loop/" caption="" %}
 
 ### setImmediate\(\) vs nextTick\(\) vs setTimeout\(fn,0\)
 
-{% embed url="http://voidcanvas.com/setimmediate-vs-nexttick-vs-settimeout/" %}
-
-
+{% embed url="http://voidcanvas.com/setimmediate-vs-nexttick-vs-settimeout/" caption="" %}
 

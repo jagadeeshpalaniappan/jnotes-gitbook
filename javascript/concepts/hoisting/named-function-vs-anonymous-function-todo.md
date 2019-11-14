@@ -168,7 +168,6 @@ myNamedFn('Jagadeesh'); // Hello! Jagadeesh
 myAnonymousFn('Jagadeesh'); // Hello! Jagadeesh
 myConstAnonymousFn('Jagadeesh'); // Hello! Jagadeesh
 myLetAnonymousFn('Jagadeesh'); // Hello! Jagadeesh
-
 ```
 {% endtab %}
 {% endtabs %}
@@ -205,6 +204,4 @@ var someOtherFunctionName = function accio(name) {
 * Anonymous functions are a **convenience feature of the language** that allows you to create functions without requiring a name but it is commonly becoming [good practice](http://jscs.info/rule/disallowAnonymousFunctions) to name-all-functions for a better developer debugging \(and development\) experience.
 
 ![](https://media.licdn.com/dms/image/C4E12AQGTL397NQPIAA/article-inline_image-shrink_1000_1488/0?e=1574899200&v=beta&t=JxUNEMSPDuOj-MqHIcYPC4lWWuAYxpodVBCk-mUjFDI)
-
-
 

@@ -65,7 +65,6 @@ footer {
 
 /* --------------------Functions (Built-In Functions)-------------------- */
 /* TODO */
-
 ```
 {% endtab %}
 
@@ -127,13 +126,9 @@ footer {
 {% endtab %}
 {% endtabs %}
 
+{% embed url="https://sass-cheatsheet.brunoscopelliti.com/" caption="" %}
 
-
-{% embed url="https://sass-cheatsheet.brunoscopelliti.com/" %}
-
-{% embed url="https://devhints.io/sass" %}
-
-
+{% embed url="https://devhints.io/sass" caption="" %}
 
 Sass Functions \(Built-In Functions\)
 

@@ -8,7 +8,7 @@
     - 'Distributed' -by nature (horizontally scalable) (cheap to scale)
     - can handle huge volume of data (structured/un-structured)
     - cannot gurantee ACID (not suitable where 'consistentcy is must') // e.g. financial transaction
-    
+
 - SQL: 
     - 'ACID' (Atomicity, Consistency, Isolation & Durability)
     - Table Structure (pre-defined schema)
@@ -22,25 +22,18 @@
 - Key-Value Based (Redis)
 - Column Based (Cassandra)
 - Graph Based (Neo4j)
-
 ```
 
 ## NoSQL
 
 * NoSQL \(also refers to **Not only SQL**, non-SQL or non-relational\) 
-* is a database which gives you a way to `manage the data` which is in a `non-relational form` 
-
+* is a database which gives you a way to `manage the data` which is in a `non-relational form`
   * \(non-relational form --&gt; not table structured\)
-
-* NoSQL is an alternative to conventional relational databases in which data is put in tables 
-
+* NoSQL is an alternative to conventional relational databases in which data is put in tables
   * and the data structure is carefully designed before the database is created.
   * It is mainly helpful for working with `huge sets of distributed data`. 
-
 * NoSQL databases are by default `scalable, high performant and flexible`.
   * It can also deal with a **wide variety of data models**.
-
-
 
 ## **NoSQL Types**
 
@@ -144,9 +137,9 @@
         Isolation &amp; Durability).</td>
       <td style="text-align:left">
         <p>NoSQL databases properly follow</p>
-        <p><code>Brewers CAP theorem</code> 
+        <p><code>Brewers CAP theorem</code>
         </p>
-        <p>(Consistency, Availability, and Partition tolerance). <code>Eventually Consistent :) </code>
+        <p>(Consistency, Availability, and Partition tolerance). <code>Eventually Consistent :)</code>
         </p>
       </td>
     </tr>
@@ -182,9 +175,7 @@
       </td>
     </tr>
   </tbody>
-</table>
-
-## Security: SQL Vs NoSQL 
+</table>## Security: SQL Vs NoSQL
 
 * Database Security is required to provide --&gt; **CIA** \(Confidentiality, Integrity, and Availability\)
   * Confidentiality means that only the authorized users or systems can access the data, 
@@ -195,21 +186,19 @@
 * RDBMS also has features like role-based security, access-control via user-level permissions, encrypted messages, support for row and column access control, etc. 
   * However, these security features do need a significant licensing fee and affect the speed of data access.
 * For an application which is handling a huge volume of unstructured data, we can’t solely use SQL based databases.
-  *  **For Example**, Social networking websites. These applications have two main requirements i.e. scalability and availability. This requirement is served by NoSQL databases.
+  * **For Example**, Social networking websites. These applications have two main requirements i.e. scalability and availability. This requirement is served by NoSQL databases.
 * However, NoSQL databases security is not as robust as relational databases security. 
   * Unlike SQL databases, the NoSQL databases have `very few inbuilt security features` in order to allow `faster data access`. 
   * They lack confidentiality and integrity attributes. 
   * Also, as they **don’t have** a **fixed** and **well-defined schema,** 
     * you `can’t segregate the permissions`
 * Hence, as NoSQL databases don’t provide strong security features at their end, 
-  * you will have to **rely** upon ****the **security features of the application** which is accessing the data. 
+  * you will have to **rely** upon **\*\*the** security features of the application\*\* which is accessing the data. 
 * NoSQL databases are an easier target for security attack when compared to the relational databases.
-
-
 
 NoSQL does not strictly follow ACID properties.
 
-## NoSQL - BASE \(Basically available, soft state, eventually consistent\) 
+## NoSQL - BASE \(Basically available, soft state, eventually consistent\)
 
 * **Eventually consistent**
   * `Instead of being` **`consistent after every transaction`**, 
@@ -217,8 +206,6 @@ NoSQL does not strictly follow ACID properties.
   * It may not be the case that you will always see the current data in NoSQL databases. 
   * You may be seeing the data as per last taken snapshot and a simultaneous transaction can interfere with each other.
   * This `inherent race condition` is a risk that is imposed by NoSQL databases.
-
-
 
 ## When To Use NoSQL?
 
@@ -285,11 +272,5 @@ We learned the difference between SQL vs NoSQL in detail here. The choice of the
 
 NoSQL databases are gaining large popularity these days due to their capacity to integrate big data, low cost, easy scalability, and open source features. However, it is still a relatively young technology and lacks standardization, unlike SQL. Lack of ACID compliance is also a concern with NoSQL.
 
-
-
-{% embed url="https://www.softwaretestinghelp.com/sql-vs-nosql/" %}
-
-
-
-
+{% embed url="https://www.softwaretestinghelp.com/sql-vs-nosql/" caption="" %}
 

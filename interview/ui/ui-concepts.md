@@ -1,7 +1,5 @@
 # UI Concepts
 
-
-
 ## Web Security
 
 * Cross Site Scripting
@@ -9,8 +7,6 @@
 * HTTP Header Injection
 
 ## HTTP caching, OAuth/SAML
-
-
 
 ## Performance
 
@@ -21,9 +17,7 @@
 
 ## Web Accessible Applications
 
- \(using guidelines from ADA Section 508 and WCAG\).
-
-
+\(using guidelines from ADA Section 508 and WCAG\).
 
 ## CDN
 
@@ -32,8 +26,4 @@
 * Amazon CloudFront
 
 ## Proxy
-
-
-
-
 

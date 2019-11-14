@@ -2,11 +2,9 @@
 
 Web Accessible Applications \(using guidelines from ADA Section 508 and WCAG\)
 
-
-
 {% tabs %}
 {% tab title="1" %}
-![](../.gitbook/assets/image%20%2829%29.png)
+![](../.gitbook/assets/image-29.png)
 {% endtab %}
 
 {% tab title="2" %}
@@ -14,7 +12,7 @@ Web Accessible Applications \(using guidelines from ADA Section 508 and WCAG\)
 {% endtab %}
 
 {% tab title="" %}
-![](../.gitbook/assets/image%20%28141%29.png)
+![](../.gitbook/assets/image-141.png)
 {% endtab %}
 {% endtabs %}
 
@@ -26,8 +24,6 @@ Web Accessible Applications \(using guidelines from ADA Section 508 and WCAG\)
 Full Course:
 
 * [https://classroom.udacity.com/courses/ud891](https://classroom.udacity.com/courses/ud891)
-
-
 
 ```javascript
 1. Use: 'Tab / Shift Tab' (navigate to different focus element)
@@ -76,10 +72,7 @@ Problem:
 
 // visually  // [  2  ]    [  3  ]    [  1  ]  
 // screenreader also reads 2, 3, 1
-
 ```
-
-
 
 ```javascript
 How do you make the 'Non-Focusable Ele' --> 'Focusable' ?
@@ -115,10 +108,7 @@ E.g: For 'Button' // use: <button> insteadOf: <div class="btn">CustomBtn</div>
 - CustomTabOrder // by using tabindex=0
 - Need to add key-listener (and listen for SpaceBarOrEnterBtn click)
 - `disabled` attribute will not block the click behavior and will be 'focused'
-
 ```
-
-
 
 ```javascript
 ...

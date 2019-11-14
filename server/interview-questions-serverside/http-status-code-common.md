@@ -25,7 +25,6 @@
 - 502 Bad Gateway (server was not able to get resp from upstream server)
 - 503 Service Unavailable (server is temporarily down or overloaded)
 - 504 Gateway Timeout (server does not receive a timely response from another server) or (unable to fullfill the request in timely manner)
-
 ```
 
 * **1xx: Informational** 
@@ -39,14 +38,14 @@
 * **5xx: Server Error** 
   * It means the `server failed` to fulfill an apparently valid request
 
-### 1xx: Information
+## 1xx: Information
 
 | Message | Description |
 | :--- | :--- |
 | 100 Continue | Only a part of the request has been received by the server, but as long as it has not been rejected, the client should continue with the request. |
 | 101 Switching Protocols | The server switches protocol. |
 
-### 2xx: Successful
+## 2xx: Successful
 
 <table>
   <thead>
@@ -104,7 +103,7 @@
       </td>
     </tr>
   </tbody>
-</table>### 3xx: Redirection
+</table>\#\#\# 3xx: Redirection
 
 <table>
   <thead>
@@ -160,7 +159,7 @@
       <td style="text-align:left">The requested page has moved temporarily to a new url.</td>
     </tr>
   </tbody>
-</table>### 4xx: Client Error
+</table>\#\#\# 4xx: Client Error
 
 <table>
   <thead>
@@ -269,7 +268,7 @@
         by this server.</td>
     </tr>
   </tbody>
-</table>### 5xx: Server Error
+</table>\#\#\# 5xx: Server Error
 
 <table>
   <thead>

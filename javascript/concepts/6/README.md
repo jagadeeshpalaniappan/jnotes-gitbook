@@ -17,12 +17,12 @@
 
 8. Classes
 9. Modules
-    
+
 11. Template Literals             // var line1 = `My name is ${name} age is ${age}.`;
 12. Multi-line Strings
 13. Enhanced Object Literals
 
-    
+
 // ES6 Additional Features
 1. New Math, Number, String, Array and Object methods
 2. Binary and Octal number types
@@ -32,7 +32,7 @@
 6. New data structures like Map and Set
 ```
 
-![](../../../.gitbook/assets/image%20%2865%29.png)
+![](../../../.gitbook/assets/image-65.png)
 
 ## JavaScript History
 
@@ -50,7 +50,7 @@
 
 ## 2. Arrow Functions in ES6
 
-{% embed url="https://jagadeeshpalaniappan.gitbook.io/jnotes/javascript/concepts/6/arrow-fn" %}
+{% embed url="https://jagadeeshpalaniappan.gitbook.io/jnotes/javascript/concepts/6/arrow-fn" caption="" %}
 
 {% tabs %}
 {% tab title="JS" %}
@@ -76,7 +76,6 @@ var logUpperCase = function() {
 }
 
 logUpperCase.call({ string: 'es6 rocks' })()
-
 ```
 {% endtab %}
 {% endtabs %}
@@ -100,8 +99,6 @@ var messages = ids.map((value, index, list) => `ID of ${index} element is ${valu
 ```
 {% endtab %}
 {% endtabs %}
-
-
 
 ## 3.Default Parameters
 
@@ -138,7 +135,7 @@ var link = function(height = 50, color = 'red', url = 'http://capitalone.io') {
 
 ## 4. Rest and Spread Parameters in ES6
 
-### Rest Parameters 
+### Rest Parameters
 
 {% tabs %}
 {% tab title="JS" %}
@@ -155,7 +152,7 @@ function request(url, options, callback){
 {% endtab %}
 
 {% tab title="ES6" %}
-So is there a better way in ES6 to access an indefinite number of arguments as an array? Yes! It’s rest parameters syntax 
+So is there a better way in ES6 to access an indefinite number of arguments as an array? Yes! It’s rest parameters syntax
 
 ```javascript
 function(url, options, ...callbacks) {
@@ -169,7 +166,7 @@ Note: In the rest array, the first parameter is the one that doesn’t have a na
 {% endtab %}
 {% endtabs %}
 
-### Spread Parameters 
+### Spread Parameters
 
 {% tabs %}
 {% tab title="JS" %}
@@ -249,14 +246,13 @@ var {username, password} = req.body
 //------
 
 var [one, two, three] = [ 1, 2, 3, 4, 5 ];
-
 ```
 {% endtab %}
 {% endtabs %}
 
 ## 6. for..of Loop
 
-{% embed url="https://thecodebarbarian.com/for-vs-for-each-vs-for-in-vs-for-of-in-javascript" %}
+{% embed url="https://thecodebarbarian.com/for-vs-for-each-vs-for-in-vs-for-of-in-javascript" caption="" %}
 
 ## 6. Promises
 
@@ -321,8 +317,6 @@ console.log('Data is %s', accounts.accountsData) //Data is %s 32113123123,524214
 
 {% tabs %}
 {% tab title="JS" %}
-
-
 Let’s say we have _port_ variable and _getAccounts_ method in ES5 **`'module.js'`**
 
 ```javascript
@@ -343,7 +337,7 @@ console.log(service.port) // 3000
 {% endtab %}
 
 {% tab title="ES6" %}
-In ES6, we would use _export_ and _import_. For example,  _**`'module.js'`** file_:
+In ES6, we would use _export_ and _import_. For example, _**`'module.js'`** file_:
 
 ```javascript
 export var port = 3000
@@ -366,15 +360,13 @@ import * as service from 'module'
 console.log(service.port) // 3000
 ```
 
-Note, that **`native support for ES6 modules in browsers is not coming any time soon`** 
+Note, that **`native support for ES6 modules in browsers is not coming any time soon`**
 
 \(as of this writing at least\), so you’ll need something like [jspm](http://jspm.io/) to utilize ES6 modules.
 {% endtab %}
 {% endtabs %}
 
-
-
-{% embed url="https://thecodebarbarian.com/for-vs-for-each-vs-for-in-vs-for-of-in-javascript" %}
+{% embed url="https://thecodebarbarian.com/for-vs-for-each-vs-for-in-vs-for-of-in-javascript" caption="" %}
 
 ## 11. Template Literals
 
@@ -434,7 +426,7 @@ function greet(strArr, nameArg, ageArg) {
   console.log(strArr);  // ["My name is ", " and age is ", " years old."]
   console.log(nameArg); // Jagadeesh
   console.log(ageArg);  // 22
-  
+
   const finalResp = 'Hello, ' + strArr[0] + nameArg + strArr[1] + ageArg;
   return finalResp;
 }
@@ -447,14 +439,11 @@ greet `My name is ${name} and age is ${age} years old.`  // Hello, My name is Ja
 
 // Equivalent old fn:
 greet(["My name is ", " and age is ", " years old."], name, age); // Hello, My name is Jagadeesh and age is 22
-
 ```
 
 ## 13. Enhanced Object Literals
 
 ....
-
-
 
 ## Additional Resources:
 

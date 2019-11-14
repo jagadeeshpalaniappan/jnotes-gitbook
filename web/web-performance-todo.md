@@ -1,9 +1,7 @@
 # Web Performance \[TODO\]
 
-
-
 {% tabs %}
-{% tab title="" %}
+
 1. Optimize: **CRP** \(Critical Rendering Path\)
 2. Optimize: **Code**
    * Optimize: 'JavaScript Code' 
@@ -15,19 +13,17 @@
      * // `doBatchDomManipulation` //`useDocumentFragment`
    * Optimize: 'HTTP Response'
      * `cache` / `prefetch` / `loadOnDemandLessWanted`
-{% endtab %}
 
-{% tab title="1. Optimize: CRP" %}
 **1.Optimize: CRP \(Critical Rendering Path\)**
 
-**CRP:**   `[DOM Tree + CSSOM Tree + JS]`  &gt;&gt; Render Tree  &gt;&gt;  Layout  &gt;&gt; Paint
+**CRP:** `[DOM Tree + CSSOM Tree + JS]` &gt;&gt; Render Tree &gt;&gt; Layout &gt;&gt; Paint
 
 * Browser does Layout & Paint \(nothing much we can improve here\) 
 * Optimize : Building the “Render Tree” To-do that, 
   * Optimize :: Building the DOM Tree & CSSOM Tree To-do that, 
     * Optimize :: Render-Blocking CSS and JavaScript
 
-**1.1 Optimize: Render-Blocking CSS and JavaScript** 
+**1.1 Optimize: Render-Blocking CSS and JavaScript**
 
 ```javascript
 ----------------------------------------------------------------------------------
@@ -54,7 +50,7 @@
 
 5. PreFetch: 'criticalResources'
 
-6.	Optimize the order in which the remaining critical resources are loaded: 
+6.    Optimize the order in which the remaining critical resources are loaded: 
 
 // Download all 'critical assets' as early as possible - to shorten the CRP length.
 
@@ -64,8 +60,6 @@ KeyWords:
 #'renderBlocking': blocks the DOM Tree construction
 #'CRP': Critical Render Path // [DOM Tree + CSSOM Tree + JS]  >> Render Tree  >>  Layout  >> Paint
 #'fasterDownload': reduces, noOfRoundTrips to download the entireFile
-
-
 ```
 
 \*\*\*\*
@@ -81,14 +75,11 @@ KeyWords:
 
 <!-- no render-blocking // script will be executed after the DOM Tree construction (even if script ready earlier)-->
 <script src="myscript.js" defer></script> <!-- // good -->
-
 ```
 
 \*\*\*\*
-{% endtab %}
 
-{% tab title="2. Optimize: Code" %}
-#### 1. Optimize: 'JavaScript Code'
+## 1. Optimize: 'JavaScript Code'
 
 ```javascript
 1. Optimize: 'Event Loop & Call Stack'
@@ -108,13 +99,12 @@ KeyWords:
 /* ------------------------------- KeyWords: -------------------------------- */
 # 'blockMainThread': longRunningSynchScripts - blocks the main thread
 # 'longRunningSynchScripts': Long Running Synchronous Scripts
-# 'freezeUserInteraction': blocking the CRP 
-
+# 'freezeUserInteraction': blocking the CRP
 ```
 
 \*\*\*\*
 
-#### **2. Optimize: DOM Manipulation**
+## **2. Optimize: DOM Manipulation**
 
 ```javascript
 1. LazyLoad [less-wanted items]
@@ -122,7 +112,7 @@ KeyWords:
     - consider first rendering elements which are in user viewport (and upcoming viewport)
     - then lazily load/render other elements (on-demand) when those element reaches close to the viewport
     // use: Intersection Observer API:
-    
+
 /* ----------------- Intersection Observer API: (example-code): -------------------- */
 let options = { root: document.querySelector('#item1'), rootMargin: '0px', threshold: 1.0 }
 let observer = new IntersectionObserver(callback, options);
@@ -146,9 +136,9 @@ let observer = new IntersectionObserver(callback, options);
 var listNode = document.querySelector('#list'); 
 // Create 1000 list items, add to realDomNode
 for(let i = 0; i < 1000; i++) { 
-	var li = document.createElement("li"); li.innerText = "ListItem: " + i;
-	listNode.appendChild(li); // 'render' happens multipleTimes (forEach nodeAddition) 
-	// 'appendChild' to realDomNode is expensive operation
+    var li = document.createElement("li"); li.innerText = "ListItem: " + i;
+    listNode.appendChild(li); // 'render' happens multipleTimes (forEach nodeAddition) 
+    // 'appendChild' to realDomNode is expensive operation
 }
 
 // ## GOOD apporach: ##
@@ -156,62 +146,41 @@ for(let i = 0; i < 1000; i++) {
 var docFrag = document.createDocumentFragment(); // dummyVirtualNode
 // Create 1000 list items, add to fragment
 for(let i = 0; i < 1000; i++) { 
-	var li = document.createElement("li"); li.innerText = "ListItem: " + i;
-	docFrag.appendChild(li);
+    var li = document.createElement("li"); li.innerText = "ListItem: " + i;
+    docFrag.appendChild(li);
 }
 // BulkAdd: add all listItems at once (to the realDOM)
 document.querySelector('#list').appendChild(docFrag); // 'render' happens only once
-
 ```
 
-
-
-#### **3.**Optimize: 'HTTP Response'
+## **3.**Optimize: 'HTTP Response'
 
 ```javascript
 - Cache: HTTP response
 - PreFetch: (most wanted) HTTP response
 - Load `On-Demand` (less wanted) // LazyLoad
 ```
-{% endtab %}
-
-{% tab title="3. Memory Leak" %}
 
 
-{% embed url="https://www.lambdatest.com/blog/eradicating-memory-leaks-in-javascript/" %}
 
-{% embed url="https://dev.to/gc\_psk/debugging-memory-leaks-in-angular-4m2o" %}
-{% endtab %}
-{% endtabs %}
+{% embed url="https://www.lambdatest.com/blog/eradicating-memory-leaks-in-javascript/" caption="" %}
 
-
+{% embed url="https://dev.to/gc\_psk/debugging-memory-leaks-in-angular-4m2o" caption="" %}
 
 [https://github.com/jagadeeshpalaniappan/jnotes/blob/master/studies/js/ui-performance.pptx](https://github.com/jagadeeshpalaniappan/jnotes/blob/master/studies/js/ui-performance.pptx)
 
 [https://github.com/jagadeeshpalaniappan/jnotes/blob/master/studies/js/2-webpage-load-optimization.docx](https://github.com/jagadeeshpalaniappan/jnotes/blob/master/studies/js/2-webpage-load-optimization.docx)
-
-
 
 * We should send your long-running loops to the task queue
   * handle manually or use [async.js](http://caolan.github.io/async/)
 * **Use:** setTimeout, Promise, requestAnimationFrame \(rAF\)
 * **Use:** Debounce, Throttle, requestAnimationFrame \(for lagging issue\)
 
-
-
-
-
 {% tabs %}
-{% tab title="First Tab" %}
 
 
-{% embed url="https://www.youtube.com/watch?v=sX7B4GghnqM&t=228s" %}
-{% endtab %}
 
-{% tab title="Second Tab" %}
-{% embed url="https://www.youtube.com/watch?v=YJGCZCaIZkQ" %}
-{% endtab %}
-{% endtabs %}
+{% embed url="https://www.youtube.com/watch?v=sX7B4GghnqM&t=228s" caption="" %}
 
-
+{% embed url="https://www.youtube.com/watch?v=YJGCZCaIZkQ" caption="" %}
 

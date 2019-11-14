@@ -7,5 +7,3 @@ How stateless api helps in performance ?
   * each request can independently hit any server instances/nodes without worrying about the state
   * because each transaction is unique/independent and need not to do mainitain any previous transactions \(to do the current tx\)
 
-
-

@@ -4,9 +4,7 @@ description: Promise.race vs. Promise.any And Promise.all vs. Promise.allSettled
 
 # Promise.all vs .allSettled & Promise.race vs .any
 
-{% embed url="https://dev.to/dance2die/promise-race-vs-promise-any-and-promise-all-vs-promise-allsettled-26if" %}
-
-
+{% embed url="https://dev.to/dance2die/promise-race-vs-promise-any-and-promise-all-vs-promise-allsettled-26if" caption="" %}
 
 ## Promise.race
 
@@ -77,8 +75,6 @@ setTimeout(function(){
 // the stack is now empty
 // Promise { <state>: "fulfilled", <value>: 33 }
 ```
-
-
 
 ```javascript
 var foreverPendingPromise = Promise.race([]);

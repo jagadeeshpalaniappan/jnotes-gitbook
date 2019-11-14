@@ -1,4 +1,4 @@
-# notes
+# jnotes
 
-Notes
+Jag Notes
 

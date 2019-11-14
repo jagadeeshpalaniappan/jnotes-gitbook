@@ -13,18 +13,15 @@
 {% endhint %}
 
 * There are no classes in JavaScript. 
-* Instead functions in JavaScript may be made to behave like constructors 
-
+* Instead functions in JavaScript may be made to behave like constructors
   * by preceding a function call with the `new` keyword. 
   * This is known as the [constructor pattern](http://aaditmshah.github.io/why-prototypal-inheritance-matters/#constructors_vs_prototypes).
-
-* Hence a function can be used in place of an object. 
-* Similarly arrays are also objects in JavaScript. 
-
+* Hence a function can be used in place of an object.
+* Similarly arrays are also objects in JavaScript.
   * On the other hand objects can be thought of as associative arrays.
 
 {% hint style="info" %}
-Since there are no classes in JavaScript. JavaScript is a 'prototypal object oriented language'. 
+Since there are no classes in JavaScript. JavaScript is a 'prototypal object oriented language'.
 
 * This means that objects in JavaScript directly inherit from other objects. 
 * Hence we don't need classes. 

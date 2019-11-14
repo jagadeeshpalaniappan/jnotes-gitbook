@@ -8,14 +8,10 @@
 
 {% tabs %}
 {% tab title="1" %}
-
-
-![](../.gitbook/assets/image%20%28109%29.png)
+![](../.gitbook/assets/image-109.png)
 {% endtab %}
 
 {% tab title="2" %}
-
-
 ![Working of Microservices Architecture](https://d1jnx9ba8s6j9r.cloudfront.net/blog/wp-content/uploads/2018/06/archi.png)
 {% endtab %}
 {% endtabs %}

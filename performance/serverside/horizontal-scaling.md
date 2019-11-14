@@ -2,7 +2,5 @@
 
 Vertical Scaling Problems
 
-
-
 Distributed Environment
 

@@ -10,17 +10,11 @@
 * They also don’t have `super`
 * Sytax Sugar
 
+{% embed url="https://medium.com/free-code-camp/learn-es6-the-dope-way-part-ii-arrow-functions-and-the-this-keyword-381ac7a32881" caption="" %}
 
+{% embed url="https://www.freecodecamp.org/news/when-and-why-you-should-use-es6-arrow-functions-and-when-you-shouldnt-3d851d7f0b26/" caption="" %}
 
-{% embed url="https://medium.com/free-code-camp/learn-es6-the-dope-way-part-ii-arrow-functions-and-the-this-keyword-381ac7a32881" %}
-
-{% embed url="https://www.freecodecamp.org/news/when-and-why-you-should-use-es6-arrow-functions-and-when-you-shouldnt-3d851d7f0b26/" %}
-
-{% embed url="https://javascript.info/arrow-functions" %}
-
-
-
-
+{% embed url="https://javascript.info/arrow-functions" caption="" %}
 
 ```javascript
 /* ES5 */

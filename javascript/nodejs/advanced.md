@@ -1,6 +1,4 @@
 # Advanced
 
-{% embed url="https://blog.risingstack.com/tag/node-js-at-scale-beyond-the-basics/" %}
-
-
+{% embed url="https://blog.risingstack.com/tag/node-js-at-scale-beyond-the-basics/" caption="" %}
 

@@ -1,6 +1,4 @@
 # Class Inheritance
 
-{% embed url="https://javascript.info/class-inheritance" %}
-
-
+{% embed url="https://javascript.info/class-inheritance" caption="" %}
 

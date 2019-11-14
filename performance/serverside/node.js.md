@@ -6,7 +6,7 @@ This article is not about dev-ops and doesn’t discuss on things like minify yo
 
 I am majorly discussing about JavaScript, but few of the points are related to node.js only, or few may be only for client side JavaScript. However, as majority of the JavaScript developers are full-stack these days, I assume you can understand these easily.
 
-### Background
+## Background
 
 The JavaScript engine used by Node.js, V8, compiles JavaScript into machine code and runs it as native code. The engine uses three components to try achieve [both low start-up time and peak performance](https://blog.chromium.org/2010/12/new-crankshaft-for-v8.html):
 
@@ -28,7 +28,7 @@ Node.js provides an event-driven architecture and a non-blocking I/O API that op
 
 Given the increasing ubiquity of JavaScript and the Node.js platform, you’ll want to be up-to-date on the latest optimizations and best practices. In this article, we’ll take a look at 7 Node.js performance tips that should be running under the hood to get the most out of your applications.
 
-### 1. Implement a Reverse Proxy Server
+## 1. Implement a Reverse Proxy Server
 
 We at NGINX, Inc. are always a bit horrified when we see application servers directly exposed to incoming Internet traffic, used at the core of high‑performance sites. This includes many [WordPress‑based sites](https://www.nginx.com/blog/9-tips-for-improving-wordpress-performance-with-nginx/), for example, as well as Node.js sites.
 
@@ -49,19 +49,19 @@ There are specific advantages to [using NGINX as a Node.js reverse proxy server]
 
 **Note**: These tutorials explain how to use NGINX as a reverse proxy server in [Ubuntu 14.04](https://www.digitalocean.com/community/tutorials/how-to-set-up-a-node-js-application-for-production-on-ubuntu-14-04) or [CentOS](https://www.digitalocean.com/community/tutorials/how-to-set-up-a-node-js-application-for-production-on-centos-7)environments, and they are useful overview for anyone putting NGINX in front of Node.js.
 
-### 2. Keep code small and light
+## 2. Keep code small and light
 
 In the age of mobile where application performance is so critical, it’s especially important to keep your Node.js code base as compact as possible to reduce latency and speed things up. [One article](http://engineering.linkedin.com/nodejs/blazing-fast-nodejs-10-performance-tips-linkedin-mobile) provides some organizing questions that are worth asking in the development stage: “Do we really need this module?”, “Why are we using this framework? Is it worth the overhead?”, “Can we do this in a simpler way?” Another way to optimize application performance is by minifying and concatenating multiple JS files into one. For example, if your app has five JavaScript files the browser will make five separate HTTP requests to fetch them. To avoid the block and wait time, an alternative approach would be to minify and concatenate those 5 files into one streamlined one.
 
-### 3. Don’t use Node.js to render static assets
+## 3. Don’t use Node.js to render static assets
 
 One critical performance tip would be to render your static assets, such as CSS and images, on a standard webserver like Nginx. By arranging Nginx to serve your static content you will significantly reduce the load on your Node.js instance and in the process increase your performance.
 
-### 4. Employ client side rendering
+## 4. Employ client side rendering
 
 Thanks to powerful new client side MVC frameworks like AngularJS and BackboneJS, it has become much easier for developers to create dynamic, one-page apps. These frameworks expose APIs that send JSON responses directly to the client rather than through the server. If you let Node.js render server-side then this sends back an HTML page for every request. Using client side rendering in your Node.js environment can dramatically save bandwidth and reduce latency.
 
-### 5. CPU Profiling
+## 5. CPU Profiling
 
 There are several CPU profilers, Node.js provides one out-of-the-box that is good enough for most cases. The [built-in Node.js profiler](https://nodejs.org/en/docs/guides/simple-profiling/) takes advantage of the [profiler inside V8](https://github.com/v8/v8/wiki/V8%20Profiler), sampling the stack at regular intervals during the execution. You can generate V8 tick file using the –prof flag to run node.
 
@@ -75,27 +75,27 @@ Look up for the “Summary” section in the file that will look something like 
 
 `[Summary]:`
 
-`ticks  total  nonlib name`
+`ticks total nonlib name`
 
-`20109  41.2%  45.7% JavaScript`
+`20109 41.2% 45.7% JavaScript`
 
-`23548  48.3%  53.5% C++`
+`23548 48.3% 53.5% C++`
 
-`805   1.7%   1.8% GC`
+`805 1.7% 1.8% GC`
 
-`4774   9.8%         Shared libraries`
+`4774 9.8% Shared libraries`
 
-`356   0.7%         Unaccounted`
+`356 0.7% Unaccounted`
 
 The values represent how many of the samples gathered occurred in JavaScript / C++ code / Garbage collector and will vary depending on the code you are profiling. Then you can navigate to the corresponding subsection of the file \(e.g. \[JavaScript\], \[C++\], …\) to see the details of the samples order by occurrence.
 
 There is an additional section in the processed file of the profiling session, \[Bottom up \(heavy\) profile\], that is especially useful. It provides information about the primary callers of each function, in a tree-like structure. Take the following snippet for example:
 
-`223 32%     LazyCompile: *function1 lib/file1.js:223:20`
+`223 32% LazyCompile: *function1 lib/file1.js:223:20`
 
-`221 99%       LazyCompile: ~function2 lib/file2.js:70:57`
+`221 99% LazyCompile: ~function2 lib/file2.js:70:57`
 
-`221 100%        LazyCompile: *function3 /lib/file3.js:58:74`
+`221 100% LazyCompile: *function3 /lib/file3.js:58:74`
 
 The percentage shows the share of a particular caller in the total amount of its parent calls. An asterisk before a function name means that time is being spent in an optimized function, while tilde means not optimized function.
 
@@ -103,7 +103,7 @@ In the example, 99% of the function1 calls has been made by function2, for which
 
 CPU profiling sessions and [flame graphs](http://www.brendangregg.com/blog/2014-09-17/node-flame-graphs-on-linux.html) are useful tools to understand what is in the stack most of the time and which methods are spending CPU time, in order to spot low-hanging fruit. But it’s important to understand that it won’t tell you the whole story: you could be preventing higher degrees of parallelism in your application and the asynchronous IO operations could make it hard to identify.
 
-### 6. Implement SSL/TLS and HTTP/2
+## 6. Implement SSL/TLS and HTTP/2
 
 More and more sites are using SSL/TLS to secure all user interaction on the site. It’s your decision whether and when to make this move, but if and when you do, NGINX supports the transition in two ways:
 
@@ -188,13 +188,13 @@ proxy_set_header X-Forwarded-Proto https;
 </code>
 ```
 
-### 7. Use Realtime App Monitor to Analysis your App
+## 7. Use Realtime App Monitor to Analysis your App
 
 ![](https://cdn-images-1.medium.com/max/800/1*gjhkikuEdV-iRSGGacOyVg.jpeg)
 
 Real Time Monitoring is a third-party application that allows admins to maintain and monitor the system from any disruptions or problems that arise in web applications in real time. This lets you immediately respond to any errors or bugs that occur. In Node JS you can use Newrelic, Stackify, Ruxit, LogicMonitor and Monitis, to record traces and activities quickly, concisely and reliably. With this monitoring, you can analyze and find out more detail issues, especially the effectiveness and health of node.js when accessed by multiple users.
 
-### 8. Web-workers & Shared buffer
+## 8. Web-workers & Shared buffer
 
 JavaScript is single threaded. The same thread is used for event-loop. So your new request handling in node.js and dom rendering in browser, everything is processed in a non-parallel way.
 
@@ -204,7 +204,7 @@ One common problem working with workers can be how to sync with them \(without p
 
 It seems SharedArrayBuffer is disabled by default since 5th January 2018; but this \(or kind of this\) is already in [stage 4 as ECMA proposal](https://l.morioh.com/b0a3f595aa?r=https://github.com/tc39/ecmascript_sharedmem).
 
-### 9. setImmediate over setTimeout\(fn,0\)
+## 9. setImmediate over setTimeout\(fn,0\)
 
 This is a point only for node.js developer. Many of the developers don’t use setImmediate or process.nextTick and go with `setTimeout(fn, 0)` to make a part of their program asynchronous.
 
@@ -212,7 +212,7 @@ Well, some of our [experiments about setImmediate vs setTimeout\(fn, 0\)](https:
 
 So use setImmediate more frequently than setTimeout; but be cautious about using process.nextTick unless you understand how it works.
 
-### 10. System call
+## 10. System call
 
 Libuv exposes a platform-independent API that is used by Node.js to perform non-blocking IO and your application IO \(sockets, file system, …\) ultimately translates into system calls.
 
@@ -232,7 +232,7 @@ You would generally want to flush writes of buffers in the order of kilobytes. W
 
 Grouping or batching writes will translate into higher throughput thanks to less system calls.
 
-### 11. Node.js timers
+## 11. Node.js timers
 
 [Node.js timers](https://l.morioh.com/b0a3f595aa?r=https://nodejs.org/api/timers.html), which have the same API as [window timers](https://l.morioh.com/b0a3f595aa?r=https://developer.mozilla.org/es/docs/Web/API/WindowTimers/setTimeout) in Web API, are very useful, easy to schedule / deschedule and are used extensively across the entire ecosystem.
 
@@ -248,7 +248,7 @@ With that in mind, you have to make sure you reuse the existing buckets, trying 
 
 In our case, by [scheduling the idle timeout \(heartbeat\)](https://l.morioh.com/b0a3f595aa?r=https://github.com/datastax/nodejs-driver/blob/v3.1.6/lib/connection.js#L434-L443) before removing the previous one, we make sure the scheduling and descheduling of idle timeouts are O\(1\) operations.
 
-### Conclusion
+## Conclusion
 
 Increasing your server’s configuration, scaling it out, distributing the services are some of the very well known processes to make your application performant.
 
@@ -256,7 +256,7 @@ But if your code is causing memory leaks or sequential processing; all those dev
 
 Thus, while coding \(irrespective of the language\), you must be aware of all good practices, edge cases and performance points.
 
-_Originally published by **https://socialdribbler.com**_
+_Originally published by_ [https://socialdribbler.com](https://socialdribbler.com)
 
 =============================
 

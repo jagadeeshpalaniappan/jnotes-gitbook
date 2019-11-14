@@ -22,14 +22,9 @@ init();
 * Note that the `displayName()` function has no local variables of its own. 
 * However, since inner functions have access to the variables of outer functions, `displayName()` can access the variable `name` declared in the parent function, `init()`.
 * * Running the code and notice that the `alert()` statement within the `displayName()` function successfully displays the value of the `name` variable, which is declared in its parent function. 
-* This is an example of _**lexical**_ ****_**scoping**_, which describes how a parser resolves variable names when functions are nested. 
-
-
-
+* This is an example of _**lexical**_ **\*\*\_**scoping\*\*\_, which describes how a parser resolves variable names when functions are nested. 
 * The word **"lexical"** refers to the fact that lexical scoping _**uses the location where a 'variable' is declared**_  within the source code to determine where that variable is available. 
 * Nested functions have access to variables declared in their outer scope.
-
-
 
 ## Closure Scope
 
@@ -48,9 +43,9 @@ var myFunc = makeFunc();
 myFunc();
 ```
 
-Running this code has exactly the same effect as the previous example of the `init()` function above; 
+Running this code has exactly the same effect as the previous example of the `init()` function above;
 
-what's different — and interesting — is that 
+what's different — and interesting — is that
 
 * the `displayName()` inner function is returned from the outer function before being executed.
 

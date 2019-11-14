@@ -1,4 +1,2 @@
 # CSS Interview Qstns
 
-
-

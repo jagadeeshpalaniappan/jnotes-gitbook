@@ -21,8 +21,6 @@ Ask, 'Pay Structure'
 -    <unknown>  +  10%  +  <unknown>
 ```
 
-
-
 ## Negotiation Talk
 
 ```javascript
@@ -30,7 +28,7 @@ Ask, 'Pay Structure'
 
 - But I also have to consider my 'family needs', 'location', 'cost of living'
 
-- I have to kind of balance my 'family needs' & 'career needs' 
+- I have to kind of balance my 'family needs' & 'career needs'
 ```
 
 **repeat**: the value you're bringing to the company
@@ -43,8 +41,6 @@ Think: abt the value, I am bringing to the <ComapanyName>
 - (designing, developing-frontEnd, developing-backEnd, deploying all the way to cloud)
 ```
 
-
-
 ```javascript
 - Anything you 'could do' to get closer to my target
 - Would 'recongnize me' and give me 'piece of mind'
@@ -53,8 +49,8 @@ Think: abt the value, I am bringing to the <ComapanyName>
     - I cam 'fully focus'
     - put my 'full effort'
     - definetly i will make an impact at '<CompanyName>'
-    
 
- I am really hopeful, we can get there.... 
+
+ I am really hopeful, we can get there....
 ```
 

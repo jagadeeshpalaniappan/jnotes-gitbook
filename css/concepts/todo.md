@@ -2,5 +2,3 @@
 
 1. Media Query
 
-
-

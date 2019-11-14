@@ -4,8 +4,6 @@ Remove unwanted folders from:
 
 * jnotes [https://github.com/jagadeeshpalaniappan/jnotes](https://github.com/jagadeeshpalaniappan/jnotes)
 
-
-
 Get Content From:
 
 * [https://github.com/jagadeeshpalaniappan/jnotes/tree/master/studies](https://github.com/jagadeeshpalaniappan/jnotes/tree/master/studies)

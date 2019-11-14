@@ -2,14 +2,12 @@
 
 ## What is Node.js?
 
-_Node.js is a cross-platform `JavaScript Runtime Environment`- built on top of Chrome's V8  Engine_
+_Node.js is a cross-platform `JavaScript Runtime Environment`- built on top of Chrome's V8 Engine_
 
 * Node.js is a server-side cross-platform built on Google Chrome's JavaScript Engine \(V8 Engine\) 
 * For easily building fast and scalable network applications. 
 * Node.js uses an event-driven, non-blocking I/O model that makes it lightweight and efficient, 
 * perfect for data-intensive real-time applications that run across distributed devices.
-
-
 
 ```text
 Node.js = JavaScript Runtime Environment + (Server-Side) Behavior
@@ -23,9 +21,7 @@ JavaScript now has the capability to do things that other scripting languages li
 
 ## What is JavaScript Runtime Environment?
 
-![If you know Java, here&#x2019;s a little analogy.](../../.gitbook/assets/image%20%28150%29.png)
-
-
+![If you know Java, here&#x2019;s a little analogy.](../../.gitbook/assets/image-150.png)
 
 ### Key Features of Node.js
 
@@ -36,19 +32,13 @@ Following are some of the important features that make Node.js the first choice 
 * **Very Fast** − Being built on Google Chrome's `V8 JavaScript Engine`, Node.js library is very fast in code execution.
 * **No Buffering** − Node.js applications never buffer any data. These applications simply `output` the `data in chunks`.
 
-
-
-## Node.js Architecture 
-
-
+## Node.js Architecture
 
 ```text
 Node.js = V8-Engine + Libuv(Asynchronous IO) + Non-Blocking IO + Node-Core (C++ Library) + C++ Wrappers (.js files) & JavaScript Utility Function (.js files)
 ```
 
-![](../../.gitbook/assets/image%20%2870%29.png)
-
-
+![](../../.gitbook/assets/image-70.png)
 
 ## Server-Side Behavior Added in JavaScript
 
@@ -58,7 +48,6 @@ Node.js = JavaScript + (Server-Side) Behavior
 
 * With the help of \(V8-Engine\) --Node.js has added additional features to the JavaScript \(added some C/C++ libraries\) 
 * Additional Features :
-
   * **`Non-Blocking IO` approach**
     * Operating System's IO operations are slower \(it has 'Longer Waiting Time'\)
       * `[open/read/write (files, database, network/socket connections)]`
@@ -70,11 +59,7 @@ Node.js = JavaScript + (Server-Side) Behavior
     * Node embeds -'http-parser' External \(C++ Library\)
   * **Dealing with `Files`** \[ Node-Core \(C++ Library\) \] 
   * **Dealing with `Databases`** \[ Node-Core \(C++ Library\) \] 
-
 * These “additional features” help us to build an Server-Side \(Web App\) completely in JavaScript itself
-
-
-
 * **How? Node.js has added additional features to JavaScript?**
   * \(V8-Engine\) helps Node.js to add additional \(C++\) features
   * V8 allows, JavaScript to call C++ code 

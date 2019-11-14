@@ -65,12 +65,10 @@
 | 59 | 494 | [Target Sum    ](https://leetcode.com/problems/target-sum) | \* |
 | 60 | 337 | [House Robber III    ](https://leetcode.com/problems/house-robber-iii) | \* |
 
-
-
 ## [1. Add Two Numbers](https://leetcode.com/problems/add-two-numbers)
 
 {% tabs %}
-{% tab title="Question" %}
+
 You are given two **non-empty** linked lists representing two non-negative integers. The digits are stored in **reverse order** and each of their nodes contain a single digit. Add the two numbers and return it as a linked list.
 
 You may assume the two numbers do not contain any leading zero, except the number 0 itself.
@@ -82,13 +80,11 @@ Input: (2 -> 4 -> 3) + (5 -> 6 -> 4)
 Output: 7 -> 0 -> 8
 Explanation: 342 + 465 = 807.
 ```
-{% endtab %}
 
-{% tab title="Video" %}
-{% embed url="https://www.youtube.com/watch?v=esZdwGfG7NE" %}
-{% endtab %}
 
-{% tab title="Code" %}
+
+{% embed url="https://www.youtube.com/watch?v=esZdwGfG7NE" caption="" %}
+
 ```javascript
 /*
 Sol1: [BEST] Since 'list1' & 'list2' are already in reverseOrder. It is easy to do addition
@@ -148,14 +144,12 @@ function addTwoNumbers(l1, l2) {
   return resultList.next;
 }
 ```
-{% endtab %}
-{% endtabs %}
 
 ## 2. LRU
 
 {% tabs %}
-{% tab title="Question" %}
-Design and implement a data structure for [Least Recently Used \(LRU\) cache](https://en.wikipedia.org/wiki/Cache_replacement_policies#LRU). 
+
+Design and implement a data structure for [Least Recently Used \(LRU\) cache](https://en.wikipedia.org/wiki/Cache_replacement_policies#LRU).
 
 * It should support the following operations: `get` and `put` in **`O(1) time`**
 * `get(key)` - get the value by key \(if not exists return -1\) 
@@ -163,14 +157,12 @@ Design and implement a data structure for [Least Recently Used \(LRU\) cache](ht
 * `put(key, val)` - add/update the key and value 
   * when the cache reached its max capacity, it should remove Least Recently Used item
   * and add the new item
-{% endtab %}
 
-{% tab title="Video" %}
-{% embed url="https://www.youtube.com/watch?v=S6IfqDXWa10" %}
-{% endtab %}
 
-{% tab title="Result Walkthrough" %}
-**Solution:  `HashMap` + `DoublyLinkedList`** 
+
+{% embed url="https://www.youtube.com/watch?v=S6IfqDXWa10" caption="" %}
+
+**Solution: `HashMap` + `DoublyLinkedList`**
 
 * `HM`: for quick access // **get**, add, remove in O\(1\) time 
 * `DLL`: for maintaining the 'recentlyUsedItems' order // **reArrange**, add, remove in O\(1\) time 
@@ -178,7 +170,6 @@ Design and implement a data structure for [Least Recently Used \(LRU\) cache](ht
 **TimeComplexity**: O\(1\) both for put and get. **SpaceComplexity** : O\(capacity\)
 
 ```java
-
 LRUCache obj = new LRUCache(5);
 obj.put(1, 11);
 // addNewItem
@@ -247,17 +238,9 @@ obj.put(5, 555);
 // updateExistingItemVal & updateRecentlyUsedItemToFront
 // DLL: H--> <--[prev]DLNode5[next]--> <--[prev]DLNode1[next]--> <--[prev]DLNode7[next]--> <--[prev]DLNode6[next]--> <--[prev]DLNode4[next]--> <--T
 // HM: { 1: DLNode1, 4: DLNode4, 5: **DLNode5**, 6: DLNode6, 7: DLNode7 }
-
-
-
 ```
-{% endtab %}
-
-{% tab title="Code" %}
-
 
 ```java
-
 class LRUCache {
 
     /* ------------------------ Doubly Linked List  ------------------------ */
@@ -433,19 +416,17 @@ class LRUCache {
 
 }
 ```
-{% endtab %}
 
-{% tab title="Quick Code" %}
 ```java
 class LRUCache extends LinkedHashMap<Integer, Integer>{
     private int capacity;
-    
+
     public LRUCache(int capacity) {
         // LinkedHashMap
         // arg1: capacity, arg2: loadFactor, arg3: isAccessOrder
         // arg3: "false" for insertion-order (default), "true" for access-order 
         super(capacity, 0.75F, true);
-        
+
         this.capacity = capacity;
     }
 
@@ -470,47 +451,23 @@ class LRUCache extends LinkedHashMap<Integer, Integer>{
  * obj.put(key,value);
  */
 ```
-{% endtab %}
-{% endtabs %}
 
-## [3. Longest Palindromic Substring](https://leetcode.com/problems/longest-palindromic-substring) 
+## [3. Longest Palindromic Substring](https://leetcode.com/problems/longest-palindromic-substring)
 
 {% tabs %}
-{% tab title="Question" %}
-**5. Longest Palindromic Substring**
-
-* Given a string **s**, find the longest palindromic substring in **s**. 
-* You may assume that the maximum length of **s** is 1000.
-
-**Example 1:**
-
-```text
-Input: "babad"
-Output: "bab"
-Note: "aba" is also a valid answer.
-```
-
-**Example 2:**
-
-```text
-Input: "cbbd"
-Output: "bb"
-```
-{% endtab %}
-
 {% tab title="Video" %}
 1. [https://www.youtube.com/watch?v=onkdOAMS63U](https://www.youtube.com/watch?v=onkdOAMS63U)
 
-**DP:**  Time: O\(n\), Space: O\(n^2\)
+**DP:** Time: O\(n\), Space: O\(n^2\)
 
 1. [https://www.youtube.com/watch?v=obBdxeCx\_Qs](https://www.youtube.com/watch?v=obBdxeCx_Qs)
 2. [https://www.youtube.com/watch?v=Fi5INvcmDos](https://www.youtube.com/watch?v=Fi5INvcmDos)
 
 \*\*\*\*
 
-**Expand Around Center Alg:**  Time: O\(n^2\), Space: O\(1\)
+**Expand Around Center Alg:** Time: O\(n^2\), Space: O\(1\)
 
-**Manchester's Alg:**  Time: O\(n\), Space: O\(n\)  `[BEST]`
+**Manchester's Alg:** Time: O\(n\), Space: O\(n\) `[BEST]`
 
 1. [https://www.youtube.com/watch?v=SV1ZaKCozS4](https://www.youtube.com/watch?v=SV1ZaKCozS4) \[BEST\]
 2. [https://www.youtube.com/watch?v=kbUiR5YWUpQ](https://www.youtube.com/watch?v=kbUiR5YWUpQ)
@@ -672,7 +629,6 @@ function lps(s) {
   }
   return s.slice(palindromeBeginsAt, maxSubStrLenSoFar + palindromeBeginsAt);
 }
-
 ```
 {% endtab %}
 {% endtabs %}
@@ -680,7 +636,7 @@ function lps(s) {
 ## [4. Number of Islands](https://leetcode.com/problems/number-of-islands)
 
 {% tabs %}
-{% tab title="Question" %}
+
 **200. Number of Islands**
 
 Given a 2d grid map of `'1'`s \(land\) and `'0'`s \(water\), count the number of islands. An island is surrounded by water and is formed by connecting adjacent lands horizontally or vertically. You may assume all four edges of the grid are all surrounded by water.
@@ -708,13 +664,11 @@ Input:
 
 Output: 3
 ```
-{% endtab %}
 
-{% tab title="Video" %}
-{% embed url="https://www.youtube.com/watch?v=CGMNePwovA0" %}
-{% endtab %}
 
-{% tab title="Code" %}
+
+{% embed url="https://www.youtube.com/watch?v=CGMNePwovA0" caption="" %}
+
 ```javascript
 /*
  Using: DFS
@@ -734,7 +688,7 @@ Steps:
 
  // Time complexity : O(n^2) // Space complexity : O(n^2)
 
- 
+
  Time complexity : O(M×N) where M is the number of rows and N is the number of columns.
  Space complexity : worst case O(M×N) in case that the grid map is filled with lands where DFS goes by NM×N deep.
 */
@@ -784,47 +738,11 @@ const grid1 = [
   ["0", "0", "0", "0", "0"]
 ];
 console.log(numIslands(grid1)); // 1
-
 ```
-{% endtab %}
-{% endtabs %}
-
-
 
 ## [5. Longest Substring Without Repeating Characters](https://leetcode.com/problems/longest-substring-without-repeating-characters)
 
 {% tabs %}
-{% tab title="Question" %}
-**3. Longest Substring Without Repeating Characters**
-
-Given a string, find the length of the **longest substring** without repeating characters.
-
-**Example 1:**
-
-```text
-Input: "abcabcbb"
-Output: 3 
-Explanation: The answer is "abc", with the length of 3. 
-```
-
-**Example 2:**
-
-```text
-Input: "bbbbb"
-Output: 1
-Explanation: The answer is "b", with the length of 1.
-```
-
-**Example 3:**
-
-```text
-Input: "pwwkew"
-Output: 3
-Explanation: The answer is "wke", with the length of 3. 
-             Note that the answer must be a substring, "pwke" is a subsequence and not a substring.
-```
-{% endtab %}
-
 {% tab title="Video" %}
 * [https://www.youtube.com/watch?v=aIrbWbON63M](https://www.youtube.com/watch?v=aIrbWbON63M)
 * [https://www.youtube.com/watch?v=8ZlmgBcQzMM](https://www.youtube.com/watch?v=8ZlmgBcQzMM)
@@ -875,7 +793,6 @@ function lengthOfLongestSubstring(s) {
 
 {% tab title="Sol2: \[BEST\]" %}
 ```javascript
-
 /*
 Using 'Sliding Window (Improved)' (Map and Two Pointer) [BEST]
 
@@ -914,7 +831,6 @@ function lengthOfLongestSubstring(s) {
 
   return maxSofar;
 }
-
 ```
 {% endtab %}
 {% endtabs %}
@@ -993,7 +909,77 @@ A solution set is:
 {% endtab %}
 {% endtabs %}
 
+## \#. Xxxxxx Yyyyy
 
+{% tabs %}
+{% tab title="Question" %}
+...
+{% endtab %}
+
+{% tab title="Video" %}
+
+{% endtab %}
+
+{% tab title="Code" %}
+```javascript
+....
+```
+{% endtab %}
+{% endtabs %}
+
+## \#. Xxxxxx Yyyyy
+
+{% tabs %}
+{% tab title="Question" %}
+...
+{% endtab %}
+
+{% tab title="Video" %}
+
+{% endtab %}
+
+{% tab title="Code" %}
+```javascript
+....
+```
+{% endtab %}
+{% endtabs %}
+
+..\#. Xxxxxx Yyyyy
+
+{% tabs %}
+{% tab title="Question" %}
+...
+{% endtab %}
+
+{% tab title="Video" %}
+
+{% endtab %}
+
+{% tab title="Code" %}
+```javascript
+....
+```
+{% endtab %}
+{% endtabs %}
+
+## \#. Xxxxxx Yyyyy
+
+{% tabs %}
+{% tab title="Question" %}
+...
+{% endtab %}
+
+{% tab title="Video" %}
+
+{% endtab %}
+
+{% tab title="Code" %}
+```javascript
+....
+```
+{% endtab %}
+{% endtabs %}
 
 ## \#. Xxxxxx Yyyyy
 
@@ -1067,8 +1053,6 @@ A solution set is:
 {% endtab %}
 {% endtabs %}
 
-
-
 ## \#. Xxxxxx Yyyyy
 
 {% tabs %}
@@ -1141,8 +1125,6 @@ A solution set is:
 {% endtab %}
 {% endtabs %}
 
-
-
 ## \#. Xxxxxx Yyyyy
 
 {% tabs %}
@@ -1214,82 +1196,6 @@ A solution set is:
 ```
 {% endtab %}
 {% endtabs %}
-
-
-
-## \#. Xxxxxx Yyyyy
-
-{% tabs %}
-{% tab title="Question" %}
-...
-{% endtab %}
-
-{% tab title="Video" %}
-
-{% endtab %}
-
-{% tab title="Code" %}
-```javascript
-....
-```
-{% endtab %}
-{% endtabs %}
-
-## \#. Xxxxxx Yyyyy
-
-{% tabs %}
-{% tab title="Question" %}
-...
-{% endtab %}
-
-{% tab title="Video" %}
-
-{% endtab %}
-
-{% tab title="Code" %}
-```javascript
-....
-```
-{% endtab %}
-{% endtabs %}
-
-..\#. Xxxxxx Yyyyy
-
-{% tabs %}
-{% tab title="Question" %}
-...
-{% endtab %}
-
-{% tab title="Video" %}
-
-{% endtab %}
-
-{% tab title="Code" %}
-```javascript
-....
-```
-{% endtab %}
-{% endtabs %}
-
-## \#. Xxxxxx Yyyyy
-
-{% tabs %}
-{% tab title="Question" %}
-...
-{% endtab %}
-
-{% tab title="Video" %}
-
-{% endtab %}
-
-{% tab title="Code" %}
-```javascript
-....
-```
-{% endtab %}
-{% endtabs %}
-
-
 
 ## \#. Xxxxxx Yyyyy
 

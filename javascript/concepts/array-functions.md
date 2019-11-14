@@ -6,7 +6,7 @@ description: >-
 
 # Array Functions
 
-## 1. push vs pop vs unshift vs shift 
+## 1. push vs pop vs unshift vs shift
 
 ```javascript
 // Javascript Arrays are objects (stored in a hashtable) close-by m/y location
@@ -14,10 +14,10 @@ description: >-
 
 ______________________________________________
 
-- push 			// addItemsToEndOfArr
-- pop 			// removeItemFromEndOfArr
-- unshift 	// addItemsToBeginningOfArr
-- shift 		// removeItemFromBeginningOfArr
+- push             // addItemsToEndOfArr
+- pop             // removeItemFromEndOfArr
+- unshift     // addItemsToBeginningOfArr
+- shift         // removeItemFromBeginningOfArr
 _______________________________________________
 
 // ----###  push ###----
@@ -47,19 +47,15 @@ myArr.unshift('e', 'f', 'g',...); // myArr: [''e', 'f', 'g', d', 'a', 'b', 'c']
 
 const myArr = ['a', 'b', 'c']; const shiftedItem = myArr.pop();
 // myArr: ['b', 'c']   // shiftedItem: 'a'
-
 ```
-
-
 
 ## 2. splice vs slice
 
 ```javascript
-
 ______________________________________________
 
-- splice 	// insertOrRemoveItems inAnywhereOfArr
-- slice		// returns slicedItems fromAnywhereOfArr
+- splice     // insertOrRemoveItems inAnywhereOfArr
+- slice        // returns slicedItems fromAnywhereOfArr
 
 // Time Complexity: O(n)
 _______________________________________________
@@ -86,27 +82,24 @@ const myArr = ['a', 'b', 'c', 'd', 'e', 'f']; const newSlicedArr = myArr.slice(2
 // myArr: ['a', 'b', 'c', 'd', 'e', 'f'] // newSlicedArr: ['c', 'd']
 
 ________________________________________________________________________________________________________
-
 ```
-
-
 
 ## 3. forEach vs filter vs map vs reduce
 
 ```javascript
 ______________________________________________
 
-- forEach 	// for...loop iteration
-- filter		// returns newFilteredItems
-- map				// returns newItems
-- reduce		// returns finalResultItem
+- forEach     // for...loop iteration
+- filter        // returns newFilteredItems
+- map                // returns newItems
+- reduce        // returns finalResultItem
 
 // Time Complexity: O(n)
 _______________________________________________
 
 
 // ----###  forEach ###----
-// myArr.forEach(myFn);	// just for...loop iteration
+// myArr.forEach(myFn);    // just for...loop iteration
 const oddItems = []; [1,2,3,4,5,6].forEach((item, index) => { item%2 !== 0 && oddItems.push(item) }) // [1, 3, 5]
 
 
@@ -136,14 +129,12 @@ const sum = [1,2,3,4].reduce((res, item)=>{ return res + item; }, 0)
 // `myReducerFnImpl` reduce the items into one finalResultItem
 ```
 
-
-
 ## 4. sort
 
 ```javascript
 ______________________________________________
 
-- sort 	// sortArrItems using InPlaceAlg
+- sort     // sortArrItems using InPlaceAlg
 
 // Time Complexity: O(n logn) // depending on the algorithm chosen by the javascript engine
 _______________________________________________
@@ -159,6 +150,5 @@ const myArr = ['b', 'c', 'a']; const sortedItems = myArr.sort();
 [2, 1, 3, 11, 22].sort(); // [1, 11, 2, 22, 3] // by default sort as String
 [2, 1, 3, 11, 22].sort((a,b) => a-b); // [1, 2, 3, 11, 22] // using 'compareFn' we can sort any type of items
 [2, 1, 3, 11, 22].sort((a, b) => { if (a > b) return 1; else if (b > a) return -1; else return 0; }); // [1, 2, 3, 11, 22]
-
 ```
 

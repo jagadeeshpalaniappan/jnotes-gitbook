@@ -32,33 +32,30 @@ pure functions:
 - 'fn return value only depends on the input'
 - 'no shared states', 
 - separates 'data & methods' and gives 'high abstractions'
-
 ```
 
 ## Object-Oriented Programming
 
-OOP “is a programming paradigm based on the concept of “objects”, 
+OOP “is a programming paradigm based on the concept of “objects”,
 
 * which may contain **data**, in the form of _fields_ \(often known as _`attributes`\)_
 * and **code**, in the form of procedures \(often known as _`methods`\)_ 
 
-A feature of objects is that 
+A feature of objects is that
 
 * an object’s `procedures` can access and often **modify** the `data fields` of the object 
 * with which they are associated \(objects have a notion of “this” or “self”\)”, 
 * which essentially means, altering the ‘state’ of the object.
 
-Most OOP languages, 
+Most OOP languages,
 
 * Class Based \(objects are instances of a class\)
   * individual entities which interact with each other\)
 * But JavaScript is Prototype based.
 
-
-
 ## Functional Programming
 
-FP is a language that focuses on the **computation** of `pure functions` 
+FP is a language that focuses on the **computation** of `pure functions`
 
 What exactly do we mean by `pure`?
 
@@ -114,12 +111,12 @@ function plusTwo(num){
 
 ## So, which is better? <a id="d1d1"></a>
 
-OOP team argues that the 
+OOP team argues that the
 
 * `concept of inheritance` \(new objects taking on the attributes/methods of existing objects letting us reuse more code\)
 * `encapsulation` \(the data and methods related to a certain object being bound together, creating independent, protected entities\) makes it easier to manage and manipulate data. 
 
-FP team argues that the 
+FP team argues that the
 
 * `'separation of data and methods'` and `'high level of abstraction'`
 * leave less room for errors.

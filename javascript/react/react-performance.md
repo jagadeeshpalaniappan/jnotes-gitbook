@@ -2,57 +2,39 @@
 
 {% tabs %}
 {% tab title="1" %}
-![](../../.gitbook/assets/image%20%288%29.png)
+![](../../.gitbook/assets/image-8.png)
 {% endtab %}
 
 {% tab title="2" %}
 ### shouldComponentUpdate
 
-![](../../.gitbook/assets/image%20%28119%29.png)
+![](../../.gitbook/assets/image-119.png)
 
-![](../../.gitbook/assets/image%20%2892%29.png)
+![](../../.gitbook/assets/image-92.png)
 
-![](../../.gitbook/assets/image%20%2882%29.png)
+![](../../.gitbook/assets/image-82.png)
 
-![](../../.gitbook/assets/image%20%28124%29.png)
+![](../../.gitbook/assets/image-124.png)
 {% endtab %}
 {% endtabs %}
 
 ## React Scalability
 
 {% tabs %}
-{% tab title="video" %}
-{% embed url="https://vimeo.com/168648012" %}
-{% endtab %}
 
-{% tab title="1" %}
-![](../../.gitbook/assets/image%20%281%29.png)
-{% endtab %}
+{% embed url="https://vimeo.com/168648012" caption="" %}
 
-{% tab title="2" %}
-![](../../.gitbook/assets/image%20%2810%29.png)
-{% endtab %}
+![](../../.gitbook/assets/image-1.png)
 
-{% tab title="3" %}
-![](../../.gitbook/assets/image%20%28154%29.png)
-{% endtab %}
+![](../../.gitbook/assets/image-10.png)
 
-{% tab title="4" %}
-![](../../.gitbook/assets/image%20%28203%29.png)
-{% endtab %}
+![](../../.gitbook/assets/image-154.png)
 
-{% tab title="5" %}
-![](../../.gitbook/assets/image%20%282%29.png)
-{% endtab %}
+![](../../.gitbook/assets/image-203.png)
 
-{% tab title="6" %}
-![](../../.gitbook/assets/image%20%28169%29.png)
-{% endtab %}
+![](../../.gitbook/assets/image-2.png)
 
-{% tab title="7" %}
-![](../../.gitbook/assets/image%20%2819%29.png)
-{% endtab %}
-{% endtabs %}
+![](../../.gitbook/assets/image-169.png)
 
-
+![](../../.gitbook/assets/image-19.png)
 

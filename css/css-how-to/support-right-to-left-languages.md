@@ -2,5 +2,3 @@
 
 ## Supporting Right-to-Left languages \(such as Arabic and Hebrew\)
 
-
-
