@@ -2,6 +2,18 @@
 
 * [jnotes](README.md)
 
+## interview
+
+* [UI](interview/ui/README.md)
+  * [UI Concepts](interview/ui/ui-concepts.md)
+  * [JavaScript Concepts](interview/ui/javascript-concepts.md)
+  * [CSS Concepts](interview/ui/css-concepts.md)
+* [ServerSide](interview/serverside.md)
+* [Others](interview/others.md)
+* [Basic](interview/basic/README.md)
+  * [Intro](interview/basic/intro.md)
+  * [Negotiation](interview/basic/negotiation.md)
+
 ## JavaScript
 
 * [JavaScript Concepts](javascript/concepts/README.md)
@@ -90,18 +102,6 @@
 * [Web Accessibility \[TODO\]](web/web-accessibility-todo.md)
 * [Proxy](web/proxy.md)
 * [CDN](web/cdn.md)
-
-## interview
-
-* [UI](interview/ui/README.md)
-  * [UI Concepts](interview/ui/ui-concepts.md)
-  * [JavaScript Concepts](interview/ui/javascript-concepts.md)
-  * [CSS Concepts](interview/ui/css-concepts.md)
-* [ServerSide](interview/serverside.md)
-* [Others](interview/others.md)
-* [Basic](interview/basic/README.md)
-  * [Intro](interview/basic/intro.md)
-  * [Negotiation](interview/basic/negotiation.md)
 
 ## PERFORMANCE
 
