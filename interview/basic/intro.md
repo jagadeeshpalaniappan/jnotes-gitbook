@@ -1,9 +1,5 @@
 # Intro
 
-## 
-
-## Introduction
-
 * I’m currently working _full-time_ with GE - Digital as a **Staff Software Engineer**
 * I have more than `8 years` of experience in developing highly scalable web applications. 
 * In this 8+ years of time, I have got a `wonderful opportunities`, 
