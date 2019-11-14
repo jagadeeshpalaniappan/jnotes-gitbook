@@ -6,6 +6,7 @@
 
 * [Basic](interview/basic/README.md)
   * [Intro](interview/basic/intro.md)
+  * [Behavior](interview/basic/behavior.md)
   * [Negotiation](interview/basic/negotiation.md)
 * [UI](interview/ui/README.md)
   * [UI Concepts](interview/ui/ui-concepts.md)
