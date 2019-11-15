@@ -1,6 +1,7 @@
 # Intro
 
 * I’m currently working _full-time_ with GE - Digital as a **Staff Software Engineer**
+  * I’m currently working as a Staff Software Engineer in GE - Digital
 * I have more than `8 years` of experience in developing highly scalable web applications. 
 * In this 8+ years of time, I have got a `wonderful opportunities`, 
   * to Learn and Work with End -to- End software web applications.
@@ -28,6 +29,7 @@
         // color blindness ppl 
     - Internationalization Support (i18n)
     - API documentation (properties / methods)
+    - dependency management / version management (SemVersioning) // v3.1.2 // 3:major, 1:minor, 2:patch
 
 
 - developing 'Micro-Frontend' application // Like 'MicroServices' in backend
