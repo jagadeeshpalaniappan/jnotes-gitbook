@@ -1,7 +1,7 @@
 # Web Performance \[TODO\]
 
 {% tabs %}
-
+{% tab title="First Tab" %}
 1. Optimize: **CRP** \(Critical Rendering Path\)
 2. Optimize: **Code**
    * Optimize: 'JavaScript Code' 
@@ -13,8 +13,14 @@
      * // `doBatchDomManipulation` //`useDocumentFragment`
    * Optimize: 'HTTP Response'
      * `cache` / `prefetch` / `loadOnDemandLessWanted`
+{% endtab %}
 
-**1.Optimize: CRP \(Critical Rendering Path\)**
+{% tab title="Second Tab" %}
+
+{% endtab %}
+{% endtabs %}
+
+## **1.Optimize: CRP \(Critical Rendering Path\)**
 
 **CRP:** `[DOM Tree + CSSOM Tree + JS]` &gt;&gt; Render Tree &gt;&gt; Layout &gt;&gt; Paint
 
@@ -23,7 +29,7 @@
   * Optimize :: Building the DOM Tree & CSSOM Tree To-do that, 
     * Optimize :: Render-Blocking CSS and JavaScript
 
-**1.1 Optimize: Render-Blocking CSS and JavaScript**
+### **1.1 Optimize: Render-Blocking CSS and JavaScript**
 
 ```javascript
 ----------------------------------------------------------------------------------
@@ -50,7 +56,7 @@
 
 5. PreFetch: 'criticalResources'
 
-6.    Optimize the order in which the remaining critical resources are loaded: 
+6. Optimize the order in which the remaining critical resources are loaded: 
 
 // Download all 'critical assets' as early as possible - to shorten the CRP length.
 
@@ -64,7 +70,7 @@ KeyWords:
 
 \*\*\*\*
 
-**script: 'default' vs 'async' vs 'defer'**
+### **script: 'default' vs 'async' vs 'defer'**
 
 ```markup
 <!-- render-blocking -->
