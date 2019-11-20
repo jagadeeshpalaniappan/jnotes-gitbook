@@ -31,6 +31,13 @@ Ask, 'Pay Structure'
 - I have to kind of balance my 'family needs' & 'career needs'
 ```
 
+```javascript
+- I am really excited about this opportunity
+- Numbers are little bit different from what i expected... 
+- Let me think about it..
+
+```
+
 **repeat**: the value you're bringing to the company
 
 ```javascript
