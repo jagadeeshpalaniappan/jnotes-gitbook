@@ -85,8 +85,6 @@ KeyWords:
 #'fasterDownload': reduces, noOfRoundTrips to download the entireFile
 ```
 
-\*\*\*\*
-
 ### **script: 'default' vs 'async' vs 'defer'**
 
 ```markup
@@ -100,7 +98,11 @@ KeyWords:
 <script src="myscript.js" defer></script> <!-- // good -->
 ```
 
-\*\*\*\*
+For More Details:
+
+[https://github.com/jagadeeshpalaniappan/jnotes/blob/master/studies/js/2-webpage-load-optimization.docx](https://github.com/jagadeeshpalaniappan/jnotes/blob/master/studies/js/2-webpage-load-optimization.docx)
+
+[https://github.com/jagadeeshpalaniappan/jnotes/blob/master/studies/js/ui-performance.pptx](https://github.com/jagadeeshpalaniappan/jnotes/blob/master/studies/js/ui-performance.pptx)
 {% endtab %}
 
 {% tab title="Code Splitting" %}
@@ -246,15 +248,6 @@ document.querySelector('#list').appendChild(docFrag); // 'render' happens only o
 
 
 
-
-[https://github.com/jagadeeshpalaniappan/jnotes/blob/master/studies/js/ui-performance.pptx](https://github.com/jagadeeshpalaniappan/jnotes/blob/master/studies/js/ui-performance.pptx)
-
-[https://github.com/jagadeeshpalaniappan/jnotes/blob/master/studies/js/2-webpage-load-optimization.docx](https://github.com/jagadeeshpalaniappan/jnotes/blob/master/studies/js/2-webpage-load-optimization.docx)
-
-* We should send your long-running loops to the task queue
-  * handle manually or use [async.js](http://caolan.github.io/async/)
-* **Use:** setTimeout, Promise, requestAnimationFrame \(rAF\)
-* \*\*\*\*
 
 
 
