@@ -17,21 +17,21 @@ Optimize: CRP (Critical Rendering Path)
 // Remember: CSS and JS (are Render-Blocking)
 ```
 
-* Reduce File Size // helps to downloadFaster 
-  * Compress, Minify, Uglify, RemoveSpaceComments
+* Defer Script \(Download, Parse and Execution\) //&lt;script src="..." defer&gt;&lt;/script&gt;
+* **Reduce File Size** // helps to downloadFaster 
+  * `Compress, Minify, Uglify, RemoveSpaceComments`
   * **`Code Splitting`**
     * loadOnlyRequiredCode \(for the currentRoute or currentView\)
     * loadOtherCodeOnDemand
-* `Defer` Script \(Download, Parse and Execution\)
-* DoNotBlindlyAddExternalLibraries: \(Moment, Lodash, Bootstrap\)
-  * CheckTheSizeAndAddExtLibs: only if required // CheckForSmallerAlternatives
-  * check whether we need entire library \(or need only specific modules\) 
-    * // import { isEqual } from 'lodash-es'
+  * `DoNotBlindlyAddExternalLibraries`: \(Moment, Lodash, Bootstrap\)
+    * CheckTheSizeAndAddExtLibs: only if required // CheckForSmallerAlternatives
+    * check whether we need entire library \(or need only specific modules\) 
+      * E.g. // import { isEqual } from 'lodash-es'
 
-Key Techniques
+**Key Techniques**
 
-* Use: **CDN**
 * Use: **SSR** \(Server Side Rendering\)
+* Use: CDN
 * **PreFetch**: criticalResources
 * Progressive Rehydration \(After User Open something, then Load that stuff \)
 {% endtab %}
@@ -244,8 +244,6 @@ document.querySelector('#list').appendChild(docFrag); // 'render' happens only o
 {% endtabs %}
 
 
-
-## \*\*\*\*
 
 
 
