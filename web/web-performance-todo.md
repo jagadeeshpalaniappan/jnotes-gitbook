@@ -1,25 +1,42 @@
 # Web Performance \[TODO\]
 
+## 1.Optimize: Initial Load
+
 {% tabs %}
-{% tab title="First Tab" %}
-1. Optimize: **CRP** \(Critical Rendering Path\)
-2. Optimize: **Code**
-   * Optimize: 'JavaScript Code' 
-     * // `doNotBlockMainThread` : // `useSmallIndividualAsyncTasks` // `useWebWorker`
-     * // `useDebounceOrThrottle` //`use:removeEventListener`
-     * // `useForLoopLengthCached` // `useMemoizationCacheFnResults`
-   * Optimize: 'DOM'
-     * // `lazyLoadLessWantedDomElems` 
-     * // `doBatchDomManipulation` //`useDocumentFragment`
-   * Optimize: 'HTTP Response'
-     * `cache` / `prefetch` / `loadOnDemandLessWanted`
+{% tab title="QuickRead" %}
+#### 1.Optimize: **Initial Load**  // improves: TTI \[Time To Interact\]
+
+```javascript
+Optimize: CRP (Critical Rendering Path)
+ --------------------------
+| DOMTree construction     |
+| CSSOM Tree construction  |  >> Render Tree >> Layout >> Paint
+| JS parsing & execution   |
+ --------------------------
+
+// Remember: CSS and JS (are Render-Blocking)
+```
+
+* Reduce File Size // helps to downloadFaster 
+  * Compress, Minify, Uglify, RemoveSpaceComments
+  * **`Code Splitting`**
+    * loadOnlyRequiredCode \(for the currentRoute or currentView\)
+    * loadOtherCodeOnDemand
+* `Defer` Script \(Download, Parse and Execution\)
+* DoNotBlindlyAddExternalLibraries: \(Moment, Lodash, Bootstrap\)
+  * CheckTheSizeAndAddExtLibs: only if required // CheckForSmallerAlternatives
+  * check whether we need entire library \(or need only specific modules\) 
+    * // import { isEqual } from 'lodash-es'
+
+Key Techniques
+
+* Use: **CDN**
+* Use: **SSR** \(Server Side Rendering\)
+* **PreFetch**: criticalResources
+* Progressive Rehydration \(After User Open something, then Load that stuff \)
 {% endtab %}
 
-{% tab title="Second Tab" %}
-
-{% endtab %}
-{% endtabs %}
-
+{% tab title="Optimize: CRP" %}
 ## **1.Optimize: CRP \(Critical Rendering Path\)**
 
 **CRP:** `[DOM Tree + CSSOM Tree + JS]` &gt;&gt; Render Tree &gt;&gt; Layout &gt;&gt; Paint
@@ -84,15 +101,57 @@ KeyWords:
 ```
 
 \*\*\*\*
+{% endtab %}
 
+{% tab title="Code Splitting" %}
+* loadOnlyRequiredCode \(for the currentRoute or currentView\)
+* loadOtherCodeOnDemand or lazyLoad 
+
+Example: React helps to Lazy Load Components
+
+![](../.gitbook/assets/image%20%281%29.png)
+{% endtab %}
+{% endtabs %}
+
+## 2. Optimize: UI
+
+{% tabs %}
+{% tab title="QuickRead" %}
+* **Optimize: 'JavaScript Code'** 
+
+  * // `doNotBlockMainThread` : // `useSmallIndividualAsyncTasks` // `useWebWorker`
+  * // `useDebounceOrThrottle` 
+  * // `useForLoopLengthCached` 
+  * // `useMemoizationCacheFnResults`
+
+* **Optimize: 'DOM'**
+
+  * // `lazyLoadLessWantedDomElems`  // lazyLoadOnVisibility // lazyLoadOnScroll
+  * // `doBatchDomManipulation` //`useDocumentFragment`
+
+* **Optimize: 'API Response'**
+
+  * `cache` / `prefetch` / `loadOnDemandLessWanted`  / combineAPICalls \(use: GraphQL\)
+
+* **Optimize: 'Memory'**
+  * //use:removeEventListener
+{% endtab %}
+
+{% tab title="1. Optimize: JS" %}
 ## 1. Optimize: 'JavaScript Code'
 
 ```javascript
 1. Optimize: 'Event Loop & Call Stack'
     - Do not 'blockMainThread', this will 'freezeUserInteraction' // remember: javascript is 'singleThreaded'
-    - consider spliting 'longRunningSynchScripts' them into 'smallIndividualAsyncTasks' 
-      // remember: Keeping `longRunningSynchScripts` in asynchronous tasks also 'blockMainThread'
-    - or ask `WebWorker` to run the script parallelly
+    - runAsync // use: setTimeout, Promise, requestAnimationFrame (rAF)
+
+    - 'longRunningSynchScripts' blockMainThread
+        - consider spliting them into 'smallIndividualAsyncTasks' 
+        // remember: Keeping `longRunningSynchScripts` in asynchronous tasks also 'blockMainThread'
+    
+    - ifNotPossible: use `WebWorker` to run the longRunningSynchScripts parallelly 
+    
+  
 
 2. Optimize: 'Events'
      - Use: Debounce & Throttle 
@@ -107,14 +166,17 @@ KeyWords:
 # 'longRunningSynchScripts': Long Running Synchronous Scripts
 # 'freezeUserInteraction': blocking the CRP
 ```
+{% endtab %}
 
-\*\*\*\*
-
+{% tab title="2. Optimize: DOM" %}
 ## **2. Optimize: DOM Manipulation**
 
 ```javascript
 1. LazyLoad [less-wanted items]
     - when we have huge elements
+    - consider lazyLoad them (lazyLoadOnVisibility, lazyLoadOnScroll)
+
+LazyLoad on Visibility:
     - consider first rendering elements which are in user viewport (and upcoming viewport)
     - then lazily load/render other elements (on-demand) when those element reaches close to the viewport
     // use: Intersection Observer API:
@@ -159,6 +221,10 @@ for(let i = 0; i < 1000; i++) {
 document.querySelector('#list').appendChild(docFrag); // 'render' happens only once
 ```
 
+## \*\*\*\*
+{% endtab %}
+
+{% tab title="3.Optimize: \'API Resp\'" %}
 ## **3.**Optimize: 'HTTP Response'
 
 ```javascript
@@ -166,12 +232,22 @@ document.querySelector('#list').appendChild(docFrag); // 'render' happens only o
 - PreFetch: (most wanted) HTTP response
 - Load `On-Demand` (less wanted) // LazyLoad
 ```
+{% endtab %}
 
+{% tab title="4. Optimize: \'Memory\'" %}
 
 
 {% embed url="https://www.lambdatest.com/blog/eradicating-memory-leaks-in-javascript/" caption="" %}
 
 {% embed url="https://dev.to/gc\_psk/debugging-memory-leaks-in-angular-4m2o" caption="" %}
+{% endtab %}
+{% endtabs %}
+
+
+
+## \*\*\*\*
+
+
 
 [https://github.com/jagadeeshpalaniappan/jnotes/blob/master/studies/js/ui-performance.pptx](https://github.com/jagadeeshpalaniappan/jnotes/blob/master/studies/js/ui-performance.pptx)
 
@@ -180,19 +256,31 @@ document.querySelector('#list').appendChild(docFrag); // 'render' happens only o
 * We should send your long-running loops to the task queue
   * handle manually or use [async.js](http://caolan.github.io/async/)
 * **Use:** setTimeout, Promise, requestAnimationFrame \(rAF\)
-* **Use:** Debounce, Throttle, requestAnimationFrame \(for lagging issue\)
+* \*\*\*\*
+
+
 
 {% tabs %}
-
+{% tab title="1" %}
 
 
 {% embed url="https://www.youtube.com/watch?v=sX7B4GghnqM&t=228s" caption="" %}
+{% endtab %}
 
-{% embed url="https://www.youtube.com/watch?v=YJGCZCaIZkQ" caption="" %}
+{% tab title="2" %}
+{% embed url="https://www.youtube.com/watch?v=X9eRLElSW1c" %}
 
 
 
 {% embed url="https://www.youtube.com/watch?v=ff4fgQxPaO0" %}
+{% endtab %}
+
+{% tab title="3" %}
+
+
+{% embed url="https://www.youtube.com/watch?v=YJGCZCaIZkQ" caption="" %}
+{% endtab %}
+{% endtabs %}
 
 
 
