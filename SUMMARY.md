@@ -8,6 +8,8 @@
   * [Intro](interview/basic/intro.md)
   * [Behavior](interview/basic/behavior.md)
   * [Negotiation](interview/basic/negotiation.md)
+  * [Achievements](interview/basic/achievements/README.md)
+    * [1. Controlling WebApp using 'Voice'](interview/basic/achievements/1.-controlling-webapp-using-voice.md)
 * [UI](interview/ui/README.md)
   * [UI Concepts](interview/ui/ui-concepts.md)
   * [JavaScript Concepts](interview/ui/javascript-concepts.md)
@@ -142,8 +144,4 @@
 ## TODO
 
 * [TODO](todo/todo.md)
-
-## Achievements
-
-* [1. Controlling WebApp using 'Voice'](achievements/1.-controlling-webapp-using-voice.md)
 
