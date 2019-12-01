@@ -89,7 +89,7 @@
   * [2. CSS Specificity](css/concepts/2.md)
   * [todo](css/concepts/todo.md)
 * [CSS How to?](css/css-how-to/README.md)
-  * [Quick Videos](css/css-how-to/quick-videos.md)
+  * [Quick CSS](css/css-how-to/quick-videos.md)
   * [1. CSS Box Model](css/css-how-to/1.md)
   * [3. Flex Box](css/css-how-to/3.md)
   * [4. Align Center](css/css-how-to/4.md)
