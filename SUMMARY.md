@@ -108,18 +108,6 @@
 * [Proxy](web/proxy.md)
 * [CDN](web/cdn.md)
 
-## PERFORMANCE
-
-* [UI](performance/ui.md)
-* [ServerSide](performance/serverside/README.md)
-  * [Caching](performance/serverside/caching.md)
-  * [Horizontal Scaling](performance/serverside/horizontal-scaling.md)
-  * [MicroServices -Help in Scaling](performance/serverside/microservice-architecture.md)
-  * [Stateless API benefits](performance/serverside/stateless-api-benefits.md)
-  * [DB- Read Replicas](performance/serverside/db-read-replicas.md)
-  * [Node.js \[eTODO\]](performance/serverside/node.js.md)
-  * [LoadBlancers](performance/serverside/loadblancers.md)
-
 ## SERVER
 
 * [Interview Questions \(ServerSide\)](server/interview-questions-serverside/README.md)
@@ -133,6 +121,14 @@
   * [All](server/interview-questions-serverside/untitled.md)
 * [Micro Services](server/ms-micro-services.md)
 * [OAuth](server/oauth.md)
+* [ServerSide - Performance](server/serverside/README.md)
+  * [Caching](server/serverside/caching.md)
+  * [Horizontal Scaling](server/serverside/horizontal-scaling.md)
+  * [MicroServices -Help in Scaling](server/serverside/microservice-architecture.md)
+  * [Stateless API benefits](server/serverside/stateless-api-benefits.md)
+  * [DB- Read Replicas](server/serverside/db-read-replicas.md)
+  * [Node.js \[eTODO\]](server/serverside/node.js.md)
+  * [LoadBlancers](server/serverside/loadblancers.md)
 
 ## LEET
 
