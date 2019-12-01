@@ -129,8 +129,18 @@ clear: both | left | right <!-- specifies what elements can float beside the cle
 ## CSS Tutorial
 
 {% tabs %}
+{% tab title="First Tab" %}
+{% embed url="https://www.youtube.com/watch?v=yfoY53QXEnI&feature=emb\_title" %}
 
+​​​
+{% endtab %}
 
+{% tab title="Second Tab" %}
+
+{% endtab %}
+{% endtabs %}
+
+​​
 
 
 
