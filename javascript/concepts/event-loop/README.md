@@ -62,47 +62,55 @@ On every 'Event Loop' iteration,
 
 ## Call Stack
 
-{% tabs %}
+### Synchronous: Simple Code \(Call Stack\)
+
+{% embed url="https://docs.google.com/presentation/d/1UG5Ir-MM1MFxKJQGgV-IBpgTphbmd\_06sBmLguUOgT0/edit" %}
 
 
 
-#### Synchronous: Simple Code \(Call Stack\)
-
-{% embed url="https://drive.google.com/open?id=1UG5Ir-MM1MFxKJQGgV-IBpgTphbmd\_06sBmLguUOgT0" caption="" %}
-
-#### Error \(Call Stack\)
+### Error \(Call Stack\)
 
 ![](../../../.gitbook/assets/js-callstack-err.png)
 
 
 
-#### Maximum \(Call Stack\) exceeded
+### Maximum \(Call Stack\) exceeded
 
-{% embed url="https://drive.google.com/open?id=1s0c98XHB1oB9G7jEVwkIrcoVoXrgMgWCEaxeLACuwdg" caption="" %}
+{% embed url="https://docs.google.com/presentation/d/1s0c98XHB1oB9G7jEVwkIrcoVoXrgMgWCEaxeLACuwdg/edit" %}
 
 
 
-#### setTimeout \(Call Stack\)
 
-{% embed url="https://drive.google.com/open?id=1jllxkq3EscDnGgwiCYeDQ3jbi3YM8j67cSg7P8THfis" caption="" %}
 
-#### setTimeout \(Call Stack\)  -Detailed
+### setTimeout \(Call Stack\)
 
-{% embed url="https://drive.google.com/open?id=15lQyXn2sTOK4bqgy28bS9ODsXHQNNnISpwMvq\_jrV0M" caption="" %}
+{% embed url="https://docs.google.com/presentation/d/1jllxkq3EscDnGgwiCYeDQ3jbi3YM8j67cSg7P8THfis/edit" %}
+
+
+
+### setTimeout \(Call Stack\)  -Detailed
+
+{% embed url="https://docs.google.com/presentation/d/15lQyXn2sTOK4bqgy28bS9ODsXHQNNnISpwMvq\_jrV0M/edit\#slide=id.p1" %}
 
 
 
 ### setTimeout\(..., 0\) \(Call Stack\)
 
-{% embed url="https://drive.google.com/open?id=1LlsveY1Cw12-ghSYjdeRGAhtwZJM9XYk2bLMsGmnU6E" caption="" %}
+{% embed url="https://docs.google.com/presentation/d/1LlsveY1Cw12-ghSYjdeRGAhtwZJM9XYk2bLMsGmnU6E/edit\#slide=id.p1" %}
+
+
 
 ### AJAX \(Call Stack\)
 
-{% embed url="https://drive.google.com/open?id=1oPSV9H\_D8fOwFTajhys5pGX8oexmbmd8BEMYujTCa00" caption="" %}
+{% embed url="https://docs.google.com/presentation/d/1oPSV9H\_D8fOwFTajhys5pGX8oexmbmd8BEMYujTCa00/edit" %}
+
+
 
 ## Event Loop -\(Jag Detailed\):
 
-{% embed url="https://drive.google.com/open?id=1ZLyawPiRcA-llgP0NobUGPBPTZ1y0cK8TgFjhNVeCWc" caption="" %}
+{% embed url="https://docs.google.com/presentation/d/1ZLyawPiRcA-llgP0NobUGPBPTZ1y0cK8TgFjhNVeCWc/edit" %}
+
+
 
 ## Must Watch Videos \[Event Loop\]
 
