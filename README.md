@@ -1,4 +1,4 @@
 # jnotes
 
-Jag Notes
+## [My Gitbook](https://jagadeeshpalaniappan.gitbook.io/jnotes/) 
 
