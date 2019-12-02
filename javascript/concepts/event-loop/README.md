@@ -106,7 +106,7 @@ On every 'Event Loop' iteration,
 
 
 
-## Event Loop -\(Jag Detailed\):
+## Event Loop -\(Jag Detailed Explanation\):
 
 {% embed url="https://docs.google.com/presentation/d/1ZLyawPiRcA-llgP0NobUGPBPTZ1y0cK8TgFjhNVeCWc/edit" %}
 
