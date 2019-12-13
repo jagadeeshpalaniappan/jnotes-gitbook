@@ -10,7 +10,7 @@
 | 4 | 200 | [Number of Islands](https://leetcode.com/problems/number-of-islands) | \*\*\*\*\* |
 | 5 | 3 | [Longest Substring Without Repeating Characters](https://leetcode.com/problems/longest-substring-without-repeating-characters) | \*\*\*\*\* |
 | 6 | 15 | [3Sum](https://leetcode.com/problems/3sum) | \*\*\*\*\* |
-| 7 | 238 | [Product of Array Except Self    ](https://leetcode.com/problems/product-of-array-except-self) | \*\*\*\* |
+| 7 | 238 | [Product of Array Except Self](https://leetcode.com/problems/product-of-array-except-self) | \*\*\*\* |
 | 8 | 56 | [Merge Intervals    ](https://leetcode.com/problems/merge-intervals) | \*\*\*\* |
 | 9 | 33 | [Search in Rotated Sorted Array    ](https://leetcode.com/problems/search-in-rotated-sorted-array) | \*\*\*\* |
 | 10 | 253 | [Meeting Rooms II    ](https://leetcode.com/problems/meeting-rooms-ii) | \*\*\*\* |
@@ -873,20 +873,197 @@ A solution set is:
 {% endtab %}
 {% endtabs %}
 
-..\#. Xxxxxx Yyyyy
+
+
+## [7. Product of Array Except Self](https://leetcode.com/problems/product-of-array-except-self)
 
 {% tabs %}
 {% tab title="Question" %}
-...
+**238. Product of Array Except Self**
+
+* -or- Multiply all fields except its position in an array
+* Input:  \[1,2,3,4\] ==&gt; Output: \[24,12,8,6\]
+* 
 {% endtab %}
 
 {% tab title="Video" %}
+{% embed url="https://www.youtube.com/watch?v=61IjpElFcn8" %}
 
+{% embed url="https://www.youtube.com/watch?v=vB-81TB6GUc" %}
 {% endtab %}
 
 {% tab title="Code" %}
 ```javascript
-....
+
+/*
+  (skip current) and multiply from 'left' and (skip current) and multiply from 'right' approach
+  TC: O(n) SC: O(1)
+*/
+function productExceptSelf(nums) {
+  const output = [1];
+
+  // 1.(skip current) and multiply from 'left' 
+  let leftVal = 1;
+  for (let i = 1; i < nums.length; i++) {
+    const prevItem = nums[i - 1];
+    leftVal = leftVal * prevItem;
+    output.push(leftVal);
+  }
+
+
+  // 2.(skip current) and multiply from 'right' 
+  let rightVal = 1;
+  for (let i = nums.length - 2; i >= 0; i--) {
+    const prevItem = nums[i + 1];
+    rightVal = rightVal * prevItem;
+
+    output[i] = output[i] * rightVal;
+  }
+
+  return output;
+}
+```
+{% endtab %}
+
+{% tab title="" %}
+```javascript
+/*
+Input:
+ ---------------
+| 1 | 2 | 3 | 4 |
+ ---------------
+
+// 1.(skip current#) and multiply from 'left' 
+
+     ---------------
+    | #1 | . | . | . |
+    -----------------                 ----------------
+targetIndex: '0' ==> left = 1 ==>    | *1 |   |   |   | 
+                                      ----------------
+     ----------------
+    | 1 | #2 | . | . |
+     ----------------                 ----------------
+targetIndex: '1' ==> left = 1 ==>    | 1 | *1 |   |   | 
+                                      ----------------
+     ----------------
+    | 1 | 2 | #3 | . |
+     ----------------                 ----------------
+targetIndex: '2' ==> left = 2 ==>    | 1 | 1 | *2 |   | 
+                                      -----------------
+     ----------------
+    | 1 | 2 | 3 | #4 |
+     ----------------                 ----------------
+targetIndex: '3' ==> left = 6 ==>    | 1 | 1 | 2 | *6 | 
+                                      ----------------
+
+
+// 2.(skip current#) and multiply from 'right' 
+
+     ----------------
+    | . | . | . | #4 |
+     ----------------                          ----------------
+targetIndex: '3' ==> 'right=1' ==> 1*6 ==>    | 1 | 1 | 2 | *6 | 
+                                               ----------------
+
+     ----------------
+    | . | . | #3 | 4 |
+     ----------------                          ----------------
+targetIndex: '2' ==> 'right=4' ==> 4*2 ==>    | 1 | 1 | *8 | 6 | 
+                                               ----------------
+
+     ----------------
+    | . | #2 | 3 | 4 |
+     ----------------                            ----------------
+targetIndex: '1' ==> 'right=12' ==> 12*1 ==>    | 1 | *12 | 8 | 6 | 
+                                                 ----------------
+
+     ----------------
+    | #1 | 2 | 3 | 4 |
+     ----------------                            ----------------
+targetIndex: '0' ==> 'right=24' ==> 24*1 ==>    | *24 | 12 | 8 | 6 | 
+                                                 ----------------
+
+Output:
+ -----------------
+| 24 | 12 | 8 | 6 | 
+ -----------------
+
+Input:
+ ---------------
+| 1 | 2 | 3 | 4 |
+ ---------------
+
+*/
+
+
+
+/*
+Input:
+ ---------------
+| 4 | 2 | 1 | 7 |
+ ---------------
+
+// 1.(skip current#) and multiply from 'left' 
+
+     ---------------
+    | #4 | . | . | . |
+    -----------------                 ----------------
+targetIndex: '0' ==> left = 1 ==>    | *1 |   |   |   | 
+                                      ----------------
+     ----------------
+    | 4 | #2 | . | . |
+     ----------------                 ----------------
+targetIndex: '1' ==> left = 4 ==>    | 1 | *4 |   |   | 
+                                      ----------------
+     ----------------
+    | 4 | 2 | #1 | . |
+     ----------------                 ----------------
+targetIndex: '2' ==> left = 8 ==>    | 1 | 4 | *8 |   | 
+                                      -----------------
+     ----------------
+    | 4 | 2 | 1 | #7 |
+     ----------------                 ----------------
+targetIndex: '3' ==> left = 8 ==>    | 1 | 4 | 8 | *8 | 
+                                      ----------------
+
+
+// 2.(skip current#) and multiply from 'right' 
+
+     ----------------
+    | . | . | . | #7 |
+     ----------------                          ----------------
+targetIndex: '3' ==> 'right=1' ==> 1*6 ==>    | 1 | 4 | 8 | *8 | 
+                                               ----------------
+
+     ----------------
+    | . | . | #1 | 7 |
+     ----------------                          -----------------
+targetIndex: '2' ==> 'right=7' ==> 7*8 ==>    | 1 | 4 | *56 | 8 | 
+                                               -----------------
+
+     ----------------
+    | . | #2 | 1 | 7 |
+     ----------------                          ------------------
+targetIndex: '1' ==> 'right=7' ==> 7*4 ==>    | 1 | *28 | 56 | 8 | 
+                                               ------------------
+
+     ----------------
+    | #4 | 2 | 1 | 7 |
+     ----------------                            -------------------
+targetIndex: '0' ==> 'right=14' ==> 14*1 ==>    | *14 | 28 | 56 | 8 | 
+                                                 -------------------
+
+Output:
+ -----------------
+| 14 | 28 | 56 | 8 | 
+ -----------------
+
+Input:
+ ---------------
+| 4 | 2 | 1 | 7 |
+ ---------------
+
+*/
 ```
 {% endtab %}
 {% endtabs %}
