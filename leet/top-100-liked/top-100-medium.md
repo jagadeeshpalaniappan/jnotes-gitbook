@@ -13,7 +13,7 @@
 | 7 | 238 | [Product of Array Except Self](https://leetcode.com/problems/product-of-array-except-self) | \*\*\*\* |
 | 8 | 56 | [Merge Intervals](https://leetcode.com/problems/merge-intervals) | \*\*\*\* |
 | 9 | 33 | [Search in Rotated Sorted Array](https://leetcode.com/problems/search-in-rotated-sorted-array) | \*\*\*\* |
-| 10 | 253 | [Meeting Rooms II    ](https://leetcode.com/problems/meeting-rooms-ii) | \*\*\*\* |
+| 10 | 253 | [Meeting Rooms II](https://leetcode.com/problems/meeting-rooms-ii) | \*\*\*\* |
 | 11 | 49 | [Group Anagrams    ](https://leetcode.com/problems/group-anagrams) | \*\*\*\* |
 | 12 | 22 | [Generate Parentheses    ](https://leetcode.com/problems/generate-parentheses) | \*\*\*\* |
 | 13 | 11 | [Container With Most Water    ](https://leetcode.com/problems/container-with-most-water) | \*\*\*\* |
@@ -1182,7 +1182,7 @@ function merge(intervals) {
 {% endtab %}
 
 {% tab title="Video" %}
-
+{% embed url="https://www.youtube.com/watch?v=uufaK2uLnSI" %}
 {% endtab %}
 
 {% tab title="Code" %}
@@ -1254,11 +1254,25 @@ function search(nums, target) {
 {% endtab %}
 {% endtabs %}
 
-## \#. Xxxxxx Yyyyy
+
+
+## [10. Meeting Rooms II](https://leetcode.com/problems/meeting-rooms-ii)
 
 {% tabs %}
 {% tab title="Question" %}
-...
+253. Meeting Rooms II
+
+Given an array of meeting time intervals consisting of start and end times `[[s1,e1],[s2,e2],...]` \(si &lt; ei\), find the minimum number of conference rooms required.
+
+```text
+Example 1:
+Input: [[0, 30],[5, 10],[15, 20]]
+Output: 2
+
+Example 2:
+Input: [[7,10],[2,4]]
+Output: 1
+```
 {% endtab %}
 
 {% tab title="Video" %}
