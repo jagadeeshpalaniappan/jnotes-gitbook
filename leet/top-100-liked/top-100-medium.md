@@ -11,8 +11,8 @@
 | 5 | 3 | [Longest Substring Without Repeating Characters](https://leetcode.com/problems/longest-substring-without-repeating-characters) | \*\*\*\*\* |
 | 6 | 15 | [3Sum](https://leetcode.com/problems/3sum) | \*\*\*\*\* |
 | 7 | 238 | [Product of Array Except Self](https://leetcode.com/problems/product-of-array-except-self) | \*\*\*\* |
-| 8 | 56 | [Merge Intervals    ](https://leetcode.com/problems/merge-intervals) | \*\*\*\* |
-| 9 | 33 | [Search in Rotated Sorted Array    ](https://leetcode.com/problems/search-in-rotated-sorted-array) | \*\*\*\* |
+| 8 | 56 | [Merge Intervals](https://leetcode.com/problems/merge-intervals) | \*\*\*\* |
+| 9 | 33 | [Search in Rotated Sorted Array](https://leetcode.com/problems/search-in-rotated-sorted-array) | \*\*\*\* |
 | 10 | 253 | [Meeting Rooms II    ](https://leetcode.com/problems/meeting-rooms-ii) | \*\*\*\* |
 | 11 | 49 | [Group Anagrams    ](https://leetcode.com/problems/group-anagrams) | \*\*\*\* |
 | 12 | 22 | [Generate Parentheses    ](https://leetcode.com/problems/generate-parentheses) | \*\*\*\* |
@@ -68,7 +68,7 @@
 ## [1. Add Two Numbers](https://leetcode.com/problems/add-two-numbers)
 
 {% tabs %}
-
+{% tab title="Qstn" %}
 You are given two **non-empty** linked lists representing two non-negative integers. The digits are stored in **reverse order** and each of their nodes contain a single digit. Add the two numbers and return it as a linked list.
 
 You may assume the two numbers do not contain any leading zero, except the number 0 itself.
@@ -80,11 +80,15 @@ Input: (2 -> 4 -> 3) + (5 -> 6 -> 4)
 Output: 7 -> 0 -> 8
 Explanation: 342 + 465 = 807.
 ```
+{% endtab %}
 
+{% tab title="Video" %}
 
 
 {% embed url="https://www.youtube.com/watch?v=esZdwGfG7NE" caption="" %}
+{% endtab %}
 
+{% tab title="Code" %}
 ```javascript
 /*
 Sol1: [BEST] Since 'list1' & 'list2' are already in reverseOrder. It is easy to do addition
@@ -144,11 +148,15 @@ function addTwoNumbers(l1, l2) {
   return resultList.next;
 }
 ```
+{% endtab %}
+{% endtabs %}
+
+
 
 ## 2. LRU
 
 {% tabs %}
-
+{% tab title="Qstn" %}
 Design and implement a data structure for [Least Recently Used \(LRU\) cache](https://en.wikipedia.org/wiki/Cache_replacement_policies#LRU).
 
 * It should support the following operations: `get` and `put` in **`O(1) time`**
@@ -157,10 +165,16 @@ Design and implement a data structure for [Least Recently Used \(LRU\) cache](ht
 * `put(key, val)` - add/update the key and value 
   * when the cache reached its max capacity, it should remove Least Recently Used item
   * and add the new item
+{% endtab %}
 
+{% tab title="Video" %}
 
 
 {% embed url="https://www.youtube.com/watch?v=S6IfqDXWa10" caption="" %}
+
+
+
+
 
 **Solution: `HashMap` + `DoublyLinkedList`**
 
@@ -169,6 +183,12 @@ Design and implement a data structure for [Least Recently Used \(LRU\) cache](ht
 
 **TimeComplexity**: O\(1\) both for put and get. **SpaceComplexity** : O\(capacity\)
 
+```java
+
+```
+{% endtab %}
+
+{% tab title="Sol" %}
 ```java
 LRUCache obj = new LRUCache(5);
 obj.put(1, 11);
@@ -451,6 +471,10 @@ class LRUCache extends LinkedHashMap<Integer, Integer>{
  * obj.put(key,value);
  */
 ```
+{% endtab %}
+{% endtabs %}
+
+
 
 ## [3. Longest Palindromic Substring](https://leetcode.com/problems/longest-palindromic-substring)
 
@@ -636,7 +660,7 @@ function lps(s) {
 ## [4. Number of Islands](https://leetcode.com/problems/number-of-islands)
 
 {% tabs %}
-
+{% tab title="Qstn" %}
 **200. Number of Islands**
 
 Given a 2d grid map of `'1'`s \(land\) and `'0'`s \(water\), count the number of islands. An island is surrounded by water and is formed by connecting adjacent lands horizontally or vertically. You may assume all four edges of the grid are all surrounded by water.
@@ -664,11 +688,15 @@ Input:
 
 Output: 3
 ```
+{% endtab %}
 
+{% tab title="Video" %}
 
 
 {% embed url="https://www.youtube.com/watch?v=CGMNePwovA0" caption="" %}
+{% endtab %}
 
+{% tab title="Sol" %}
 ```javascript
 /*
  Using: DFS
@@ -739,6 +767,10 @@ const grid1 = [
 ];
 console.log(numIslands(grid1)); // 1
 ```
+{% endtab %}
+{% endtabs %}
+
+\*\*\*\*
 
 ## [5. Longest Substring Without Repeating Characters](https://leetcode.com/problems/longest-substring-without-repeating-characters)
 
@@ -881,9 +913,14 @@ A solution set is:
 {% tab title="Question" %}
 **238. Product of Array Except Self**
 
-* -or- Multiply all fields except its position in an array
+-or- Multiply all fields except its position in an array
+
 * Input:  \[1,2,3,4\] ==&gt; Output: \[24,12,8,6\]
-* 
+  * index:0 --&gt; 1 --&gt; 2\*3\*4=24    // \[1,`2,3,4`\]
+  * index:1 --&gt; 2 --&gt; 1\*3\*4=12    // \[`1`,2,`3,4`\]
+  * index:2 --&gt; 3 --&gt; 1\*2\*4=8      // \[`1,2`,3,`4`\]
+  * index:3 --&gt; 4 --&gt; 1\*2\*3=6      // \[`1,2,3`,4\]
+* Input:  \[4,2,1,7\] ==&gt; Output: \[14,28,56,8\]
 {% endtab %}
 
 {% tab title="Video" %}
@@ -925,7 +962,7 @@ function productExceptSelf(nums) {
 ```
 {% endtab %}
 
-{% tab title="" %}
+{% tab title="Explanation" %}
 ```javascript
 /*
 Input:
@@ -1068,29 +1105,80 @@ Input:
 {% endtab %}
 {% endtabs %}
 
-## \#. Xxxxxx Yyyyy
+## [8. Merge Intervals](https://leetcode.com/problems/merge-intervals)
 
 {% tabs %}
 {% tab title="Question" %}
-...
+56. Merge Intervals  // Given a collection of intervals, merge all overlapping intervals.
+
+```text
+Example 1:
+----------
+Input: [[1,3],[2,6],[8,10],[15,18]]
+Output: [[1,6],[8,10],[15,18]]
+
+Explanation: Since intervals [1,3] and [2,6] overlaps, merge them into [1,6].
+
+Example 2:
+-----------
+Input: [[1,4],[4,5]]
+Output: [[1,5]]
+```
 {% endtab %}
 
 {% tab title="Video" %}
+{% embed url="https://www.youtube.com/watch?v=Z52tWkco7BM" %}
 
+{% embed url="https://www.youtube.com/watch?v=NWQp0IFRPi4" %}
 {% endtab %}
 
 {% tab title="Code" %}
 ```javascript
-....
+
+/*
+[Optimal]: Sort the Input, and find the overlap
+// check: isNextInterval overlap 'lastResultInterval'
+TC: O(n logn) SC: O(1)
+*/
+function merge(intervals) {
+  if (intervals && intervals.length === 0) {
+    return intervals;
+  }
+
+  const sortedIntervals = intervals.sort((a, b) => a[0] - b[0]);
+
+  const result = [sortedIntervals[0]];
+
+  for (let i = 1, len = sortedIntervals.length; i < len; i++) {
+    const lastResultInt = result[result.length - 1];
+    const nextInterval = sortedIntervals[i];
+
+    // check: isNextInterval overlap 'lastResultInterval'
+    if (nextInterval[0] <= lastResultInt[1]) {
+    
+      // mergeIntervals: (move the nextIntervalEnd if only needed)
+      if (nextInterval[1] > lastResultInt[1]) {
+        // nextIntervalEnd goes beyond lastResultIntEnd (update: lastResultIntEnd as nextIntervalEnd)
+        lastResultInt[1] = nextInterval[1];
+      }
+      
+    } else {
+      // no overlap
+      result.push(nextInterval);
+    }
+  }
+
+  return result;
+}
 ```
 {% endtab %}
 {% endtabs %}
 
-## \#. Xxxxxx Yyyyy
+## [9. Search in Rotated Sorted Array](https://leetcode.com/problems/search-in-rotated-sorted-array)
 
 {% tabs %}
 {% tab title="Question" %}
-...
+33. Search in Rotated Sorted Array
 {% endtab %}
 
 {% tab title="Video" %}
@@ -1099,7 +1187,69 @@ Input:
 
 {% tab title="Code" %}
 ```javascript
-....
+/*
+[Linear]: search: eachItem
+TC: O(n) SC: O(1)
+*/
+function search(nums, target) {
+  for (let i =0; i<nums.length; i++) {
+    if(nums[i] ===target) {
+      return i;
+    }
+  }
+}
+
+/* ------------------------------------------------------------
+Can we do it better?
+ - since, 'inputArr' is Sorted // we should be able to use 'Binary Search'
+ - But the 'inputArr' is rotated, so we have to slightly modify 'Binary Search' 
+ - and can find targetItem in O(logn)
+ ------------------------------------------------------------ */
+
+/*
+[Optimal]: Modified Binary Search
+TC: O(n logn) SC: O(1)
+*/
+function search(nums, target) {
+  let start = 0,
+    end = nums.length - 1;
+
+  while (start <= end) {
+    debugger;
+    const mid = start + Math.floor((end - start) / 2);
+
+    if (nums[mid] === target) {
+      // case1: found target
+      return mid;
+    }
+
+    // 2. check: Is 'rightArrProperlySorted'?
+    if (nums[mid] <= nums[end]) {
+      // 2a. check: 'target' can be available in 'rightSortedArr'
+      if (nums[mid] < target && target <= nums[end]) {
+        // search only in 'rightSortedArr'
+        start = mid + 1;
+      } else {
+        // 2b. 'rightSortedArr' doesnt have target, go search in 'leftArr'
+        end = mid - 1;
+      }
+    }
+    // 3. check: Is 'leftArrProperlySorted'?
+    // } else if (nums[start] <= nums[mid]) {  // else is also same
+    else {
+      // 3a. check: 'target' can be available in 'leftSortedArr'
+      if (nums[start] <= target && target < nums[mid]) {
+        // search only in 'leftSortedArr'
+        end = mid - 1;
+      } else {
+        // 3b. 'leftSortedArr' doesnt have target, go search in 'rightArr'
+        start = mid + 1;
+      }
+    }
+  }
+
+  return -1;
+}
 ```
 {% endtab %}
 {% endtabs %}
