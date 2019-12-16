@@ -915,12 +915,22 @@ A solution set is:
 
 -or- Multiply all fields except its position in an array
 
-* Input:  \[1,2,3,4\] ==&gt; Output: \[24,12,8,6\]
-  * index:0 --&gt; 1 --&gt; 2\*3\*4=24    // \[1,`2,3,4`\]
-  * index:1 --&gt; 2 --&gt; 1\*3\*4=12    // \[`1`,2,`3,4`\]
-  * index:2 --&gt; 3 --&gt; 1\*2\*4=8      // \[`1,2`,3,`4`\]
-  * index:3 --&gt; 4 --&gt; 1\*2\*3=6      // \[`1,2,3`,4\]
-* Input:  \[4,2,1,7\] ==&gt; Output: \[14,28,56,8\]
+```javascript
+Example 1:
+----------
+Input:  [1,2,3,4] ==> Output: [24,12,8,6]
+
+// '#exceptSelf#'
+index:0 --> 1 --> 2*3*4=24     // [#1#,2,3,4]
+index:1 --> 2 --> 1*3*4=12     // [1,#2#,3,4]
+index:2 --> 3 --> 1*2*4=8      // [1,2,#3#,4]
+index:3 --> 4 --> 1*2*3=6      // [1,2,3,#4#]
+
+
+Example 2:
+----------
+Input:  [4,2,1,7] ==> Output: [14,28,56,8]
+```
 {% endtab %}
 
 {% tab title="Video" %}
@@ -1111,7 +1121,7 @@ Input:
 {% tab title="Question" %}
 56. Merge Intervals  // Given a collection of intervals, merge all overlapping intervals.
 
-```text
+```javascript
 Example 1:
 ----------
 Input: [[1,3],[2,6],[8,10],[15,18]]
@@ -1215,7 +1225,7 @@ function search(nums, target) {
     end = nums.length - 1;
 
   while (start <= end) {
-    debugger;
+
     const mid = start + Math.floor((end - start) / 2);
 
     if (nums[mid] === target) {
@@ -1264,29 +1274,175 @@ function search(nums, target) {
 
 Given an array of meeting time intervals consisting of start and end times `[[s1,e1],[s2,e2],...]` \(si &lt; ei\), find the minimum number of conference rooms required.
 
-```text
+```javascript
 Example 1:
+-----------
 Input: [[0, 30],[5, 10],[15, 20]]
 Output: 2
 
 Example 2:
+-----------
 Input: [[7,10],[2,4]]
 Output: 1
+```
+
+```javascript
+// 1. Sort the intervals by startTime
+// 2. keep: track of *all* 'nxtEarliestMeetingEndTime' // Use: 'PriorityQueue'
 ```
 {% endtab %}
 
 {% tab title="Video" %}
+{% embed url="https://www.youtube.com/watch?v=GmpyAMpjpUY&t=319s" %}
 
+{% embed url="https://www.youtube.com/watch?v=g9YK6sftDi0" %}
 {% endtab %}
 
 {% tab title="Code" %}
 ```javascript
-....
+// Leetcode Soln:
+function minMeetingRooms(intervals) {
+  // Check for the base case. If there are no intervals, return 0
+  if (intervals.length == 0) {
+    return 0;
+  }
+
+  // 1. Sort the intervals by startTime
+  intervals = intervals.sort((a, b) => a[0] - b[0]);
+
+  // 2. keep: track of *all* 'nxtEarliestMeetingEndTime'
+  // Use a min heap to track the minimum end time of merged intervals
+  const heap = new PriorityQueue((a, b) => a < b);
+
+  // Add the first meeting (endTime)
+  heap.add(intervals[0][1]);
+
+  // Iterate over remaining intervals
+  for (let i = 1; i < intervals.length; i++) {
+    const curr = intervals[i];
+    const currStart = curr[0];
+    const currEnd = curr[1];
+
+    // If the room due to free up the earliest is free, assign that room to this meeting.
+    const nxtEarliestMeetingEndTime = heap.peek();
+    if (currStart >= nxtEarliestMeetingEndTime) {
+      heap.poll();
+    }
+
+    // If a new room is to be assigned, then also we add to the heap,
+    // If an old room is allocated, then also we have to add to the heap with updated end time.
+    heap.add(currEnd);
+  }
+
+  console.log(heap.items);
+  // The size of the heap tells us the minimum rooms required for all the meetings.
+  return heap.size();
+}
+```
+{% endtab %}
+
+{% tab title="Explanation" %}
+```javascript
+/*
+
+Input:
+[meetingStartTime, meetingEndTime]
+  
+[[0, 30],[5, 10],[15, 20], [12,25], [20,25], [0,10], [0,5]]
+
+0                                           30
+|--------------------m:A--------------------|
+
+      5       10
+      |--m:B---|
+
+                      15      20
+                      |--m:C---|
+
+                  12                 25
+                  |--------m:D--------|
+
+                                20       25
+                                |---m:E---|
+
+0              10
+|-----m:F------|
+
+0     5
+|-m:G-|
+
+
+// 1. Sort the intervals by startTime
+
+0                                           30
+|--------------------m:A--------------------|
+
+0             10
+|-----m:F------|
+
+0     5
+|-m:G-|
+
+      5       10
+      |--m:B---|
+
+                  12                 25
+                  |--------m:D--------|
+
+                    15      20
+                    |--m:C---|
+
+                             20       25
+                             |---m:E---|
+
+
+
+// 2. keep: track of *all* 'nxtEarliestMeetingEndTime'
+
+
+0) m:A --> r:1 alloted  --> update: nxtEarliestMeetingEndTime= 30
+
+// can we reuse the same room (startTime: 0)? No  // becoz: nxtEarliestMeetingEndTime= 30
+1) m:F --> r:2 alloted  --> update: nxtEarliestMeetingEndTime=10  // [10, 30]
+
+// can we reuse the same room (startTime: 0)? No  // becoz: nxtEarliestMeetingEndTime= 10
+2) m:G --> r:3 alloted  ==> update: nxtEarliestMeetingEndTime=5   // [5, 10, 30]
+
+// can we reuse the same room (startTime: 5)? Yes  // becoz: 'nxtEarliestMeetingEndTime=5' and 'startTime=5'
+3) m:B --> r:3 alloted  ==> update: nxtEarliestMeetingEndTime=10  // [10, 10, 30]
+
+// can we reuse the same room (startTime: 12)? Yes  // becoz: 'nxtEarliestMeetingEndTime=10' and 'startTime=12'
+4) m:D --> r:3 alloted  ==> update: nxtEarliestMeetingEndTime=10   // [10, 25, 30]
+
+// can we reuse the same room (startTime: 15)? Yes  // becoz: 'nxtEarliestMeetingEndTime=10' and 'startTime=15'
+5) m:C --> r:2 alloted  ==> update: nxtEarliestMeetingEndTime=20   // [20, 25, 30]
+
+
+// can we reuse the same room (startTime: 20)? Yes  // becoz: 'nxtEarliestMeetingEndTime=20' and 'startTime=20'
+6) m:E --> r:2 alloted  ==> update: nxtEarliestMeetingEndTime=25   // [25, 25, 30]
+
+
+r:1
+0                                           30
+|--------------------m:A--------------------|
+
+r:2
+0             10     15       20         25
+|-----m:F------|     |--m:C---||---m:E---|
+
+r:3
+0      5        10 12                  25
+|-m:G-||--m:B---|  |--------m:D--------|
+
+
+No of Rooms Required: 3
+                   
+*/
 ```
 {% endtab %}
 {% endtabs %}
 
-..\#. Xxxxxx Yyyyy
+## ..\#. Xxxxxx Yyyyy
 
 {% tabs %}
 {% tab title="Question" %}
