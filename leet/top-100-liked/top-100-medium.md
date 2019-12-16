@@ -14,7 +14,7 @@
 | 8 | 56 | [Merge Intervals](https://leetcode.com/problems/merge-intervals) | \*\*\*\* |
 | 9 | 33 | [Search in Rotated Sorted Array](https://leetcode.com/problems/search-in-rotated-sorted-array) | \*\*\*\* |
 | 10 | 253 | [Meeting Rooms II](https://leetcode.com/problems/meeting-rooms-ii) | \*\*\*\* |
-| 11 | 49 | [Group Anagrams    ](https://leetcode.com/problems/group-anagrams) | \*\*\*\* |
+| 11 | 49 | [Group Anagrams](https://leetcode.com/problems/group-anagrams) | \*\*\*\* |
 | 12 | 22 | [Generate Parentheses    ](https://leetcode.com/problems/generate-parentheses) | \*\*\*\* |
 | 13 | 11 | [Container With Most Water    ](https://leetcode.com/problems/container-with-most-water) | \*\*\*\* |
 | 14 | 560 | [Subarray Sum Equals K    ](https://leetcode.com/problems/subarray-sum-equals-k) | \*\*\*\* |
@@ -1442,11 +1442,24 @@ No of Rooms Required: 3
 {% endtab %}
 {% endtabs %}
 
-## ..\#. Xxxxxx Yyyyy
+## [11. Group Anagrams](https://leetcode.com/problems/group-anagrams)
 
 {% tabs %}
 {% tab title="Question" %}
-...
+Given an array of strings, group anagrams together.
+
+```javascript
+Example 1:
+-----------
+Input: ["eat", "tea", "tan", "ate", "nat", "bat"]
+
+Output:
+[
+  ["ate","eat","tea"],
+  ["nat","tan"],
+  ["bat"]
+]
+```
 {% endtab %}
 
 {% tab title="Video" %}
