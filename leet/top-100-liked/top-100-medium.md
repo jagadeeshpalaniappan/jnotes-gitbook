@@ -17,7 +17,7 @@
 | 11 | 49 | [Group Anagrams](https://leetcode.com/problems/group-anagrams) | \*\*\*\* |
 | 12 | 22 | [Generate Parentheses](https://leetcode.com/problems/generate-parentheses) | \*\*\*\* |
 | 13 | 11 | [Container With Most Water](https://leetcode.com/problems/container-with-most-water) | \*\*\*\* |
-| 14 | 560 | [Subarray Sum Equals K    ](https://leetcode.com/problems/subarray-sum-equals-k) | \*\*\*\* |
+| 14 | 560 | [Subarray Sum Equals K](https://leetcode.com/problems/subarray-sum-equals-k) | \*\*\*\* |
 | 15 | 394 | [Decode String    ](https://leetcode.com/problems/decode-string) | \*\*\*\* |
 | 16 | 17 | [Letter Combinations of a Phone Number    ](https://leetcode.com/problems/letter-combinations-of-a-phone-number) | \*\*\*\* |
 | 17 | 79 | [Word Search    ](https://leetcode.com/problems/word-search) | \*\*\* |
@@ -1795,15 +1795,19 @@ function maxArea(barHeights) {
 {% endtab %}
 {% endtabs %}
 
-## \#. Xxxxxx Yyyyy
+## [14. Subarray Sum Equals K](https://leetcode.com/problems/subarray-sum-equals-k)
 
 {% tabs %}
 {% tab title="Question" %}
-...
+Subarray with given sum
+
+```text
+Input: nums = [1,1,1], k = 2 // Output: 2
+```
 {% endtab %}
 
 {% tab title="Video" %}
-
+{% embed url="https://www.youtube.com/watch?v=Ofl4KgFhLsM" %}
 {% endtab %}
 
 {% tab title="Code" %}
