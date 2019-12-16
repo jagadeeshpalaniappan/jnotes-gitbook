@@ -15,8 +15,8 @@
 | 9 | 33 | [Search in Rotated Sorted Array](https://leetcode.com/problems/search-in-rotated-sorted-array) | \*\*\*\* |
 | 10 | 253 | [Meeting Rooms II](https://leetcode.com/problems/meeting-rooms-ii) | \*\*\*\* |
 | 11 | 49 | [Group Anagrams](https://leetcode.com/problems/group-anagrams) | \*\*\*\* |
-| 12 | 22 | [Generate Parentheses    ](https://leetcode.com/problems/generate-parentheses) | \*\*\*\* |
-| 13 | 11 | [Container With Most Water    ](https://leetcode.com/problems/container-with-most-water) | \*\*\*\* |
+| 12 | 22 | [Generate Parentheses](https://leetcode.com/problems/generate-parentheses) | \*\*\*\* |
+| 13 | 11 | [Container With Most Water](https://leetcode.com/problems/container-with-most-water) | \*\*\*\* |
 | 14 | 560 | [Subarray Sum Equals K    ](https://leetcode.com/problems/subarray-sum-equals-k) | \*\*\*\* |
 | 15 | 394 | [Decode String    ](https://leetcode.com/problems/decode-string) | \*\*\*\* |
 | 16 | 17 | [Letter Combinations of a Phone Number    ](https://leetcode.com/problems/letter-combinations-of-a-phone-number) | \*\*\*\* |
@@ -1589,38 +1589,208 @@ hash: bat
 {% endtab %}
 {% endtabs %}
 
-## \#. Xxxxxx Yyyyy
+## [12. Generate Parentheses](https://leetcode.com/problems/generate-parentheses)
 
 {% tabs %}
 {% tab title="Question" %}
-...
+Given n pairs of parentheses, write a function to generate all combinations of well-formed parentheses.
+
+Generate all possible valid combinations set \(n=3\)
+
+```text
+For example, given n = 3, a solution set is:
+[
+  "((()))",
+  "(()())",
+  "(())()",
+  "()(())",
+  "()()()"
+]
+```
 {% endtab %}
 
 {% tab title="Video" %}
-
+{% embed url="https://www.youtube.com/watch?v=yNpF3V11aXY" %}
 {% endtab %}
 
 {% tab title="Code" %}
 ```javascript
-....
+/*
+
+// https://www.youtube.com/watch?v=yNpF3V11aXY
+
+Rules:
+
+2. can i add 'openBracket'?
+  - if: open < n (only then we can add 'openBracket')
+  - becoz: we cannot add 'openBracket' more than 'n' 
+
+3. can i add 'closeBracket'?
+  - if: open > close (only then we can add 'closeBracket')
+  - becoz: we cannot add 'closeBracket' more than 'openBracket' 
+
+1. baseCase: did i reach 'maxLength'?
+  - if we have reached the maxAllowed 'strLength', that means we got the result
+  maxAllowedLength = n * 2
+
+*/
+function generateParenthesisHelper(n, str, open, close, result) {
+
+  // 1. baseCase: did i reach 'maxLength'?
+  if (str.length === n * 2) {
+    // store: the finalStr in the 'resultArr'
+    result.push(str);
+    return;
+  }
+
+  // 2. can i add 'openBracket'?
+  if (open < n) {
+    generateParenthesisHelper(n, str + "(", open + 1, close, result);
+  }
+
+  // 3. can i add 'closeBracket'?
+  if (open > close) {
+    generateParenthesisHelper(n, str + ")", open, close + 1, result);
+  }
+}
+
+function generateParenthesis(n) {
+  const result = [];
+  generateParenthesisHelper(n, "", 0, 0, result);
+  return result;
+}
+```
+{% endtab %}
+
+{% tab title="Explanation" %}
+```javascript
+/*
+
+REMEMBER: Recursion is DFS
+
+gp({"n":2,"str":"","open":0,"close":0,"result":[]})
+2. can i add 'openBracket'? // Yes
+|
+|_gp({"n":2,"str":"(","open":1,"close":0,"result":[]})
+  2. can i add 'openBracket'? // Yes
+  |
+  |_gp({"n":2,"str":"((","open":2,"close":0,"result":[]}
+    2. can i add 'openBracket'? // No  // reached: maxLimit
+    3. can i add 'closeBracket'? // Yes
+    |
+    |_gp({"n":2,"str":"(()","open":2,"close":1,"result":[]}
+      2. can i add 'openBracket'? // No
+      3. can i add 'closeBracket'? // Yes
+      |
+      |_gp({"n":2,"str":"(())","open":2,"close":2,"result":[]}
+        1. baseCase: did i reach 'maxLength'? // Yes  //add it in the 'resultArr' and return  // {"n":2,"str":"(())","open":2,"close":2,"result":["(())"]}
+        |
+       _|
+      |
+     _| 
+    |
+   _|
+  |
+  |
+  3. can i add 'closeBracket'? // Yes
+  |
+  |_gp({"n":2,"str":"()","open":1,"close":1,"result":["(())"]}
+    2. can i add 'openBracket'? // Yes
+    |
+    |_gp({"n":2,"str":"()(","open":2,"close":1,"result":["(())"]}
+      2. can i add 'openBracket'? // No
+      3. can i add 'closeBracket'? // Yes
+      |
+      |_gp({"n":2,"str":"()()","open":2,"close":2,"result":["(())"]}
+        1. baseCase: did i reach 'maxLength'? // Yes  //add it in the 'resultArr'
+        // {"n":2,"str":"(())","open":2,"close":2,"result":["(())", "()()"]}
+        |
+       _|
+      |
+     _|
+    |
+    3. can i add 'closeBracket'? // No
+    |
+   _|
+  |           
+ _|           
+|
+|
+// {"n":2,"str":"(())","open":2,"close":2,"result":["(())", "()()"]}
+
+
+["(())", "()()"]
+
+
+
+{"n":3,"str":"","open":0,"close":0,"result":[]}
+{"n":3,"str":"(","open":1,"close":0,"result":[]}
+{"n":3,"str":"((","open":2,"close":0,"result":[]}
+{"n":3,"str":"(((","open":3,"close":0,"result":[]}
+{"n":3,"str":"((()","open":3,"close":1,"result":[]}
+{"n":3,"str":"((())","open":3,"close":2,"result":[]}
+{"n":3,"str":"((()))","open":3,"close":3,"result":[]}
+{"n":3,"str":"(()","open":2,"close":1,"result":["((()))"]}
+{"n":3,"str":"(()(","open":3,"close":1,"result":["((()))"]}
+{"n":3,"str":"(()()","open":3,"close":2,"result":["((()))"]}
+{"n":3,"str":"(()())","open":3,"close":3,"result":["((()))"]}
+{"n":3,"str":"(())","open":2,"close":2,"result":["((()))","(()())"]}
+{"n":3,"str":"(())(","open":3,"close":2,"result":["((()))","(()())"]}
+{"n":3,"str":"(())()","open":3,"close":3,"result":["((()))","(()())"]}
+{"n":3,"str":"()","open":1,"close":1,"result":["((()))","(()())","(())()"]}
+{"n":3,"str":"()(","open":2,"close":1,"result":["((()))","(()())","(())()"]}
+{"n":3,"str":"()((","open":3,"close":1,"result":["((()))","(()())","(())()"]}
+{"n":3,"str":"()(()","open":3,"close":2,"result":["((()))","(()())","(())()"]}
+{"n":3,"str":"()(())","open":3,"close":3,"result":["((()))","(()())","(())()"]}
+{"n":3,"str":"()()","open":2,"close":2,"result":["((()))","(()())","(())()","()(())"]}
+{"n":3,"str":"()()(","open":3,"close":2,"result":["((()))","(()())","(())()","()(())"]}
+{"n":3,"str":"()()()","open":3,"close":3,"result":["((()))","(()())","(())()","()(())"]}
+
+["((()))", "(()())", "(())()", "()(())", "()()()"]
+
+*/
 ```
 {% endtab %}
 {% endtabs %}
 
-## \#. Xxxxxx Yyyyy
+## [13. Container With Most Water](https://leetcode.com/problems/container-with-most-water)
 
 {% tabs %}
 {% tab title="Question" %}
-...
+11. Container With Most Water
 {% endtab %}
 
 {% tab title="Video" %}
-
+{% embed url="https://www.youtube.com/watch?v=k5fbSqb9sCI" %}
 {% endtab %}
 
 {% tab title="Code" %}
 ```javascript
-....
+/*
+  Using: left & right pointer
+  TC: O(n) S: O(1)
+*/
+function maxArea(barHeights) {
+  let start = 0;
+  let end = barHeights.length - 1;
+  let maxArea = 0;
+
+  while (start < end) {
+    const width = end - start;
+    const height = Math.min(barHeights[start], barHeights[end]);
+    const currArea = width * height;
+    maxArea = Math.max(currArea, maxArea); // update: sofarMaxArea
+
+    if (start < end) {
+      start++;
+    } else {
+      end++;
+    }
+  }
+
+  return maxArea;
+}
+
 ```
 {% endtab %}
 {% endtabs %}
