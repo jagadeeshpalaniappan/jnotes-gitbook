@@ -1463,12 +1463,128 @@ Output:
 {% endtab %}
 
 {% tab title="Video" %}
-
+{% embed url="https://www.youtube.com/watch?v=C6cSD-PZOjw" %}
 {% endtab %}
 
-{% tab title="Code" %}
+{% tab title="Sol1" %}
 ```javascript
-....
+/*
+  Using: Sorting
+
+  Time Complexity: O(N KlogK)  // k: string max length // sorting the str takes KLogk
+  Space Complexity: O(NK)
+
+  i/p: ["eat", "tea", "tan", "ate", "nat", "bat"]
+  sortedStrMap: 
+  {
+      'aet': ['eat', 'tea', 'ate'],
+      'ant': ['nat'],
+      'abt': ['bat']
+  }
+
+*/
+function groupAnagrams(strs) {
+  const map = {};
+
+  for (let str of strs) {
+    const key = [...str].sort().join("");
+
+    if (map[key]) {
+      map[key].push(str);
+    } else {
+      map[key] = [str];
+    }
+  }
+
+  return Object.values(map);
+}
+```
+{% endtab %}
+
+{% tab title="Sol2: \[BEST\]" %}
+```javascript
+// can we optimize this?
+// Yes: instead of 'sorting' create 'customHash' 
+
+/* 
+   createHash: for each str (without char order) // using 'alphabetIndexCount'
+   TC: O(1)  // it executes always '26 times' which is constant time
+*/
+function createHash(str) {
+  const hash = Array(26).fill(0);
+  for (let i = 0; i < str.length; i++) {
+    // get 'charIndex' starting point from '0' (instead of starting 97 ascii val)
+    const charIndex = str.charCodeAt(i) - 97; // -or- str.charCodeAt(i) - 'a'.charCodeAt(0);
+    hash[charIndex] = hash[charIndex] + 1;
+  }
+  return hash.join("");
+}
+
+function groupAnagrams(strs) {
+  if (strs.length === 0) return [];
+
+  const map = {};
+  for (let str of strs) {
+    const key = createHash(str);
+
+    if (map[key]) {
+      map[key].push(str);
+    } else {
+      map[key] = [str];
+    }
+  }
+
+  return Object.values(map);
+}
+
+```
+{% endtab %}
+
+{% tab title="Sol2: \[Explanation\]" %}
+```javascript
+/*
+hash:
+  a   b   c   d   e   f   g   h   i   j   k   l   m   n   o   p   q   r   s   t   u   v   w   x   y   z
+[ 0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0 ]
+
+
+createHash: for each str (without char order) // using 'alphabetIndexCount'
+
+hash: ate
+  a   b   c   d   e   f   g   h   i   j   k   l   m   n   o   p   q   r   s   t   u   v   w   x   y   z
+[ 1,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  1,  0,  0,  0,  0,  0,  0 ]
+
+hash: eat
+  a   b   c   d   e   f   g   h   i   j   k   l   m   n   o   p   q   r   s   t   u   v   w   x   y   z
+[ 1,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  1,  0,  0,  0,  0,  0,  0 ]
+
+hash: tea
+  a   b   c   d   e   f   g   h   i   j   k   l   m   n   o   p   q   r   s   t   u   v   w   x   y   z
+[ 1,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  1,  0,  0,  0,  0,  0,  0 ]
+
+
+hash: nat
+  a   b   c   d   e   f   g   h   i   j   k   l   m   n   o   p   q   r   s   t   u   v   w   x   y   z
+[ 1,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  1,  0,  0,  0,  0,  0,  1,  0,  0,  0,  0,  0,  0 ]
+
+
+hash: tan
+  a   b   c   d   e   f   g   h   i   j   k   l   m   n   o   p   q   r   s   t   u   v   w   x   y   z
+[ 1,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  1,  0,  0,  0,  0,  0,  1,  0,  0,  0,  0,  0,  0 ]
+
+
+hash: bat
+  a   b   c   d   e   f   g   h   i   j   k   l   m   n   o   p   q   r   s   t   u   v   w   x   y   z
+[ 1,  1,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  1,  0,  0,  0,  0,  0,  0 ]
+
+
+  {
+      '10000000000000000001000000': ['eat', 'tea', 'ate'],
+      '10000000000001000001000000': ['nat'],
+      '11000000000000000001000000': ['bat']
+  }
+
+*
 ```
 {% endtab %}
 {% endtabs %}
