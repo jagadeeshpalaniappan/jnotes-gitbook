@@ -1799,15 +1799,25 @@ function maxArea(barHeights) {
 
 {% tabs %}
 {% tab title="Question" %}
-Subarray with given sum
+Subarray with given sum // find the `noOfSubArr` whose subArrItems sum equals to **k**.
 
-```text
-Input: nums = [1,1,1], k = 2 // Output: 2
+```javascript
+Example 1:
+-----------
+Input: nums = [1,1,1], k = 2
+Output: 2 // subArr1 = [1,1]; subArr2 = [1,1] // found: 2 subArr
+
+
+Example 2:
+-----------
+Input: nums = [1, 4, 20, 3, 10, 5], k = 33
+Output: 1 // subArr1 = [20,3,10]; // found: 1 subArr
+
 ```
 {% endtab %}
 
 {% tab title="Video" %}
-{% embed url="https://www.youtube.com/watch?v=Ofl4KgFhLsM" %}
+{% embed url="https://www.youtube.com/watch?v=AmlVSNBHzJg" %}
 {% endtab %}
 
 {% tab title="Code" %}
