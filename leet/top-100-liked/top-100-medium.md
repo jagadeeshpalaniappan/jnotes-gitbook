@@ -18,7 +18,7 @@
 | 12 | 22 | [Generate Parentheses](https://leetcode.com/problems/generate-parentheses) | \*\*\*\* |
 | 13 | 11 | [Container With Most Water](https://leetcode.com/problems/container-with-most-water) | \*\*\*\* |
 | 14 | 560 | [Subarray Sum Equals K](https://leetcode.com/problems/subarray-sum-equals-k) | \*\*\*\* |
-| 15 | 394 | [Decode String    ](https://leetcode.com/problems/decode-string) | \*\*\*\* |
+| 15 | 394 | [Decode String](https://leetcode.com/problems/decode-string) | \*\*\*\* |
 | 16 | 17 | [Letter Combinations of a Phone Number    ](https://leetcode.com/problems/letter-combinations-of-a-phone-number) | \*\*\*\* |
 | 17 | 79 | [Word Search    ](https://leetcode.com/problems/word-search) | \*\*\* |
 | 18 | 31 | [Next Permutation    ](https://leetcode.com/problems/next-permutation) | \*\*\* |
@@ -1822,12 +1822,110 @@ Output: 1 // subArr1 = [20,3,10]; // found: 1 subArr
 
 {% tab title="Code" %}
 ```javascript
-....
+/*
+Using: HashMap (PreSum)
+  // 1. keep: summing
+  // 2. remember: eachSum value in Map
+  // 3. if 'sum-k' exists in map, then increment 'noOfSubArr'
+
+TC: O(n) S: O(n)
+*/
+function subarraySum(nums, k) {
+  const map = { 0: 1 };
+
+  let res = 0; // 'noOfSubArr' exists (that subArrSumVal equals to k)
+  let sum = 0;
+
+  for (let i = 0; i < nums.length; i++) {
+    // 1. keep: summing
+    sum = sum + nums[i];
+
+    if (map[sum - k]) {
+      // 3. existsInMap: add 'noOfTimesThatSumExistVal' with res
+      res = res + map[sum - k];
+    }
+
+    // 2. remember: eachSum value
+    map[sum] = (map[sum] || 0) + 1;
+  }
+
+  // console.log(map);
+  return res;
+}
+```
+{% endtab %}
+
+{% tab title="Explanation" %}
+```javascript
+/*
+
+k=5, possibleSubArray: [3, 2], [3, 1, 1]  // How?
+
+map:   { sum: noOfTimesExists }
+{ 0: 1 } // zero exists 1 time
+
+noOfSubArr = 0
+
+
+[   1,    3,    2,    4,    3,    1,   1   ]
+//  *
+  sum=0+1=1 ---> sum-k=1-5= -4 //existsInMap? N ----> {0:1, 1:1}
+
+[   1,    3,    2,    4,    3,    1,   1   ]
+//        *
+//      sum=1+3=4 ---> sum-k=4-5= -1 //existsInMap? N ----> {0:1, 1:1, 4:1}  
+
+[   1,    3,    2,    4,    3,    1,   1   ]
+//              *
+//            sum=4+2=6 ---> sum-k=6-5= 1 //existsInMap? Yes (1 time) (noOfSubArr = noOfSubArr + 1) ----> {0:1, 1:1, 4:1, 6:1}
+
+[   1,    3,    2,    4,    3,    1,   1   ]
+//                    *
+//                  sum=6+4=10 ---> sum-k=10-5= 5 //existsInMap? N ----> {0:1, 1:1, 4:1, 6:1, 10:1} 
+
+[   1,    3,    2,    4,    3,    1,   1   ]
+//                          *
+//                        sum=10+3=13 ---> sum-k=13-5= 8 //existsInMap? N ----> {0:1, 1:1, 4:1, 6:1, 10:1, 13:1} 
+
+[   1,    3,    2,    4,    3,    1,   1   ]
+//                                *
+//                              sum=13+1=14 ---> sum-k=14-5= 9 //existsInMap? N ----> {0:1, 1:1, 4:1, 7:1, 10:1, 13:1, 14:1} 
+
+[   1,    3,    2,    4,    3,    1,   1   ]
+//                                     *
+//                                   sum=14+1=15 ---> sum-k=15-5= 10 //existsInMap? Yes (1 time) (noOfSubArr = noOfSubArr + 1) ----> {0:1, 1:1, 4:1, 7:1, 10:1, 13:1, 14:1, 15:1} 
+
+
+
+
+Input: [ 1, 2, 3, -6, 3, 2 ], k=5
+possibleSubArray: [2,3], [1,2,3,-6,3,2], [3,2]
+
+map: {0:1}
+[      1,      2,      3,      -6,     3,      2     ]
+
+// sum=0+1=1  --->  sum-k=1-5= -4 //notExistsInMap ---> {0:1, 1:1}
+
+//         sum=1+2=3  --->  sum-k=3-5= -1 //notExistsInMap ---> {0:1, 1:1, 3:1}
+
+//                  sum=3+3=6  --->  sum-k=6-5= 1 //existsInMap || res = 0+1 = 1 || ---> {0:1, 1:1, 3:1, 6:1}   
+
+//                          sum=6-6=0  --->  sum-k=0-5= -5 //notExistsInMap ---> {0:2, 1:1, 3:1, 6:1} // '0' alreadyExist 'incrementCounter'
+
+//                                  sum=0+3=3  --->  sum-k=3-5= -2 //notExistsInMap ---> {0:2, 1:1, 3:2, 6:1} // '3' alreadyExist 'incrementCounter'  
+
+//                                           sum=3+2=5  --->  sum-k=5-5= 0 //existsInMap || res = 1+2 = 3 || ---> {0:2, 1:1, 3:2, 6:1, 5:1}
+
+
+Output: noOfSubArr --> res = 3
+
+*/
+
 ```
 {% endtab %}
 {% endtabs %}
 
-..\#. Xxxxxx Yyyyy
+## [15. Decode String](https://leetcode.com/problems/decode-string)
 
 {% tabs %}
 {% tab title="Question" %}
