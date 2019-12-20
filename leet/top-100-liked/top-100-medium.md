@@ -19,7 +19,7 @@
 | 13 | 11 | [Container With Most Water](https://leetcode.com/problems/container-with-most-water) | \*\*\*\* |
 | 14 | 560 | [Subarray Sum Equals K](https://leetcode.com/problems/subarray-sum-equals-k) | \*\*\*\* |
 | 15 | 394 | [Decode String](https://leetcode.com/problems/decode-string) | \*\*\*\* |
-| 16 | 17 | [Letter Combinations of a Phone Number    ](https://leetcode.com/problems/letter-combinations-of-a-phone-number) | \*\*\*\* |
+| 16 | 17 | [Letter Combinations of a Phone Number](https://leetcode.com/problems/letter-combinations-of-a-phone-number) | \*\*\*\* |
 | 17 | 79 | [Word Search    ](https://leetcode.com/problems/word-search) | \*\*\* |
 | 18 | 31 | [Next Permutation    ](https://leetcode.com/problems/next-permutation) | \*\*\* |
 | 19 | 46 | [Permutations    ](https://leetcode.com/problems/permutations) | \*\*\* |
@@ -2107,11 +2107,23 @@ var decodeString = function(s) {
 {% endtab %}
 {% endtabs %}
 
-## \#. Xxxxxx Yyyyy
+## [16. Letter Combinations of a Phone Number](https://leetcode.com/problems/letter-combinations-of-a-phone-number)
 
 {% tabs %}
 {% tab title="Question" %}
-...
+17. Letter Combinations of a Phone Number
+
+Given a string containing digits from `2-9` inclusive, return all possible letter combinations that the number could represent.
+
+A mapping of digit to letters \(just like on the telephone buttons\) is given below. Note that 1 does not map to any letters.
+
+![](http://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Telephone-keypad2.svg/200px-Telephone-keypad2.svg.png)
+
+```javascript
+Example:
+Input: "23"
+Output: ["ad", "ae", "af", "bd", "be", "bf", "cd", "ce", "cf"].
+```
 {% endtab %}
 
 {% tab title="Video" %}
