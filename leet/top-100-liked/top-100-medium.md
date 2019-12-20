@@ -1929,16 +1929,180 @@ Output: noOfSubArr --> res = 3
 
 {% tabs %}
 {% tab title="Question" %}
-...
+394. Decode String // Given an encoded string, return its decoded string.
+
+The encoding rule is: `k[encoded_string]`, 
+
+* where the encoded\_string inside the square brackets is being repeated exactly k times. 
+* Note that k is guaranteed to be a positive integer.
+
+```javascript
+Examples:
+s = "3[a]2[bc]", return "aaabcbc".
+s = "3[a2[c]]", return "accaccacc".
+s = "2[abc]3[cd]ef", return "abcabccdcdcdef".
+```
 {% endtab %}
 
 {% tab title="Video" %}
-
+* [https://www.youtube.com/watch?v=0iQqj5egK9k](https://www.youtube.com/watch?v=0iQqj5egK9k)
+* [https://www.youtube.com/watch?v=kNW1SlfDuJY](https://www.youtube.com/watch?v=kNW1SlfDuJY)
 {% endtab %}
 
-{% tab title="Code" %}
+{% tab title="Sol1" %}
 ```javascript
-....
+/*
+Using: Two Stack
+  1. numStack: to get the 'lastNumber' we found
+  2. strStack: to get the 'lastAccumlatedStr' we found
+
+TC: O(k_max * n) // Time complexity is not O(n) but O(k_max*n)
+S: O(n)
+*/
+var decodeString = function(s) {
+  const startBracket = "[";
+  const endBracket = "]";
+
+  const numStack = [];
+  const strStack = [];
+  let currStr = "";
+  let currNo = "";
+
+  for (let i = 0; i < s.length; i++) {
+    const ch = s.charAt(i);
+    if (!isNaN(ch)) {
+      currNo += ch;
+    } else if (ch === startBracket) {
+      numStack.push(parseInt(currNo)); // got the fullDigitNumber, // store 'currNo' in stack
+      strStack.push(currStr); // found new '['  // store the 'currStr' in stack // this helps to track 'lastStr'
+      // reset: both
+      currNo = "";
+      currStr = "";
+    } else if (ch === endBracket) {
+      const lastNum = numStack.pop();
+      currStr = currStr.repeat(lastNum);
+
+      const lastStr = strStack.pop();
+      currStr = lastStr + currStr;
+    } else {
+      currStr += ch;
+    }
+  }
+
+  return currStr;
+};
+```
+{% endtab %}
+
+{% tab title="Explanation" %}
+```javascript
+/*
+----------------------------------------------------------------------
+decodeString('12[aa3[b]c]'); ====> return "aabbbcaabbbcaabbbcaabbbcaabbbcaabbbcaabbbcaabbbcaabbbcaabbbcaabbbcaabbbc"
+----------------------------------------------------------------------
+
+case1: (numbr found)    // append: with currNo
+
+case:2 (openBkt found)
+  -storeCurrNumbr: (push: 'currNo' in numStack)
+  -storeCurrStr: (push: 'currStr' in numStack)
+  -resetCurrNoAndCurrStr: currNo='' | currStr=''
+
+case:3 (closeBkt found)
+  -getLastNumbr: (pop: numStack)
+  -repeat 'currStr' --> 'lastNumber' times
+  -getLastStr: (pop: strStack)
+  -append: 'lastStr' with 'currStr'
+  
+
+case:4 (str found)      // append: with currStr
+
+
+
+"  1 2 [ a a 3 [ b ] c ]  " ----case:1 (numbr found)  ----> currNo='1' | currStr='' | numStack=[] | strStack=[]
+// *
+
+"  1 2 [ a a 3 [ b ] c ]  " ----case:1 (numbr found)  ---->  currNo='12' | currStr='' | numStack=[] | strStack=[]
+//   *
+
+"  1 2 [ a a 3 [ b ] c ]  " ----case:2 (openBkt found) ---->  currNo='' | currStr='' | numStack=[12] | strStack=['']
+//     *                           -storeCurrNumbr: (push: 'currNo' in numStack)  // numStack[12]
+//                                 -storeCurrStr: (push: 'currStr' in numStack) // strStack=['']
+//                                 -resetCurrNoAndCurrStr: currNo='' | currStr=''
+
+
+"  1 2 [ a a 3 [ b ] c ]  " ----case:4 (str found) ---->  currNo='' | currStr='a' | numStack=[12] | strStack=['']
+//       *
+
+"  1 2 [ a a 3 [ b ] c ]  " ----case:4 (str found) ---->  currNo='' | currStr='a' | numStack=[12] | strStack=['']
+//       *
+
+"  1 2 [ a a 3 [ b ] c ]  " ----case:4 (str found) ---->  currNo='' | currStr='aa' | numStack=[12] | strStack=['']
+//         *
+
+
+"  1 2 [ a a 3 [ b ] c ]  " ----case:1 (numbr found) ---->  currNo='3' | currStr='aa' | numStack=[12] | strStack=['']
+//           *
+
+"  1 2 [ a a 3 [ b ] c ]  " ----case:2 (openBkt found) ---->  currNo='' | currStr='' | numStack=[12, 3] | strStack=['', 'aa']
+//             *                   -storeCurrNumbr: (push: 'currNo' in numStack)  // numStack[12, 3]
+//                                 -storeCurrStr: (push: 'currStr' in numStack) // strStack=['', 'aa']
+//                                 -resetCurrNoAndCurrStr: currNo='' | currStr=''
+
+
+"  1 2 [ a a 3 [ b ] c ]  " ----case:4 (str found) ---->  currNo='' | currStr='b' | numStack=[12, 3] | strStack=['', 'aa']
+//               *
+
+"  1 2 [ a a 3 [ b ] c ]  " ----case:3 (closeBkt found) ---->  currNo='' | currStr='aabbb' | numStack=[12] | strStack=['']
+//                 *               -getLastNumbr: (pop: numStack)   // 3
+//                                 -repeat 'currStr' --> '3' times  //  'bbb'
+//                                 -getLastStr: (pop: strStack)   // 'aa'
+//                                 -append: 'lastStr' with 'currStr' // 'aa' + 'bbb'  // 'aabbb'
+
+
+"  1 2 [ a a 3 [ b ] c ]  " ----case:4 (str found) ---->  currNo='' | currStr='aabbbc' | numStack=[12] | strStack=['']
+//                   *
+
+
+"  1 2 [ a a 3 [ b ] c ]  " ----case:3 (closeBkt found) ---->  currNo='' | currStr='aabbb' | numStack=[12] | strStack=['']
+//                     *           -getLastNumbr: (pop: numStack)   // 12
+//                                 -repeat 'currStr' --> '12' times  //  12 * 'aabbbc' = aabbbcaabbbcaabbbcaabbbcaabbbcaabbbcaabbbcaabbbcaabbbcaabbbcaabbbcaabbbc
+//                                 -getLastStr: (pop: strStack)   // ''
+//                                 -append: 'lastStr' with 'currStr' // '' + 'aabbbcaabbbcaabbbcaabbbcaabbbcaabbbcaabbbcaabbbcaabbbcaabbbcaabbbcaabbbc'
+
+*/
+
+```
+{% endtab %}
+
+{% tab title="SameSol1\(using oneStack\)" %}
+```javascript
+// using: single stack  [It is the same performance]
+// just for undertsanding, instead of using 2 different stack, use: singleStack
+var decodeString = function(s) {
+  let stack = [];
+  let currNo = 0;
+  let currStr = "";
+
+  for (let c of s) {
+    if (!isNaN(ch)) {
+      currNo = currNo * 10 + Number(c);
+    } else if (c === "[") {
+      stack.push(currStr);
+      stack.push(currNo);
+      currNo = 0;
+      currStr = "";
+    } else if (c === "]") {
+      let currCount = stack.pop();
+      let lastStr = stack.pop();
+      currStr = lastStr + currStr.repeat(currCount);
+    } else {
+      currStr += c;
+    }
+  }
+
+  return currStr;
+};
 ```
 {% endtab %}
 {% endtabs %}
