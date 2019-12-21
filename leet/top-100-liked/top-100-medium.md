@@ -20,7 +20,7 @@
 | 14 | 560 | [Subarray Sum Equals K](https://leetcode.com/problems/subarray-sum-equals-k) | \*\*\*\* |
 | 15 | 394 | [Decode String](https://leetcode.com/problems/decode-string) | \*\*\*\* |
 | 16 | 17 | [Letter Combinations of a Phone Number](https://leetcode.com/problems/letter-combinations-of-a-phone-number) | \*\*\*\* |
-| 17 | 79 | [Word Search    ](https://leetcode.com/problems/word-search) | \*\*\* |
+| 17 | 79 | [Word Search](https://leetcode.com/problems/word-search) | \*\*\* |
 | 18 | 31 | [Next Permutation    ](https://leetcode.com/problems/next-permutation) | \*\*\* |
 | 19 | 46 | [Permutations    ](https://leetcode.com/problems/permutations) | \*\*\* |
 | 20 | 139 | [Word Break    ](https://leetcode.com/problems/word-break) | \*\*\* |
@@ -2237,11 +2237,30 @@ console.log(letterCombinationsDFS("234"));
 {% endtab %}
 {% endtabs %}
 
-## \#. Xxxxxx Yyyyy
+## [17. Word Search](https://leetcode.com/problems/word-search)
 
 {% tabs %}
 {% tab title="Question" %}
-...
+79. Word Search
+
+* Given a 2D board and a word, find if the word exists in the grid.
+* The word can be constructed from letters of sequentially adjacent cell, 
+  * where "adjacent" cells are those horizontally or vertically neighboring. 
+* The same letter cell may not be used more than once.
+
+```javascript
+Example:
+board =
+[
+  ['A','B','C','E'],
+  ['S','F','C','S'],
+  ['A','D','E','E']
+]
+
+Given word = "ABCCED", return true.
+Given word = "SEE", return true.
+Given word = "ABCB", return false.
+```
 {% endtab %}
 
 {% tab title="Video" %}
