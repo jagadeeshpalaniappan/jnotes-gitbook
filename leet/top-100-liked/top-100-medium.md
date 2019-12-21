@@ -2127,12 +2127,112 @@ Output: ["ad", "ae", "af", "bd", "be", "bf", "cd", "ce", "cf"].
 {% endtab %}
 
 {% tab title="Video" %}
+{% embed url="https://www.youtube.com/watch?v=VWzTExgYpBM" %}
 
+{% embed url="https://www.youtube.com/watch?v=OylOLR4bqdA" %}
 {% endtab %}
 
-{% tab title="Code" %}
+{% tab title="Sol1: BFS \[BEST\]" %}
 ```javascript
-....
+const dialpadMap = {
+  2: ["a", "b", "c"],
+  3: ["d", "e", "f"],
+  4: ["g", "h", "i"],
+  5: ["j", "k", "l"],
+  6: ["m", "n", "o"],
+  7: ["p", "q", "r", "s"],
+  8: ["t", "u", "v"],
+  9: ["w", "x", "y", "z"]
+};
+
+/*
+  Using BFS
+  TC: 4^n  SC: 4^n
+*/
+function letterCombinations(digits) {
+  if (!digits) return [];
+  let results = [...dialpadMap[digits[0]]];
+
+  for (let i = 1; i < digits.length; i++) {
+    const letters = dialpadMap[digits[i]]; // dialpadMap[eachDigit]
+    const tmpArr = [];
+    for (let combination of results) {
+      for (let letter of letters) {
+        tmpArr.push(combination + letter);
+      }
+    }
+    results = tmpArr;
+  }
+
+  return results;
+}
+
+console.log(letterCombinations("234"));
+```
+{% endtab %}
+
+{% tab title="Sol1: Explanation" %}
+```javascript
+/*
+
+// *2 3 4                                    a                                       b                                       c
+//                                 /         |         \                  /          |          \                 /          |          \
+// 2 *3 4                       ad          ae          af              bd          be          bf              cd          ce           cf
+//                            /  |  \     /  |  \     /  |  \         /  |  \     /  |  \     /  |  \         /  |  \     /  |  \      /  |  \
+// 2 3 *4                   adg adh adi aeg aeh aei  afg afh afi    bdg bdh bdi beg beh bei bfg bfh bfi     cdg cdh cdi ceg ceh cei  cfg cfh cfi
+
+
+
+
+//          letters                   results
+2 3 4     ["a", "b", "c"]           ["a", "b", "c"]
+*
+
+2 3 4     ["d", "e", "f"]           ["ad", "ae", "af",      "bd", "be", "bf",     "cd", "ce", "cf"]
+  *
+
+
+2 3 4     ["g", "h", "i"]           ["adg", "adh", "adi",    "aeg", "aeh", "aei",   "afg", "afh", "afi", 
+//  *                                "bdg", "bdh", "bdi",    "beg", "beh", "bei",   "bfg", "bfh", "bfi", 
+//                                   "cdg", "cdh", "cdi",    "ceg", "ceh", "cei",   "cfg", "cfh", "cfi"]
+
+
+*/
+```
+{% endtab %}
+
+{% tab title="Sol2: DFS" %}
+```javascript
+
+function backtrack(combination, nextDigits, output) {
+  // base case:
+  if (nextDigits.length == 0) {
+    // if there is no more digits to check
+    // the combination is done
+    output.push(combination);
+  } else {
+    // if there are still digits to check
+    // iterate over all letters which map the next available digit
+    let currDigit = nextDigits[0];
+    let letters = dialpadMap[currDigit];
+    for (let letter of  letters) {
+      // append the current letter to the combination and proceed to the 'nextDigits'
+      backtrack(combination + letter, nextDigits.substring(1), output);
+    }
+  }
+}
+/*
+  Using DFS (Recurssion & Backtracking)
+  TC: 4^n  SC: 4^n
+*/
+function letterCombinationsDFS(digits) {
+  const output = [];
+  if (digits.length != 0) {
+    backtrack("", digits, output);
+  }
+  return output;
+}
+console.log(letterCombinationsDFS("234"));
 ```
 {% endtab %}
 {% endtabs %}
