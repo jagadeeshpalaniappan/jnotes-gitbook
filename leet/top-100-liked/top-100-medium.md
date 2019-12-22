@@ -2241,15 +2241,19 @@ console.log(letterCombinationsDFS("234"));
 
 {% tabs %}
 {% tab title="Question" %}
-79. Word Search
+79. Word Search  // similar to isLand problem
 
 * Given a 2D board and a word, find if the word exists in the grid.
-* The word can be constructed from letters of sequentially adjacent cell, 
+  * The word can be constructed from letters of sequentially adjacent cell, 
   * where "adjacent" cells are those horizontally or vertically neighboring. 
-* The same letter cell may not be used more than once.
+* The **same letter 'cell' cannot be used more than once**.
 
 ```javascript
-Example:
+Condition:
+ - you can combine chars 'vertically' or 'horizontally'  // you cannot go diagonal
+ - same letter 'cell' cannot be used more than once.
+
+Input: 
 board =
 [
   ['A','B','C','E'],
@@ -2257,19 +2261,144 @@ board =
   ['A','D','E','E']
 ]
 
-Given word = "ABCCED", return true.
-Given word = "SEE", return true.
-Given word = "ABCB", return false.
+Input:  word = "ABCCED" --> Output: true
+Input:  word = "SEE"    --> Output: true
+Input:  word = "ABC"    --> Output: true
+Input:  word = "ABCB"   --> Output: false   // becoz 'ABC' is available, but 'ABC'
+
+Input:  word = "SFDA"     --> Output: true
+Input:  word = "SFDAS"    --> Output: false // becoz 's' is already visited
+
 ```
 {% endtab %}
 
 {% tab title="Video" %}
+{% embed url="https://www.youtube.com/watch?v=m9TrOL1ETxI" %}
 
+* [https://www.youtube.com/watch?v=HneGZZ3WxFY](https://www.youtube.com/watch?v=HneGZZ3WxFY)
 {% endtab %}
 
-{% tab title="Code" %}
+{% tab title="Sol1:" %}
 ```javascript
-....
+/*
+TC is O(M * N * 4^L)
+ - M*N is the size of the board
+ - L is the length of the word; // because of the recursion it is 4^L
+
+ SC: O(M * N)  extra space used for 'visitedGrid'
+*/
+
+function dfs(board, i, j, word, index, visitedGrid) {
+    if (index === word.length) {
+        // we have seen the entire word
+        return true;
+    }
+
+    if (
+        (i < 0 || i >= board.length) || // isOutOfRowBoundry
+        (j < 0 || j >= board[i].length) || // isOutOfColBoundry
+        board[i][j] !== word[index] || //isNotSameChar
+        visitedGrid[i][j] // isAlreadyVisited
+    ) {
+        return false;
+    }
+
+    visitedGrid[i][j] = true; // assuming we 'visited' the currNode
+
+    // const myNextCharIdx = 'index + 1'
+    if (
+        dfs(board, i - 1, j, word, index + 1, visitedGrid) || // isLeftItem
+        dfs(board, i + 1, j, word, index + 1, visitedGrid) || // isRightItem
+        dfs(board, i, j - 1, word, index + 1, visitedGrid) || // isTopItem
+        dfs(board, i, j + 1, word, index + 1, visitedGrid) // isBottomItem
+    ) {
+        return true;
+    }
+
+    visitedGrid[i][j] = false; // our assumption is wrong, marking currNode as 'notVisited'
+    return false;
+}
+
+function exist(board, word) {
+    const rows = board.length;
+    const cols = board[0].length;
+
+    // to mark visitedItem
+    var visitedGrid = [...Array(rows)].map(()=> Array(cols));
+
+    for (let i = 0; i < rows; i++) {
+        for (let j = 0; j < cols; j++) {
+            // isCurChar: matchingFirstChar && 'nextChars' matchingLeftOrRightOrTopOrBottom
+            if (word[0] === board[i][j] && dfs(board, i, j, word, 0, visitedGrid)) {
+                return true;
+            }
+        }
+    }
+
+    return false;
+}
+
+```
+{% endtab %}
+
+{% tab title="Explanation" %}
+```
+
+```
+{% endtab %}
+
+{% tab title="Sol2: noExtraSpace \[BEST\]" %}
+```javascript
+// Same Sol1, without extra space for 'visitedGrid'
+// instead marking visited nodes as '#'
+
+function dfs(board, i, j, word, index) {
+  if (index === word.length) {
+    // we have seen the entire word
+    return true;
+  }
+
+  if (
+    (i < 0 || i >= board.length) || // isOutOfRowBoundry
+    (j < 0 || j >= board[i].length) || // isOutOfColBoundry
+    board[i][j] !== word[index] //isNotSameChar
+  ) {
+    return false;
+  }
+
+  const tmp = board[i][j];
+  board[i][j] = "#"; // assuming we 'visited' the currNode
+
+  // const myNextCharIdx = 'index + 1'
+  if (
+    dfs(board, i - 1, j, word, index + 1) || // isLeftItem
+    dfs(board, i + 1, j, word, index + 1) || // isRightItem
+    dfs(board, i, j - 1, word, index + 1) || // isTopItem
+    dfs(board, i, j + 1, word, index + 1) // isBottomItem
+  ) {
+    return true;
+  }
+
+  board[i][j] = tmp; // our assumption is wrong, marking currNode as 'notVisited'
+  return false;
+}
+
+function exist(board, word) {
+  const rows = board.length;
+  const cols = board[0].length;
+
+  for (let i = 0; i < rows; i++) {
+    for (let j = 0; j < cols; j++) {
+      // isCurChar: matchingFirstChar && 'nextChars' matchingLeftOrRightOrTopOrBottom
+      if (word[0] === board[i][j] && dfs(board, i, j, word, 0)) {
+        return true;
+      }
+    }
+  }
+
+  return false;
+}
+
 ```
 {% endtab %}
 {% endtabs %}
