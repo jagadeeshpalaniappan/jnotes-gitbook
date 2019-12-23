@@ -130,17 +130,6 @@
   * [Node.js \[eTODO\]](server/serverside/node.js.md)
   * [LoadBlancers](server/serverside/loadblancers.md)
 
-## LEET
-
-* [Top 100 Liked](leet/top-100-liked/README.md)
-  * [1. Top 100 - EASY](leet/top-100-liked/1.-top-100-easy.md)
-  * [2. Top 100 - MEDIUM](leet/top-100-liked/top-100-medium.md)
-  * [3. Top 100 - HARD](leet/top-100-liked/top-100-hard.md)
-
-## TODO
-
-* [TODO](todo/todo.md)
-
 ## DS-ALG
 
 * [DS](ds-alg/ds/README.md)
@@ -162,5 +151,20 @@
     * [5. Selection Sort](ds-alg/alg/sort/5.-selection-sort.md)
     * [6. Insertion Sort](ds-alg/alg/sort/6.-insertion-sort.md)
     * [7. Counting Sort](ds-alg/alg/sort/7.-counting-sort.md)
-  * [Selection](ds-alg/alg/selection.md)
+  * [Selection](ds-alg/alg/selection/README.md)
+    * [1. Find 'min & 'max'](ds-alg/alg/selection/1.-find-min-and-max.md)
+    * [2. Find '2nd' smallest or largest](ds-alg/alg/selection/2.-find-2nd-smallest-or-largest.md)
+    * [3. Find](ds-alg/alg/selection/3.-find.md)
+    * [3. Find 'kth' Largest or Smallest](ds-alg/alg/selection/3.-find-kth-largest-or-smallest.md)
+
+## LEET
+
+* [Top 100 Liked](leet/top-100-liked/README.md)
+  * [1. Top 100 - EASY](leet/top-100-liked/1.-top-100-easy.md)
+  * [2. Top 100 - MEDIUM](leet/top-100-liked/top-100-medium.md)
+  * [3. Top 100 - HARD](leet/top-100-liked/top-100-hard.md)
+
+## TODO
+
+* [TODO](todo/todo.md)
 
