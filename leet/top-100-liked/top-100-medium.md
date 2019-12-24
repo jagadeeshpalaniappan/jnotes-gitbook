@@ -21,9 +21,9 @@
 | 15 | 394 | [Decode String](https://leetcode.com/problems/decode-string) | \*\*\*\* |
 | 16 | 17 | [Letter Combinations of a Phone Number](https://leetcode.com/problems/letter-combinations-of-a-phone-number) | \*\*\*\* |
 | 17 | 79 | [Word Search](https://leetcode.com/problems/word-search) | \*\*\* |
-| 18 | 31 | [Next Permutation    ](https://leetcode.com/problems/next-permutation) | \*\*\* |
-| 19 | 46 | [Permutations    ](https://leetcode.com/problems/permutations) | \*\*\* |
-| 20 | 139 | [Word Break    ](https://leetcode.com/problems/word-break) | \*\*\* |
+| 18 | 31 | [Next Permutation](https://leetcode.com/problems/next-permutation) TODO | \*\*\* |
+| 19 | 46 | [Permutations](https://leetcode.com/problems/permutations) TODO | \*\*\* |
+| 20 | 139 | [Word Break](https://leetcode.com/problems/word-break) | \*\*\* |
 | 21 | 322 | [Coin Change    ](https://leetcode.com/problems/coin-change) | \*\*\* |
 | 22 | 215 | [Kth Largest Element in an Array    ](https://leetcode.com/problems/kth-largest-element-in-an-array) | \*\*\* |
 | 23 | 347 | [Top K Frequent Elements    ](https://leetcode.com/problems/top-k-frequent-elements) | \*\*\* |
@@ -2403,7 +2403,39 @@ function exist(board, word) {
 {% endtab %}
 {% endtabs %}
 
-## \#. Xxxxxx Yyyyy
+## [18. Next Permutation](https://leetcode.com/problems/next-permutation) \[TODO\]
+
+{% tabs %}
+{% tab title="Question" %}
+31. Next Permutation
+
+* Implement next permutation, which rearranges numbers into the lexicographically next greater permutation of numbers.
+* If such arrangement is not possible, it must rearrange it as the lowest possible order \(ie, sorted in ascending order\).
+* The replacement must be in-place and use only constant extra memory.
+
+```javascript
+Here are some examples. 
+Inputs are in the left-hand column 
+and its corresponding outputs are in the right-hand column.
+
+1,2,3 → 1,3,2
+3,2,1 → 1,2,3
+1,1,5 → 1,5,1
+```
+{% endtab %}
+
+{% tab title="Video" %}
+
+{% endtab %}
+
+{% tab title="Code" %}
+```javascript
+....
+```
+{% endtab %}
+{% endtabs %}
+
+## [19. Permutations](https://leetcode.com/problems/permutations) \[TODO\]
 
 {% tabs %}
 {% tab title="Question" %}
@@ -2421,25 +2453,7 @@ function exist(board, word) {
 {% endtab %}
 {% endtabs %}
 
-..\#. Xxxxxx Yyyyy
-
-{% tabs %}
-{% tab title="Question" %}
-...
-{% endtab %}
-
-{% tab title="Video" %}
-
-{% endtab %}
-
-{% tab title="Code" %}
-```javascript
-....
-```
-{% endtab %}
-{% endtabs %}
-
-## \#. Xxxxxx Yyyyy
+## [20. Word Break](https://leetcode.com/problems/word-break)
 
 {% tabs %}
 {% tab title="Question" %}
