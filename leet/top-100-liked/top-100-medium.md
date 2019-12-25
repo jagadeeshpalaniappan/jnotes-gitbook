@@ -24,7 +24,7 @@
 | 18 | 31 | [Next Permutation](https://leetcode.com/problems/next-permutation) TODO | \*\*\* |
 | 19 | 46 | [Permutations](https://leetcode.com/problems/permutations) TODO | \*\*\* |
 | 20 | 139 | [Word Break](https://leetcode.com/problems/word-break) | \*\*\* |
-| 21 | 322 | [Coin Change    ](https://leetcode.com/problems/coin-change) | \*\*\* |
+| 21 | 322 | [Coin Change](https://leetcode.com/problems/coin-change) | \*\*\* |
 | 22 | 215 | [Kth Largest Element in an Array    ](https://leetcode.com/problems/kth-largest-element-in-an-array) | \*\*\* |
 | 23 | 347 | [Top K Frequent Elements    ](https://leetcode.com/problems/top-k-frequent-elements) | \*\*\* |
 | 24 | 221 | [Maximal Square    ](https://leetcode.com/problems/maximal-square) | \*\*\* |
@@ -2457,11 +2457,33 @@ and its corresponding outputs are in the right-hand column.
 
 {% tabs %}
 {% tab title="Question" %}
-...
+check: `inputStr` can be segmented into a separated dictionary words
+
+```javascript
+Example 1:
+-----------
+Input: s = "leetcode", wordDict = ["leet", "code"]
+Output: true
+Explanation: Return true because "leetcode" can be segmented as "leet code".
+
+Example 2:
+-----------
+Input: s = "applepenapple", wordDict = ["apple", "pen"]
+Output: true
+
+Explanation: Return true because "applepenapple" can be segmented as "apple pen apple".
+             Note that you are allowed to reuse a dictionary word.
+
+Example 3:
+-----------
+Input: s = "catsandog", wordDict = ["cats", "dog", "sand", "and", "cat"]
+Output: false
+```
 {% endtab %}
 
 {% tab title="Video" %}
-
+* [https://www.youtube.com/watch?v=hLQYQ4zj0qg&t=1013s](https://www.youtube.com/watch?v=hLQYQ4zj0qg&t=1013s)
+* [https://www.youtube.com/watch?v=RPeTFTKwjps&t=182s](https://www.youtube.com/watch?v=RPeTFTKwjps&t=182s)
 {% endtab %}
 
 {% tab title="Sol3: dp \[BEST\]" %}
@@ -2728,7 +2750,7 @@ Ans: dp[strLen] ---> dp[10] // true
 {% endtab %}
 {% endtabs %}
 
-## \#. Xxxxxx Yyyyy
+## [21. Coin Change](https://leetcode.com/problems/coin-change)
 
 {% tabs %}
 {% tab title="Question" %}
