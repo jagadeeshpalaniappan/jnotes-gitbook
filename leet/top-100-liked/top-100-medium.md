@@ -2464,9 +2464,266 @@ and its corresponding outputs are in the right-hand column.
 
 {% endtab %}
 
-{% tab title="Code" %}
+{% tab title="Sol3: dp \[BEST\]" %}
 ```javascript
-....
+/*
+Using 'DP' (Bottom Up Approach)
+
+TC : O(n^2) // Two loops are their to fill 'dpArr'
+SC : O(n)   // Length of dp array is n+1
+*/
+function wordBreak(s, wordDictArr) {
+  const wordDict = new Set(wordDictArr);
+  const dp = [];
+
+  // base case: //bottom-up-approach
+  dp[0] = true;
+
+  // loop: lengthLoop
+  for (let len = 1; len <= s.length; len++) {
+    // loop: strLoop
+    for (let i = 0; i < len; i++) {
+      const currStr = s.substring(i, len);
+      if (dp[i] && wordDict.has(currStr)) {
+        dp[len] = true;
+        break;
+      }
+    }
+  }
+
+  return !!dp[s.length];
+}
+
+```
+{% endtab %}
+
+{% tab title="Sol3: Explanation" %}
+```javascript
+console.log(wordBreak("code", ["c", "od", "e", "x"])); // true
+
+/*
+input: 'C'
+
+dp: [ T ] // base case:  //bottom-up-approach
+.     0
+
+#lengthLoop               
+
+len=1  -->  strLoop: [0]        ---> dp: [ T, *T ]
+------------------------------------------
+  ##strLoop --> currStr : ['c']
+
+  |- dp[0] && inDict('c')   // true
+
+
+len=2  -->  strLoop: [0,1]      ---> dp: [ T, T, *F ]
+------------------------------------------
+  ##strLoop --> currStr : ['co', 'o']
+
+  |- dp[0] && inDict('co')  // false
+  |- dp[1] && inDict('o')   // false
+
+
+len=3  -->  strLoop: [0,1,2]      ---> dp: [ T, T, F, *T ] 
+------------------------------------------
+  ##strLoop --> currStr : ['cod', 'od', 'd']
+  |- dp[0] && inDict('cod') // false
+  |- dp[1] && inDict('od')  // true
+  |- dp[2] && inDict('d')   // false 
+
+
+len=4  -->  strLoop: [0,1,2,3]    ---> dp: [ T, T, F, T, *T ] 
+------------------------------------------
+  ##strLoop --> currStr : ['code', 'ode', 'de', 'e']
+  |- dp[0] && inDict('code') // false
+  |- dp[1] && inDict('ode')  // false
+  |- dp[2] && inDict('de')   // false
+  |- dp[3] && inDict('e')    // true
+
+Ans: dp[strLen] ---> dp[4] // true
+*/
+
+
+
+
+console.log(wordBreak("catsandog", ["cats", "dog", "and"])); // false
+
+/*
+
+dp: [ T ] // base case:  //bottom-up-approach
+
+#lengthLoop               
+
+len=1  -->  strLoop: [0]        ---> dp: [T, *F]
+------------------------------------------
+  |- dp[0] && inDict('c')  // false
+
+len=2  -->  strLoop: [0,1]      ---> dp: [T, F, *F]
+------------------------------------------
+  |- dp[0] && inDict('ca')  // false
+  |- dp[1] && inDict('a')   // false
+
+len=3  -->  strLoop: [0,1,2]      ---> dp: [T, F, F, *F]
+------------------------------------------
+  |- dp[0] && inDict('cat')    // false
+  |- dp[1] && inDict('at')     // false
+  |- dp[2] && inDict('t')      // false
+
+len=4  -->  strLoop: [0,1,2,3]    ---> dp: [T, F, F, F, *T]
+------------------------------------------
+  |- dp[0] && inDict('cats')  // true
+  |- dp[1] && inDict('ats')   // false
+  |- dp[2] && inDict('ts')    // false
+  |- dp[3] && inDict('s')     // false
+
+len=5  -->  strLoop: [0,1,..4]    ---> dp: [T, F, F, F, T, *F]
+------------------------------------------
+  |- dp[0] && inDict('catsa')   // false
+  |- dp[1] && inDict('atsa')    // false
+  |- dp[2] && inDict('tsa')     // false
+  |- dp[3] && inDict('sa')      // false
+  |- dp[4] && inDict('a')       // false
+
+len=6  -->  strLoop: [0,1,..5]    ---> dp: [T, F, F, F, T, F, *F]
+------------------------------------------
+  |- dp[0] && inDict('catsan')  // false
+  |- dp[1] && inDict('atsan')   // false
+  |- dp[2] && inDict('tsan')    // false
+  |- dp[3] && inDict('san')     // false
+  |- dp[4] && inDict('an')      // false
+  |- dp[5] && inDict('n')       // false
+
+len=7  -->  strLoop: [0,1,..6]    ---> dp: [T, F, F, F, T, F, F, *T]
+------------------------------------------
+  |- dp[0] && inDict('catsand')   // false
+  |- dp[1] && inDict('atsand')    // false
+  |- dp[2] && inDict('tsand')     // false
+  |- dp[3] && inDict('sand')      // false
+  |- dp[4] && inDict('and')       // true
+  |- dp[5] && inDict('nd')        // false
+  |- dp[6] && inDict('d')         // false
+
+len=8  -->  strLoop: [0,1,..7]    ---> dp: [T, F, F, F, T, F, F, T, *F]
+------------------------------------------
+  |- dp[0] && inDict('catsando')  // false
+  |- dp[1] && inDict('atsando')   // false
+  |- dp[2] && inDict('tsando')    // false
+  |- dp[3] && inDict('sando')     // false
+  |- dp[4] && inDict('ando')      // false
+  |- dp[5] && inDict('ndo')       // false
+  |- dp[6] && inDict('do')        // false
+  |- dp[7] && inDict('o')         // false
+
+len=9  -->  strLoop: [0,1,..8]    ---> dp: [T, F, F, F, T, F, F, T, F, *F]
+------------------------------------------
+  |- dp[0] && inDict('catsandog') // false
+  |- dp[1] && inDict('atsandog')  // false
+  |- dp[2] && inDict('tsandog')   // false
+  |- dp[3] && inDict('sandog')    // false
+  |- dp[4] && inDict('andog')     // false
+  |- dp[5] && inDict('ndog')      // false
+  |- dp[6] && inDict('dog')       // false
+  |- dp[7] && inDict('og')        // false
+  |- dp[8] && inDict('g')         // false
+
+
+Ans: dp[strLen] ---> dp[9] // false
+
+*/
+
+
+
+
+console.log(wordBreak("catsanddog", ["cats", "dog", "and"])); // true
+
+/*
+
+dp: [ T ] // base case:  //bottom-up-approach
+
+#lengthLoop       
+
+len=1  -->  strLoop: [0]        ---> dp: [T, *F]
+------------------------------------------
+  |- dp[0] && inDict('c')  // false
+
+len=2  -->  strLoop: [0,1]      ---> dp: [T, F, *F]
+------------------------------------------
+  |- dp[0] && inDict('ca')  // false
+  |- dp[1] && inDict('a')  // false
+
+len=3  -->  strLoop: [0,1,2]    ---> dp: [T, F, F, *F]
+------------------------------------------
+  |- dp[0] && inDict('cat')  // false
+  |- dp[1] && inDict('at')  // false
+  |- dp[2] && inDict('t')  // false
+
+len=4  -->  strLoop: [0,1,2,3]    ---> dp: [T, F, F, F, *T]
+------------------------------------------
+  |- dp[0] && inDict('cats')  // true
+
+len=5  -->  strLoop: [0,1,..4]    ---> dp: [T, F, F, F, T, *F]
+------------------------------------------
+  |- dp[0] && inDict('catsa')  // false
+  |- dp[1] && inDict('atsa')  // false
+  |- dp[2] && inDict('tsa')  // false
+  |- dp[3] && inDict('sa')  // false
+  |- dp[4] && inDict('a')  // false
+  
+len=6  -->  strLoop: [0,1,..5]    ---> dp: [T, F, F, F, T, F, *F]
+------------------------------------------
+  |- dp[0] && inDict('catsan')  // false
+  |- dp[1] && inDict('atsan')  // false
+  |- dp[2] && inDict('tsan')  // false
+  |- dp[3] && inDict('san')  // false
+  |- dp[4] && inDict('an')  // false
+  |- dp[5] && inDict('n')  // false
+  
+len=7  -->  strLoop: [0,1,..6]    ---> dp: [T, F, F, F, T, F, F, *T]
+------------------------------------------
+  |- dp[0] && inDict('catsand')  // false
+  |- dp[1] && inDict('atsand')  // false
+  |- dp[2] && inDict('tsand')  // false
+  |- dp[3] && inDict('sand')  // false
+  |- dp[4] && inDict('and')  // true
+  
+len=8  -->  strLoop: [0,1,..7]    ---> dp: [T, F, F, F, T, F, F, T, *F]
+------------------------------------------
+  |- dp[0] && inDict('catsandd')  // false
+  |- dp[1] && inDict('atsandd')  // false
+  |- dp[2] && inDict('tsandd')  // false
+  |- dp[3] && inDict('sandd')  // false
+  |- dp[4] && inDict('andd')  // false
+  |- dp[5] && inDict('ndd')  // false
+  |- dp[6] && inDict('dd')  // false
+  |- dp[7] && inDict('d')  // false
+  
+len=9  -->  strLoop: [0,1,..8]    ---> dp: [T, F, F, F, T, F, F, T, F, *F]
+------------------------------------------
+  |- dp[0] && inDict('catsanddo')  // false
+  |- dp[1] && inDict('atsanddo')  // false
+  |- dp[2] && inDict('tsanddo')  // false
+  |- dp[3] && inDict('sanddo')  // false
+  |- dp[4] && inDict('anddo')  // false
+  |- dp[5] && inDict('nddo')  // false
+  |- dp[6] && inDict('ddo')  // false
+  |- dp[7] && inDict('do')  // false
+  |- dp[8] && inDict('o')  // false
+  
+len=10  -->  strLoop: [0,1,..9]    ---> dp: [T, F, F, F, T, F, F, T, F, F, *T]
+------------------------------------------
+  |- dp[0] && inDict('catsanddog')  // false
+  |- dp[1] && inDict('atsanddog')  // false
+  |- dp[2] && inDict('tsanddog')  // false
+  |- dp[3] && inDict('sanddog')  // false
+  |- dp[4] && inDict('anddog')  // false
+  |- dp[5] && inDict('nddog')  // false
+  |- dp[6] && inDict('ddog')  // false
+  |- dp[7] && inDict('dog')  // true
+
+
+Ans: dp[strLen] ---> dp[10] // true
+
+*/
 ```
 {% endtab %}
 {% endtabs %}
