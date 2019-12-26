@@ -25,7 +25,7 @@
 | 19 | 46 | [Permutations](https://leetcode.com/problems/permutations) TODO | \*\*\* |
 | 20 | 139 | [Word Break](https://leetcode.com/problems/word-break) | \*\*\* |
 | 21 | 322 | [Coin Change](https://leetcode.com/problems/coin-change) | \*\*\* |
-| 22 | 215 | [Kth Largest Element in an Array    ](https://leetcode.com/problems/kth-largest-element-in-an-array) | \*\*\* |
+| 22 | 215 | [Kth Largest Element in an Array](https://leetcode.com/problems/kth-largest-element-in-an-array) | \*\*\* |
 | 23 | 347 | [Top K Frequent Elements    ](https://leetcode.com/problems/top-k-frequent-elements) | \*\*\* |
 | 24 | 221 | [Maximal Square    ](https://leetcode.com/problems/maximal-square) | \*\*\* |
 | 25 | 39 | [Combination Sum    ](https://leetcode.com/problems/combination-sum) | \*\*\* |
@@ -2758,7 +2758,7 @@ Ans: dp[strLen] ---> dp[10] // true
 {% endtab %}
 
 {% tab title="Video" %}
-
+{% embed url="https://www.youtube.com/watch?v=jgiZlGzXMBw" %}
 {% endtab %}
 
 {% tab title="Sol2: dp" %}
@@ -3004,11 +3004,19 @@ update: dp[11]=3
 {% endtab %}
 {% endtabs %}
 
-## \#. Xxxxxx Yyyyy
+## [22. Kth Largest Element in an Array](https://leetcode.com/problems/kth-largest-element-in-an-array)
 
 {% tabs %}
 {% tab title="Question" %}
-...
+```text
+Example 1:
+Input: [3,2,1,5,6,4] and k = 2
+Output: 5
+
+Example 2:
+Input: [3,2,3,1,2,4,5,5,6] and k = 4
+Output: 4
+```
 {% endtab %}
 
 {% tab title="Video" %}
