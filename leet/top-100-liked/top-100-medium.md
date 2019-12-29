@@ -26,8 +26,8 @@
 | 20 | 139 | [Word Break](https://leetcode.com/problems/word-break) | \*\*\* |
 | 21 | 322 | [Coin Change](https://leetcode.com/problems/coin-change) | \*\*\* |
 | 22 | 215 | [Kth Largest Element in an Array](https://leetcode.com/problems/kth-largest-element-in-an-array) | \*\*\* |
-| 23 | 347 | [Top K Frequent Elements    ](https://leetcode.com/problems/top-k-frequent-elements) | \*\*\* |
-| 24 | 221 | [Maximal Square    ](https://leetcode.com/problems/maximal-square) | \*\*\* |
+| 23 | 347 | [Top K Frequent Elements](https://leetcode.com/problems/top-k-frequent-elements) | \*\*\* |
+| 24 | 221 | [Maximal Square](https://leetcode.com/problems/maximal-square) | \*\*\* |
 | 25 | 39 | [Combination Sum    ](https://leetcode.com/problems/combination-sum) | \*\*\* |
 | 26 | 98 | [Validate Binary Search Tree    ](https://leetcode.com/problems/validate-binary-search-tree) | \*\*\* |
 | 27 | 78 | [Subsets    ](https://leetcode.com/problems/subsets) | \*\*\* |
@@ -3250,29 +3250,248 @@ console.log(findKthLargest([3, 2, 3, 1, 2, 4, 5, 5, 6], 4)); //4    // 1 2 3 3 *
 {% endtab %}
 {% endtabs %}
 
-..\#. Xxxxxx Yyyyy
+## [23. Top K Frequent Elements](https://leetcode.com/problems/top-k-frequent-elements)
 
 {% tabs %}
-{% tab title="Question" %}
-...
+{% tab title="Qstn" %}
+347. Top K Frequent Elements
+
+* Given a non-empty array of integers, return the **k** most frequent elements.
+
+```text
+Example 1:
+Input: nums = [1,1,1,2,2,3], k = 2
+Output: [1,2]
+
+Example 2:
+Input: nums = [1], k = 1
+Output: [1]
+```
+
+**Note:**
+
+* You may assume k is always valid, 1 ≤ k ≤ number of unique elements.
+* Your algorithm's time complexity **must be** better than O\(n log n\), where n is the array's size.
 {% endtab %}
 
 {% tab title="Video" %}
-
+{% embed url="https://www.youtube.com/watch?v=EYFcQRwcqk0" %}
 {% endtab %}
 
-{% tab title="Code" %}
+{% tab title="Sol1: map+bucket \[BEST\]" %}
 ```javascript
-....
+/*
+Using: HashMap & Bucket Sort
+
+1. populate: HashMap: { eachItem: noOfOccurences }
+2. populate: bucketArr  (index: is noOfOccurences val: thoseItems)
+3. reverse-loop: bucketArr  // we get mostRepeatedItems first
+
+https://www.youtube.com/watch?v=EYFcQRwcqk0
+
+TC: O(n) 
+SC: O(n)
+*/
+function topKFrequent(arr, k) {
+  const bucketArr = [];
+  const map = {};
+
+  // 1. populate: HashMap: { eachItem: noOfOccurences }
+  for (const item of arr) {
+    map[item] = map[item] ? map[item] + 1 : 1;
+  }
+
+  // 2. populate: bucketArr  (index: is noOfOccurences val: thoseItems)
+  for (const key of Object.keys(map)) {
+    let freq = map[key];
+    if (!bucketArr[freq]) {
+      bucketArr[freq] = [];
+    }
+    bucketArr[freq].push(parseInt(key));
+  }
+
+  const res = [];
+  // 3. reverse-loop: bucketArr
+  for (let pos = bucketArr.length - 1; pos >= 0; pos--) {
+    if (bucketArr[pos]) {
+      res.push(...bucketArr[pos]);
+    }
+    if (res.length > k) {
+      // we already populated the result
+      break;
+    }
+  }
+
+  // 4. return: only 'k' items
+  return res.splice(0, k);
+}
+
+console.log(topKFrequent([1, 2, 4, 1, 4, 1, 3, 4, 3, 6, 4, 4], 2));
+
 ```
+{% endtab %}
+
+{% tab title="Sol1: Explanation" %}
+```javascript
+/*
+Input: arr = [1,2,4,1,4,1,3,4,3,6,4,4], k=2
+
+
+// 1. populate: HashMap: { eachItem: noOfOccurences }
+map: { 1: 3, 2: 1, 3: 2, 4: 5, 6:1 }        // { 1: 3times, 2: 1time, 3: 2times, 4: 5times, 6: 1time occured}
+
+// 2. populate: bucketArr  (index: is noOfOccurences val: thoseItems)
+-->            0     1      2     3     4     5
+bucketArr: [ null, [2,6],  [3],  [1],  null, [4] ]      // index: is 'frequency' here //noOfOccurences
+
+
+// 3. reverse-loop: bucketArr
+res: [4, 1, 3]
+
+// 4. return: only 'k' items
+ans: [4, 1]  // since k=2, we are only interested in top 2 frequently repeated items
+
+*/
+```
+{% endtab %}
+
+{% tab title="Sol2: map+PQ " %}
+```javascript
+/*
+Using: HashMap & PriorityQueue
+
+1. populate: HashMap: { eachItem: noOfOccurences }
+2. ...
+
+https://www.youtube.com/watch?v=EYFcQRwcqk0
+
+TC: O(Nlog(k))   // for larger k, excluding the less frequent items from the 'output'
+SC: O(N)
+*/
+function topKFrequent(arr, k) {
+  const map = {};
+
+  // 1. populate: HashMap: { eachItem: noOfOccurences }
+  for (const item of arr) {
+    map[item] = map[item] ? map[item] + 1 : 1;
+  }
+
+  // 2. populate: minHeap: smallestItemFirst
+  const minHeap = new PriorityQueue((a, b) => map[a] < map[b]); // simmilar to MinHeap
+
+  for (const key of Object.keys(map)) {
+    minHeap.add(parseInt(key));
+    if (minHeap.size() > k) {
+      // maintain: minHeap maxSize as k // keep only 'k largest' items in the heap
+      minHeap.poll();
+    }
+  }
+
+  // 3. convert: PQ --to--> resArr
+  const res = [];
+  while (minHeap.size()) {
+    res.push(minHeap.poll());
+  }
+
+  // 4. reverse: resArr // since, we are maintaining minHeap
+  return res.reverse();
+}
+
+console.log(topKFrequent([1, 2, 4, 1, 4, 1, 3, 4, 3, 6, 4, 4], 2));
+
+```
+{% endtab %}
+
+{% tab title="Sol2: Exp" %}
+```javascript
+/*
+Input: arr = [1,2,4,1,4,1,3,4,3,6,4,4], k=2
+
+// 1. populate: HashMap: { eachItem: noOfOccurences }
+map: { 1: 3, 2: 1, 3: 2, 4: 5, 6:1 }        // { 1: 3times, 2: 1time, 3: 2times, 4: 5times, 6: 1time occured}
+
+// 2. populate: minHeap: smallestItemFirst
+
+keys:  [  1, 2, 3, 4, 6  ]   | k= 2  //storeOnly2Items
+
+################loop: arr [START]####################
+item1:
+------
+| arr:  [  *1, 2, 3, 4, 6  ]
+|  pq:  1[4]   //added: '1' in pq  // {1 occur: 4times}
+|  // pq.size() > 2 // false
+
+####################################
+item2:
+------
+| arr:  [  1, *2, 3, 4, 6  ]
+|  pq:  2[1] <--1[4]  //added: '2' in pq  // {2 occur: 1times}
+|  // pq.size() > 2   // false
+
+####################################
+item3:
+------
+| arr:  [  1, 2, *3, 4, 6  ]
+|  pq:  2[1] <--1[4] <--3[2]  //added: '3' in pq  // {3 occur: 2times}
+|  // pq.size() > 2 // true ===> heap.poll() //removeFirstItemFromHeap (that means remove smallestItem) 
+|  pq:  3[2] <--1[4] 
+
+####################################
+item4:
+------
+| arr:  [  1, 2, 3, *4, 6  ]
+|  pq:  3[2] <--1[4] <--4[5]  //added: '4' in pq  // {4 occur: 5times}
+|  // pq.size() > 2 // true ===> heap.poll() //removeFirstItemFromHeap (that means remove smallestItem) 
+|  pq:  1[4] <--4[5]
+
+####################################
+item5:
+------
+| arr:  [  1, 2, 3, 4, *6  ]
+|  pq:  6[1] <--1[4] <--4[5] //added: '4' in pq  // {6 occur: 1times}
+|  // pq.size() > 2 // true ===> heap.poll() //removeFirstItemFromHeap (that means remove smallestItem) 
+|  pq:  1[4] <--4[5]
+
+####################################
+
+// 3. convert: PQ --to--> resArr
+pq:  1[4] <--4[5]
+res: [1, 4]
+
+// 4. reverse: resArr // since, we are maintaining minHeap
+[4,1]
+
+*/
+
+```
+{% endtab %}
+
+{% tab title="Related" %}
+* [692 Top K Frequent Words](https://leetcode.com/problems/top-k-frequent-words/)
+* [451 Sort Characters By Frequency](https://leetcode.com/problems/sort-characters-by-frequency/)
 {% endtab %}
 {% endtabs %}
 
-## \#. Xxxxxx Yyyyy
+## [24. Maximal Square](https://leetcode.com/problems/maximal-square)
 
 {% tabs %}
 {% tab title="Question" %}
-...
+221. Maximal Square
+
+Given a 2D binary matrix filled with 0's and 1's, find the largest square containing only 1's and return its area.
+
+```text
+Example:
+
+Input: 
+
+1 0 1 0 0
+1 0 1 1 1
+1 1 1 1 1
+1 0 0 1 0
+
+Output: 4
+```
 {% endtab %}
 
 {% tab title="Video" %}
