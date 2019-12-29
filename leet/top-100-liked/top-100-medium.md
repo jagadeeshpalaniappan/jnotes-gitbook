@@ -3020,12 +3020,232 @@ Output: 4
 {% endtab %}
 
 {% tab title="Video" %}
+{% embed url="https://www.youtube.com/watch?v=hGK\_5n81drs" %}
 
+```text
+// Sol1: Using 'Sorting'                  // TC: O(N log N)
+// Sol2: Using 'Heap'                     // TC: O(N log K) SC: O(n)
+// Sol3: Using 'Partitioning Technique'   // TC: avg:O(N) worst O(n^2)  SC: O(1)
+```
 {% endtab %}
 
-{% tab title="Code" %}
+{% tab title="Sol1: sorting" %}
 ```javascript
-....
+// Sol1: Using 'Sorting'  // O(N log N)
+//....
+```
+{% endtab %}
+
+{% tab title="Sol2: PriorityQ \[BEST-INTW\]" %}
+```javascript
+/*
+Sol2: Using 'Heap' ()
+
+Find kth 'largestItem'  --use Min Heap  // smallestItemFirst
+Find kth 'smallestItem' --use Max Heap  // largestItemFirst
+
+TC: O(N log K)
+SC: O(n)
+*/
+
+import PriorityQueue from "../../../1-ds/6-heap/2-priority-q--using-heap.js";
+console.clear();
+
+function findKthLargest(arr, k) {
+  // minHeap: smallestItemFirst
+  const minHeap = new PriorityQueue((a, b) => a < b); // simmilar to MinHeap
+
+  // keep k largest elements in the heap
+  for (let item of arr) {
+    minHeap.add(item);
+
+    // maintain: minHeap maxSize as k
+    if (minHeap.size() > k) {
+      // remove: smallestItem
+      minHeap.poll();
+    }
+  }
+
+  // output
+  return minHeap.poll();
+}
+
+//----------------------------------------------------------------------------------------------------
+// Sol3: Using 'Partitioning Technique'   // TC: avg:O(N)   SC: O(1)
+
+//                                                                      2 1 kth largest
+console.log(findKthLargest([3, 2, 1, 5, 6, 4], 2)); //5     // 1 2 3 4 *5 6
+
+//                                                                              4 3 2 1 kth largest
+console.log(findKthLargest([3, 2, 3, 1, 2, 4, 5, 5, 6], 4)); //4    // 1 2 3 3 *4 5 5 6
+
+```
+{% endtab %}
+
+{% tab title="Sol2: Explanation" %}
+```javascript
+/*
+
+arr:  [  3, 2, 1, 5, 6, 4  ]   | k= 2  //2ndLargestItem
+
+################loop: arr [START]####################
+item1:
+------
+| arr:  [  *3, 2, 1, 5, 6, 4  ] 
+|  pq:  3   //added: '3' in pq
+|  // pq.size() > 2 // false
+
+####################################
+
+item2:
+------
+| arr:  [  3, *2, 1, 5, 6, 4  ] 
+|  pq:  2 <--3   //added: '2' in pq    
+|  // pq.size() > 2 // false
+
+####################################
+
+item3:
+------
+| arr:  [  3, 2, *1, 5, 6, 4  ] 
+|  pq:  1 <--2 <--3    //added: '1' in pq   
+|  // pq.size() > 2 // true ===> heap.poll() //removeFirstItemFromHeap (that means remove smallestItem) 
+|  pq:  2 <--3
+
+####################################
+
+item4:
+------
+| arr:  [  3, 2, 1, *5, 6, 4  ] 
+|  pq:  2 <--3 <--5     //added: '5' in pq
+|  // pq.size() > 2 // true ===> heap.poll() //removeFirstItemFromHeap (that means remove smallestItem) 
+|  pq:  3 <--5
+
+####################################
+
+item5:
+------
+| arr:  [  3, 2, 1, 5, *6, 4  ] 
+|  pq:  3 <--5 <--6     //added: '' in pq
+|  // pq.size() > 2 // true ===> heap.poll() //removeFirstItemFromHeap (that means remove smallestItem) 
+|  pq:  5 <--6
+
+####################################
+
+item6:
+------
+| arr:  [  3, 2, 1, 5, 6, *4  ] 
+|  pq:  4 <--5 <--6
+|  // pq.size() > 2 // true ===> heap.poll() //removeFirstItemFromHeap (that means remove smallestItem) 
+|  pq:  5 <--6
+
+################loop: arr [END]####################
+
+LAST-STEP:
+----------
+ans: heap.poll() //removeFirstItemFromHeap (that means remove smallestItem) 
+|    pq:  5 <--6
+
+ans: 5    // 2ndLargestItem  // 1 2 3 4 *5 6
+
+*/
+
+```
+{% endtab %}
+
+{% tab title="Sol3: quickSelect \[BEST\]" %}
+```javascript
+
+/*
+Sol3: Using 'Partitioning Technique' [BEST]
+
+## Quickselect ##
+
+TC: 
+  - Avg: O(N) 
+  - Worst: O(N^2) 
+SC: O(1)
+*/
+
+function swap(arr, i, j) {
+  var temp = arr[i];
+  arr[i] = arr[j];
+  arr[j] = temp;
+}
+
+/*
+1. Paritioning:
+  - choose the pivot  // choose: 'lastItem' as pivot here
+  - partition around the pivot  // ____itemsLessThanPivot____ |pivot| ____itemsGreaterThanPivot____
+  - return the pivotFinalIdx // pivotFinalPosition  // that is permanentPostion of that particularItem in the sortedArr
+*/
+function partition(arr, left, right) {
+  debugger;
+  // choose: 'lastItem' as pivot here
+  let pivot = arr[right];
+
+  // 'i' will keep track of 'lastItemLessThanPivot'
+  let i = left - 1;
+
+  // 'j' will scan the arr
+  for (let j = left; j < right; j++) {
+    // if 'curItem' is less than or equal to 'pivot'
+    // increment: 'i' and swap(arr, i,j)
+    if (arr[j] <= pivot) {
+      i++;
+      swap(arr, i, j);
+    }
+  }
+
+  // found: pivotFinalPosition // current pivotItem's final position in sortedArr
+  const pivotFinalPos = i + 1;
+  swap(arr, pivotFinalPos, right); // move: pivot to its finalPositionFound
+
+  return pivotFinalPos; // return: pivotFinalPosition
+}
+
+// SAME: as 'QuickSort' --> partition
+// REFER: QuickSort file for explanation
+
+function findKthLargest(arr, k) {
+  let left = 0;
+  let right = arr.length - 1;
+  const targetIdx = arr.length - k;
+
+  // check: 'leftBoundary' and 'rightBoundry'
+  while (left <= right) {
+    // pivotFinalPosition: in sortedArr
+    let pivotFinalPosition = partition(arr, left, right);
+
+    // ____itemsLessThanPivot____ |pivotFP| ____itemsGreaterThanPivot____
+    /*
+    What does the 'pivotFinalPosition' tell us?
+         - if 'targetIdx' is pivotFinalPosition // that is the kth largestItem
+         - if 'targetIdx' is less than 'pivotFinalPosition'  // k'th largest must be in the left partition
+         - if 'targetIdx' is greater than 'pivotFinalPosition'  // k'th largest must be in the right partition
+    */
+
+    if (targetIdx === pivotFinalPosition) {
+      // found: targetIdx // ans: this is the kth largestItem
+      return arr[pivotFinalPosition];
+    } else if (targetIdx < pivotFinalPosition) {
+      // we can ignore 'rightSideItems' // k'th largest must be in the left partition
+      right = pivotFinalPosition - 1;
+    } else {
+      // we can ignore 'leftSideItems' // k'th largest must be in the right partition
+      left = pivotFinalPosition + 1;
+    }
+  }
+
+  return -1; // this will never be reached, necessary to compile
+}
+
+//                                                                      2 1 kth largest
+console.log(findKthLargest([3, 2, 1, 5, 6, 4], 2)); //5     // 1 2 3 4 *5 6
+
+//                                                                              4 3 2 1 kth largest
+console.log(findKthLargest([3, 2, 3, 1, 2, 4, 5, 5, 6], 4)); //4    // 1 2 3 3 *4 5 5 6
+
 ```
 {% endtab %}
 {% endtabs %}
