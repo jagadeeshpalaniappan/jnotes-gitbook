@@ -28,9 +28,9 @@
 | 22 | 215 | [Kth Largest Element in an Array](https://leetcode.com/problems/kth-largest-element-in-an-array) | \*\*\* |
 | 23 | 347 | [Top K Frequent Elements](https://leetcode.com/problems/top-k-frequent-elements) | \*\*\* |
 | 24 | 221 | [Maximal Square](https://leetcode.com/problems/maximal-square) | \*\*\* |
-| 25 | 39 | [Combination Sum](https://leetcode.com/problems/combination-sum) | \*\*\* |
-| 26 | 98 | [Validate Binary Search Tree](https://leetcode.com/problems/validate-binary-search-tree) | \*\*\* |
-| 27 | 78 | [Subsets](https://leetcode.com/problems/subsets) | \*\*\* |
+| 25 | 78 | [Subsets](https://leetcode.com/problems/subsets) | \*\*\* |
+| 26 | 39 | [Combination Sum](https://leetcode.com/problems/combination-sum) | \*\*\* |
+| 27 | 98 | [Validate Binary Search Tree](https://leetcode.com/problems/validate-binary-search-tree) | \*\*\* |
 | 28 | 621 | [Task Scheduler    ](https://leetcode.com/problems/task-scheduler) | \*\*\* |
 | 29 | 48 | [Rotate Image    ](https://leetcode.com/problems/rotate-image) | \*\*\* |
 | 30 | 152 | [Maximum Product Subarray    ](https://leetcode.com/problems/maximum-product-subarray) | \*\*\* |
@@ -3505,7 +3505,28 @@ Output: 4
 {% endtab %}
 {% endtabs %}
 
-## [25. Combination Sum](https://leetcode.com/problems/combination-sum)
+## [25. Subsets](https://leetcode.com/problems/subsets)
+
+{% tabs %}
+{% tab title="Question" %}
+78. Subsets
+
+* Given a set of **distinct** integers, _nums_, return all possible subsets \(the power set\).
+* **Note:** The solution set must not contain duplicate subsets.
+{% endtab %}
+
+{% tab title="Video" %}
+
+{% endtab %}
+
+{% tab title="Code" %}
+```javascript
+....
+```
+{% endtab %}
+{% endtabs %}
+
+## [26. Combination Sum](https://leetcode.com/problems/combination-sum)
 
 {% tabs %}
 {% tab title="Question" %}
@@ -3740,7 +3761,7 @@ Example:
 {% endtab %}
 {% endtabs %}
 
-## [26. Validate Binary Search Tree](https://leetcode.com/problems/validate-binary-search-tree)
+## [27. Validate Binary Search Tree](https://leetcode.com/problems/validate-binary-search-tree)
 
 {% tabs %}
 {% tab title="Question" %}
@@ -3817,23 +3838,7 @@ BST (validate implementation) :    (by maintaining -maxVal & minVal)
 {% endtab %}
 {% endtabs %}
 
-## [27. Subsets](https://leetcode.com/problems/subsets)
-
-{% tabs %}
-{% tab title="Question" %}
-...
-{% endtab %}
-
-{% tab title="Video" %}
-
-{% endtab %}
-
-{% tab title="Code" %}
-```javascript
-....
-```
-{% endtab %}
-{% endtabs %}
+## 
 
 ## \#. Xxxxxx Yyyyy
 
