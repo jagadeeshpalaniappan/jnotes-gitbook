@@ -28,7 +28,7 @@
 | 22 | 215 | [Kth Largest Element in an Array](https://leetcode.com/problems/kth-largest-element-in-an-array) | \*\*\* |
 | 23 | 347 | [Top K Frequent Elements](https://leetcode.com/problems/top-k-frequent-elements) | \*\*\* |
 | 24 | 221 | [Maximal Square](https://leetcode.com/problems/maximal-square) | \*\*\* |
-| 25 | 39 | [Combination Sum    ](https://leetcode.com/problems/combination-sum) | \*\*\* |
+| 25 | 39 | [Combination Sum](https://leetcode.com/problems/combination-sum) | \*\*\* |
 | 26 | 98 | [Validate Binary Search Tree    ](https://leetcode.com/problems/validate-binary-search-tree) | \*\*\* |
 | 27 | 78 | [Subsets    ](https://leetcode.com/problems/subsets) | \*\*\* |
 | 28 | 621 | [Task Scheduler    ](https://leetcode.com/problems/task-scheduler) | \*\*\* |
@@ -3505,6 +3505,259 @@ Output: 4
 {% endtab %}
 {% endtabs %}
 
+## [25. Combination Sum](https://leetcode.com/problems/combination-sum)
+
+{% tabs %}
+{% tab title="Question" %}
+39. Combination Sum
+
+* find all unique combinations in `candidates` where the candidate numbers sums to `target`.
+* Note: The solution set must not contain duplicate combinations.
+
+```javascript
+Example 1:
+Input: candidates = [2,3,6,7], target = 7,
+Output:
+[
+  [7],
+  [2,2,3]
+]
+
+Example 2:
+Input: candidates = [2,3,5], target = 8,
+Output:
+[
+  [2,2,2,2],
+  [2,3,3],
+  [3,5]
+]
+```
+
+\*\*\*\*
+{% endtab %}
+
+{% tab title="Video" %}
+{% embed url="https://www.youtube.com/watch?v=MTI2wc8s0BY" %}
+{% endtab %}
+
+{% tab title="Code" %}
+```javascript
+/*
+Using: DFS
+
+TC: O(N^target) // where N is a length of candidates array.
+SC: O(target)
+*/
+
+function backtrack(currCombinations, remain, candidates, startIdx, res) {
+  // debugger;
+  if (remain < 0) {
+    // CANNOT-FORM-TARGET-SUM with 'currCombinations' // since currCombinations reached moreThan 'targetVal'
+    return;
+  } else if (remain === 0) {
+    // CANN-FORM-TARGET-SUM with 'currCombinations' // add it part of the result
+    res.push([...currCombinations]);
+    return;
+  } else {
+    // check: 'eachCombinations' // can we form target with 'anyCombination' sum
+    for (let i = startIdx; i < candidates.length; i++) {
+      const curItem = candidates[i];
+      const newRemaining = remain - curItem;
+
+      currCombinations.push(curItem); // try: currItem
+      backtrack(currCombinations, newRemaining, candidates, i, res);
+      // tried: currItem // comination: mightWorked or mightNotWorked
+      currCombinations.pop(); // remove: curItem & try with nextItem
+    }
+  }
+}
+
+function combinationSum(candidates, target) {
+  const res = [];
+  backtrack([], target, candidates, 0, res);
+  return res;
+}
+
+
+console.log(combinationSum([2, 3, 5], 8));
+
+```
+{% endtab %}
+
+{% tab title="Explanation" %}
+```javascript
+/*
+
+DFS-TREE-STRUCTURE:
+REMEMEBER: we are doing 'forwardItertaion'    // so that we dont encounter same 'combinationsAgain' //that avoids 'duplicateCombinations'
+Example:
+  - [*3] --canExpandInto--> [3,*3] [3,*5]     //NOT-LIKE:  [3,*2] [3,*3] [3,*5]
+  //simmilarly
+  - [3,*5] --canExpandInto--> [3,5,*5]    //NOT-LIKE:  [3,5,*3] [3,5,*5]
+
+
+|                                                                                                                    candidates=[2,3,5] target=8
+|                                                                                                                              []
+|                                                                                         ______________________________________|________________________________
+|                                                                                         |                                       |                              |     
+|                                                                                       8-2=6                                   8-3=5                          8-5=3    
+|                                                                                         |                                       |                              |     
+|                                                                                       [*2]                                     [*3]                           [*5]
+|                                                      __________________________________|________________                 ________|________                     |
+|                                                     |                                  |                |               |                 |                    |
+|                                                   6-2=4                              6-3=3            6-5=1           5-3=2             5-5=0                3-5= -2
+|                                                     |                                  |                |               |                 |                    |
+|                                                  [2,*2]                              [2,*3]           [2,*5]          [3,*3]            [3,*5]               [5,*5]
+|                   _________________________________|______________________           ____|_____           |           ____|____          |                     |
+|                  |                               |                        |         |          |          |           |        |        #CF#                  CNF
+|                4-2=2                           4-3=1                    4-5=-1    3-3=0      3-5=-2     1-5=-4      2-3=-1   2-5=-3
+|                  |                               |                        |         |          |          |           |        |         
+|               [2,2,*2]                        [2,2,*3]                [2,2,*5]    [2,3,*3] [2,3,*5]    [2,5,*5]    [3,3,*3]  [3,3,*5]
+|       ____________|________           ___________|___________            |          |          |          |         |        |
+|      |          |          |         |           |           |          CNF        #CF#       CNF        CNF        CNF     CNF
+|    2-2=0      2-3=-1    2-5=-3     1-2=-1      1-3=-2      1-5=-4
+|      |          |          |         |           |           |   
+| [2,2,2,*2] [2,2,2,*3] [2,2,2,*5]  [2,2,3,*2] [2,2,3,*3] [2,2,3,*5]      
+|   #CF#        CNF        CNF
+|   
+
+*/
+
+
+/*
+-
+##$|--loop[i=0] currComb:[] curItem:2 newRemain:6 (8-2)
+##$|--dfs([2], 6)
+--
+##$##$|--loop[i=0] currComb:[2] curItem:2 newRemain:4 (6-2)
+##$##$|--dfs([2,2], 4)
+---
+##$##$##$|--loop[i=0] currComb:[2,2] curItem:2 newRemain:2 (4-2)
+##$##$##$|--dfs([2,2,2], 2)
+----
+##$##$##$##$|--loop[i=0] currComb:[2,2,2] curItem:2 newRemain:0 (2-2)
+##$##$##$##$|--dfs([2,2,2,2], 0)
+##$##$##$##$##$|--CAN-FORM-SUM // res: [[2,2,2,2]]
+##$##$##$##$|--/dfs([2,2,2,2], 0)
+
+##$##$##$##$|--loop[i=1] currComb:[2,2,2] curItem:3 newRemain:-1 (2-3)
+##$##$##$##$|--dfs([2,2,2,3], -1)
+##$##$##$##$##$|--CANNOT-FORM-SUM
+##$##$##$##$|--/dfs([2,2,2,3], -1)
+
+##$##$##$##$|--loop[i=2] currComb:[2,2,2] curItem:5 newRemain:-3 (2-5)
+##$##$##$##$|--dfs([2,2,2,5], -3)
+##$##$##$##$##$|--CANNOT-FORM-SUM
+##$##$##$##$|--/dfs([2,2,2,5], -3)
+----
+##$##$##$|--/dfs([2,2,2], 2)
+---
+##$##$##$|--loop[i=1] currComb:[2,2] curItem:3 newRemain:1 (4-3)
+##$##$##$|--dfs([2,2,3], 1)
+
+##$##$##$##$|--loop[i=1] currComb:[2,2,3] curItem:3 newRemain:-2 (1-3)
+##$##$##$##$|--dfs([2,2,3,3], -2)
+##$##$##$##$##$|--CANNOT-FORM-SUM
+##$##$##$##$|--/dfs([2,2,3,3], -2)
+
+##$##$##$##$|--loop[i=2] currComb:[2,2,3] curItem:5 newRemain:-4 (1-5)
+##$##$##$##$|--dfs([2,2,3,5], -4)
+##$##$##$##$##$|--CANNOT-FORM-SUM
+##$##$##$##$|--/dfs([2,2,3,5], -4)
+
+##$##$##$|--/dfs([2,2,3], 1)
+---
+##$##$##$|--loop[i=2] currComb:[2,2] curItem:5 newRemain:-1 (4-5)
+##$##$##$|--dfs([2,2,5], -1)
+##$##$##$##$|--CANNOT-FORM-SUM
+##$##$##$|--/dfs([2,2,5], -1)
+---
+##$##$|--/dfs([2,2], 4)
+--
+##$##$|--loop[i=1] currComb:[2] curItem:3 newRemain:3 (6-3)
+##$##$|--dfs([2,3], 3)
+
+##$##$##$|--loop[i=1] currComb:[2,3] curItem:3 newRemain:0 (3-3)
+##$##$##$|--dfs([2,3,3], 0)
+##$##$##$##$|--CAN-FORM-SUM // res: [[2,2,2,2],[2,3,3]]
+##$##$##$|--/dfs([2,3,3], 0)
+
+##$##$##$|--loop[i=2] currComb:[2,3] curItem:5 newRemain:-2 (3-5)
+##$##$##$|--dfs([2,3,5], -2)
+##$##$##$##$|--CANNOT-FORM-SUM
+##$##$##$|--/dfs([2,3,5], -2)
+
+##$##$|--/dfs([2,3], 3)
+
+##$##$|--loop[i=2] currComb:[2] curItem:5 newRemain:1 (6-5)
+##$##$|--dfs([2,5], 1)
+
+##$##$##$|--loop[i=2] currComb:[2,5] curItem:5 newRemain:-4 (1-5)
+##$##$##$|--dfs([2,5,5], -4)
+##$##$##$##$|--CANNOT-FORM-SUM
+##$##$##$|--/dfs([2,5,5], -4)
+
+##$##$|--/dfs([2,5], 1)
+
+##$|--/dfs([2], 6)
+-
+##$|--loop[i=1] currComb:[] curItem:3 newRemain:5 (8-3)
+##$|--dfs([3], 5)
+
+##$##$|--loop[i=1] currComb:[3] curItem:3 newRemain:2 (5-3)
+##$##$|--dfs([3,3], 2)
+
+##$##$##$|--loop[i=1] currComb:[3,3] curItem:3 newRemain:-1 (2-3)
+##$##$##$|--dfs([3,3,3], -1)
+##$##$##$##$|--CANNOT-FORM-SUM
+##$##$##$|--/dfs([3,3,3], -1)
+##$##$##$|--loop[i=2] currComb:[3,3] curItem:5 newRemain:-3 (2-5)
+##$##$##$|--dfs([3,3,5], -3)
+##$##$##$##$|--CANNOT-FORM-SUM
+##$##$##$|--/dfs([3,3,5], -3)
+
+##$##$|--/dfs([3,3], 2)
+-
+##$##$|--loop[i=2] currComb:[3] curItem:5 newRemain:0 (5-5)
+##$##$|--dfs([3,5], 0)
+##$##$##$|--CAN-FORM-SUM // res: [[2,2,2,2],[2,3,3],[3,5]]
+##$##$|--/dfs([3,5], 0)
+
+##$|--/dfs([3], 5)
+
+##$|--loop[i=2] currComb:[] curItem:5 newRemain:3 (8-5)
+##$|--dfs([5], 3)
+##$##$|--loop[i=2] currComb:[5] curItem:5 newRemain:-2 (3-5)
+##$##$|--dfs([5,5], -2)
+##$##$##$|--CANNOT-FORM-SUM
+##$##$|--/dfs([5,5], -2)
+
+##$|--/dfs([5], 3)
+-
+*/
+
+```
+{% endtab %}
+{% endtabs %}
+
+## \#. Xxxxxx Yyyyy
+
+{% tabs %}
+{% tab title="Question" %}
+...
+{% endtab %}
+
+{% tab title="Video" %}
+
+{% endtab %}
+
+{% tab title="Code" %}
+```javascript
+....
+```
+{% endtab %}
+{% endtabs %}
+
 ## \#. Xxxxxx Yyyyy
 
 {% tabs %}
@@ -3541,5 +3794,365 @@ Output: 4
 {% endtab %}
 {% endtabs %}
 
-..
+## \#. Xxxxxx Yyyyy
+
+{% tabs %}
+{% tab title="Question" %}
+...
+{% endtab %}
+
+{% tab title="Video" %}
+
+{% endtab %}
+
+{% tab title="Code" %}
+```javascript
+....
+```
+{% endtab %}
+{% endtabs %}
+
+## \#. Xxxxxx Yyyyy
+
+{% tabs %}
+{% tab title="Question" %}
+...
+{% endtab %}
+
+{% tab title="Video" %}
+
+{% endtab %}
+
+{% tab title="Code" %}
+```javascript
+....
+```
+{% endtab %}
+{% endtabs %}
+
+## \#. Xxxxxx Yyyyy
+
+{% tabs %}
+{% tab title="Question" %}
+...
+{% endtab %}
+
+{% tab title="Video" %}
+
+{% endtab %}
+
+{% tab title="Code" %}
+```javascript
+....
+```
+{% endtab %}
+{% endtabs %}
+
+## \#. Xxxxxx Yyyyy
+
+{% tabs %}
+{% tab title="Question" %}
+...
+{% endtab %}
+
+{% tab title="Video" %}
+
+{% endtab %}
+
+{% tab title="Code" %}
+```javascript
+....
+```
+{% endtab %}
+{% endtabs %}
+
+## \#. Xxxxxx Yyyyy
+
+{% tabs %}
+{% tab title="Question" %}
+...
+{% endtab %}
+
+{% tab title="Video" %}
+
+{% endtab %}
+
+{% tab title="Code" %}
+```javascript
+....
+```
+{% endtab %}
+{% endtabs %}
+
+## \#. Xxxxxx Yyyyy
+
+{% tabs %}
+{% tab title="Question" %}
+...
+{% endtab %}
+
+{% tab title="Video" %}
+
+{% endtab %}
+
+{% tab title="Code" %}
+```javascript
+....
+```
+{% endtab %}
+{% endtabs %}
+
+## \#. Xxxxxx Yyyyy
+
+{% tabs %}
+{% tab title="Question" %}
+...
+{% endtab %}
+
+{% tab title="Video" %}
+
+{% endtab %}
+
+{% tab title="Code" %}
+```javascript
+....
+```
+{% endtab %}
+{% endtabs %}
+
+## \#. Xxxxxx Yyyyy
+
+{% tabs %}
+{% tab title="Question" %}
+...
+{% endtab %}
+
+{% tab title="Video" %}
+
+{% endtab %}
+
+{% tab title="Code" %}
+```javascript
+....
+```
+{% endtab %}
+{% endtabs %}
+
+## \#. Xxxxxx Yyyyy
+
+{% tabs %}
+{% tab title="Question" %}
+...
+{% endtab %}
+
+{% tab title="Video" %}
+
+{% endtab %}
+
+{% tab title="Code" %}
+```javascript
+....
+```
+{% endtab %}
+{% endtabs %}
+
+## \#. Xxxxxx Yyyyy
+
+{% tabs %}
+{% tab title="Question" %}
+...
+{% endtab %}
+
+{% tab title="Video" %}
+
+{% endtab %}
+
+{% tab title="Code" %}
+```javascript
+....
+```
+{% endtab %}
+{% endtabs %}
+
+## \#. Xxxxxx Yyyyy
+
+{% tabs %}
+{% tab title="Question" %}
+...
+{% endtab %}
+
+{% tab title="Video" %}
+
+{% endtab %}
+
+{% tab title="Code" %}
+```javascript
+....
+```
+{% endtab %}
+{% endtabs %}
+
+## \#. Xxxxxx Yyyyy
+
+{% tabs %}
+{% tab title="Question" %}
+...
+{% endtab %}
+
+{% tab title="Video" %}
+
+{% endtab %}
+
+{% tab title="Code" %}
+```javascript
+....
+```
+{% endtab %}
+{% endtabs %}
+
+## \#. Xxxxxx Yyyyy
+
+{% tabs %}
+{% tab title="Question" %}
+...
+{% endtab %}
+
+{% tab title="Video" %}
+
+{% endtab %}
+
+{% tab title="Code" %}
+```javascript
+....
+```
+{% endtab %}
+{% endtabs %}
+
+## \#. Xxxxxx Yyyyy
+
+{% tabs %}
+{% tab title="Question" %}
+...
+{% endtab %}
+
+{% tab title="Video" %}
+
+{% endtab %}
+
+{% tab title="Code" %}
+```javascript
+....
+```
+{% endtab %}
+{% endtabs %}
+
+## \#. Xxxxxx Yyyyy
+
+{% tabs %}
+{% tab title="Question" %}
+...
+{% endtab %}
+
+{% tab title="Video" %}
+
+{% endtab %}
+
+{% tab title="Code" %}
+```javascript
+....
+```
+{% endtab %}
+{% endtabs %}
+
+## \#. Xxxxxx Yyyyy
+
+{% tabs %}
+{% tab title="Question" %}
+...
+{% endtab %}
+
+{% tab title="Video" %}
+
+{% endtab %}
+
+{% tab title="Code" %}
+```javascript
+....
+```
+{% endtab %}
+{% endtabs %}
+
+## \#. Xxxxxx Yyyyy
+
+{% tabs %}
+{% tab title="Question" %}
+...
+{% endtab %}
+
+{% tab title="Video" %}
+
+{% endtab %}
+
+{% tab title="Code" %}
+```javascript
+....
+```
+{% endtab %}
+{% endtabs %}
+
+## \#. Xxxxxx Yyyyy
+
+{% tabs %}
+{% tab title="Question" %}
+...
+{% endtab %}
+
+{% tab title="Video" %}
+
+{% endtab %}
+
+{% tab title="Code" %}
+```javascript
+....
+```
+{% endtab %}
+{% endtabs %}
+
+## \#. Xxxxxx Yyyyy
+
+{% tabs %}
+{% tab title="Question" %}
+...
+{% endtab %}
+
+{% tab title="Video" %}
+
+{% endtab %}
+
+{% tab title="Code" %}
+```javascript
+....
+```
+{% endtab %}
+{% endtabs %}
+
+## \#. Xxxxxx Yyyyy
+
+{% tabs %}
+{% tab title="Question" %}
+...
+{% endtab %}
+
+{% tab title="Video" %}
+
+{% endtab %}
+
+{% tab title="Code" %}
+```javascript
+....
+```
+{% endtab %}
+{% endtabs %}
+
+
 
