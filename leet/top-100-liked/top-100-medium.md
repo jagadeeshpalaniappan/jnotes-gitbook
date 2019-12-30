@@ -29,8 +29,8 @@
 | 23 | 347 | [Top K Frequent Elements](https://leetcode.com/problems/top-k-frequent-elements) | \*\*\* |
 | 24 | 221 | [Maximal Square](https://leetcode.com/problems/maximal-square) | \*\*\* |
 | 25 | 39 | [Combination Sum](https://leetcode.com/problems/combination-sum) | \*\*\* |
-| 26 | 98 | [Validate Binary Search Tree    ](https://leetcode.com/problems/validate-binary-search-tree) | \*\*\* |
-| 27 | 78 | [Subsets    ](https://leetcode.com/problems/subsets) | \*\*\* |
+| 26 | 98 | [Validate Binary Search Tree](https://leetcode.com/problems/validate-binary-search-tree) | \*\*\* |
+| 27 | 78 | [Subsets](https://leetcode.com/problems/subsets) | \*\*\* |
 | 28 | 621 | [Task Scheduler    ](https://leetcode.com/problems/task-scheduler) | \*\*\* |
 | 29 | 48 | [Rotate Image    ](https://leetcode.com/problems/rotate-image) | \*\*\* |
 | 30 | 152 | [Maximum Product Subarray    ](https://leetcode.com/problems/maximum-product-subarray) | \*\*\* |
@@ -3740,7 +3740,7 @@ Example:
 {% endtab %}
 {% endtabs %}
 
-## \#. Xxxxxx Yyyyy
+## [26. Validate Binary Search Tree](https://leetcode.com/problems/validate-binary-search-tree)
 
 {% tabs %}
 {% tab title="Question" %}
@@ -3753,12 +3753,71 @@ Example:
 
 {% tab title="Code" %}
 ```javascript
-....
+/*
+Using Recursion
+TC: O(n) 
+SC: O(n)
+*/
+function isValidBST(rootNode, minNode = null, maxNode = null) {
+  if (!rootNode) return true; // base-case: validBST
+  if (minNode != null && minNode.val >= rootNode.val) return false; // base-case: inValidBST  (minNode mustbe lessThan rootNode)
+  if (maxNode != null && maxNode.val <= rootNode.val) return false; // base-case: inValidBST  (maxNode mustbe greaterhan rootNode)
+  return (
+    isValidBST(rootNode.left, minNode, rootNode) &&
+    isValidBST(rootNode.right, rootNode, maxNode)
+  );
+}
+
+// console.log(isValidBST());
+
+// ALSO-LOOK: /1-ds/5-bst/3-bst-validate.js
+
+
+```
+{% endtab %}
+
+{% tab title="Explanation" %}
+```javascript
+/*
+
+---------------------------------------------------------------------------------------------------------
+Structure: BST (Binary Search Tree)
+
+                        ______(10)________
+                      /                    \
+                 ___(0)___              __(12)__
+                /          \           /         \
+              (-1)         (4)       (11)        (20)
+                \                               /    \
+                 (15)                         (17)   (99)
+---------------------------------------------------------------------------------------------------------
+
+
+###########################################################################
+BST (validate implementation) :    (by maintaining -maxVal & minVal)
+###########################################################################
+
+
+'rootNode' can be any value
+
+0. start: 'rootNode' as  'currentNode'
+
+1. currentNode's --'leftNode' must be less than 'currentNode' value   
+    // (assign: 'leftNode' value --> 'maxVal' )
+    // becoz that leftNode's child must be less than 'maxVal' (parent value)  // otherwise: it is 'invalid' BST
+
+
+2. currentNode's --'rightNode' must be greater than 'currentNode' value
+    // (assign 'minVal' as 'rightNode' value)
+    // becoz that rightNode's child must be greater than 'minVal' (parent value)  // otherwise: it is 'invalid' BST
+
+
+*/
 ```
 {% endtab %}
 {% endtabs %}
 
-## \#. Xxxxxx Yyyyy
+## [27. Subsets](https://leetcode.com/problems/subsets)
 
 {% tabs %}
 {% tab title="Question" %}
