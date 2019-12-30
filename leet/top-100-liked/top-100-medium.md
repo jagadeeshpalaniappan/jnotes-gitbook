@@ -31,7 +31,7 @@
 | 25 | 78 | [Subsets](https://leetcode.com/problems/subsets) | \*\*\* |
 | 26 | 39 | [Combination Sum](https://leetcode.com/problems/combination-sum) | \*\*\* |
 | 27 | 98 | [Validate Binary Search Tree](https://leetcode.com/problems/validate-binary-search-tree) | \*\*\* |
-| 28 | 621 | [Task Scheduler    ](https://leetcode.com/problems/task-scheduler) | \*\*\* |
+| 28 | 621 | [Task Scheduler](https://leetcode.com/problems/task-scheduler) | \*\*\* |
 | 29 | 48 | [Rotate Image    ](https://leetcode.com/problems/rotate-image) | \*\*\* |
 | 30 | 152 | [Maximum Product Subarray    ](https://leetcode.com/problems/maximum-product-subarray) | \*\*\* |
 | 31 | 236 | [Lowest Common Ancestor of a Binary Tree    ](https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree) | \*\*\* |
@@ -3521,7 +3521,31 @@ Output: 4
 
 {% tab title="Code" %}
 ```javascript
-....
+/**
+ * @param {number[]} nums
+ * @return {number[][]}
+ */
+
+function backtrack(list, tempList, nums, start) {
+  list.push([...tempList]);
+  for (let i = start; i < nums.length; i++) {
+    tempList.push(nums[i]);
+    backtrack(list, tempList, nums, i + 1);
+    tempList.pop();
+  }
+}
+
+function subsets(nums) {
+  const list = [];
+  backtrack(list, [], nums, 0);
+  return list;
+}
+
+console.log(subsets([1, 2, 3]));
+
+
+
+// SIMMILAR-TO: x26-combination-sum.js
 ```
 {% endtab %}
 {% endtabs %}
@@ -3840,7 +3864,7 @@ BST (validate implementation) :    (by maintaining -maxVal & minVal)
 
 ## 
 
-## \#. Xxxxxx Yyyyy
+## [28. Task Scheduler](https://leetcode.com/problems/task-scheduler)
 
 {% tabs %}
 {% tab title="Question" %}
