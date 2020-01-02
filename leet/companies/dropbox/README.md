@@ -2,7 +2,7 @@
 
 ## Index
 
-| \# | LC\# | Title | Difficulty |  |
+| \# | LC\# | Title | Difficulty | Frequency |
 | :--- | :--- | :--- | :--- | :--- |
 | 1 | 609 | [Find Duplicate File in System](https://leetcode.com/problems/find-duplicate-file-in-system) | Medium | \*\*\*\*\* |
 | 2 | 289 | [Game of Life](https://leetcode.com/problems/game-of-life) | Medium | \*\*\*\* |
