@@ -7,10 +7,10 @@
 | 1 | 609 | [Find Duplicate File in System](https://leetcode.com/problems/find-duplicate-file-in-system) | Medium | \*\*\*\*\* |
 | 2 | 289 | [Game of Life](https://leetcode.com/problems/game-of-life) | Medium | \*\*\*\* |
 | 3 | 924 | [Minimize Malware Spread](https://leetcode.com/problems/minimize-malware-spread) | Hard | \*\*\*\* |
-| 4 | 379 | [Design Phone Directory](https://leetcode.com/problems/design-phone-directory) | Medium | \*\*\* |
-| 5 | 362 | [Design Hit Counter](https://leetcode.com/problems/design-hit-counter) | Medium | \*\*\* |
-| 6 | 291 | [Word Pattern II](https://leetcode.com/problems/word-pattern-ii) | Hard | \*\*\* |
-| 7 | 928 | [Minimize Malware Spread II](https://leetcode.com/problems/minimize-malware-spread-ii) | Hard | \*\* |
+| 4 | 928 | [Minimize Malware Spread II](https://leetcode.com/problems/minimize-malware-spread-ii) | Hard | \*\* |
+| 5 | 379 | [Design Phone Directory](https://leetcode.com/problems/design-phone-directory) | Medium | \*\*\* |
+| 6 | 362 | [Design Hit Counter](https://leetcode.com/problems/design-hit-counter) | Medium | \*\*\* |
+| 7 | 291 | [Word Pattern II](https://leetcode.com/problems/word-pattern-ii) | Hard | \*\*\* |
 | 8 | 1236 | [Web Crawler](https://leetcode.com/problems/web-crawler) | Medium | \*\* |
 | 9 | 1242 | [Web Crawler Multithreaded](https://leetcode.com/problems/web-crawler-multithreaded) | Medium | \* |
 | 10 | 17 | [Letter Combinations of a Phone Number](https://leetcode.com/problems/letter-combinations-of-a-phone-number) | Medium | \* |
@@ -100,7 +100,7 @@
 {% endtab %}
 {% endtabs %}
 
-## [Minimize Malware Spread II](https://leetcode.com/problems/minimize-malware-spread-ii)
+## [4. Minimize Malware Spread II](https://leetcode.com/problems/minimize-malware-spread-ii)
 
 {% tabs %}
 {% tab title="Question" %}
@@ -124,7 +124,7 @@
 
 ...
 
-## [4. Design Phone Directory](https://leetcode.com/problems/design-phone-directory)
+## [5. Design Phone Directory](https://leetcode.com/problems/design-phone-directory)
 
 {% tabs %}
 {% tab title="Question" %}
@@ -148,7 +148,7 @@
 
 ...
 
-## [5. Design Hit Counter](https://leetcode.com/problems/design-hit-counter)
+## [6. Design Hit Counter](https://leetcode.com/problems/design-hit-counter)
 
 {% tabs %}
 {% tab title="Question" %}
@@ -172,7 +172,7 @@
 
 ...
 
-## [6. Word Pattern II](https://leetcode.com/problems/word-pattern-ii)
+## [7. Word Pattern II](https://leetcode.com/problems/word-pattern-ii)
 
 {% tabs %}
 {% tab title="Question" %}
