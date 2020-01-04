@@ -99,13 +99,67 @@ public String getFileContent(String filePath); //Returns content of a file  
 * [https://leetcode.com/discuss/interview-question/417262/Dropbox-or-Phone-Screen-or-Permissions-in-a-File-System](https://leetcode.com/discuss/interview-question/417262/Dropbox-or-Phone-Screen-or-Permissions-in-a-File-System)
 {% endtab %}
 
+{% tab title="Follow-Up" %}
+**Follow-up beyond contest:**
+
+1. Imagine you are given a real file system, how will you search files? DFS or BFS?
+2. If the file content is very large \(GB level\), how will you modify your solution?
+3. If you can only read the file by 1kb each time, how will you modify your solution?
+4. What is the time complexity of your modified solution? What is the most time-consuming part and memory consuming part of it? How to optimize?
+5. How to make sure the duplicated files you find are not false positive?
+{% endtab %}
+
 {% tab title="Video" %}
 
 {% endtab %}
 
-{% tab title="Code" %}
+{% tab title="Sol1" %}
 ```javascript
-...
+
+/*
+Using Map
+TC: O(n*x) n strings of average length x is parsed.
+SC: O(n*x) map and res size grows upto n*x
+*/
+function findDuplicate(paths) {
+  const contentMap = {};
+  const res = [];
+
+  // loop: dir
+  for (const path of paths) {
+    debugger;
+    const pathArr = path.split(" ");
+    const dirName = pathArr[0];
+    for (let i = 1; i < pathArr.length; i++) {
+      const fileAndContent = pathArr[i];
+      const fileAndContentArr = fileAndContent.split("(");
+      const fileName = fileAndContentArr[0];
+      const content = fileAndContentArr[1].slice(
+        0,
+        fileAndContentArr[1].length - 1
+      );
+      const fullName = `${dirName}/${fileName}`;
+  
+      if (contentMap[content]) {
+        contentMap[content].push(fullName);
+      } else {
+        contentMap[content] = [fullName];
+      }
+    }
+  }
+
+  // loop: contentMap
+  for (const [key, val] of Object.entries(contentMap)) {
+      if(val && val.length > 1) {
+          // we need only duplicate items
+          res.push(val)
+      }
+  }
+
+  return res;
+}
+
+
 ```
 {% endtab %}
 {% endtabs %}
