@@ -65,21 +65,30 @@ public String getFileContent(String filePath); //Returns content of a file  
 
 **Files \(related questions\)**
 
+Duplicate File:
+
 * find in directory identical files 
 * How to get all the files with duplicate file names given a path name.  
-  * find all duplicate files within a folder.  
-* Duplicated file. The follow-up I answered is hash each file chunk by chunk.
-* Implement a function that searches a file system for files with identical contents
-* given two very large files, how can one most efficiently check if they are the same file? 
-* Group duplicate files in folder, log file manipulation and query.
-* If you received a file in chunks, calculate when you have the full file. Fairly open ended.
-  * Can assume chunks come with start and end, or size, etc.
-* Array presence in another array and questions related to byte arrays
-* How to find duplicate files in storage
-* Grouping same file in folder
+  * find all duplicate files within a folder
+  * Implement a function that searches a file system for files with identical contents
+  * How to find duplicate files in storage
+  * Group duplicate files in folder
+  * Grouping same file in folder
   * How could you group files in nested directories \(like a multidimensional array\) and group files of the same content in a similar array?
+* The follow-up
+* given two very large files, how can one most efficiently check if they are the same file? 
+  * I answered is hash each file chunk by chunk
+  * If you received a file in chunks, calculate when you have the full file. 
+  * How will you determine duplicates
+    * Fairly open ended
+  * Can assume chunks come with start and end, or size, etc
+
+Other Questions
+
+* Log File manipulation and Query:
+* Array presence in another array and questions related to byte arrays
 * How can you determine if a file has any copyright infringement content 
-* Cows and folders  
+* Cows and folders
 * Dropbox File Syncing
 * Recursively sort files in a file system
 * Write a basic file system and implement the commands 
