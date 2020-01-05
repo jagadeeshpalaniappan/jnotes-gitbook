@@ -436,7 +436,13 @@ if 3 rows also not possible in memory // take chunk by chunk
 
 {% tabs %}
 {% tab title="Question" %}
-...
+379. Design Phone DirectoryMedium137219Add to ListShare
+
+Design a Phone Directory which supports the following operations:
+
+1. `get`: Provide a number which is not assigned to anyone.
+2. `check`: Check if a number is available or not.
+3. `release`: Recycle or release a number.
 {% endtab %}
 
 {% tab title="More" %}
@@ -449,7 +455,57 @@ if 3 rows also not possible in memory // take chunk by chunk
 
 {% tab title="Code" %}
 ```javascript
-...
+
+class PhoneDirectory {
+  constructor(maxNumbers) {
+    this.len = maxNumbers;
+    this.availableNumbers = new Set();
+    for (let i = 0; i < maxNumbers; i++) {
+      this.availableNumbers.add(i);
+    }
+    // console.log(this.availableNumbers);
+  }
+
+  get() {
+    if (this.availableNumbers.size === 0) return -1;
+    const nextAvailableNo = this.availableNumbers.values().next().value;
+    this.availableNumbers.delete(nextAvailableNo);
+    return nextAvailableNo;
+  }
+
+  check(number) {
+    return this.availableNumbers.has(number);
+  }
+
+  release(number) {
+    this.availableNumbers.add(number);
+  }
+}
+
+// Init a phone pd containing a total of 3 numbers: 0, 1, and 2.
+const pd = new PhoneDirectory(3);
+
+// It can return any available phone number. Here we assume it returns 0.
+console.log(pd.get());
+
+// Assume it returns 1.
+console.log(pd.get());
+
+// The number 2 is available, so return true.
+console.log(pd.check(2));
+
+// It returns 2, the only number that is left.
+console.log(pd.get());
+
+// The number 2 is no longer available, so return false.
+console.log(pd.check(2));
+
+// Release number 2 back to the pool.
+pd.release(2);
+
+// Number 2 is available again, return true.
+console.log(pd.check(2));
+
 ```
 {% endtab %}
 {% endtabs %}
