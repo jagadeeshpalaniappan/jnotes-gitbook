@@ -530,7 +530,14 @@ console.log(pd.check(2));
 {% endtab %}
 
 {% tab title="Video" %}
+Implementation: 
 
+* [https://www.youtube.com/watch?v=vMB0XjFpt\_s](https://www.youtube.com/watch?v=vMB0XjFpt_s) 
+
+System Design:\(Rate Limit\) 
+
+* [https://www.youtube.com/watch?v=xrizarXJgC8](https://www.youtube.com/watch?v=xrizarXJgC8)
+* [https://www.youtube.com/watch?v=mhUQe4BKZXs](https://www.youtube.com/watch?v=mhUQe4BKZXs)
 {% endtab %}
 
 {% tab title="Code" %}
