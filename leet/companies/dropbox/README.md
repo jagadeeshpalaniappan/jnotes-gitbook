@@ -535,7 +535,82 @@ console.log(pd.check(2));
 
 {% tab title="Code" %}
 ```javascript
-...
+/*
+https://leetcode.com/problems/design-hit-counter/discuss/83483/Super-easy-design-O(1)-hit()-O(s)-getHits()-no-fancy-data-structure-is-needed!
+
+What is 300? we need only past 5mins  // 5*60sec ==> 300sec
+For each second (timestamp), we are counting an entry
+
+TC: 
+  -hit(): O(1)      
+  -getHits(): O(1)
+SC: O(1)
+
+// since we always store & get '300' items O(1) // remember: 300 is constant
+// but if we consider 300 is an input, 
+  -- then it should be O(s) // s is seconds (past 5 minutes = 5x60sec ==> 300sec)
+*/
+class HitCounter {
+  constructor() {
+    this.hits = [];  // new Array(300);
+  }
+  hit(timestamp) {
+    let index = timestamp % 300;
+    const hitEntry = this.hits[index];
+    if (hitEntry && hitEntry.timestamp === timestamp) {
+      hitEntry.count = hitEntry.count + 1;
+    } else {
+      this.hits[index] = { timestamp, count: 1 };
+    }
+  }
+  getHits = function(curTimestamp) {
+    let counter = 0;
+    for (let hitEntry of this.hits) {
+      if (hitEntry) {
+        const timestampFromNow = curTimestamp - hitEntry.timestamp;
+        if (timestampFromNow < 300) {
+          // count: only applicable timestamp (within 5mins)
+          counter = counter + hitEntry.count;
+        }
+      }
+    }
+
+    return counter;
+  };
+}
+
+```
+{% endtab %}
+
+{% tab title="Exe" %}
+```
+const counter = new HitCounter();
+
+// hit at timestamp 1.
+counter.hit(1);
+
+// hit at timestamp 2.
+counter.hit(2);
+
+// hit at timestamp 3.
+counter.hit(3);
+
+// get hits at timestamp 4, should return 3.
+console.log(counter.getHits(4));
+
+// hit at timestamp 300.
+counter.hit(300);
+
+// get hits at timestamp 300, should return 4.
+console.log(counter.getHits(300));
+
+// get hits at timestamp 301, should return 3.
+console.log(counter.getHits(301));
+
+// hit at timestamp 350.
+counter.hit(350);
+
+console.log(counter.getHits(600)); // 1
 ```
 {% endtab %}
 {% endtabs %}
