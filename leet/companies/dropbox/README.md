@@ -624,7 +624,77 @@ console.log(counter.getHits(600)); // 1
 
 ...
 
-## [7. Word Pattern II](https://leetcode.com/problems/word-pattern-ii)
+## [7. Word Pattern](https://leetcode.com/problems/word-pattern)
+
+{% tabs %}
+{% tab title="Question" %}
+...
+{% endtab %}
+
+{% tab title="More" %}
+
+{% endtab %}
+
+{% tab title="Video" %}
+
+{% endtab %}
+
+{% tab title="Code" %}
+```javascript
+/*
+290. Word Pattern
+https://leetcode.com/problems/word-pattern/
+
+Example 1:
+Input: pattern = "abba", str = "dog cat cat dog" ---> Output: true
+
+Example 2:
+Input:pattern = "abba", str = "dog cat cat fish" ---> Output: false
+
+Example 3:
+Input: pattern = "aaaa", str = "dog cat cat dog" ---> Output: false
+
+Example 4:
+Input: pattern = "abba", str = "dog dog dog dog" ---> Output: false
+*/
+
+/*
+Using Map
+TC: O(n)
+SC: O(n)
+*/
+function wordPattern(pattern, str) {
+  const words = str.split(" ");
+  var map1 = {}; // { patternChar: word }
+  var map2 = {}; // { word: patternChar }
+  if (pattern.length !== words.length) return false;
+  for (let i = 0; i < pattern.length; i++) {
+    const char = pattern[i];
+    const word = words[i];
+    if (map1[char] && map2[word]) {
+      if (map1[char] !== word || map2[word] !== char) {
+        return false;
+      }
+    } else if (map1[char] || map2[word]) {
+      return false;
+    } else {
+      map1[char] = word;
+      map2[word] = char;
+    }
+  }
+  return true;
+}
+
+console.log(wordPattern("abba", "dog cat cat dog")); // true
+console.log(wordPattern("abba", "dog dog dog dog")); // false
+
+```
+{% endtab %}
+{% endtabs %}
+
+...
+
+## [8. Word Pattern II](https://leetcode.com/problems/word-pattern-ii)
 
 {% tabs %}
 {% tab title="Question" %}
@@ -792,29 +862,7 @@ console.log(counter.getHits(600)); // 1
 
 ...
 
-## [14. Word Pattern](https://leetcode.com/problems/word-pattern)
-
-{% tabs %}
-{% tab title="Question" %}
-...
-{% endtab %}
-
-{% tab title="More" %}
-
-{% endtab %}
-
-{% tab title="Video" %}
-
-{% endtab %}
-
-{% tab title="Code" %}
-```javascript
-...
-```
-{% endtab %}
-{% endtabs %}
-
-...
+## 
 
 ## [15. Word Break II](https://leetcode.com/problems/word-break-ii)
 
