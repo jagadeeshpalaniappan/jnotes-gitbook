@@ -6,8 +6,8 @@
 | :--- | :--- | :--- | :--- | :--- |
 | 1 | 609 | [Find Duplicate File in System](https://leetcode.com/problems/find-duplicate-file-in-system) | Medium | \*\*\*\*\* |
 | 2 | 289 | [Game of Life](https://leetcode.com/problems/game-of-life) | Medium | \*\*\*\* |
-| 3 | 924 | [Minimize Malware Spread](https://leetcode.com/problems/minimize-malware-spread) | Hard | \*\*\*\* |
-| 4 | 928 | [Minimize Malware Spread II](https://leetcode.com/problems/minimize-malware-spread-ii) | Hard | \*\* |
+| 3 | 924 | [Minimize Malware Spread](https://leetcode.com/problems/minimize-malware-spread) \[TODO\] | Hard | \*\*\*\* |
+| 4 | 928 | [Minimize Malware Spread II](https://leetcode.com/problems/minimize-malware-spread-ii) \[TODO\] | Hard | \*\* |
 | 5 | 379 | [Design Phone Directory](https://leetcode.com/problems/design-phone-directory) | Medium | \*\*\* |
 | 6 | 362 | [Design Hit Counter](https://leetcode.com/problems/design-hit-counter) | Medium | \*\*\* |
 | 7 | 290 | [Word Pattern](https://leetcode.com/problems/word-pattern) | Easy |  |
