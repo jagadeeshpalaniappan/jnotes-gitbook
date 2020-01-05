@@ -191,12 +191,197 @@ function findDuplicate(paths) {
 {% endtab %}
 
 {% tab title="Video" %}
-
+{% embed url="https://www.youtube.com/watch?v=FWSR\_7kZuYg" %}
 {% endtab %}
 
 {% tab title="Code" %}
 ```javascript
-...
+/*
+289. Game of Life
+
+Rules :
+-------
+1. Any live cell with fewer than two live neighbors dies, as if caused by under-population.
+2. Any live cell with two or three live neighbors lives on to the next generation.
+3. Any live cell with more than three live neighbors dies, as if by over-population..
+4. Any dead cell with exactly three live neighbors becomes a live cell, as if by reproduction.
+
+It Means:
+--------
+0: dead
+1: live
+
+*/
+
+
+/*
+Simplify the Rules:
+---------------
+1 --- (neighbors < 2) ---> 0
+1 --- (neighbors > 3) ---> 0
+0 --- (neighbors === 3) ---> 1
+
+
+Use the same Grid:
+-------------------
+-1:  1--->0 (live to dead)
+2:   0--->1 (dead to live)
+*/
+
+function encode(item) {
+  if (item === 0) {
+    return -1;
+  } else if (item === 1) {
+    return 2;
+  } else {
+    return item;
+  }
+}
+
+function decode(item) {
+  if (item === -1) {
+    return 0;
+  } else if (item === 2) {
+    return 1;
+  } else {
+    return item;
+  }
+}
+
+function revertEncode(item) {
+  if (item === -1) {
+    return 1;
+  } else if (item === 2) {
+    return 0;
+  } else {
+    return item;
+  }
+}
+
+function gridGet(board, r, c) {
+  let val = 0;
+  if (board[r] !== undefined && board[r][c] !== undefined) {
+    val = revertEncode(board[r][c]);
+  }
+  return val;
+}
+
+function countNeightbors(board, r, c) {
+  const topLeft = gridGet(board, r - 1, c - 1);
+  const top = gridGet(board, r - 1, c);
+  const topRight = gridGet(board, r - 1, c + 1);
+  const left = gridGet(board, r, c - 1);
+  const right = gridGet(board, r, c + 1);
+  const bottomLeft = gridGet(board, r + 1, c - 1);
+  const bottom = gridGet(board, r + 1, c);
+  const bottomRight = gridGet(board, r + 1, c + 1);
+
+  return (
+    topLeft + top + topRight + left + right + bottomLeft + bottom + bottomRight
+  );
+}
+
+function applyRules(board, r, c, neightbors) {
+  const curState = board[r][c];
+  // 1 & 2
+  if (curState === 1 && (neightbors < 2 || neightbors > 3)) {
+    board[r][c] = encode(0); // newState: dead
+  } else if (curState === 0 && neightbors === 3) {
+    board[r][c] = encode(1); // newState: live
+  }
+}
+
+
+/**
+  TC: O(M×N), where M is the number of rows and N is the number of columns of the Board.
+  SC: O(1)  // since we are re-using the sameArr using encode/decode techniques
+ */
+function gameOfLife(board) {
+  if (board && board.length > 0 && board[0] && board[0].length > 0) {
+    const rows = board.length;
+    const cols = board[0].length;
+
+    // applyRules
+    for (let r = 0; r < rows; r++) {
+      for (let c = 0; c < cols; c++) {
+        const curState = board[r][c];
+        const neightbors = countNeightbors(board, r, c);
+        applyRules(board, r, c, neightbors);
+      }
+    }
+
+    // console.log(JSON.stringify(board));
+
+    // decode
+    for (let r = 0; r < rows; r++) {
+      for (let c = 0; c < cols; c++) {
+        board[r][c] = decode(board[r][c]);
+      }
+    }
+
+    return board;
+  } else {
+    return null;
+  }
+}
+
+const board = [[0, 1, 0], [0, 0, 1], [1, 1, 1], [0, 0, 0]];
+console.log(JSON.stringify(gameOfLife(board)));
+
+/*
+[
+  [0,0,0],
+  [1,0,1],
+  [0,1,1],
+  [0,1,0]
+]
+*/
+```
+{% endtab %}
+
+{% tab title="\*\*FOLLOW-UP\*\*" %}
+```javascript
+/*
+FOLLOW-UP:
+
+What if the board is a million by a million? // OR What would happen if the board is infinitely large?
+- not possible to 'store' & 'iterate' that big a matrix entirely in memory
+- wasting a lot of space if such a huge board only has a few live cells and the rest of them are all dead
+
+#SOL1: (ignoreDeadCells & storeOnlyLiveCells )
+----------------------------------------------------------------
+
+it's quite possible that we have a big matrix with a very few live cells. 
+In that case it make sense to consider only liveCells
+  - ignoreDeadCells & storeOnlyLiveCells 
+  - applyRules accordingly using only these live cells
+
+Essentially, we obtain only the live cells from the entire board and then apply the different rules using only the live cells and finally we update the board in-place. The only problem with this solution would be when the entire board cannot fit into memory. how will you return the result?
+
+
+#SOL2: (loadOnly: curRow, curRow's aboveRow & curRow's belowRow)  (at max 3 rows in memory, discard them once if it is processed)
+--------------------------------------------------------------------------------------------------------------------------------
+For that scenario, we assume that the contents of the matrix are stored in a file, one row at a time.
+In order for us to update a particular cell, 
+  - we only have to look at its 8 neighbors which essentially lie in the row above and below it. 
+  - So, for updating the cells of a row, we just need the row above and the row below. 
+  Thus, we read one row at a time from the file and at max we will have 3 rows in memory. 
+  We will keep discarding rows that are processed and then we will keep reading new rows from the file, one at a time.
+
+@beagle's solution revolves around this idea and you can refer to the code in the discussion section for the same. It's important to note that there is no single solution for solving this problem. Everybody might have a different viewpoint for addressing the scalability aspect of the problem and these two solutions just address the most basic problems with handling matrix based problems at scale.
+
+
+#SOL3:   (loadOnly smalPortion of 3 rows [above, cur, below])
+----------------------------------------------------------------
+if 3 rows also not possible in memory // take chunk by chunk
+(loadOnly: curRowSmalPortion, curRow's aboveRowSmalPortion & curRow's belowRowSmalPortion)  
+(at max 3 rows smalPortion in memory, discard them once if it is processed)
+
+
+#SOL4: Read eachCell and its surrounding 8 cells at a time // But Processing time is very slow 
+
+*/
+
 ```
 {% endtab %}
 {% endtabs %}
