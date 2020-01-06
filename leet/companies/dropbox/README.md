@@ -699,6 +699,21 @@ console.log(wordPattern("abba", "dog dog dog dog")); // false
 {% tabs %}
 {% tab title="Question" %}
 ...
+
+```javascript
+Example 1:
+
+Input: pattern = "abab", str = "redblueredblue"
+Output: true
+Example 2:
+
+Input: pattern = pattern = "aaaa", str = "asdasdasdasd"
+Output: true
+Example 3:
+
+Input: pattern = "aabb", str = "xyzabcxzyabc"
+Output: false
+```
 {% endtab %}
 
 {% tab title="More" %}
@@ -706,12 +721,401 @@ console.log(wordPattern("abba", "dog dog dog dog")); // false
 {% endtab %}
 
 {% tab title="Video" %}
-
+* [https://www.youtube.com/watch?v=XQ3QryI9G2A](https://www.youtube.com/watch?v=XQ3QryI9G2A)
 {% endtab %}
 
 {% tab title="Code" %}
 ```javascript
-...
+function matchPattern(str, sIdx, pattern, pIdx, map, set) {
+  // BASE-CASE: BOTH-REACHED-MAX-STR: SUCESS
+  if (sIdx === str.length && pIdx === pattern.length) {
+    return true;
+  }
+  // BASE-CASE--ONE-REACHED-MAX-STR: FAILED
+  if (sIdx === str.length || pIdx === pattern.length) {
+    return false;
+  }
+
+  // get: curPaternChar
+  const curPaternChar = pattern[pIdx];
+
+  // ADDITIONAL-BASE-CASE:
+  // curPaternChar--AVAILABLE-IN-MAP
+  // & if 'str' startsWith 'subStr' (there is a good chance 'subStr' form the expected str )
+  if (map.has(curPaternChar)) {
+    // curPaternChar--AVAILABLE-IN-MAP
+    const subStr = map.get(curPaternChar);
+
+    // check: 'str' startsWith 'subStr'
+    if (str.startsWith(subStr, sIdx)) {
+      // substr: MATCHED: proceedBuildingSubstr
+      // continue to match the rest match str[sIdx...sIdx+subStr.length]
+      const nextSIdx = sIdx + subStr.length;
+      return matchPattern(str, nextSIdx, pattern, pIdx + 1, map, set);
+    } else {
+      // substr: NOT-MATCHED // proceeding further doesnt match at all
+      return false;
+    }
+  }
+
+  // loop: str
+  for (let i = sIdx; i < str.length; i++) {
+    // get: curSubStr
+    const curSubStr = str.substring(sIdx, i + 1);
+
+    // stackTrace(str, i, pIdx, curSubStr);
+
+    if (!set.has(curSubStr)) {
+      // curSubStr--NOT-AVAILABLE-IN-SET
+      // TRY: currCombo {curPaternChar, curSubStr} // assumption
+      map.set(curPaternChar, curSubStr);
+      set.add(curSubStr);
+
+      // continue to match the rest
+      if (matchPattern(str, i + 1, pattern, pIdx + 1, map, set)) {
+        // TRIED-WORKED
+        return true;
+      }
+
+      // ::backtracking::
+      // TRIED-NOT-WORKED: // wrongAssumption: delete currCombo {curPaternChar, curSubStr}
+      map.delete(curPaternChar);
+      set.delete(curSubStr);
+    }
+  }
+
+  // we've tried all the possibilties // still no-luck
+  return false;
+}
+
+/*
+Using backtracking solution
+TC: O(S^P)  // P: Pattern length, S: str length
+SC: O(P)
+*/
+function wordPatternMatch(pattern, str) {
+  const map = new Map();
+  const set = new Set();
+
+  return matchPattern(str, 0, pattern, 0, map, set);
+}
+
+console.log(wordPatternMatch("aba", "redbluered"));
+
+```
+{% endtab %}
+
+{% tab title="Exp" %}
+```javascript
+/*
+--------------------
+Thought Process:
+--------------------
+pattern: 'aba'      // p[0]: 'a',     p[1]: 'b',      p[3]: 'a'
+str: 'redbluered'   // s[0]: 'red',   s[1]: 'blue',   s[3]: 'red'
+
+p[0]
+r | edbluered
+
+ p[1]	 p[2]
+	e # dbluered
+	ed # bluered
+	edb # luered
+	edbl # uered
+	edblu # ered
+	edblue # red
+	edbluer # ed
+	edbluere # d
+	edbluered #
+	// NOT-MATCHED
+
+p[0]
+re | dbluered
+
+ p[1]	 p[2]
+	d # bluered
+	db # luered
+	dbl # uered
+	dblu # ered
+	dblue # red
+	dbluer # ed
+	dbluere # d
+	dbluered #
+	// NOT-MATCHED
+
+p[0]
+red | bluered
+
+ p[1]	 p[2]
+	b # luered
+	bl # uered
+	blu # ered
+	blue # red
+	// MATCHED
+	true
+
+*/
+
+/*
+
+************
+DEBUG:
+************
+
+matchPattern(str: redbluered, sIdx: 0, pattern: aba, pIdx: 0, map: [], set: {})
+
+_____loop: start______
+-----------i=0--------------
+--{ curPaternChar: a, curSubStr: r }
+--curSubStr--NOT-AVAILABLE-IN-SET
+--TRY--{ curPaternChar: a, curSubStr: r }
+
+	matchPattern(str: redbluered, sIdx: 1, pattern: aba, pIdx: 1, map: [["a","r"]], set: {r})
+	_____loop: start______
+	-----------i=1--------------
+	--{ curPaternChar: b, curSubStr: e }
+	--curSubStr--NOT-AVAILABLE-IN-SET
+	--TRY--{ curPaternChar: b, curSubStr: e }
+		matchPattern(str: redbluered, sIdx: 2, pattern: aba, pIdx: 2, map: [["a","r"],["b","e"]], set: {r,e})
+		--curPaternChar--AVAILABLE-IN-MAP
+		--{curPaternChar: a, subStr: r }
+		--str.startsWith(subStr, sIdx): false
+		--substr: NOT-MATCHED
+	--TRIED-NOT-WORKED--{ curPaternChar: b, curSubStr: e }
+	-----------i=2--------------
+	--{ curPaternChar: b, curSubStr: ed }
+	--curSubStr--NOT-AVAILABLE-IN-SET
+	--TRY--{ curPaternChar: b, curSubStr: ed }
+		matchPattern(str: redbluered, sIdx: 3, pattern: aba, pIdx: 2, map: [["a","r"],["b","ed"]], set: {r,ed})
+		--curPaternChar--AVAILABLE-IN-MAP
+		--{curPaternChar: a, subStr: r }
+		--str.startsWith(subStr, sIdx): false
+		--substr: NOT-MATCHED
+	--TRIED-NOT-WORKED--{ curPaternChar: b, curSubStr: ed }
+	-----------i=3--------------
+	--{ curPaternChar: b, curSubStr: edb }
+	--curSubStr--NOT-AVAILABLE-IN-SET
+	--TRY--{ curPaternChar: b, curSubStr: edb }
+		matchPattern(str: redbluered, sIdx: 4, pattern: aba, pIdx: 2, map: [["a","r"],["b","edb"]], set: {r,edb})
+		--curPaternChar--AVAILABLE-IN-MAP
+		--{curPaternChar: a, subStr: r }
+		--str.startsWith(subStr, sIdx): false
+		--substr: NOT-MATCHED
+	--TRIED-NOT-WORKED--{ curPaternChar: b, curSubStr: edb }
+	-----------i=4--------------
+	--{ curPaternChar: b, curSubStr: edbl }
+	--curSubStr--NOT-AVAILABLE-IN-SET
+	--TRY--{ curPaternChar: b, curSubStr: edbl }
+		matchPattern(str: redbluered, sIdx: 5, pattern: aba, pIdx: 2, map: [["a","r"],["b","edbl"]], set: {r,edbl})
+		--curPaternChar--AVAILABLE-IN-MAP
+		--{curPaternChar: a, subStr: r }
+		--str.startsWith(subStr, sIdx): false
+		--substr: NOT-MATCHED
+	--TRIED-NOT-WORKED--{ curPaternChar: b, curSubStr: edbl }
+	-----------i=5--------------
+	--{ curPaternChar: b, curSubStr: edblu }
+	--curSubStr--NOT-AVAILABLE-IN-SET
+	--TRY--{ curPaternChar: b, curSubStr: edblu }
+		matchPattern(str: redbluered, sIdx: 6, pattern: aba, pIdx: 2, map: [["a","r"],["b","edblu"]], set: {r,edblu})
+		--curPaternChar--AVAILABLE-IN-MAP
+		--{curPaternChar: a, subStr: r }
+		--str.startsWith(subStr, sIdx): false
+		--substr: NOT-MATCHED
+	--TRIED-NOT-WORKED--{ curPaternChar: b, curSubStr: edblu }
+	-----------i=6--------------
+	--{ curPaternChar: b, curSubStr: edblue }
+	--curSubStr--NOT-AVAILABLE-IN-SET
+	--TRY--{ curPaternChar: b, curSubStr: edblue }
+
+		matchPattern(str: redbluered, sIdx: 7, pattern: aba, pIdx: 2, map: [["a","r"],["b","edblue"]], set: {r,edblue})
+		--curPaternChar--AVAILABLE-IN-MAP
+		--{curPaternChar: a, subStr: r }
+		--str.startsWith(subStr, sIdx): true
+		--substr: MATCHED: proceedBuildingSubstr
+
+			matchPattern(str: redbluered, sIdx: 8, pattern: aba, pIdx: 3, map: [["a","r"],["b","edblue"]], set: {r,edblue})
+			--BASE-CASE--ONE-REACHED-MAX-STR: FAILED (pattern-reached-max)
+
+	--TRIED-NOT-WORKED--{ curPaternChar: b, curSubStr: edblue }
+	-----------i=7--------------
+	--{ curPaternChar: b, curSubStr: edbluer }
+	--curSubStr--NOT-AVAILABLE-IN-SET
+	--TRY--{ curPaternChar: b, curSubStr: edbluer }
+		matchPattern(str: redbluered, sIdx: 8, pattern: aba, pIdx: 2, map: [["a","r"],["b","edbluer"]], set: {r,edbluer})
+		--curPaternChar--AVAILABLE-IN-MAP
+		--{curPaternChar: a, subStr: r }
+		--str.startsWith(subStr, sIdx): false
+		--substr: NOT-MATCHED
+	--TRIED-NOT-WORKED--{ curPaternChar: b, curSubStr: edbluer }
+	-----------i=8--------------
+	--{ curPaternChar: b, curSubStr: edbluere }
+	--curSubStr--NOT-AVAILABLE-IN-SET
+	--TRY--{ curPaternChar: b, curSubStr: edbluere }
+		matchPattern(str: redbluered, sIdx: 9, pattern: aba, pIdx: 2, map: [["a","r"],["b","edbluere"]], set: {r,edbluere})
+		--curPaternChar--AVAILABLE-IN-MAP
+		--{curPaternChar: a, subStr: r }
+		--str.startsWith(subStr, sIdx): false
+		--substr: NOT-MATCHED
+	--TRIED-NOT-WORKED--{ curPaternChar: b, curSubStr: edbluere }
+	-----------i=9--------------
+	--{ curPaternChar: b, curSubStr: edbluered }
+	--curSubStr--NOT-AVAILABLE-IN-SET
+	--TRY--{ curPaternChar: b, curSubStr: edbluered }
+		matchPattern(str: redbluered, sIdx: 10, pattern: aba, pIdx: 2, map: [["a","r"],["b","edbluered"]], set: {r,edbluered})
+		--BASE-CASE--ONE-REACHED-MAX-STR: FAILED
+	--TRIED-NOT-WORKED--{ curPaternChar: b, curSubStr: edbluered }
+	_____loop: end______
+
+--TRIED-NOT-WORKED--{ curPaternChar: a, curSubStr: r }
+
+
+-----------i=1--------------
+--{ curPaternChar: a, curSubStr: re }
+--curSubStr--NOT-AVAILABLE-IN-SET
+--TRY--{ curPaternChar: a, curSubStr: re }
+
+	matchPattern(str: redbluered, sIdx: 2, pattern: aba, pIdx: 1, map: [["a","re"]], set: {re})
+
+	_____loop: start______
+	-----------i=2--------------
+	--{ curPaternChar: b, curSubStr: d }
+	--curSubStr--NOT-AVAILABLE-IN-SET
+	--TRY--{ curPaternChar: b, curSubStr: d }
+		matchPattern(str: redbluered, sIdx: 3, pattern: aba, pIdx: 2, map: [["a","re"],["b","d"]], set: {re,d})
+		--curPaternChar--AVAILABLE-IN-MAP
+		--{curPaternChar: a, subStr: re }
+		--str.startsWith(subStr, sIdx): false
+		--substr: NOT-MATCHED
+	--TRIED-NOT-WORKED--{ curPaternChar: b, curSubStr: d }
+	-----------i=3--------------
+	--{ curPaternChar: b, curSubStr: db }
+	--curSubStr--NOT-AVAILABLE-IN-SET
+	--TRY--{ curPaternChar: b, curSubStr: db }
+		matchPattern(str: redbluered, sIdx: 4, pattern: aba, pIdx: 2, map: [["a","re"],["b","db"]], set: {re,db})
+		--curPaternChar--AVAILABLE-IN-MAP
+		--{curPaternChar: a, subStr: re }
+		--str.startsWith(subStr, sIdx): false
+		--substr: NOT-MATCHED
+	--TRIED-NOT-WORKED--{ curPaternChar: b, curSubStr: db }
+	-----------i=4--------------
+	--{ curPaternChar: b, curSubStr: dbl }
+	--curSubStr--NOT-AVAILABLE-IN-SET
+	--TRY--{ curPaternChar: b, curSubStr: dbl }
+		matchPattern(str: redbluered, sIdx: 5, pattern: aba, pIdx: 2, map: [["a","re"],["b","dbl"]], set: {re,dbl})
+		--curPaternChar--AVAILABLE-IN-MAP
+		--{curPaternChar: a, subStr: re }
+		--str.startsWith(subStr, sIdx): false
+		--substr: NOT-MATCHED
+	--TRIED-NOT-WORKED--{ curPaternChar: b, curSubStr: dbl }
+	-----------i=5--------------
+	--{ curPaternChar: b, curSubStr: dblu }
+	--curSubStr--NOT-AVAILABLE-IN-SET
+	--TRY--{ curPaternChar: b, curSubStr: dblu }
+		matchPattern(str: redbluered, sIdx: 6, pattern: aba, pIdx: 2, map: [["a","re"],["b","dblu"]], set: {re,dblu})
+		--curPaternChar--AVAILABLE-IN-MAP
+		--{curPaternChar: a, subStr: re }
+		--str.startsWith(subStr, sIdx): false
+		--substr: NOT-MATCHED
+	--TRIED-NOT-WORKED--{ curPaternChar: b, curSubStr: dblu }
+	-----------i=6--------------
+	--{ curPaternChar: b, curSubStr: dblue }
+	--curSubStr--NOT-AVAILABLE-IN-SET
+	--TRY--{ curPaternChar: b, curSubStr: dblue }
+		matchPattern(str: redbluered, sIdx: 7, pattern: aba, pIdx: 2, map: [["a","re"],["b","dblue"]], set: {re,dblue})
+		--curPaternChar--AVAILABLE-IN-MAP
+		--{curPaternChar: a, subStr: re }
+		--str.startsWith(subStr, sIdx): true
+		--substr: MATCHED: proceedBuildingSubstr
+
+			matchPattern(str: redbluered, sIdx: 9, pattern: aba, pIdx: 3, map: [["a","re"],["b","dblue"]], set: {re,dblue})
+			--BASE-CASE--ONE-REACHED-MAX-STR: FAILED
+
+	--TRIED-NOT-WORKED--{ curPaternChar: b, curSubStr: dblue }
+	-----------i=7--------------
+	--{ curPaternChar: b, curSubStr: dbluer }
+	--curSubStr--NOT-AVAILABLE-IN-SET
+	--TRY--{ curPaternChar: b, curSubStr: dbluer }
+		matchPattern(str: redbluered, sIdx: 8, pattern: aba, pIdx: 2, map: [["a","re"],["b","dbluer"]], set: {re,dbluer})
+		--curPaternChar--AVAILABLE-IN-MAP
+		--{curPaternChar: a, subStr: re }
+		--str.startsWith(subStr, sIdx): false
+		--substr: NOT-MATCHED
+	--TRIED-NOT-WORKED--{ curPaternChar: b, curSubStr: dbluer }
+	-----------i=8--------------
+	--{ curPaternChar: b, curSubStr: dbluere }
+	--curSubStr--NOT-AVAILABLE-IN-SET
+	--TRY--{ curPaternChar: b, curSubStr: dbluere }
+		matchPattern(str: redbluered, sIdx: 9, pattern: aba, pIdx: 2, map: [["a","re"],["b","dbluere"]], set: {re,dbluere})
+		--curPaternChar--AVAILABLE-IN-MAP
+		--{curPaternChar: a, subStr: re }
+		--str.startsWith(subStr, sIdx): false
+		--substr: NOT-MATCHED
+	--TRIED-NOT-WORKED--{ curPaternChar: b, curSubStr: dbluere }
+	-----------i=9--------------
+	--{ curPaternChar: b, curSubStr: dbluered }
+	--curSubStr--NOT-AVAILABLE-IN-SET
+	--TRY--{ curPaternChar: b, curSubStr: dbluered }
+		matchPattern(str: redbluered, sIdx: 10, pattern: aba, pIdx: 2, map: [["a","re"],["b","dbluered"]], set: {re,dbluered})
+		--BASE-CASE--ONE-REACHED-MAX-STR: FAILED
+		--TRIED-NOT-WORKED--{ curPaternChar: b, curSubStr: dbluered }
+	_____loop: end______
+
+
+--TRIED-NOT-WORKED--{ curPaternChar: a, curSubStr: re }
+-----------i=2--------------
+--{ curPaternChar: a, curSubStr: red }
+--curSubStr--NOT-AVAILABLE-IN-SET
+--TRY--{ curPaternChar: a, curSubStr: red }
+
+	matchPattern(str: redbluered, sIdx: 3, pattern: aba, pIdx: 1, map: [["a","red"]], set: {red})
+	_____loop: start______
+	-----------i=3--------------
+	--{ curPaternChar: b, curSubStr: b }
+	--curSubStr--NOT-AVAILABLE-IN-SET
+	--TRY--{ curPaternChar: b, curSubStr: b }
+		matchPattern(str: redbluered, sIdx: 4, pattern: aba, pIdx: 2, map: [["a","red"],["b","b"]], set: {red,b})
+		--curPaternChar--AVAILABLE-IN-MAP
+		--{curPaternChar: a, subStr: red }
+		--str.startsWith(subStr, sIdx): false
+		--substr: NOT-MATCHED
+	--TRIED-NOT-WORKED--{ curPaternChar: b, curSubStr: b }
+	-----------i=4--------------
+	--{ curPaternChar: b, curSubStr: bl }
+	--curSubStr--NOT-AVAILABLE-IN-SET
+	--TRY--{ curPaternChar: b, curSubStr: bl }
+		matchPattern(str: redbluered, sIdx: 5, pattern: aba, pIdx: 2, map: [["a","red"],["b","bl"]], set: {red,bl})
+		--curPaternChar--AVAILABLE-IN-MAP
+		--{curPaternChar: a, subStr: red }
+		--str.startsWith(subStr, sIdx): false
+		--substr: NOT-MATCHED
+	--TRIED-NOT-WORKED--{ curPaternChar: b, curSubStr: bl }
+	-----------i=5--------------
+	--{ curPaternChar: b, curSubStr: blu }
+	--curSubStr--NOT-AVAILABLE-IN-SET
+	--TRY--{ curPaternChar: b, curSubStr: blu }
+		matchPattern(str: redbluered, sIdx: 6, pattern: aba, pIdx: 2, map: [["a","red"],["b","blu"]], set: {red,blu})
+		--curPaternChar--AVAILABLE-IN-MAP
+		--{curPaternChar: a, subStr: red }
+		--str.startsWith(subStr, sIdx): false
+		--substr: NOT-MATCHED
+	--TRIED-NOT-WORKED--{ curPaternChar: b, curSubStr: blu }
+	-----------i=6--------------
+	--{ curPaternChar: b, curSubStr: blue }
+	--curSubStr--NOT-AVAILABLE-IN-SET
+	--TRY--{ curPaternChar: b, curSubStr: blue }
+		matchPattern(str: redbluered, sIdx: 7, pattern: aba, pIdx: 2, map: [["a","red"],["b","blue"]], set: {red,blue})
+		--curPaternChar--AVAILABLE-IN-MAP
+		--{curPaternChar: a, subStr: red }
+		--str.startsWith(subStr, sIdx): true
+		--substr: MATCHED: proceedBuildingSubstr
+			matchPattern(str: redbluered, sIdx: 10, pattern: aba, pIdx: 3, map: [["a","red"],["b","blue"]], set: {red,blue})
+			--BASE-CASE--BOTH-REACHED-MAX-STR: SUCESS
+			--TRIED-WORKED--{ curPaternChar: b, curSubStr: blue }
+			--TRIED-WORKED--{ curPaternChar: a, curSubStr: red }
+
+true
+ */
+
 ```
 {% endtab %}
 {% endtabs %}
