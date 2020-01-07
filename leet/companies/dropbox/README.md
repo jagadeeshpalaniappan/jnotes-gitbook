@@ -1199,26 +1199,25 @@ function getDomain(url) {
 }
 
 
-/**
-  Using BFS
+/*
+ 
+ Using BFS
 
  * @param {string} startUrl
  * @param {HtmlParser} htmlParser
  * @return {string[]}
  */
 function crawl(startUrl, htmlParser) {
-  const visitedUrlsSet = new Set();
-  const queue = []; // TODO: use: LinkedList for queue
   const hostname = getDomain(startUrl);
   const fullHostName = `http://${hostname}`;
 
-  queue.push(startUrl);
-  visitedUrlsSet.add(startUrl);
+  const visitedUrlsSet = new Set([startUrl]);
+  const queue = [startUrl]; // TODO: use: LinkedList
 
   while (queue.length > 0) {
     const currentUrl = queue.shift();
     const childUrls = htmlParser.getUrls(currentUrl);
-    
+
     for (const url of childUrls) {
       // consider: only not-visited Urls
       if (url.startsWith(fullHostName) && !visitedUrlsSet.has(url)) {
@@ -1230,6 +1229,11 @@ function crawl(startUrl, htmlParser) {
 
   return Array.from(visitedUrlsSet);
 }
+
+
+
+// console.log(crawl("http://news.yahoo.com/news/topics/", { getUrls }));
+
 ```
 {% endtab %}
 {% endtabs %}
