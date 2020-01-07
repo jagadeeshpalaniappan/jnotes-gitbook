@@ -79,6 +79,7 @@
   * [Why Node.js?](javascript/nodejs/why-node.js.md)
   * [Where Node.js Fits?](javascript/nodejs/untitled.md)
   * [Event Loop & Libuv](javascript/nodejs/untitled-1.md)
+  * [Web Worker \[Node.js\]](javascript/nodejs/web-worker-node.js.md)
   * [Advanced](javascript/nodejs/advanced.md)
 
 ## CSS
