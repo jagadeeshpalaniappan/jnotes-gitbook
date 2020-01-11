@@ -17,7 +17,7 @@
 | 11 | 17 | [Letter Combinations of a Phone Number](https://leetcode.com/problems/letter-combinations-of-a-phone-number) | Medium | \* |
 | 12 | 1001 | [Grid Illumination](https://leetcode.com/problems/grid-illumination) | Hard | \* |
 | 13 | 642 | [Design Search Autocomplete System](https://leetcode.com/problems/design-search-autocomplete-system) | Hard | \* |
-| 14 | 1178 | [Number of Valid Words for Each Puzzle](https://leetcode.com/problems/number-of-valid-words-for-each-puzzle) | Hard |  |
+| 14 | 1178 | [Number of Valid Words for Each Puzzle](https://leetcode.com/problems/number-of-valid-words-for-each-puzzle) \[TODO\] | Hard |  |
 | 15 | 140 | [Word Break II](https://leetcode.com/problems/word-break-ii) | Hard |  |
 | 16 | 146 | [LRU Cache](https://leetcode.com/problems/lru-cache) | Medium |  |
 | 17 | 1010 | [Pairs of Songs With Total Durations Divisible by 60](https://leetcode.com/problems/pairs-of-songs-with-total-durations-divisible-by-60) | Easy |  |
