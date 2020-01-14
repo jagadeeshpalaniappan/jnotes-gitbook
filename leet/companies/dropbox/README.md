@@ -22,9 +22,10 @@
 | 16 | 146 | [LRU Cache](https://leetcode.com/problems/lru-cache) | Medium |  |
 | 17 | 1010 | [Pairs of Songs With Total Durations Divisible by 60](https://leetcode.com/problems/pairs-of-songs-with-total-durations-divisible-by-60) | Easy |  |
 | 18 | 4 | [Median of Two Sorted Arrays](https://leetcode.com/problems/median-of-two-sorted-arrays) | Hard |  |
+|  | 23 | [Merge k Sorted Lists](https://leetcode.com/problems/merge-k-sorted-lists) | Hard |  |
 | 19 | 1 | [Two Sum](https://leetcode.com/problems/two-sum) | Easy |  |
 | 20 | 64 | [Minimum Path Sum](https://leetcode.com/problems/minimum-path-sum) | Medium |  |
-| 21 | 23 | [Merge k Sorted Lists](https://leetcode.com/problems/merge-k-sorted-lists) | Hard |  |
+| 21 |  |  |  |  |
 | 22 | 28 | [Implement strStr\(\)](https://leetcode.com/problems/implement-strstr) | Easy |  |
 | 23 | 1250 | [Check If It Is a Good Array](https://leetcode.com/problems/check-if-it-is-a-good-array) | Hard |  |
 
