@@ -324,3 +324,14 @@
     </tr>
   </tbody>
 </table>
+
+
+
+{% embed url="https://www.loggly.com/blog/http-status-code-diagram/" %}
+
+
+
+{% embed url="https://stackoverflow.com/questions/3297048/403-forbidden-vs-401-unauthorized-http-responses" %}
+
+
+
