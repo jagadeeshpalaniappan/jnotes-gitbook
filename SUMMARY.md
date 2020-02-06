@@ -140,6 +140,7 @@
   * [3. LinkedList](ds-alg/ds/3.-linkedlist.md)
   * [4. Tree](ds-alg/ds/4.-tree.md)
   * [5. Heap](ds-alg/ds/5.-heap.md)
+  * [6.Hashing](ds-alg/ds/6.hashing.md)
 * [ALG](ds-alg/alg/README.md)
   * [Search](ds-alg/alg/search/README.md)
     * [1. Linear Search](ds-alg/alg/search/1.-linear-search.md)
