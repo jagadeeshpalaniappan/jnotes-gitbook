@@ -8,24 +8,62 @@
 
 ```
 
-## Distributed System:
+## Why Distributed System:
 
 ```fsharp
-# Single Machine Server:
+# Single Machine Server: (SMS)
 Pros:
     - Simple Architecture
+    - EasyTo: Maintain,Debug,IndetifyProblem,Fix
 Cons:
     - SPOF: Single Point Of Failure
     - Cannot 'Scale' // Vertical Scaling is Limited
-        - Cannot handle huge request
-        - Cannot handle large datasets
     
 
-# Distributed System: // Multiple Machine Server
+# Distributed System: (DIS)
 Pros:
     - Can 'Scale' without any limits
 Cons:
     - Complex Architecture
+    - DifficultTo: Maintain,Debug,IndetifyProblem,Fix
+
+
+---------------------------------------------------------------
+                    More Detailed: (SRAEM)
+---------------------------------------------------------------
+
+
+# Scalability: // increasedTraffic or increasedDataSet ==> sysAbleToHandle: withoutAffectingPerformance
+- SMS: // VerticallyScalable, LimitedScaling
+- DIS: // HorizontallyScalable
+
+# Reliability: // probability of a systemFailure
+- SMS: // lessReliable, SPOF
+- DIS: // moreReliable, redundancy: oneFailsAnotherCanTakeOver
+
+# Availability: // system remains operational
+- SMS: // lessAvailable, SPOF
+- DIS: // moreReliable, redundancy: oneFailsAnotherCanTakeOver
+
+// If a system is reliable, it is available. 
+// - However, if it is available, it is not necessarily reliable. 
+// In other words, 
+// - high reliability contributes to high availability, 
+// - but it is possible to achieve a high availability even with an unreliable product
+
+# Efficiency:
+// how to measure the efficiency of a distributed system
+// 1. `Response Time (or latency)` // delay to obtain the first item
+// 2. `Throughput (or bandwidth)` // no of items delivered in a given time unit (per second)
+
+- SMS: // lessEfficient
+- DIS: // moreEfficient
+
+# Serviceability / Manageability / Maintainability:
+- SMS: // easyTo: manage, repair, diagnosing/debug/identify-the-problem, fix/update-the-system 
+- DIS: // difficultTo: manage, repair, diagnosing/debug/identify-the-problem, fix/update-the-system
+
+
 
 ```
 
