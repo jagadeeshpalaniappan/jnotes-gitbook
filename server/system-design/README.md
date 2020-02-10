@@ -71,7 +71,7 @@ Cons:
 
 ```fsharp
 # Load Balancing (LB) // uniformlyDistributeLoad
-    - can be used in any DIS-SYS
+    - can be used in any DIS-SYS (App Server, Database Server,....)
     - mostly used in AppServer
     
 
