@@ -113,6 +113,8 @@
 ## SERVER
 
 * [System Design](server/system-design/README.md)
+  * [App Server](server/system-design/app-server/README.md)
+    * [Polling vs WebSockets vs Server-Sent Events](server/system-design/app-server/polling-vs-websockets-vs-server-sent-events.md)
   * [Database](server/system-design/database/README.md)
     * [SQL vs NoSQL](server/system-design/database/sql-vs-nosql.md)
     * [CAP Therom](server/system-design/database/cap-therom.md)
