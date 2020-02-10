@@ -147,8 +147,25 @@ const sortedItems = myArr.sort(compareFn)
 
 const myArr = ['b', 'c', 'a']; const sortedItems = myArr.sort();
 // myArr: ['a', 'b', 'c']; // sortedItems: ['a', 'b', 'c']
-[2, 1, 3, 11, 22].sort(); // [1, 11, 2, 22, 3] // by default sort as String
-[2, 1, 3, 11, 22].sort((a,b) => a-b); // [1, 2, 3, 11, 22] // using 'compareFn' we can sort any type of items
-[2, 1, 3, 11, 22].sort((a, b) => { if (a > b) return 1; else if (b > a) return -1; else return 0; }); // [1, 2, 3, 11, 22]
+
+// String -Ascending Order (Default Sort)
+['a', 'c', 'b'].sort(); // ["a", "b", "c"]
+
+// String -Ascending Order 
+['a', 'c', 'b'].sort((a,b)=> a>b ? 1: -1); // ["a", "b", "c"]
+
+// String -Descending Order 
+['a', 'c', 'b'].sort((a,b)=> b>a ? 1: -1); // ["a", "b", "c"]
+
+---
+// Number -Ascending Order 
+[2, 3, 1].sort((a,b)=> a-b); // [1, 2, 3]
+[2, 3, 1].sort((a, b) => { if (a > b) return 1; else if (b > a) return -1; else return 0; }); // [1, 2, 3]
+
+// Number -Descending Order 
+[2, 3, 1].sort((a,b)=> b-a); // [3, 2, 1]
+
+
+
 ```
 

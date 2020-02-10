@@ -16,7 +16,9 @@ description: Function Declaration vs Function Expression vs Function Constructor
 ```javascript
 // -------------------------- CHECK: HOISTING  --------------------------
 
-myNamedFn('Jagadeesh'); // TypeError: myAnonymousFn is not a function
+console.log(myVar); // undefined
+myNamedFn('Jagadeesh'); // Hello! Jagadeesh
+
 // myAnonymousFn('Jagadeesh'); // TypeError: myAnonymousFn is not a function
 // myArrowFn('Jagadeesh'); // TypeError: myArrowFn is not a function
 // myAnonymousNamedFn('Jagadeesh'); // TypeError: myAnonymousNamedFn is not a function
@@ -43,6 +45,7 @@ var myAnonymousNamedFn = function myNamedFn2(name) {
 };
 
 
+console.log(myVar); // 123
 myNamedFn('Jagadeesh'); // Hello! Jagadeesh
 myAnonymousFn('Jagadeesh'); // Hello! Jagadeesh
 myArrowFn('Jagadeesh'); // Hello! Jagadeesh
@@ -164,6 +167,9 @@ let myLetAnonymousFn = function(name) {
 
 
 console.log(myVar); // 123
+console.log(myConst); // 123
+console.log(myLet); // 123
+
 myNamedFn('Jagadeesh'); // Hello! Jagadeesh
 myAnonymousFn('Jagadeesh'); // Hello! Jagadeesh
 myConstAnonymousFn('Jagadeesh'); // Hello! Jagadeesh

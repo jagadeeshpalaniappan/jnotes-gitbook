@@ -112,7 +112,10 @@
 
 ## SERVER
 
-* [System Design](server/system-design.md)
+* [System Design](server/system-design/README.md)
+  * [Database](server/system-design/database/README.md)
+    * [SQL vs NoSQL](server/system-design/database/sql-vs-nosql.md)
+    * [CAP Therom](server/system-design/database/cap-therom.md)
 * [Interview Questions \(ServerSide\)](server/interview-questions-serverside/README.md)
   * [MicroServices - IntvQstns](server/interview-questions-serverside/microservice-interview-questions.md)
   * [Distributed Transactions](server/interview-questions-serverside/distributed-transactions.md)
