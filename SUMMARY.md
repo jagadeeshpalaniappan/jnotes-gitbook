@@ -112,6 +112,7 @@
 
 ## SERVER
 
+* [System Design](server/system-design.md)
 * [Interview Questions \(ServerSide\)](server/interview-questions-serverside/README.md)
   * [MicroServices - IntvQstns](server/interview-questions-serverside/microservice-interview-questions.md)
   * [Distributed Transactions](server/interview-questions-serverside/distributed-transactions.md)
