@@ -28,7 +28,10 @@ Cons:
 - Database:
     - SQL vs NoSQL
     - Database Partioning
-        - Horizontal
+        - Horizontal (Database Sharding)
+            - Shard by UserId or Location or ...
+            - Consistent Hashing
+            - Hirerichal Sharding
         - Vertical
     - Datbase Replication (Read Replicas)
 
