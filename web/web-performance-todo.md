@@ -247,6 +247,8 @@ document.querySelector('#list').appendChild(docFrag); // 'render' happens only o
 
 
 
+{% embed url="https://www.debugbear.com/blog/performant-front-end-architecture" %}
+
 
 
 
