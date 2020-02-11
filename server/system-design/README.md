@@ -123,12 +123,15 @@ Cons:
         - Cons: dataLoss (cacheServerCrash)
 
 ## Cache: Eviction Policies
-    '
-    - LRU // Least Recently Used: item deleted first
+    - 'LRU' (***MOST-PREFERRED***)
+        - Least Recently Used: item deleted first 
+        - Cons: 
+            - sometimes lessFreqUsedItem will replace mostFreqUsedItem
+                - since mostFreqUsedItem - not used recently
+        
     - LFU // Least Frequently Used: item deleted first
     - FIFO/LIFO
     - RR // Random Replacement
-    '
 
 
 # CDN
