@@ -13,32 +13,26 @@
 # Bloom Filter (BF)
 
 
-A Bloom filter is a data structure designed to tell you, 
-- rapidly and memory-efficiently, 
-- whether an element is present in a set. 
+Bloom filter,
+    - superFastSearch to say item 'PRESENT' or 'NOT-PRESENT' in set
+    - it stores very-very-less-data  //memory-efficient // BitArray ---> DecimalNumber (base10)
+    - Cons: It gurantees only 'NOT-PRESENT'
 
 
-Bloom filter helps to tell whether an element is present in a set. 
-    - it stores very-very-less-data  //memory-efficient
-    - superFastSearch
-
-Bloom filter is a probabilistic data structure: 
+Thatsy BF is a probabilistic data structure,
 Ask Bloom filter, 'str1' present in Set or Not?
     - maybe present (confidenceLevel: 50%) // NOT-GUARANTEED
     - not-present (confidenceLevel: 100%) // GUARANTEED // if we find any one zero that means that str is not added in the set
 
 
-BloomFilter:
-    - LessStorage: Stores only 'Number' // BitArray ---> Number (base10)
-    - 
-
-
-UseCases:
+# UseCases:
     - DB: Postgres, Cassandra, HBase using Bloom filters 
         - to check particular 'ID' is present in Bloom filter
         - if 'not-present' they do not spend time searching // GUARANTEED 
         - if 'present' they try spend time searching and may or may not find record // NOT-GUARANTEED
 
+    - GoogleChrome: check the 'newUrl' - is NOT mallicous
+    - Medium.com: maintains eachUser 'suggestedArticle' is NOT visited
 
 Why NOT HashMap or HashTable?
     - HashTable lookup is not always O(1) //avg
