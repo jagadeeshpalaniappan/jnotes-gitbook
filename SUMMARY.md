@@ -118,6 +118,8 @@
   * [Database](server/system-design/database/README.md)
     * [SQL vs NoSQL](server/system-design/database/sql-vs-nosql.md)
     * [CAP Therom](server/system-design/database/cap-therom.md)
+  * [Misc](server/system-design/misc/README.md)
+    * [Bloom Filter](server/system-design/misc/bloom-filter.md)
 * [Interview Questions \(ServerSide\)](server/interview-questions-serverside/README.md)
   * [MicroServices - IntvQstns](server/interview-questions-serverside/microservice-interview-questions.md)
   * [Distributed Transactions](server/interview-questions-serverside/distributed-transactions.md)
