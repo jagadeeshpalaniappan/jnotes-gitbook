@@ -184,11 +184,13 @@ Cons:
 - Consistent Hashing Ring
 - CAP Theorem
 - Distributed Transactions
+- Distributed Locks
 ```
 
-## Others
+## Misc
 
 ```fsharp
 - Bloom Filter
+
 ```
 
