@@ -4,7 +4,8 @@
 {% tab title="Video" %}
 {% embed url="https://www.youtube.com/watch?v=Bay3X9PAX5k" %}
 
-[https://www.youtube.com/watch?v=bgzUdBVr5tE](https://www.youtube.com/watch?v=bgzUdBVr5tE)
+* [https://www.youtube.com/watch?v=bgzUdBVr5tE](https://www.youtube.com/watch?v=bgzUdBVr5tE)
+* [https://www.youtube.com/watch?v=RSwjdlTp108](https://www.youtube.com/watch?v=RSwjdlTp108)
 {% endtab %}
 
 {% tab title="Intro" %}
