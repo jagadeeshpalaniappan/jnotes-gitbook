@@ -4,6 +4,10 @@
 {% tab title="Video" %}
 {% embed url="https://www.youtube.com/watch?v=Bay3X9PAX5k" %}
 
+{% embed url="https://www.youtube.com/watch?v=x2sLjRK56YU" %}
+
+
+
 * [https://www.youtube.com/watch?v=bgzUdBVr5tE](https://www.youtube.com/watch?v=bgzUdBVr5tE)
 * [https://www.youtube.com/watch?v=RSwjdlTp108](https://www.youtube.com/watch?v=RSwjdlTp108)
 {% endtab %}
