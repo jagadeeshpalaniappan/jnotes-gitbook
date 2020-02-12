@@ -185,7 +185,8 @@ That is why this is 'probabilistic data structure'
 - But BF says, NOT-PRESENT // it guarantees 
 - BF also stores this Binary Respresentation into smallerIntegerNumber // This saved lot of space
  _______________________________________________________________________
-| 0 | 0 | 1 | 0 | 1 | 1 | 1 | 0 | 0 | 0 | 1 | 0 | 0 | 0 | 0 | 1 | 0 | 0 |......
+           Binary                  Decimal
+      001011100010000100    --->    47236
  -----------------------------------------------------------------------
 
 ```
