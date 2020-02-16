@@ -192,6 +192,13 @@ Cons:
 ```fsharp
 - Bloom Filter
 - Rate Limiting
+- Asynchronous Processing
+
+Duplicate Detection
+- Bloom Filter (smaller content) (E.g. WebCrawler find URL duplicate)
+- SimHash (larger content) (E.g. WebCrawler find Content duplicate)
+    - quickly estimate how similar two sets are
+
 
 
 Asynchronous Processing
@@ -218,6 +225,6 @@ Asynchronous Code:
 
 
 
-- thread waits for that OS (n/w 
+
 ```
 
