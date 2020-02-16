@@ -195,6 +195,7 @@ Cons:
 - Asynchronous Processing
 
 Duplicate Detection
+- Hash Table (NoSQL, Redis,...)
 - Bloom Filter (smaller content) (E.g. WebCrawler find URL duplicate)
 - SimHash (larger content) (E.g. WebCrawler find Content duplicate)
     - quickly estimate how similar two sets are
