@@ -311,7 +311,7 @@ Store it in File System
 Input ----> Process --> Output
 
 Input: 
- - File System / DB ?
+ - Source? // File System / DB 
  - Large Dataset? // Yes
 
 
@@ -325,8 +325,17 @@ Process:
  - Scalability // Yes, as fast as possible
 
 
-Output: 
- - File System / DB ?
+Output:
+- Pupose? // Decide based on the use case
+   
+// 1. if it is faster lookup  - Search Engine: (we need to Index the output and lookup faster)
+ - Elasticsearch or (ELK) Stack — Elasticsearch Logstash Kibana, Beats
+ - Store: MetaData in Database & actual file in BlobStorage (S3)
+ - Distributed File System // Big Table or HDFS
+
+
+// 2. If it is not a faster lookup
+ - File System or Blob Storage // S3
 ```
 
 ### Key Components:
