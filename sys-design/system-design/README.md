@@ -195,33 +195,24 @@ Cons:
 - Asynchronous Processing
 
 Duplicate Detection
-- Hash Table (NoSQL, Redis,...)
-- Bloom Filter (smaller content) (E.g. WebCrawler find URL duplicate)
-- SimHash (larger content) (E.g. WebCrawler find Content duplicate)
-    - quickly estimate how similar two sets are
+For Smalller Content,
+- Hash Table
+- Bloom Filter (E.g. WebCrawler find URL duplicate)
+
+For Larger Content,
+- Hashing (MD5) // need exact content to check, can't detect simmilar content check
+- SimHash // - quickly estimate how similar two sets are // Google uses this
+- MinHash
+- Fuzzy Search
+- Latent Semantic Indexing
+- Standard Boolean Modal
+
+
 
 
 
 Asynchronous Processing
-    - Synchronous Processing (blocks IO operation)
-    - Asynchronous Processing (doesnt block IO operation)
-    
-IO Operations: Network IO, File IO (read/write),...
 
-Synchronous Code:
-    - Line 1
-    - Line 2 (N/w IO opeartion) 
-      // currProgramExecutingThread: waits until OS fully respond back
-    - Line 3
-    -   :
-    
-Asynchronous Code:
-    - Line 1
-    - Line 2 (Async N/w IO opeartion) 
-      // currProgramExecutingThread: will not wait for OS to respond, -instead it registers 'callbackFn'
-      //  - and when OS respond 'callbackFn' will be executed by diffPgmExecutingThread
-    - Line 3
-    -   :
 
 
 

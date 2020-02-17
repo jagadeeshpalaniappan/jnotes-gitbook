@@ -112,14 +112,6 @@
 
 ## SERVER
 
-* [System Design](server/system-design/README.md)
-  * [App Server](server/system-design/app-server/README.md)
-    * [Polling vs WebSockets vs Server-Sent Events](server/system-design/app-server/polling-vs-websockets-vs-server-sent-events.md)
-  * [Database](server/system-design/database/README.md)
-    * [SQL vs NoSQL](server/system-design/database/sql-vs-nosql.md)
-    * [CAP Therom](server/system-design/database/cap-therom.md)
-  * [Misc](server/system-design/misc/README.md)
-    * [Bloom Filter](server/system-design/misc/bloom-filter.md)
 * [Interview Questions \(ServerSide\)](server/interview-questions-serverside/README.md)
   * [MicroServices - IntvQstns](server/interview-questions-serverside/microservice-interview-questions.md)
   * [Distributed Transactions](server/interview-questions-serverside/distributed-transactions.md)
@@ -139,6 +131,18 @@
   * [DB- Read Replicas](server/serverside/db-read-replicas.md)
   * [Node.js \[eTODO\]](server/serverside/node.js.md)
   * [LoadBlancers](server/serverside/loadblancers.md)
+
+## SYS-DESIGN
+
+* [System Design](sys-design/system-design/README.md)
+  * [App Server](sys-design/system-design/app-server/README.md)
+    * [Polling vs WebSockets vs Server-Sent Events](sys-design/system-design/app-server/polling-vs-websockets-vs-server-sent-events.md)
+  * [Database](sys-design/system-design/database/README.md)
+    * [SQL vs NoSQL](sys-design/system-design/database/sql-vs-nosql.md)
+    * [CAP Therom](sys-design/system-design/database/cap-therom.md)
+  * [Misc](sys-design/system-design/misc/README.md)
+    * [Bloom Filter](sys-design/system-design/misc/bloom-filter.md)
+* [Untitled](sys-design/untitled.md)
 
 ## DS-ALG
 
