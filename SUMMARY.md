@@ -135,6 +135,7 @@
 ## SYS-DESIGN
 
 * [System Design](sys-design/system-design/README.md)
+  * [Search](sys-design/system-design/search.md)
   * [Bloom Filter](sys-design/system-design/bloom-filter.md)
   * [Asynchronous Processing](sys-design/system-design/async-procesessing.md)
 * [App Server](sys-design/app-server/README.md)
