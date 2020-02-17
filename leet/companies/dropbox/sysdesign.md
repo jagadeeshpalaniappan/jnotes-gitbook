@@ -381,7 +381,7 @@ Output:
         ==> S3(File)
 ```
 
-### Advanced Crawler: \(Freshness, Politeness\)
+### Advanced Crawler -Capabilities:
 
 ```fsharp
 Advanced Crawlers needs this below behavior
