@@ -24,7 +24,7 @@ description: '(Consistency, Availability, and Partition Tolerance)'
 - Data is sufficiently replicated across combinations of nodes and networks to keep the system up through intermittent outages.
 ```
 
-![](../../.gitbook/assets/image%20%282%29.png)
+![](../../.gitbook/assets/image%20%281%29.png)
 
 * We cannot build a general data store that is continually available, sequentially consistent, and tolerant to any partition failures. 
 * We can only build a system that has any two of these three properties. 
