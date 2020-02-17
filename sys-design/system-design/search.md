@@ -116,7 +116,7 @@ EASY: we have postions stored in db, match the positions - by searchKeyWordIndex
 ## How do we `fuzzySearch` efficiently ?
 
 ```fsharp
-# How do we `fuzzySearch` efficiently ?
+# How do we `fuzzySearch` or `wildCardSearch` efficiently ?
 - E.g. 'hell*'
 - Have the keys in sortedOrder // TreeMap
     - find the releated keys using mergeSort // O(logN)
@@ -127,6 +127,8 @@ EASY: we have postions stored in db, match the positions - by searchKeyWordIndex
 ```fsharp
 # Cons:
  - Consume more space
-   
+ - wildCardSearch: '*hell*'
+    - in this case, we have to search all the keywords
+    - Soln: use PrefixTrie or PrefixArray Data Structure
 ```
 
