@@ -393,15 +393,37 @@ Advanced Crawlers needs this below behavior
  - provides 'Priorities', 'Freshness' & 'Politeness' capability
 
 
-#Option2: 'Bull' (Redis based queue): 
+#Option2: Bull (Redis based queue):****
  - also provides below capabilities
    - Concurrency
    - 'Priorities'
    - 'Delayed jobs'  // we can use it for 'Politeness'
    - Repeatable jobs
    - Rate Limiter
-
 ```
+
+### Filter Duplicate URLs:
+
+```fsharp
+
+#Option1: NoSQL DB Lookup
+
+DS: { fullUrlHash: crawlInfo } // notEffiecient: soonHashCollision
+DS: { domainUrlHash: [ ...urlHashes ]  } // effiecient: lessHashCollision // bucketByDomainUrl
+
+urlHash: { fullUrlHash: { ...crawlInfo } }
+crawlInfo: { crawlStatus: 'READY/STARTED/IN-PROCESS/SUCCESS/FAILED', retryCount: 2, lastCrawlDate: ''}
+
+
+
+#Option2: BloomFilter + NoSQL DB Lookup
+- BloomFilter // firstLevelFilter // canQuicklyTellIfNotAvailable
+    - ifNotAvailable // 100% GURANTEED
+    - ifAvailable // NOT 100% GURANTEE
+        - lookupInDB
+```
+
+XXXX
 {% endtab %}
 
 {% tab title="Video" %}
