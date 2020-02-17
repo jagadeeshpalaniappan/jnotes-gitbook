@@ -304,8 +304,95 @@ Store it in File System
 ```
 {% endtab %}
 
-{% tab title="More" %}
+{% tab title="Sol2" %}
+### Questions:
 
+```fsharp
+Input ----> Process --> Output
+
+Input: 
+ - File System / DB ?
+ - Large Dataset? // Yes
+
+
+Process:
+ - Crawl?
+   - Onetime crawling or Run Cron Job (get updated content every few mins) ?
+   - Specific Content Type? // HTML, jpg, mp3
+   - Consider external domain URL while scaning?
+   - Handle SPA or Frontend-Rendering ?
+
+ - Scalability // Yes, as fast as possible
+
+
+Output: 
+ - File System / DB ?
+```
+
+### Key Components:
+
+```fsharp
+#1. URL Reader
+
+#2. URL Queue // addUrlsinQueu
+
+#3. URL Filter
+    --> Filter Invalid URLs
+    --> Filter Duplicate URLs
+        --> BloomFilter 
+            --> Check: URL Store (Redis / NoSQL DB)
+        
+
+#4. Crawl Queue
+    --> Crawl Status Store
+
+#5. Crawler
+    --> DNS Cacher
+    --> Fetchers, (Render SPA in Server)
+    --> HTML Parser
+        ==> HTML Content Extracter
+        --> GOTO: 6 // addContentInOuputQueue
+            --> SUCCESS: Update: Crawl Status Store // 'contentAddedInOuputQueue:true' 
+            --> FAILURE: Update: 'retryCount' in Crawl Status Store // addBackThisUrlIntoCrawlQueue
+            
+        ==> URL Extractor
+        --> URL Sanitizer 
+        --> GOTO: 2 // addUrlsInUrlQueue
+            --> SUCCESS: Add/Update: URL Store (Redis / NoSQL DB)
+            --> FAILURE: Add: back into Crawl Queue
+            
+        
+#6. Output Queue
+
+#7. Output Filter (duplicateContentFilter) // SimHash
+
+#8. Output Writer
+    --> Content Store
+        ==> DB(metadata)
+        ==> S3(File)
+```
+
+### Advanced Crawler: \(Freshness, Politeness\)
+
+```fsharp
+Advanced Crawlers needs this below behavior
+- Freshness // crawlFrequency
+- Politeness // giveSomeWaitTimeForEachDomain
+
+
+#Option1: URL Frontier: 
+ - provides 'Priorities', 'Freshness' & 'Politeness' capability
+
+
+#Option2: 'Bull' (Redis based queue): 
+ - also provides below capabilities
+   - Concurrency
+   - 'Priorities'
+   - 'Delayed jobs'  // we can use it for 'Politeness'
+   - Repeatable jobs
+   - Rate Limiter
+
+```
 {% endtab %}
 
 {% tab title="Video" %}
