@@ -201,7 +201,7 @@ For Smalller Content,
 
 For Larger Content,
 - Hashing (MD5) // need exact content to check, can't detect simmilar content check
-- SimHash // - quickly estimate how similar two sets are // Google uses this
+- SimHash // quickly estimate how similar two largeConents are // Google uses this
 - MinHash
 - Fuzzy Search
 - Latent Semantic Indexing
@@ -211,7 +211,9 @@ For Larger Content,
 
 
 
-Asynchronous Processing
+Synchronous Processing (Blocing IO)
+Asynchronous Processing (Non-Blocking IO) (Modern OS supports Async IO)
+
 
 
 

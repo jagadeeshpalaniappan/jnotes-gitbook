@@ -135,13 +135,13 @@
 ## SYS-DESIGN
 
 * [System Design](sys-design/system-design/README.md)
-  * [App Server](sys-design/system-design/app-server/README.md)
-    * [Polling vs WebSockets vs Server-Sent Events](sys-design/system-design/app-server/polling-vs-websockets-vs-server-sent-events.md)
-  * [Database](sys-design/system-design/database/README.md)
-    * [SQL vs NoSQL](sys-design/system-design/database/sql-vs-nosql.md)
-    * [CAP Therom](sys-design/system-design/database/cap-therom.md)
-  * [Misc](sys-design/system-design/misc/README.md)
-    * [Bloom Filter](sys-design/system-design/misc/bloom-filter.md)
+  * [Bloom Filter](sys-design/system-design/bloom-filter.md)
+  * [Asynchronous Processing](sys-design/system-design/async-procesessing.md)
+* [App Server](sys-design/app-server/README.md)
+  * [Polling vs WebSockets vs Server-Sent Events](sys-design/app-server/polling-vs-websockets-vs-server-sent-events.md)
+* [Database](sys-design/database/README.md)
+  * [SQL vs NoSQL](sys-design/database/sql-vs-nosql.md)
+  * [CAP Therom](sys-design/database/cap-therom.md)
 * [Untitled](sys-design/untitled.md)
 
 ## DS-ALG
