@@ -176,6 +176,7 @@
   * [3. Top 100 - HARD](leet/top-100-liked/top-100-hard.md)
 * [Companies](leet/companies/README.md)
   * [DB](leet/companies/dropbox/README.md)
+    * [SysDesign](leet/companies/dropbox/sysdesign.md)
     * [More Insight](leet/companies/dropbox/more-insight.md)
 
 ## TODO
