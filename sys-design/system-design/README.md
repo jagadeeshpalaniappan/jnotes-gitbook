@@ -237,3 +237,40 @@ API Gateway:
 
 
 
+```fsharp
+# URL shortner:
+----------------
+shortUrlKey:
+- MD5 Hash // but it has longerHash
+- Pre-Generated Random Keys // [RECOMMENDED]
+    1.  'not-used-keys-table'
+    2.  'used-keys-table'
+    3.  'buffer-keys-table' (optional) 
+
+# Distributed Web Crawler
+--------------------------
+
+URL Reader >> URL Queue >> URL Filter (Invalid, Duplicate) >> Crawl Queue 
+>> Crawler:: [DNS Cacher >> Fetcher >> HTML Parser] 
+    >> [Content Extracter >> addRequiredContentToDB (Output Queue >> Output Filter (duplicateContentFilter) >> Output Writer]
+    >> [URL Extractor >> URL Sanitizer >> URL Queue]
+        
+    
+
+
+## Politness / Priority:
+- URL Frontier // Priorities, Freshness, Politeness
+- Redis (Bull Library) // Concurrency, Priorities, Delayed Jobs, Repeatable Jobs, Rate Limiter
+
+
+## Repeatable Jobs:
+- Cron Job
+
+## Filter Duplicate URLs:
+- BloomFilter (firstLevelCheck) + NoSQL DB Lookup
+
+
+```
+
+
+

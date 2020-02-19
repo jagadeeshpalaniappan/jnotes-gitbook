@@ -140,7 +140,7 @@
     * [File: Content Search](sys-design/system-design/file/search.md)
     * [File: Collaborate Edit](sys-design/system-design/file/file-collaborate-edit.md)
   * [Detect: Duplicates](sys-design/system-design/detect-duplicates/README.md)
-    * [Bloom Filter](sys-design/system-design/detect-duplicates/bloom-filter.md)
+    * [Bloom Filter](sys-design/system-design/bloom-filter.md)
   * [Asynchronous Processing](sys-design/system-design/async-procesessing.md)
 * [App Server](sys-design/app-server/README.md)
   * [Polling vs WebSockets vs Server-Sent Events](sys-design/app-server/polling-vs-websockets-vs-server-sent-events.md)

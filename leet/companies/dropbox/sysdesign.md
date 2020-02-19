@@ -117,10 +117,6 @@ function crawl(startUrl, htmlParser) {
 ## [9. Web Crawler Multithreaded](https://leetcode.com/problems/web-crawler-multithreaded)
 
 {% tabs %}
-{% tab title="" %}
-
-{% endtab %}
-
 {% tab title="Qstns?" %}
 **SysDesign:**   Input —&gt; Process —&gt; Output  
 ****
