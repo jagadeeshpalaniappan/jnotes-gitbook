@@ -1,11 +1,67 @@
 # System Design
 
-```fsharp
-# System Design
-- AppServer(AS):
-- Caching
-- Database
+## Intro
 
+```fsharp
+# Distributed System:
+------------------------------
+- Distributed AppServer(AS):
+- Distributed Caching
+- Distributed Database
+
+- Microservice Architecture
+- Event Driven Architecture (Pub/Sub/EventManger)
+- Distributed Data Processing (DFS)
+
+
+
+# Distributed System Problems:
+------------------------------
+- Load Balancing     // Soln: Load Balancers
+- Handle Failures    // Soln: Circuit Break Patterns, Bulkhead Pattern
+- Security (Authentication/Authorization) // Soln: API Gateway
+- Rate Limiting      // Soln: API Gateway
+
+Microservices:
+- Service Discovery  // Soln: API Gateway
+- Deployment // Soln: CI/CD, Jenins
+- Debugging/Logging/Tracing // Soln: API Gateway(traceId), Splunk
+- Monitoring // Son: Newrelic, AppDynamics
+
+
+
+# Event Driven Architecture (Pub/Sub)
+------------------------------
+    - FaaS // Function as a Service // AWS Lamda, Google Cloud Fn,..
+    - Apache Kafka
+
+
+
+# Distributed File System 
+# Distributed Data Processing
+------------------------------
+    1. GFS / Hadoop (HDFS) & Run 'MapReduce'
+    
+
+
+# API Gateway:
+------------------------------
+- Single Entry Point 
+- Security (AuthN/AuthZ, DDos, IP Whitelisting, needNotToExposeMicroserviceIPsOutside)
+- Load Balancing
+- Dynamic Service Discovery
+- Rate Limiting
+- Retry / Circuit Break Pattern
+
+- Latency Tracking
+- Loggin / Tracing
+- Response Caching
+- Query Transformation
+
+
+# API Gateway Problems:
+    - SPOF // Soln: Multiple Instances
+    
 ```
 
 ## Why Distributed System:
@@ -187,18 +243,27 @@ Cons:
 - Distributed Locks
 ```
 
-## Misc
+## Concepts:
 
 ```fsharp
-- Bloom Filter
-- Rate Limiting
-- Asynchronous Processing
 
-Duplicate Detection
+
+# Asynchronous Processing
+- Messagin Queue
+- Event Driven Architecture (Pub/Sub)
+
+
+# Duplicate Detection
 For Smalller Content,
 - Hash Table
 - Bloom Filter (E.g. WebCrawler find URL duplicate)
 
+
+# Search File Content:
+    - Brute Force
+    - Index (Meta Data)
+    - Inverted Index 
+    
 For Larger Content,
 - Hashing (MD5) // need exact content to check, can't detect simmilar content check
 - SimHash // quickly estimate how similar two largeConents are // Google uses this
@@ -209,33 +274,19 @@ For Larger Content,
 
 
 
-Synchronous Processing (Blocing IO)
-Asynchronous Processing (Non-Blocking IO) (Modern OS supports Async IO)
 
-Search File Content
-Search File Content:
-- Brute Force
-- Index (Meta Data)
-- Inverted Index 
-
-
-Compression Technique:
+#Compression Technique:
 - Store in Bit Representation
 
 
-API Gateway:
-    - Single Entry Point & API Composition
-    - Security
-    - Dynamic Service Discovery
-    - Service Partition Hidden
-    - Hiding Microservices
-    - Circuit Breaking
-    
+
 
 
 ```
 
 
+
+## System Design \(Example Apps\)
 
 ```fsharp
 # URL shortner:
@@ -268,6 +319,7 @@ URL Reader >> URL Queue >> URL Filter (Invalid, Duplicate) >> Crawl Queue
 
 ## Filter Duplicate URLs:
 - BloomFilter (firstLevelCheck) + NoSQL DB Lookup
+
 
 
 ```
