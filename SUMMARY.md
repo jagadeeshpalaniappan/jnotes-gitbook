@@ -81,6 +81,7 @@
   * [Event Loop & Libuv](javascript/nodejs/untitled-1.md)
   * [Web Worker \[Node.js\]](javascript/nodejs/web-worker-node.js.md)
   * [Advanced](javascript/nodejs/advanced.md)
+* [QUICK-CODE](javascript/quick-code.md)
 
 ## CSS
 
