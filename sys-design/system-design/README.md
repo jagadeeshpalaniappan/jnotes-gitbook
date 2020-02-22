@@ -12,7 +12,7 @@
 - Microservice Architecture
 - Event Driven Architecture (Pub/Sub/EventManger)
 - Distributed Data Processing (DFS)
-
+- Distributed Locks
 
 
 # Distributed System Problems:
@@ -61,6 +61,12 @@ Microservices:
 
 # API Gateway Problems:
     - SPOF // Soln: Multiple Instances
+    
+
+
+# Must Discuss:
+    - SPOF (Single Point Of Failure)
+    - SSOT (Single Source Of Truth)
     
 ```
 
@@ -325,4 +331,10 @@ URL Reader >> URL Queue >> URL Filter (Invalid, Duplicate) >> Crawl Queue
 ```
 
 
+
+Distributed Locks
+
+```fsharp
+
+```
 
