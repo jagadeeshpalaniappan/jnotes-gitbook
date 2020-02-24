@@ -17,6 +17,8 @@ var sortObjKeys = (obj) => Object.keys(obj)
 function sortKeys(item) {
 	return typeof item === 'object' ? sortObjKeys(item) : item;
 }
+
+// copy(sortObjKeys(c1))
 ```
 {% endtab %}
 
