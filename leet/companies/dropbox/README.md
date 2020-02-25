@@ -122,13 +122,17 @@ Other Questions
 
 ### **Follow-up Answer:**
 
-* **BFS vs DFS --&gt; `BFS`**
+* **BFS or DFS --&gt; `BFS`**
   * In real file system, files are located close to each other.
   * BFS explores neighbors first. This is great for **space locality** and that's why BFS is expected to be faster.
-* **Steps: to handle 'veryLargeFile' and 'falsePositives':**
+* **Steps: to handle 'falsePositives':**
   1. compare: **fileSize** // if equal, then files might be same, check further
   2. compare: **hash** \(MD5 or SHA256\) // if equal, then files might be same, check further
   3. asyncCompare: **byteByByte** // to avoid false positives due to hashCollisions
+* **Steps: to handle 'veryLargeFile':**
+  * read: **chunkByChunk** // instead of reading entire \(RAM is not enough to store\)
+  * hash: **eachChunk** \(MD5 or SHA256\)
+  * compare: **allChunkHashes**
 
 #### Complexity
 
