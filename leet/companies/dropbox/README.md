@@ -237,11 +237,15 @@ It Means:
 
 
 /*
+*********************
 Simplify the Rules:
----------------
-1 --- (neighbors < 2) ---> 0
-1 --- (neighbors > 3) ---> 0
-0 --- (neighbors === 3) ---> 1
+*********************
+
+curGen     ------------>    nextGen
+~~~~~~                      ~~~~~~~
+  1 --- (neighbors < 2)   ---> 0      // died: dueToUnderPopulation
+  1 --- (neighbors > 3)   ---> 0      // died: dueToOverPopulation
+  0 --- (neighbors === 3) ---> 1      // living: dueToReproduction
 
 
 Use the same Grid:
