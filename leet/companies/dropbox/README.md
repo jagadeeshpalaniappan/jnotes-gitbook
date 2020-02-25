@@ -250,8 +250,8 @@ curGen     ------------>    nextGen
 
 Use the same Grid:
 -------------------
--1:  1--->0 (live to dead)
-2:   0--->1 (dead to live)
+  -1:  1--->0 (live to dead)
+   2:  0--->1 (dead to live)
 */
 
 function encode(item) {
