@@ -130,7 +130,7 @@ Other Questions
   2. compare: **hash** \(MD5 or SHA256\) // if equal, then files might be same, check further
   3. asyncCompare: **byteByByte** // to avoid false positives due to hashCollisions
 * **Steps: to handle 'veryLargeFile':**
-  * read: **chunkByChunk** // instead of reading entire \(RAM is not enough to store\)
+  * read: **chunkByChunk** // instead of reading entireFile \(RAM is not enough\)
   * hash: **eachChunk** \(MD5 or SHA256\)
   * compare: **allChunkHashes**
 
