@@ -110,15 +110,30 @@ Other Questions
 {% endtab %}
 
 {% tab title="Follow-Up" %}
-**Follow-up beyond contest:**
+### **Follow-up Question:**
 
 1. Imagine you are given a real file system, how will you search files? DFS or BFS?
    * [https://jagadeeshpalaniappan.gitbook.io/jnotes/sys-design/system-design/file/search](https://jagadeeshpalaniappan.gitbook.io/jnotes/sys-design/system-design/file/search)
 2. If the file content is very large \(GB level\), how will you modify your solution?
-   * key: fileContent --&gt; fileContentHash \( SHA-256 or MD5 \)
+   * **key:** fileContent --&gt; **`fileContentHash`** \( SHA-256 or MD5 \)
 3. If you can only read the file by 1kb each time, how will you modify your solution?
 4. What is the time complexity of your modified solution? What is the most time-consuming part and memory consuming part of it? How to optimize?
 5. How to make sure the duplicated files you find are not false positive?
+
+### **Follow-up Answer:**
+
+* **BFS vs DFS --&gt; `BFS`**
+  * In real file system, files are located close to each other.
+  * BFS explores neighbors first. This is great for **space locality** and that's why BFS is expected to be faster.
+* **Steps: to handle 'veryLargeFile' and 'falsePositives':**
+  1. compare: **fileSize** // if equal, then files might be same, check further
+  2. compare: **hash** \(MD5 or SHA256\) // if equal, then files might be same, check further
+  3. asyncCompare: **byteByByte** // to avoid false positives due to hashCollisions
+
+#### Complexity
+
+Runtime - Worst case \(which is very unlikely to happen\): O\(N^2 \* L\) where L is the size of the maximum bytes that need to be compared  
+Space - Worst case: all files are hashed and inserted in the hashmap, so O\(H^2\*L\), H is the hash code size and L is the filename size
 {% endtab %}
 
 {% tab title="Video" %}
