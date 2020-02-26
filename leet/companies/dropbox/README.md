@@ -216,10 +216,102 @@ function findDuplicate(paths) {
 {% embed url="https://www.youtube.com/watch?v=FWSR\_7kZuYg" %}
 {% endtab %}
 
+{% tab title="CodeSnap" %}
+```javascript
+
+/*
+
+ExistingState:
+------------------
+0 : deadCell
+1 : liveCell
+
+NewState: (encode/decode) tecniq to use the same Grid: 
+--------------------------------------------------
+2 : nextDeadCell ( 1 ---> 0 ) (live to 'dead' in nextState)
+3 : nextLiveCell ( 0 ---> 1 ) (dead to 'live' in nextState)
+
+*/
+
+// encode:
+// newState:0  --> 2 | newState:1  --> 3
+
+
+// decode:
+// newState:2  --> 0 | newState:3  --> 1
+
+
+// revertNewChange:
+// newState:2  --> 1 | newState:3  --> 0
+
+
+
+getCellOldVal(board, r, c) {
+  let val = 0;
+  if (board[r] !== undefined && board[r][c] !== undefined) {
+    val = revertNewChange(board[r][c]);
+  }
+  return val;
+}
+
+
+countNeightbors(board, r, c) {
+
+  const neighborsLoc = [
+    //topLeft   top     topRight
+    [-1, -1],   [-1, 0], [-1, 1], 
+    //left      curr     right
+    [0, -1],             [0, 1],
+    //btmLeft    btm     btmRight
+    [1, -1],    [1, 0],  [1, 1]
+  ];
+  
+  // forEachNeighborCell: getCellOldVal
+      --> getCellOldVal: revertNewChange & getCellVal ==and==> summTheTotalCount
+
+}
+
+applyRules(board, r, c, neightbors) {
+
+  curState = board[r][c];
+  
+  // rule1: curState:1 && (neightbors < 2 || neightbors > 3) ===> newState: dead
+    --> board[r][c] = encode(0);
+  
+  // rule2: curState:0 && (neightbors === 3) ===> newState: live 
+    --> board[r][c] = encode(1);
+}
+
+
+gameOfLife(board) {
+  // invalid: input
+    -> return null;
+
+  // valid: input
+  rows = board.length;
+  cols = board[0].length;
+
+
+  // forEachCell: countNeightbors & applyRules
+      --> neightbors = countNeightbors(board, r, c);  // revertNewChangeAndGetCellOldVal and countNeightbors
+      --> applyRules(board, r, c, neightbors);  // applyRules and encodeVals
+
+      
+
+  // forEachCell: decodeVals
+      --> board[r][c] = decode(board[r][c]);
+
+  // return: decodedVals
+  return board;
+}
+```
+{% endtab %}
+
 {% tab title="Code" %}
 ```javascript
 /*
 289. Game of Life
+https://leetcode.com/problems/game-of-life/
 
 Rules :
 -------
@@ -228,24 +320,25 @@ Rules :
 3. Any live cell with more than three live neighbors dies, as if by over-population..
 4. Any dead cell with exactly three live neighbors becomes a live cell, as if by reproduction.
 
-It Means:
---------
+
 0: dead
 1: live
 
-*/
 
+https://www.youtube.com/watch?v=FWSR_7kZuYg [MUST]
+https://www.youtube.com/watch?v=3Bx9moUnIjM
+*/
 
 /*
 *********************
 Simplify the Rules:
 *********************
 
-curGen     ------------>    nextGen
-~~~~~~                      ~~~~~~~
-  1 --- (neighbors < 2)   ---> 0      // died: dueToUnderPopulation
-  1 --- (neighbors > 3)   ---> 0      // died: dueToOverPopulation
-  0 --- (neighbors === 3) ---> 1      // living: dueToReproduction
+curGenState     ------------>    nextGenState
+~~~~~~~~~~~                      ~~~~~~~~~~~~
+    1   ---   (neighbors < 2)     ---> 0      // died: dueToUnderPopulation
+    1   ---   (neighbors > 3)     ---> 0      // died: dueToOverPopulation
+    0   ---   (neighbors === 3)   ---> 1      // living: dueToReproduction
 
 
 Use the same Grid:
@@ -293,18 +386,27 @@ function gridGet(board, r, c) {
 }
 
 function countNeightbors(board, r, c) {
-  const topLeft = gridGet(board, r - 1, c - 1);
-  const top = gridGet(board, r - 1, c);
-  const topRight = gridGet(board, r - 1, c + 1);
-  const left = gridGet(board, r, c - 1);
-  const right = gridGet(board, r, c + 1);
-  const bottomLeft = gridGet(board, r + 1, c - 1);
-  const bottom = gridGet(board, r + 1, c);
-  const bottomRight = gridGet(board, r + 1, c + 1);
+  const neighborsLoc = [
+    [-1, -1], // topLeft
+    [-1, 0], // top
+    [-1, 1], // topRight
+    [0, -1], // left
+    [0, 1], // right
+    [1, -1], // bottomLeft
+    [1, 0], // bottom
+    [1, 1] // bottomRight
+  ];
+  let count = 0;
+  for (const curNeighborLoc of neighborsLoc) {
+    const curNeighborVal = gridGet(
+      board,
+      r + curNeighborLoc[0],
+      c + curNeighborLoc[1]
+    );
+    count = count + curNeighborVal;
+  }
 
-  return (
-    topLeft + top + topRight + left + right + bottomLeft + bottom + bottomRight
-  );
+  return count;
 }
 
 function applyRules(board, r, c, neightbors) {
@@ -317,38 +419,36 @@ function applyRules(board, r, c, neightbors) {
   }
 }
 
-
 /**
   TC: O(M×N), where M is the number of rows and N is the number of columns of the Board.
   SC: O(1)  // since we are re-using the sameArr using encode/decode techniques
  */
 function gameOfLife(board) {
-  if (board && board.length > 0 && board[0] && board[0].length > 0) {
-    const rows = board.length;
-    const cols = board[0].length;
-
-    // applyRules
-    for (let r = 0; r < rows; r++) {
-      for (let c = 0; c < cols; c++) {
-        const curState = board[r][c];
-        const neightbors = countNeightbors(board, r, c);
-        applyRules(board, r, c, neightbors);
-      }
-    }
-
-    // console.log(JSON.stringify(board));
-
-    // decode
-    for (let r = 0; r < rows; r++) {
-      for (let c = 0; c < cols; c++) {
-        board[r][c] = decode(board[r][c]);
-      }
-    }
-
-    return board;
-  } else {
+  // invalid: input
+  if (!(board && board.length > 0 && board[0] && board[0].length > 0)) {
     return null;
   }
+
+  // valid: input
+  const rows = board.length;
+  const cols = board[0].length;
+
+  // forEachCell: countNeightbors & applyRules
+  for (let r = 0; r < rows; r++) {
+    for (let c = 0; c < cols; c++) {
+      const neightbors = countNeightbors(board, r, c);
+      applyRules(board, r, c, neightbors);
+    }
+  }
+
+  // forEachCell: decodeValues
+  for (let r = 0; r < rows; r++) {
+    for (let c = 0; c < cols; c++) {
+      board[r][c] = decode(board[r][c]);
+    }
+  }
+
+  return board;
 }
 
 const board = [[0, 1, 0], [0, 0, 1], [1, 1, 1], [0, 0, 0]];
