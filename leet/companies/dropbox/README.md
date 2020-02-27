@@ -853,7 +853,7 @@ console.log(wordPatternMatch("aba", "redbluered"));
 ```
 {% endtab %}
 
-{% tab title="Exp" %}
+{% tab title="ThoughtProcess" %}
 ```javascript
 /*
 --------------------
