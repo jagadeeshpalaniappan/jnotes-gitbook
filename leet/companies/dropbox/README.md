@@ -711,9 +711,11 @@ SC: O(n)
 */
 function wordPattern(pattern, str) {
   const words = str.split(" ");
+  if (pattern.length !== words.length) return false;
+    
   var map1 = {}; // { patternChar: word }
   var map2 = {}; // { word: patternChar }
-  if (pattern.length !== words.length) return false;
+
   for (let i = 0; i < pattern.length; i++) {
     const char = pattern[i];
     const word = words[i];
