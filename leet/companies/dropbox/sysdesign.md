@@ -439,3 +439,223 @@ XXXX
 
 ...
 
+## 
+
+## [5. Design Phone Directory](https://leetcode.com/problems/design-phone-directory)
+
+{% tabs %}
+{% tab title="Question" %}
+379. Design Phone Directory
+
+Design a Phone Directory which supports the following operations:
+
+1. `get`: Provide a number which is not assigned to anyone.
+2. `check`: Check if a number is available or not.
+3. `release`: Recycle or release a number.
+{% endtab %}
+
+{% tab title="More" %}
+
+{% endtab %}
+
+{% tab title="Video" %}
+
+{% endtab %}
+
+{% tab title="Code" %}
+```javascript
+
+class PhoneDirectory {
+  constructor(maxNumbers) {
+    this.len = maxNumbers;
+    this.availableNumbers = new Set();
+    for (let i = 0; i < maxNumbers; i++) {
+      this.availableNumbers.add(i);
+    }
+    // console.log(this.availableNumbers);
+  }
+
+  get() {
+    if (this.availableNumbers.size === 0) return -1;
+    const nextAvailableNo = this.availableNumbers.values().next().value;
+    this.availableNumbers.delete(nextAvailableNo);
+    return nextAvailableNo;
+  }
+
+  check(number) {
+    return this.availableNumbers.has(number);
+  }
+
+  release(number) {
+    this.availableNumbers.add(number);
+  }
+}
+
+// Init a phone pd containing a total of 3 numbers: 0, 1, and 2.
+const pd = new PhoneDirectory(3);
+
+// It can return any available phone number. Here we assume it returns 0.
+console.log(pd.get());
+
+// Assume it returns 1.
+console.log(pd.get());
+
+// The number 2 is available, so return true.
+console.log(pd.check(2));
+
+// It returns 2, the only number that is left.
+console.log(pd.get());
+
+// The number 2 is no longer available, so return false.
+console.log(pd.check(2));
+
+// Release number 2 back to the pool.
+pd.release(2);
+
+// Number 2 is available again, return true.
+console.log(pd.check(2));
+
+```
+{% endtab %}
+{% endtabs %}
+
+...
+
+## [6. Design Hit Counter](https://leetcode.com/problems/design-hit-counter)
+
+{% tabs %}
+{% tab title="Question" %}
+...
+{% endtab %}
+
+{% tab title="More" %}
+* [https://leetcode.com/discuss/interview-question/178662/Design-a-Hit-Counter](https://leetcode.com/discuss/interview-question/178662/Design-a-Hit-Counter)
+* [https://leetcode.com/discuss/interview-question/124821/Dropbox-or-Design-Hit-Counter](https://leetcode.com/discuss/interview-question/124821/Dropbox-or-Design-Hit-Counter)
+* Design a Hit Counter 
+  * write a program to count how many times a web page has been accessed in the last 5 minutes.  
+  * First question was about how to implement get\_hits and log\_hits methods for a website visitors, where get\_hits would return the number of hits in last 5 minutes.
+* Follow up question was how to scale this as a service when billions of concurrent Users may be hitting and thus log\_hits will be called that often.
+* Write methods to log hits and get number of hits in past 'x' minutes.
+{% endtab %}
+
+{% tab title="Video" %}
+Implementation: 
+
+* [https://www.youtube.com/watch?v=vMB0XjFpt\_s](https://www.youtube.com/watch?v=vMB0XjFpt_s) 
+
+System Design:\(Rate Limit\) 
+
+* [https://www.youtube.com/watch?v=xrizarXJgC8](https://www.youtube.com/watch?v=xrizarXJgC8)
+* [https://www.youtube.com/watch?v=mhUQe4BKZXs](https://www.youtube.com/watch?v=mhUQe4BKZXs)
+{% endtab %}
+
+{% tab title="Code" %}
+```javascript
+/*
+https://leetcode.com/problems/design-hit-counter/discuss/83483/Super-easy-design-O(1)-hit()-O(s)-getHits()-no-fancy-data-structure-is-needed!
+
+What is 300? we need only past 5mins  // 5*60sec ==> 300sec
+For each second (timestamp), we are counting an entry
+
+TC: 
+  -hit(): O(1)      
+  -getHits(): O(1)
+SC: O(1)
+
+// since we always store & get '300' items O(1) // remember: 300 is constant
+// but if we consider 300 is an input, 
+  -- then it should be O(s) // s is seconds (past 5 minutes = 5x60sec ==> 300sec)
+*/
+class HitCounter {
+  constructor() {
+    this.hits = [];  // new Array(300);
+  }
+  hit(timestamp) {
+    let index = timestamp % 300;
+    const hitEntry = this.hits[index];
+    if (hitEntry && hitEntry.timestamp === timestamp) {
+      hitEntry.count = hitEntry.count + 1;
+    } else {
+      this.hits[index] = { timestamp, count: 1 };
+    }
+  }
+  getHits = function(curTimestamp) {
+    let counter = 0;
+    for (let hitEntry of this.hits) {
+      if (hitEntry) {
+        const timestampFromNow = curTimestamp - hitEntry.timestamp;
+        if (timestampFromNow < 300) {
+          // count: only applicable timestamp (within 5mins)
+          counter = counter + hitEntry.count;
+        }
+      }
+    }
+
+    return counter;
+  };
+}
+
+```
+{% endtab %}
+
+{% tab title="Exe" %}
+```
+const counter = new HitCounter();
+
+// hit at timestamp 1.
+counter.hit(1);
+
+// hit at timestamp 2.
+counter.hit(2);
+
+// hit at timestamp 3.
+counter.hit(3);
+
+// get hits at timestamp 4, should return 3.
+console.log(counter.getHits(4));
+
+// hit at timestamp 300.
+counter.hit(300);
+
+// get hits at timestamp 300, should return 4.
+console.log(counter.getHits(300));
+
+// get hits at timestamp 301, should return 3.
+console.log(counter.getHits(301));
+
+// hit at timestamp 350.
+counter.hit(350);
+
+console.log(counter.getHits(600)); // 1
+```
+{% endtab %}
+{% endtabs %}
+
+...
+
+## [12. Design Search Autocomplete System](https://leetcode.com/problems/design-search-autocomplete-system)
+
+{% tabs %}
+{% tab title="Question" %}
+...
+{% endtab %}
+
+{% tab title="More" %}
+* [https://leetcode.com/discuss/interview-question/366628/Dropbox-or-OA-2019-or-Auto-complete-feature](https://leetcode.com/discuss/interview-question/366628/Dropbox-or-OA-2019-or-Auto-complete-feature)
+{% endtab %}
+
+{% tab title="Video" %}
+
+{% endtab %}
+
+{% tab title="Code" %}
+```javascript
+...
+```
+{% endtab %}
+{% endtabs %}
+
+...
+
+## 
+
