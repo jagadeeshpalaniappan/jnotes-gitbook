@@ -1289,8 +1289,8 @@ console.log(pd.check(2));
 * Given an NxN grid with an array of lamp coordinates. Each lamp provides illumination to every square on their x axis, every square on their y axis, and every square that lies in their diagonal \(think of a Queen in chess\). Given an array of query coordinates, determine whether that point is illuminated or not. The catch is when checking a query all lamps adjacent to, or on, that query get turned off. The ranges for the variables/arrays were about: 10^3 &lt; N &lt; 10^9, 10^3 &lt; lamps &lt; 10^9, 10^3 &lt; queries &lt; 10^9.  
 {% endtab %}
 
-{% tab title="Video" %}
-
+{% tab title="jnotes" %}
+{% embed url="https://drive.google.com/open?id=14fUVzYVsdK8OaHG5Ksf2dNIX-APSVBnNBRjpNrFSy-c" %}
 {% endtab %}
 
 {% tab title="Code" %}
