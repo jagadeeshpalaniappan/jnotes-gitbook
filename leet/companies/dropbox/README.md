@@ -1282,7 +1282,42 @@ console.log(pd.check(2));
 
 {% tabs %}
 {% tab title="Question" %}
-...
+```javascript
+// https://leetcode.com/problems/grid-illumination/
+
+/*
+Question: jUndertstanding
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Input: N = 5, lamps = [[0,0],[4,4]], queries = [[1,1],[1,0]]
+Output: [1,0]
+
+#N: 5x5 matrix
+
+#lamps: lampsLocation 'lamp1: at [0,0]' and 'lamp1: at [4,4]'
+eachLampLocation: can provides lights visibility to that 
+  'entireRow', 'entireCol', 'fwdSlashDiagnol', 'bwdSlashDiagnol'
+
+
+#queries:  'checkLightVisibilityStatus' & 'turnOffSurrondingLamps'
+
+checkLightVisibilityStatus:
+  - if 'light' is visible at that queriedLoc, ===> return '1' 
+  - if 'light' is NOT visible, ===> return '0'   
+
+turnOffSurrondingLamps: of 'queriedLoc' 
+  - only surrodingArea [[-1,-1],[-1,0],[-1,1],[0,-1],[0,0],[0,1],[-1,-1],[1,0],[1,1]]
+                        - topLeft, top, topRight
+                        - left,    cur, right
+                        - btmLeft, btm, btmRight
+  - turiningOff these lamps will impact lightVibility, 
+  - so we need to update the lightVibility area whenever we turiningOff light
+
+
+#Output:  will have the status of eachQuery lightVisibilityStatus
+
+*/
+```
 {% endtab %}
 
 {% tab title="More" %}
@@ -1295,7 +1330,154 @@ console.log(pd.check(2));
 
 {% tab title="Code" %}
 ```javascript
-...
+
+
+function increaseLightCount(map, value) {
+  if (map.has(value)) {
+    map.set(value, map.get(value) + 1); // increment: lightCount
+  } else {
+    map.set(value, 1);
+  }
+}
+
+function decreaseLightCount(map, value) {
+  if (map.has(value)) {
+    map.set(value, map.get(value) - 1);
+  }
+}
+
+function turnOffSurrondingLamps(r, c, N, rowMap,colMap,diag1Map, diag2Map, lampMap) {
+  
+  const direction = [ [-1, -1], [-1, 0], [-1, 1], [0, -1], [0, 0], [0, 1], [-1, -1], [1,0], [1, 1] ];
+
+  // loop: direction  // helps to iterate surrondingArea
+  for (let [i, j] of direction) {
+    let newR = r + i;
+    let newC = c + j;
+    const curGridNo = N * newR + newC;
+
+    // if: any of the 'surrondingArea' hasLamp, ===> then 'turnOffAllThoseLamp'
+    if (lampMap.has(curGridNo)) {
+
+      // turnOffLamp:: update: lightCount status
+      decreaseLightCount(rowMap, newR);
+      decreaseLightCount(colMap, newC);
+      decreaseLightCount(diag1Map, newR + newC);
+      decreaseLightCount(diag2Map, newR - newC);
+
+      // turnOffLamp:: update 'lampMap'
+      lampMap.delete(curGridNo);
+    }
+  }
+}
+
+function gridIllumination(N, lamps, queries) {
+  const rowMap = new Map(); // {rowNo: lightCount}
+  const colMap = new Map(); // {colNo: lightCount}
+  const diag1Map = new Map(); // {diag1No: lightCount}  // diag1: r+c
+  const diag2Map = new Map(); // {diag2No: lightCount}  // diag2: r-c
+  const lampMap = new Map(); // {gridNo: hasLamp} // whether that particular cell 'hasLamp'
+
+  //map what areas are lit
+  for (let [r, c] of lamps) {
+    increaseLightCount(rowMap, r);
+    increaseLightCount(colMap, c);
+    increaseLightCount(diag1Map, r + c);
+    increaseLightCount(diag2Map, r - c);
+    lampMap.set(N * r + c, true);
+  }
+
+  // const result = new Array(queries.length).fill(0);
+  // let count = 0; // prob could've iterated with queries
+
+  const res = [];
+
+  // loop: queries
+  for (let [r, c] of queries) {
+
+    // check: anyway curr (r,c) can get light
+    const hasVisibleLight =
+      rowMap.get(r) > 0 || // isCurItem 'row' has light -or-
+      colMap.get(c) > 0 || // isCurItem 'col' has light -or-
+      diag1Map.get(r + c) > 0 || // isCurItem 'diag1' has light -or-
+      diag2Map.get(r - c) > 0; // isCurItem 'diag2' has light -or-
+
+    if (hasVisibleLight) {
+      res.push(1); // hasVisibleLight
+    } else {
+      res.push(0); // doesntHaveVisibleLight
+    }
+
+
+    turnOffSurrondingLamps(r, c, N, rowMap,colMap,diag1Map, diag2Map, lampMap);
+  }
+  return res;
+}
+
+
+
+//---------------------------Output------------------------------
+
+// Ex1:
+
+let N = 5,
+  lamps = [[0, 0], [4, 4]],
+  queries = [[1, 1], [1, 0]];
+console.log(gridIllumination(N, lamps, queries)); // [1, 0]
+
+
+// Ex2:
+// let N = 6, lamps = [[1, 3], [2, 4], [5, 4]], queries = [[2, 4], [1, 2]];
+// console.log(gridIllumination(N, lamps, queries)); // [1, 0]
+
+```
+{% endtab %}
+
+{% tab title="matrixShortcuts" %}
+```javascript
+
+//--------------------------MARTIX-SHORTCUTS-------------------------------
+
+// 'N x N' matrix  // N=6 here
+const grid = [
+  ["r0c0", "r0c1", "r0c2", "r0c3", "r0c4", "r0c5"],
+  ["r1c0", "r1c1", "r1c2", "r1c3", "r1c4", "r1c5"],
+  ["r2c0", "r2c1", "r2c2", "r2c3", "r2c4", "r2c5"],
+  ["r3c0", "r3c1", "r3c2", "r3c3", "r3c4", "r3c5"],
+  ["r4c0", "r4c1", "r4c2", "r4c3", "r4c4", "r4c5"],
+  ["r5c0", "r5c1", "r5c2", "r5c3", "r5c4", "r5c5"]
+];
+
+// 'r+c' ===> gives 'forward-slash direction' diagonals
+const diag1 = [
+  [0, 1, 2, 3, 4, 5],
+  [1, 2, 3, 4, 5, 6],
+  [2, 3, 4, 5, 6, 7],
+  [3, 4, 5, 6, 7, 8],
+  [4, 5, 6, 7, 8, 9],
+  [5, 6, 7, 8, 9, 10]
+];
+
+// 'r-c' ===> gives 'back-slash direction' diagonals
+const diag2 = [
+  [0, -1, -2, -3, -4, -5],
+  [1, 0, -1, -2, -3, -4],
+  [2, 1, 0, -1, -2, -3],
+  [3, 2, 1, 0, -1, -2],
+  [4, 3, 2, 1, 0, -1],
+  [5, 4, 3, 2, 1, 0]
+];
+
+// '(n * r) + c' ===> gives uniqueGridNo
+const uniqueGridNo = [
+  [0, 1, 2, 3, 4, 5],
+  [6, 7, 8, 9, 10, 11],
+  [12, 13, 14, 15, 16, 17],
+  [18, 19, 20, 21, 22, 23],
+  [24, 25, 26, 27, 28, 29],
+  [30, 31, 32, 33, 34, 35]
+];
+
 ```
 {% endtab %}
 {% endtabs %}
