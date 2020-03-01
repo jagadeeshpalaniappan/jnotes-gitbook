@@ -1537,7 +1537,67 @@ start-->end ==> curWord   // curWord = str.substring(start,end)
 
 {% tab title="Code" %}
 ```javascript
-...
+/*
+
+146. LRU (Least Recently Used) cache
+
+get(key) // also update that entry as recentlyUsedItem
+put(key, value) - insert/update the value
+  - When the cache reached its capacity, 
+  - it should invalidate the least recently used item before inserting a new item.
+
+Time Complexity: do both operations in O(1)
+
+*/
+
+
+/*
+Sol1: LinkedHashMap
+
+TC: O(1) both for put and get 
+SC: O(capacity) 
+*/
+
+class LRUCache {
+  constructor(capacity) {
+    this.cache = new Map();
+    this.capacity = capacity;
+  }
+
+  get(key) {
+    if (!this.cache.has(key)) return -1;
+
+    // refresh:
+    // delete: oldEntry and adding the sameItem will bring the item to the last location (recentlyUsed)
+    const v = this.cache.get(key);
+    this.cache.delete(key); 
+    this.cache.set(key, v);
+
+    return v;
+  }
+
+  put(key, value) {
+    
+    // if item already available --> marks the item recentlyUsed (by deleting and addingAgain)
+    if (this.cache.has(key)) {
+      this.cache.delete(key); // refresh
+    }
+    this.cache.set(key, value);
+    if (this.cache.size > this.capacity) {
+      // delete: the firstInserted item (oldItem)
+      this.cache.delete(this.cache.keys().next().value); // keys().next().value returns first item's key
+    }
+  }
+}
+
+
+
+/*
+Sol2: Hashmap + DoubleLinkedList
+
+TC: O(1) both for put and get 
+SC: O(capacity) 
+*/
 ```
 {% endtab %}
 {% endtabs %}
@@ -1546,11 +1606,37 @@ start-->end ==> curWord   // curWord = str.substring(start,end)
 
 
 
-## [17. Pairs of Songs With Total Durations Divisible by 60](https://leetcode.com/problems/pairs-of-songs-with-total-durations-divisible-by-60)
+## [17. Pairs of Songs With Total Durations Divisible by 60](https://leetcode.com/problems/pairs-of-songs-with-total-durations-divisible-by-60) \[JTODO\]
 
 {% tabs %}
 {% tab title="Question" %}
-...
+```text
+/*
+
+Pairs of Songs With 'Total Durations Divisible by 60'
+
+In a list of songs, the i-th song has a duration of time[i] seconds. 
+Return the number of pairs of songs for which their total duration in seconds is divisible by 60. 
+Formally, we want the number of indices i < j with (time[i] + time[j]) % 60 == 0.
+ 
+
+Example 1:
+---------------
+Input: [30,20,150,100,40] ===> Output: 3
+
+Explanation: Three pairs have a total duration divisible by 60:
+(time[0] = 30, time[2] = 150): total duration 180
+(time[1] = 20, time[3] = 100): total duration 120
+(time[1] = 20, time[4] = 40): total duration 60
+
+
+Example 2:
+---------------
+Input: [60,60,60]
+Output: 3
+Explanation: All three pairs have a total duration of 120, which is divisible by 60.
+*/
+```
 {% endtab %}
 
 {% tab title="More" %}
@@ -1563,7 +1649,85 @@ start-->end ==> curWord   // curWord = str.substring(start,end)
 
 {% tab title="Code" %}
 ```javascript
-...
+
+/*
+  Using 'HashMap' or 'ArrayAndIndex'
+  TC: O(n)
+  SC: O(1) // Array(60) is constant
+*/
+const numPairsDivisibleBy60 = function(time) {
+  const durCount = new Array(60).fill(0); // store: { reminder: reminderCount }
+
+  let pairCount = 0;
+  for (const t of time) {
+    // reminder:
+    const rem = t % 60;
+
+    // x: otherPair
+    const pair = (60 - rem) % 60; // to get number in range 0 ~ 59 range
+
+    // sum: pairCount
+    pairCount = pairCount + durCount[pair];
+
+    // incremenet: reminderCount  // remember: we are doing this after 'pairCount' calc
+    durCount[rem]++;
+
+    // console.log(`t:${t} ===> {rem ${rem}: reminderCount ${durCount[rem]}}, pair: ${pair}, pairCount: ${pairCount}`);
+  }
+
+  return pairCount;
+};
+
+console.log(numPairsDivisibleBy60([30, 20, 150, 100, 40]));
+
+/*
+
+t:30 ===> {rem 30: reminderCount 1}, pair: 30, pairCount: 0
+t:20 ===> {rem 20: reminderCount 1}, pair: 40, pairCount: 0
+t:150 ===> {rem 30: reminderCount 2}, pair: 30, pairCount: 1
+t:100 ===> {rem 40: reminderCount 1}, pair: 20, pairCount: 2
+t:40 ===> {rem 40: reminderCount 2}, pair: 20, pairCount: 3
+3
+
+```
+{% endtab %}
+
+{% tab title="ThoughtProcess" %}
+```javascript
+/*
+
+Intuition
+Calculate the 'time % 60' // then it will be simmilar to two sum problem.
+
+with OneItertaion we can achieve  this by using below approach
+
+Explanation:  
+------------
+
+(time[i] + time[j]) % 60 === 0    // from question
+(t + x) % 60 = 0    // find: x
+
+x % 60 = 60 - t % 60  // valid for the most cases
+
+But if t % 60 = 0, x % 60 = 0 instead of 60.
+  - 60 - t % 60 will get a number in range 1 ~ 60.
+  - (60 - t % 60) % 60 can get number in range 0 ~ 59, which is what we want.
+
+
+
+More:
+
+'t % 60 gets the remainder 0 ~ 59.
+  - We count the occurrence of each remainders in a array/hashmap c.
+  - we want to know that, for each 't', how many x satisfy #### (t + x) % 60 = 0 ###
+
+One idea is take 'x % 60 = 60 - t % 60', which is valid for the most cases.
+
+
+Another idea is that x % 60 = (600 - t) % 60.
+Not sure which one is more straight forward.
+
+*/
 ```
 {% endtab %}
 {% endtabs %}
