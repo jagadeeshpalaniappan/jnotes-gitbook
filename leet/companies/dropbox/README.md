@@ -1298,7 +1298,7 @@ const uniqueGridNo = [
 
 ## 
 
-## [13. Number of Valid Words for Each Puzzle](https://leetcode.com/problems/number-of-valid-words-for-each-puzzle)
+## [13. Number of Valid Words for Each Puzzle](https://leetcode.com/problems/number-of-valid-words-for-each-puzzle) \[JTODO\]
 
 {% tabs %}
 {% tab title="Question" %}
@@ -1339,9 +1339,181 @@ const uniqueGridNo = [
 
 {% endtab %}
 
-{% tab title="Code" %}
+{% tab title="Sol1: dp" %}
 ```javascript
-...
+/*
+
+Using DP (simmilar to Recursion)
+
+TC : O(n^3) 
+// Size of recursion tree can go up to n^2 // The creation of curDpRes takes n time.
+
+SC : O(n^3)
+// The depth of the recursion tree can go up to nn and each activation record can contains a string curDpRes of size nn.
+
+*/
+function wordBreak(str, wordDict) {
+  const wordDictSet = new Set(wordDict);
+  const dp = [];
+
+  dp[0] = [""]; // initial result // baseCase: in recursion
+
+  for (let end = 1; end <= str.length; end++) {
+    const curDpRes = [];
+
+    for (let start = 0; start < end; start++) {
+      const curWord = str.substring(start, end);
+
+      if (wordDictSet.has(curWord) && dp[start].length > 0) {
+        // curWord: available in 'wordDict'
+
+        // populate: curDpRes
+        for (const eachItem of dp[start]) {
+
+          // append: 'eachItem' with 'curWord'
+          curDpRes.push(eachItem + (eachItem === "" ? "" : " ") + curWord);
+        }
+      }
+    }
+
+    // store: in dp
+    dp[end] = curDpRes;
+  }
+
+  return dp[str.length];
+}
+
+console.log(wordBreak("catsanddog", ["cat", "cats", "and", "sand", "dog"]));
+// ["cat sand dog", "cats and dog"]
+
+
+```
+{% endtab %}
+
+{% tab title="ThoughtProcess" %}
+```javascript
+
+/*
+
+Input: catsanddog
+
+start-->end ==> curWord   // curWord = str.substring(start,end)
+
+--------$dp=[[""]]------------
+
+#end: 1
+~~~~~~~~~~
+0 --> 1   ==> c
+---------$dp=[[""],[]]-----------
+
+#end: 2
+~~~~~~~~~~
+ 0 --> 2  ==> ca
+ 1 --> 2  ==> a 
+
+----------$dp=[[""],[],[]]----------
+
+#end: 3
+~~~~~~~~~~
+ 0 --> 3  ==> cat ==> IN-DICT & $dp[0] ==> eachItem in $dp[0] ==> append: 'eachItem + curWord' ==>  $dp[3].push(appendedVal)
+ #                                                                              ''   +  cat  
+ 1 --> 3  ==> at
+ 2 --> 3  ==> t
+
+------------$dp=[[""],[],[],["cat"]]--------
+
+#end: 4
+~~~~~~~~~~
+ 0 --> 4  ==> cats ==> IN-DICT & $dp[0] ==> eachItem in $dp[0] ==> append: 'eachItem + curWord' ==>  $dp[4].push(appendedVal)
+ #                                                                              ''   +  cats  
+ 1 --> 4  ==> ats
+ 2 --> 4  ==> ts
+ 3 --> 4  ==> s
+
+----------$dp=[[""],[],[],["cat"],["cats"]]----------
+
+#end: 5
+~~~~~~~~~~
+ 0 --> 5  ==> catsa
+ 1 --> 5  ==> atsa
+ 2 --> 5  ==> tsa
+ 3 --> 5  ==> sa
+ 4 --> 5  ==> a
+---------$dp=[[""],[],[],["cat"],["cats"],[]]-----------
+
+#end: 6
+~~~~~~~~~~
+ 0 --> 6  ==> catsan
+ 1 --> 6  ==> atsan
+ 2 --> 6  ==> tsan
+ 3 --> 6  ==> san
+ 4 --> 6  ==> an
+ 5 --> 6  ==> n
+
+---------$dp=[[""],[],[],["cat"],["cats"],[],[]]-----------
+
+#end: 7
+~~~~~~~~~~
+ 0 --> 7  ==> catsand
+ 1 --> 7  ==> atsand
+ 2 --> 7  ==> tsand
+ 3 --> 7  ==> sand ==> IN-DICT & $dp[3] ==> eachItem in $dp[3] ==> append: 'eachItem + curWord' ==>  $dp[4].push(appendedVal)
+ #                                                                           'cat'   +  sand
+
+ 4 --> 7  ==> and ==> IN-DICT & $dp[3] ==> eachItem in $dp[4] ==> append: 'eachItem + curWord' ==>  $dp[4].push(appendedVal)
+ #                                                                           'cats' +  and
+
+ 5 --> 7  ==> nd
+ 6 --> 7  ==> d
+
+---------$dp=[[""],[],[],["cat"],["cats"],[],[],["cat sand","cats and"]]-----------
+
+#end: 8
+~~~~~~~~~~
+ 0 --> 8  ==> catsandd
+ 1 --> 8  ==> atsandd
+ 2 --> 8  ==> tsandd
+ 3 --> 8  ==> sandd
+ 4 --> 8  ==> andd
+ 5 --> 8  ==> ndd
+ 6 --> 8  ==> dd
+ 7 --> 8  ==> d
+
+---------$dp=[[""],[],[],["cat"],["cats"],[],[],["cat sand","cats and"],[]]-----------
+
+#end: 9
+~~~~~~~~~~
+ 0 --> 9  ==> catsanddo
+ 1 --> 9  ==> atsanddo
+ 2 --> 9  ==> tsanddo
+ 3 --> 9  ==> sanddo
+ 4 --> 9  ==> anddo
+ 5 --> 9  ==> nddo
+ 6 --> 9  ==> ddo
+ 7 --> 9  ==> do
+ 8 --> 9  ==> o
+
+---------$dp=[[""],[],[],["cat"],["cats"],[],[],["cat sand","cats and"],[],[]]-----------
+
+#end: 10
+~~~~~~~~~~
+ 0 --> 10  ==> catsanddog
+ 1 --> 10  ==> atsanddog
+ 2 --> 10  ==> tsanddog
+ 3 --> 10  ==> sanddog
+ 4 --> 10  ==> anddog
+ 5 --> 10  ==> nddog
+ 6 --> 10  ==> ddog
+ 7 --> 10  ==> dog  ==> IN-DICT & $dp[3] ==> eachItem in $dp[7] ==> append: 'eachItem + curWord' ==>  $dp[10].push(appendedVal)
+ #                                                                         'cat sand' +  dog
+ #                                                                         'cats and' +  dog
+
+ 8 --> 10  ==> og
+ 9 --> 10  ==> g
+
+---------$dp=[[""],[],[],["cat"],["cats"],[],[],["cat sand","cats and"],[],[],["cat sand dog","cats and dog"]]-----------
+
+*/
 ```
 {% endtab %}
 {% endtabs %}
