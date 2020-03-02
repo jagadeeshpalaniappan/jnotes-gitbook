@@ -1738,7 +1738,20 @@ Not sure which one is more straight forward.
 
 {% tabs %}
 {% tab title="Question" %}
-...
+```text
+/*
+4. Median of Two Sorted Arrays
+Hard
+
+Example 1:
+nums1 = [1, 3], nums2 = [2]
+O/P: The median is 2.0
+
+Example 2:
+nums1 = [1, 2], nums2 = [3, 4]
+O/P: The median is (2 + 3)/2 = 2.5
+*/
+```
 {% endtab %}
 
 {% tab title="More" %}
@@ -1751,7 +1764,53 @@ Not sure which one is more straight forward.
 
 {% tab title="Code" %}
 ```javascript
-...
+
+/*
+  Sol1: Merge two sorted arr and find the median
+  How to merge 2 sorted arr?  // Use the mergeSort --> merge fn  
+
+  TC: O(n+m)
+*/
+
+/*
+  Sol2: Merge two sorted arr and find the median
+  How to merge 2 sorted arr?  // Use the mergeSort --> merge fn  
+
+  EASY: using 'Two Pointer' & 'curr' & 'last'
+
+  TC: O(n+m)
+*/
+
+var findMedianSortedArrays = function(nums1, nums2) {
+  let totalLen = nums1.length + nums2.length;
+
+  let idx1 = 0;
+  let idx2 = 0;
+  let curr;
+  let last;
+
+  while (idx1 + idx2 <= totalLen / 2) {
+    if (curr !== undefined) {
+      last = curr;
+    }
+    let elOne = nums1[idx1];
+    let elTwo = nums2[idx2];
+    if (elOne === undefined) {
+      curr = elTwo;
+      idx2++;
+    } else if (elTwo === undefined) {
+      curr = elOne;
+      idx1++;
+    } else if (elOne < elTwo) {
+      curr = elOne;
+      idx1++;
+    } else {
+      curr = elTwo;
+      idx2++;
+    }
+  }
+  return totalLen % 2 === 0 ? (last + curr) / 2 : curr;
+};
 ```
 {% endtab %}
 {% endtabs %}
@@ -1775,7 +1834,30 @@ Not sure which one is more straight forward.
 
 {% tab title="Code" %}
 ```javascript
-...
+// map lookup -solution [BEST]
+// Time Complexity: O(n) // Space complexity : O(n) used: Map for lookup
+function twoSum2(inputArr, target) {
+
+  // map = { eachInputVal: currespondingIndex }
+  var map = {};
+  for (var i = 0; i < inputArr.length; i++) {
+
+    var currentNo = inputArr[i];
+    var expectedNo = target - currentNo;
+
+    // Is expectedNo already available ?
+    if (map[expectedNo] || map[expectedNo] === 0) {
+      // [expectedIndex , currentIndex]
+      return [map[expectedNo], i];
+    }
+
+    // expectedNo NOT available, add it in the map
+    // map: { currentNo: currentIndex }
+    map[currentNo] = i;
+    // console.log('currentNo:'+ currentNo + '--currentIndex:'+ i);
+  }
+
+}
 ```
 {% endtab %}
 {% endtabs %}
