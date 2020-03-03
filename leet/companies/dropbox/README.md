@@ -2036,23 +2036,28 @@ Questions:
 * How to find the greatest value in all the paths from the left to the right on a given board 
 * Implement a search method that finds the minimal-cost element of each path in a matrix.
 * finding the maximal minimum element in all paths from left to right side of a grid. 
-* Implement Dictionary Tree
+* * Implement Dictionary Tree
 * Sorting Words in a List
+  * [https://leetcode.com/problems/sort-list/discuss/46714/Java-merge-sort-solution](https://leetcode.com/problems/sort-list/discuss/46714/Java-merge-sort-solution)
+  * [https://leetcode.com/problems/custom-sort-string/discuss/116615/JavaPython-3-one-Java-10-liner-Python-6-liner-and-2-liner-solutions-w-comment](https://leetcode.com/problems/custom-sort-string/discuss/116615/JavaPython-3-one-Java-10-liner-Python-6-liner-and-2-liner-solutions-w-comment)
 * design a spell-checking algorithm
+  * [https://www.geeksforgeeks.org/data-structure-dictionary-spell-checker/](https://www.geeksforgeeks.org/data-structure-dictionary-spell-checker/)
+  * 
 * finding the next state given a grid
 * Tree navigation
-* What happens when you type google.com into your browser and press enter?
-* Combination, Filesystem, Something like B tree
-* how much memory a boolean, long, or char takes up for example
+* * **What happens when you type google.com into your browser and press enter?**
+* * Combination, Filesystem, Something like B tree
+* **how much memory a boolean, long, or char takes up for example**
   * how to select data types to compress memory
 
 
 
 * locate certain types of words in a dictionary 
-* You have a number of meetings \(with their start and end times\). You need to schedule them using the minimum number of rooms. Return the list of meetings in every room.
+* You have a number of **meetings** \(with their start and end times\). You need to schedule them using the minimum number of rooms. Return the list of meetings in every room.
+  * [https://jagadeeshpalaniappan.gitbook.io/jnotes/leet/top-100-liked/top-100-medium\#10-meeting-rooms-ii](https://jagadeeshpalaniappan.gitbook.io/jnotes/leet/top-100-liked/top-100-medium#10-meeting-rooms-ii)
 * Given a list of names \(strings\) and the width of a line, design an algorithm to display them using the minimum number of lines.
 * find the square root of an integer
-* Frenemy: Find if a given string matches any path in a labeled graph. A path may contain cycles. You have 60 minutes to solve it.
+* * Frenemy: Find if a given string matches any path in a labeled graph. A path may contain cycles. You have 60 minutes to solve it.
 * Implement a Reader writers lock using mutexes and/or condition variables.
 
 
