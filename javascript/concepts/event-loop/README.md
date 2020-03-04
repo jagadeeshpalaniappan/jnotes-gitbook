@@ -1,7 +1,7 @@
 # 1. Event Loop
 
 ```javascript
-JavaScript is 
+JavaScript is `SNEAC`
     - 'single-threaded', 
     - 'non-blocking', 
     - 'event-driven', 'asynchronous', 'concurrent' language
@@ -18,7 +18,15 @@ Browser has
 - But browser can do 'more than one thing at a time'
 ```
 
+{% tabs %}
+{% tab title="EventLoop" %}
 ![](../../../.gitbook/assets/browser.gif)
+{% endtab %}
+
+{% tab title="EventLoop \(detailed\)" %}
+![](../../../.gitbook/assets/image%20%284%29.png)
+{% endtab %}
+{% endtabs %}
 
 ```javascript
 - When 'JavaScript CallStack' sees the async fn (setTimeout, xhr,..)
