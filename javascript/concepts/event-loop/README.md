@@ -50,6 +50,11 @@ it looks at
 On every 'Event Loop' iteration, 
 - if the current CallStack is empty and MicroTaskQueue is empty,
 - it takes the "first Task's callback fn" from the 'Task Queue' and executes in the current CallStack
+
+
+Note:
+- All windows on the 'same origin' shares the 'same event loop' as they can synchronously communicate.
+- Each web worker gets its own 'thread' and gets its own 'event loop', so it can execute independently.
 ```
 
 ```javascript
