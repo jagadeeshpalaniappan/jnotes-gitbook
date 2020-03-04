@@ -18,7 +18,10 @@
 ## Conflicts:
 
 ```javascript
+- 'Independent Chart Loading': initialy this idea was accepted
+
 - 'DeleteAll Button': UX was not happy, provided 'Confimation Dialog' & 'Undo' options
 - '_.cloneDeep(...)' --> 'JSON.stringy(JSON.parse(...))'
+
 ```
 
