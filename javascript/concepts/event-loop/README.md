@@ -23,7 +23,7 @@ Browser has
 ![](../../../.gitbook/assets/browser.gif)
 {% endtab %}
 
-{% tab title="EventLoop \(detailed\)" %}
+{% tab title="EventLoop \(example\)" %}
 ![](../../../.gitbook/assets/image%20%284%29.png)
 {% endtab %}
 {% endtabs %}
