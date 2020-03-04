@@ -155,7 +155,7 @@ const myArr = ['b', 'c', 'a']; const sortedItems = myArr.sort();
 ['a', 'c', 'b'].sort((a,b)=> a>b ? 1: -1); // ["a", "b", "c"]
 
 // String -Descending Order 
-['a', 'c', 'b'].sort((a,b)=> b>a ? 1: -1); // ["a", "b", "c"]
+['a', 'c', 'b'].sort((a,b)=> b>a ? 1: -1); // ["c", "b", "a"]
 
 ---
 // Number -Ascending Order 
