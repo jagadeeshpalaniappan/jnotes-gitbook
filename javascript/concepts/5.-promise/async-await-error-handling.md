@@ -43,6 +43,15 @@ const handle = (promise) => {
     .catch(error => Promise.resolve([undefined, error]));
 }
 
+async function handle (promise) {
+  try {
+    const res = await promise;
+    return [res, null];
+  } catch(errRes) {
+    return [null, errRes];
+  }
+}
+
 async function userProfile() {
 
   let [user, userErr] = await handle(getUser());
