@@ -8,6 +8,8 @@
 
 - 'Polymer Memory Issues': Applied Singleton design pattern to reduce memory issue
 
+- 'UI Template verisoning / Importers'
+
 - 'Delayed Retries / DynamicRetryCount /  ' (/EnvVar ) - for handing low down stream
 
 - 'CleanCode': handlePromise(...)
