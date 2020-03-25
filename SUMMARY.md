@@ -87,12 +87,12 @@
 
 ## CSS
 
-* [CSS Concepts](css/concepts/README.md)
+* [CSS Framework](css/concepts/README.md)
   * [1. CSS Organization Methodologies](css/concepts/6.-css-organization-methodologies.md)
   * [2. CSS Preprocessors](css/concepts/5.-css-preprocessors-sass-less/README.md)
     * [Sass](css/concepts/5.-css-preprocessors-sass-less/sass.md)
   * [todo](css/concepts/todo.md)
-* [CSS How to?](css/css-how-to/README.md)
+* [CSS Concepts](css/css-how-to/README.md)
   * [Quick CSS](css/css-how-to/quick-videos.md)
   * [1. CSS Box Model](css/css-how-to/1.md)
   * [2. CSS Specificity](css/css-how-to/2.md)
