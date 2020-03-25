@@ -2145,28 +2145,41 @@ const dialpadMap = {
   9: ["w", "x", "y", "z"]
 };
 
+
 /*
   Using BFS
-  TC: 4^n  SC: 4^n
+
+  TC: 4^n   // Why 4? at max eachDigit has 4 char
+  SC: 4^n
 */
 function letterCombinations(digits) {
   if (!digits) return [];
+
+  // populate: 'results' only for 1st digit
   let results = [...dialpadMap[digits[0]]];
 
+  // iter: fromSecondDigit // IMP
   for (let i = 1; i < digits.length; i++) {
-    const letters = dialpadMap[digits[i]]; // dialpadMap[eachDigit]
-    const tmpArr = [];
-    for (let combination of results) {
-      for (let letter of letters) {
-        tmpArr.push(combination + letter);
+    const curDigitChars = dialpadMap[digits[i]]; // dialpadMap[eachDigit]
+
+    const newResults = [];
+
+    // result: iter
+    for (let baseChar of results) {
+
+      // curDigitChars: iter
+      for (let curChar of curDigitChars) {
+
+        newResults.push(baseChar + curChar);
       }
     }
-    results = tmpArr;
+
+    // update: results
+    results = newResults;
   }
 
   return results;
 }
-
 console.log(letterCombinations("234"));
 ```
 {% endtab %}
@@ -2184,7 +2197,8 @@ console.log(letterCombinations("234"));
 
 
 
-//          letters                   results
+//        curDigitChars                 results
+          ~~~~~~~~~~~~~~               ~~~~~~~~~~
 2 3 4     ["a", "b", "c"]           ["a", "b", "c"]
 *
 
