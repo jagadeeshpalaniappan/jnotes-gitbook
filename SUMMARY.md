@@ -2,21 +2,21 @@
 
 * [jnotes](README.md)
 
-## interview
+## IVIEW
 
-* [Basic](interview/basic/README.md)
-  * [Intro](interview/basic/intro.md)
-  * [Questions](interview/basic/questions.md)
-  * [Behavior](interview/basic/behavior.md)
-  * [Negotiation](interview/basic/negotiation.md)
-  * [Achievements](interview/basic/achievements/README.md)
-    * [1. Controlling WebApp using 'Voice'](interview/basic/achievements/1.-controlling-webapp-using-voice.md)
-* [UI](interview/ui/README.md)
-  * [UI Concepts](interview/ui/ui-concepts.md)
-  * [JavaScript Concepts](interview/ui/javascript-concepts.md)
-  * [CSS Concepts](interview/ui/css-concepts.md)
-* [ServerSide](interview/serverside.md)
-* [Others](interview/others.md)
+* [Basic](iview/basic/README.md)
+  * [Intro](iview/basic/intro.md)
+  * [Questions](iview/basic/questions.md)
+  * [Behavior](iview/basic/behavior.md)
+  * [Negotiation](iview/basic/negotiation.md)
+  * [Achievements](iview/basic/achievements/README.md)
+    * [1. Controlling WebApp using 'Voice'](iview/basic/achievements/1.-controlling-webapp-using-voice.md)
+* [UI](iview/ui/README.md)
+  * [UI Concepts](iview/ui/ui-concepts.md)
+  * [JavaScript Concepts](iview/ui/javascript-concepts.md)
+  * [CSS Concepts](iview/ui/css-concepts.md)
+* [ServerSide](iview/serverside.md)
+* [Others](iview/others.md)
 
 ## JavaScript
 
