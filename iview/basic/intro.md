@@ -9,7 +9,7 @@
 
   * designing, developing \(Front-End & Back-End\) application and deploying them on cloud
 
-* But I have more passion towards working Front-End development
+* Even though I know both, I have more passion towards working Front-End development
 
   * in-fact, FrontEnd development is my hobby, 
   * I really enjoy working with Front-End web technologies
