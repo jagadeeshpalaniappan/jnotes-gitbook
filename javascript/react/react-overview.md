@@ -6,6 +6,8 @@
 {% tab title="Quick" %}
 ```csharp
 
+----------------------------------- Keywords -----------------------------------
+
 # Class Component
 
 # Functional Component
