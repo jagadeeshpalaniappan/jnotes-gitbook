@@ -35,7 +35,19 @@
 - // { type: 'ADD_TODO', payload: { name: 'Cook Dinner' } } 
 - // { type: 'TOGGLE_TODO', payload: { id: '101' }  }
 
+# Action Creators:
+- pureFn: returns an action  (helper dn for returning an action)
+- // () => ({ type: 'ADD_TODO', payload: { name: 'Cook Dinner' } })
 
+# Async Action Creators:
+-  by using some reduxMiddlewares (e.g. redux-thunk), 
+    - an action creator can return a 'function' instead of an 'action object'.
+-  it need not to be pureFn, it is allowed to have sideEffects
+    - such as 'calling API' or 'calling any promise' or 'calling multiple dispatcher before/after API calls'
+    
+
+# Selectors:
+- TODO
 
 
 ```

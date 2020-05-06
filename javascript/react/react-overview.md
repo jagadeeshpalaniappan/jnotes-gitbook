@@ -3,6 +3,36 @@
 ## React LifeCycle
 
 {% tabs %}
+{% tab title="Quick" %}
+```csharp
+
+# Class Component
+
+# Functional Component
+
+----------
+# Smart Component
+- has a state
+
+# Dump Component
+- doesn't have a state
+
+----------
+# Container vs Component
+
+# Container
+
+# Component
+----------
+    
+# Higher Order Components vs Mixins
+
+# Higher Order Components (HOCs) vs Render Props vs Hooks
+
+// https://medium.com/simply/comparison-hocs-vs-render-props-vs-hooks-55f9ffcd5dc6
+```
+{% endtab %}
+
 {% tab title="Old" %}
 ![](../../.gitbook/assets/image-191.png)
 {% endtab %}
