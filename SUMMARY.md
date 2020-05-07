@@ -2,12 +2,12 @@
 
 * [jnotes](README.md)
 
-## TODO <a id="todo-1"></a>
+## TODO
 
-* [UI-TODO](todo-1/ui-todo.md)
-* [SERVER-TODO](todo-1/server-todo.md)
-* [OTHERS-TODO](todo-1/others-todo.md)
-* [MY-TODO](todo-1/my-todo.md)
+* [UI-TODO](todo/ui-todo.md)
+* [SERVER-TODO](todo/server-todo.md)
+* [OTHERS-TODO](todo/others-todo.md)
+* [MY-TODO](todo/my-todo.md)
 
 ## JavaScript
 
