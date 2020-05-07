@@ -2,15 +2,6 @@
 
 * [jnotes](README.md)
 
-## IVIEW
-
-* [UI](iview/ui/README.md)
-  * [UI Concepts](iview/ui/ui-concepts.md)
-  * [JavaScript Concepts](iview/ui/javascript-concepts.md)
-  * [CSS Concepts](iview/ui/css-concepts.md)
-* [ServerSide](iview/serverside.md)
-* [Others](iview/others.md)
-
 ## TODO <a id="todo-1"></a>
 
 * [UI-TODO](todo-1/ui-todo.md)
