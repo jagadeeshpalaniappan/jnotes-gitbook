@@ -4,19 +4,19 @@
 
 ## IVIEW
 
-* [Basic](iview/basic/README.md)
-  * [Intro](iview/basic/intro.md)
-  * [Questions](iview/basic/questions.md)
-  * [Behavior](iview/basic/behavior.md)
-  * [Negotiation](iview/basic/negotiation.md)
-  * [Achievements](iview/basic/achievements/README.md)
-    * [1. Controlling WebApp using 'Voice'](iview/basic/achievements/1.-controlling-webapp-using-voice.md)
 * [UI](iview/ui/README.md)
   * [UI Concepts](iview/ui/ui-concepts.md)
   * [JavaScript Concepts](iview/ui/javascript-concepts.md)
   * [CSS Concepts](iview/ui/css-concepts.md)
 * [ServerSide](iview/serverside.md)
 * [Others](iview/others.md)
+
+## TODO <a id="todo-1"></a>
+
+* [UI-TODO](todo-1/ui-todo.md)
+* [SERVER-TODO](todo-1/server-todo.md)
+* [OTHERS-TODO](todo-1/others-todo.md)
+* [MY-TODO](todo-1/my-todo.md)
 
 ## JavaScript
 
@@ -201,8 +201,4 @@
   * [DB](leet/companies/dropbox/README.md)
     * [SysDesign](leet/companies/dropbox/sysdesign.md)
     * [More Insight](leet/companies/dropbox/more-insight.md)
-
-## TODO
-
-* [TODO](todo/todo.md)
 
