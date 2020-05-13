@@ -248,14 +248,7 @@ document.querySelector('#list').appendChild(docFrag); // 'render' happens only o
 ## 3. Optimistic UI
 
 {% tabs %}
-{% tab title="First Tab" %}
-{% embed url="https://www.apollographql.com/docs/react/performance/optimistic-ui/" %}
-
-* [https://www.apollographql.com/docs/react/performance/performance/](https://www.apollographql.com/docs/react/performance/performance/)
-* [https://www.apollographql.com/docs/react/performance/optimistic-ui/](https://www.apollographql.com/docs/react/performance/optimistic-ui/)
-* [https://www.apollographql.com/docs/react/performance/server-side-rendering/](https://www.apollographql.com/docs/react/performance/server-side-rendering/)
-* [https://www.apollographql.com/docs/react/performance/babel/](https://www.apollographql.com/docs/react/performance/babel/)
-
+{% tab title="GraphQL Performance" %}
 ```csharp
 # Example: WhatsApp (send a message)
 
@@ -265,6 +258,11 @@ document.querySelector('#list').appendChild(docFrag); // 'render' happens only o
 - After server respond (it is success),
   - 'Message Bubble is updated' (with little 'tick')
 ```
+
+* [https://www.apollographql.com/docs/react/performance/performance/](https://www.apollographql.com/docs/react/performance/performance/)
+* [https://www.apollographql.com/docs/react/performance/optimistic-ui/](https://www.apollographql.com/docs/react/performance/optimistic-ui/)
+* [https://www.apollographql.com/docs/react/performance/server-side-rendering/](https://www.apollographql.com/docs/react/performance/server-side-rendering/)
+* [https://www.apollographql.com/docs/react/performance/babel/](https://www.apollographql.com/docs/react/performance/babel/)
 {% endtab %}
 
 {% tab title="Second Tab" %}
