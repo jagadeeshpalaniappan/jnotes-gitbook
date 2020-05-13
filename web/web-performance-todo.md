@@ -251,6 +251,11 @@ document.querySelector('#list').appendChild(docFrag); // 'render' happens only o
 {% tab title="First Tab" %}
 {% embed url="https://www.apollographql.com/docs/react/performance/optimistic-ui/" %}
 
+* [https://www.apollographql.com/docs/react/performance/performance/](https://www.apollographql.com/docs/react/performance/performance/)
+* [https://www.apollographql.com/docs/react/performance/optimistic-ui/](https://www.apollographql.com/docs/react/performance/optimistic-ui/)
+* [https://www.apollographql.com/docs/react/performance/server-side-rendering/](https://www.apollographql.com/docs/react/performance/server-side-rendering/)
+* [https://www.apollographql.com/docs/react/performance/babel/](https://www.apollographql.com/docs/react/performance/babel/)
+
 ```csharp
 # Example: WhatsApp (send a message)
 

@@ -57,6 +57,7 @@
 # Design Patterns :
 ---------------------
 - BFF (Backend for Frontend Design Pattern) // E.g. GraphQL
+    -- GraphQL schema should be driven by the 'UI Requirements'
 - Higher Order Components
 - Higher Order Functions
 - Pure Functions (noSideEffects)
