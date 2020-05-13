@@ -245,6 +245,28 @@ document.querySelector('#list').appendChild(docFrag); // 'render' happens only o
 {% endtab %}
 {% endtabs %}
 
+## 3. Optimistic UI
+
+{% tabs %}
+{% tab title="First Tab" %}
+{% embed url="https://www.apollographql.com/docs/react/performance/optimistic-ui/" %}
+
+```csharp
+# Example: WhatsApp (send a message)
+
+- 'Message Bubble is Created' (with little 'dot')
+  - (even before server responded that it is successfully created)
+
+- After server respond (it is success),
+  - 'Message Bubble is updated' (with little 'tick')
+```
+{% endtab %}
+
+{% tab title="Second Tab" %}
+
+{% endtab %}
+{% endtabs %}
+
 
 
 {% embed url="https://www.debugbear.com/blog/performant-front-end-architecture" %}
