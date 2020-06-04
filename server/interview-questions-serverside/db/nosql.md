@@ -175,7 +175,9 @@
       </td>
     </tr>
   </tbody>
-</table>## Security: SQL Vs NoSQL
+</table>
+
+## Security: SQL Vs NoSQL
 
 * Database Security is required to provide --&gt; **CIA** \(Confidentiality, Integrity, and Availability\)
   * Confidentiality means that only the authorized users or systems can access the data, 

@@ -67,7 +67,9 @@
     </tr>
   </thead>
   <tbody></tbody>
-</table>### Aliases Methods
+</table>
+
+### Aliases Methods
 
 1. ~~**componentWillMount**\(\)~~ **→**  UNSAFE\_componentWillMount\(\)
 2. ~~**componentWillReceiveProps**\(\)~~ **→**  UNSAFE\_componentWillReceiveProps\(\)

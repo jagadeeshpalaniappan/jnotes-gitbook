@@ -103,7 +103,9 @@
       </td>
     </tr>
   </tbody>
-</table>\#\#\# 3xx: Redirection
+</table>
+
+\#\#\# 3xx: Redirection
 
 <table>
   <thead>
@@ -159,7 +161,9 @@
       <td style="text-align:left">The requested page has moved temporarily to a new url.</td>
     </tr>
   </tbody>
-</table>\#\#\# 4xx: Client Error
+</table>
+
+\#\#\# 4xx: Client Error
 
 <table>
   <thead>
@@ -268,7 +272,9 @@
         by this server.</td>
     </tr>
   </tbody>
-</table>\#\#\# 5xx: Server Error
+</table>
+
+\#\#\# 5xx: Server Error
 
 <table>
   <thead>
@@ -324,6 +330,8 @@
     </tr>
   </tbody>
 </table>
+
+
 
 
 
