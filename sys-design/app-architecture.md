@@ -77,7 +77,7 @@
 - Send Email Notifications
 
 
-- Full Text search (fasterSearch) (invertedKeys) (E.g. Elastic Search)
+- Full Text search (fileTextSearch) (InvertedIndex) (E.g. ElasticSearch)
 
 
 ```
