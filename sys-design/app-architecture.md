@@ -18,7 +18,7 @@
 # Auth: (OAuth)
 - UAA
 - Auth0
-- OpenID (Github, Google,...)
+- OpenID Auth [Ex: Github, Google,...]
 
 ```
 {% endtab %}
@@ -73,12 +73,15 @@
 - Async Transaction (Pub/Sub)
 
 - Live Data Updates (periodicPollingData / webSocket[Pub/Sub][GraphQLSubscription])  
-- Import/Export File
 - Send Email Notifications
 
-
-- Full Text search (fileTextSearch) (InvertedIndex) (E.g. ElasticSearch)
-
+# File (Features):
+- Import/Export File (BlobStore[Ex:S3], CDN[Ex:CloudFront]?)
+- Full Text search (fileTextSearch) (InvertedIndex) [Ex:ElasticSearch]
+- CollbarativeEdit 
+    - using 'Lock' (Pessimistic Concurrency Control)
+    - using 'Versioning & Conflict Resolution' (Opttimistic Concurrency Control) 
+    - Strategies: (Operational Transformation / Differential Syncing)
 
 ```
 {% endtab %}
