@@ -104,3 +104,16 @@ CSRF (Cross Site Request Forgery)
 
 ## HTTP Header Injection
 
+
+
+
+
+### [Clarification on the security implications of httpOnly](https://forums.fauna.com/t/do-i-need-a-backend-api-between-faunadb-and-my-app-what-are-the-use-cases-of-an-api/95/6)
+
+Since I mentioned httpOnly cookies, it makes sense that we also explain the extra advantage that brings and the different approaches. There are many ways to store keys in memory.
+
+* **local storage** [vulnerable to XSS](https://dev.to/rdegges/please-stop-using-local-storage-1i04)
+* **regular cookies** vulnerable to CSRF and cookies could be read by the client making them also vulnerable by XSS. It’s much more nuanced than that though, [a good explanation on this](https://blog.yeswehack.com/2018/01/22/the-dark-side-of-xss-revealed/).
+* **in memory \(in a JavaScript variable\)** vulnerable to XSS … but this is actually safer than localstorage and regular cookies, and that security is indeed security by obfuscation which is questionable \(yet often still a good idea\). The idea here is that an automatic attack that briefly gets in and quickly copies over your cookies or localstorage content will not have any success. If it’s a manual attack he’ll have to do a significant effort before he finds an in-memory secret compared to localstorage or cookies which are, of course, easy to find. **However**, in memory is annoying since it logs you out on each refresh!
+* **httpOnly cookies** Protected from XSS, vulnerable to CSRF \(but there are other ways to protect against that\) Cookies that can’t be read from JavaScript \(if your browser supports it and handles it correctly, there are always [some subtle security things](https://resources.infosecinstitute.com/cookies-httponly-flag-problem-browsers/#gref) you have to know\). These require a backend for the endpoints where you want to use the data that is stored in the cookie. Which is logical since the whole point is that JS can’t access this data.
+
