@@ -131,7 +131,8 @@
 
 ## SYS-DESIGN
 
-* [App Architecture](sys-design/app-architecture.md)
+* [App Architecture](sys-design/app-architecture/README.md)
+  * [JAM Stack](sys-design/app-architecture/jam-stack.md)
 * [System Design](sys-design/system-design/README.md)
   * [File](sys-design/system-design/file/README.md)
     * [File: Upload](sys-design/system-design/file/file-upload.md)
