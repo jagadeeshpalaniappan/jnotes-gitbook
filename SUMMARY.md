@@ -160,7 +160,10 @@
 
 ## INFRA
 
-* [Kubernetes Local Setup](infra/kubernetes-local-setup.md)
+* [Kubernetes](infra/kubernetes/README.md)
+  * [Overview](infra/kubernetes/overview.md)
+  * [Kubernetes Commands](infra/kubernetes/kubernetes-commands.md)
+  * [Kubernetes Local Setup](infra/kubernetes/kubernetes-local-setup.md)
 
 ## DS-ALG
 
