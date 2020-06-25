@@ -158,6 +158,10 @@
 * [Misc](sys-design/misc/README.md)
   * [CloudFoundry](sys-design/misc/cloudfoundry.md)
 
+## INFRA
+
+* [Kubernetes Local Setup](infra/kubernetes-local-setup.md)
+
 ## DS-ALG
 
 * [DS](ds-alg/ds/README.md)
