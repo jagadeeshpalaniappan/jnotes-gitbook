@@ -1,22 +1,165 @@
 # Overview
 
+{% tabs %}
+{% tab title="12 Factor Apps" %}
+* Kubernetes is best suitable for `12 Factor Apps`
+
+1. TODO
+2. TODO
+3. .....
+{% endtab %}
+
+{% tab title="Docker" %}
 
 
-* Kubernetes works better for `12 Factor App`
-* Dockerfile &gt;&gt; Docker Image \(hosted in dockerhub registry\)  &gt;&gt; Container![](cid:68BF2DEC-D9E0-405A-AE58-40987109A1E1@hsd1.ca.comcast.net)  
-* In VM, Guest OS takes lot of resources \(RAM, CPU,…\) 
-  * * We don’t need Guest OS in Containers
-* 
-![](cid:68BF2DEC-D9E0-405A-AE58-40987109A1E1@hsd1.ca.comcast.net)
+* **Dockerfile** &gt;&gt; **Docker Image** \(hosted in dockerhub registry\)  &gt;&gt; **Containers**
 
-![](cid:4134D521-521C-4778-992B-F3E728B964B0@hsd1.ca.comcast.net)  
-  
-**Kubernetes Architecture:**  
-![](cid:31E419C3-5E2D-457E-9259-60CBDA83CDFF@hsd1.ca.comcast.net)  
-  
-  
-**AWS Cluster1**
+![](../../.gitbook/assets/image%20%2814%29.png)
+{% endtab %}
 
+{% tab title="Docker vs VM" %}
+In VM, Guest OS takes lot of resources \(RAM, CPU,…\)  // We don’t need Guest OS in Containers
+
+![](../../.gitbook/assets/image%20%2828%29.png)
+{% endtab %}
+{% endtabs %}
+
+\*\*\*\*
+
+### Kubernetes: Overview
+
+{% tabs %}
+{% tab title="Orchestration" %}
+
+
+![](../../.gitbook/assets/image%20%2819%29.png)
+{% endtab %}
+
+{% tab title="Kubernetes Architecture" %}
+
+
+![](../../.gitbook/assets/image%20%2820%29.png)
+{% endtab %}
+
+{% tab title="" %}
+
+{% endtab %}
+{% endtabs %}
+
+\*\*\*\*
+
+### Kubernetes: Key Topics:
+
+{% tabs %}
+{% tab title="NameSpaces" %}
+
+
+![](../../.gitbook/assets/image%20%2822%29.png)
+{% endtab %}
+
+{% tab title="Contexts" %}
+
+
+![](../../.gitbook/assets/image%20%2830%29.png)
+{% endtab %}
+
+{% tab title="Pods" %}
+
+
+![](../../.gitbook/assets/image%20%289%29.png)
+{% endtab %}
+
+{% tab title="Volume" %}
+![](../../.gitbook/assets/image%20%2815%29.png)
+
+**Persistent Volumes**
+
+![](../../.gitbook/assets/image%20%2816%29.png)
+{% endtab %}
+
+{% tab title="Services" %}
+
+
+![](../../.gitbook/assets/image%20%2811%29.png)
+{% endtab %}
+
+{% tab title="Deployments" %}
+
+
+![](../../.gitbook/assets/image%20%2823%29.png)
+{% endtab %}
+
+{% tab title="Deployments - Rollouts and Rollbacks" %}
+
+
+![](../../.gitbook/assets/image%20%2827%29.png)
+{% endtab %}
+
+{% tab title="ReplicaSets" %}
+
+{% endtab %}
+
+{% tab title="External Access" %}
+
+{% endtab %}
+
+{% tab title="Ingress" %}
+External Access
+
+![](../../.gitbook/assets/image%20%2813%29.png)
+
+**Ingress**
+
+![](../../.gitbook/assets/image%20%288%29.png)
+
+![](../../.gitbook/assets/image%20%2826%29.png)
+{% endtab %}
+{% endtabs %}
+
+### Kubernetes: Other Topics:
+
+{% tabs %}
+{% tab title="ConfigMaps" %}
+![](../../.gitbook/assets/image%20%2810%29.png)
+{% endtab %}
+
+{% tab title="Secrets" %}
+![](../../.gitbook/assets/image%20%2829%29.png)
+{% endtab %}
+
+{% tab title="Security Contexts" %}
+![](../../.gitbook/assets/image%20%2824%29.png)
+{% endtab %}
+
+{% tab title="Network Policies" %}
+![](../../.gitbook/assets/image%20%2817%29.png)
+{% endtab %}
+
+{% tab title="Labels & Selectors" %}
+![](../../.gitbook/assets/image%20%2812%29.png)
+{% endtab %}
+
+{% tab title="Annotations" %}
+![](../../.gitbook/assets/image%20%2821%29.png)
+{% endtab %}
+
+{% tab title="Liveness and Readiness Probes" %}
+![](../../.gitbook/assets/image%20%2818%29.png)
+{% endtab %}
+
+{% tab title="Resource Quotas" %}
+![](../../.gitbook/assets/image%20%2825%29.png)
+{% endtab %}
+
+{% tab title="" %}
+
+{% endtab %}
+{% endtabs %}
+
+\*\*\*\*
+
+{% tabs %}
+{% tab title="High Level Summary" %}
 * **Context1**
   * **NameSpace1**
     * deployment1
@@ -41,21 +184,12 @@
     * **service2** \(NodePort\)  // access outside cluster
     * **service3** \(LoadBalancer\) //...
   * pod2
+{% endtab %}
 
-  
-  
-  
-**Contexts:  \(Cluster\)**  
-![](cid:C24BA3D5-FBAB-4F08-9C71-A6D783C72308@hsd1.ca.comcast.net)  
-**Namespaces:**  
-![](cid:97C76F03-FA03-4177-BE3D-671A880282B7@hsd1.ca.comcast.net)  
-  
-  
-**Deployment:**![](cid:77F335EF-583B-4701-BD5C-F610CD5F8E30@hsd1.ca.comcast.net)  
-  
-**Services:**![](cid:B4114AD2-2168-4DB5-B08C-22456BA4C0FA@hsd1.ca.comcast.net)  
-  
-  
-  
+{% tab title="Second Tab" %}
+
+{% endtab %}
+{% endtabs %}
+
 
 
