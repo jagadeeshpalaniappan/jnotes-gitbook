@@ -47,7 +47,11 @@ kubectl get pods -n kube-system
 kubectl create namespace sock-shop
 
 # Use `sock-shop` namespace as default
-kubectl config set-context $(kubectl config current-context) --namespace=sock-shop 
+# kubectl config set-context $(kubectl config current-context) --namespace=sock-shop 
+kubectl config set-context --current --namespace=sock-shop
+
+# Check namespace is set properly for the currentContext
+kubectl config get-contexts
 
 # Import `sock-shop` microservice application
 git clone https://github.com/jagadeeshpalaniappan/sock-shop-traefik
