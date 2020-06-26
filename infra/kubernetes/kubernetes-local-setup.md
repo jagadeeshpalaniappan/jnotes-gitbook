@@ -46,7 +46,7 @@ kubectl get pods -n kube-system
 # Create NameSpace `sock-shop`
 kubectl create namespace sock-shop
 
-# Use `sock-shop` namespace as default
+# set `sock-shop` namespace for the current context
 # kubectl config set-context $(kubectl config current-context) --namespace=sock-shop 
 kubectl config set-context --current --namespace=sock-shop
 
