@@ -29,10 +29,15 @@ Docker Desktop >> Preferences >> Kuberentes >>
 brew install minikube 
 
 # Start Minikube
-minikube start --vm=true 
+# minikube start --vm=true
+
+# Start Minikube (hyperkit) if we need Ingress
+minikube start --driver=hyperkit
 
 #  Enable Ingress in Minikube
 minikube addons enable ingress 
+# Check: Ingress is enabled
+minikube addons list
 
 # Check: `ingress-nginx*` listed
 kubectl get pods -n kube-system
