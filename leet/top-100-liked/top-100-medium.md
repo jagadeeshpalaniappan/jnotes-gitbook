@@ -32,7 +32,7 @@
 | 26 | 39 | [Combination Sum](https://leetcode.com/problems/combination-sum) | \*\*\* |
 | 27 | 98 | [Validate Binary Search Tree](https://leetcode.com/problems/validate-binary-search-tree) | \*\*\* |
 | 28 | 621 | [Task Scheduler](https://leetcode.com/problems/task-scheduler) | \*\*\* |
-| 29 | 48 | [Rotate Image    ](https://leetcode.com/problems/rotate-image) | \*\*\* |
+| 29 | 48 | [Rotate Image](https://leetcode.com/problems/rotate-image) | \*\*\* |
 | 30 | 152 | [Maximum Product Subarray    ](https://leetcode.com/problems/maximum-product-subarray) | \*\*\* |
 | 31 | 236 | [Lowest Common Ancestor of a Binary Tree    ](https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree) | \*\*\* |
 | 32 | 207 | [Course Schedule    ](https://leetcode.com/problems/course-schedule) | \*\*\* |
@@ -3889,18 +3889,161 @@ BST (validate implementation) :    (by maintaining -maxVal & minVal)
 
 {% endtab %}
 
-{% tab title="Code" %}
+{% tab title="Soln1 \[BEST\]" %}
 ```javascript
-....
+// https://leetcode.com/problems/task-scheduler/discuss/104500/Java-O(n)-time-O(1)-space-1-pass-no-sorting-solution-with-detailed-explanation
+/*
+[BEST]:
+leastNoOfUnits = noOfTasks + noOfIdleTimes;
+
+1. Find 'noOfIdleTimes'
+noOfIdleTimes = emptySlots - availableTasks;
+
+TC: O(n)
+SC: O(1)
+*/
+
+function leastInterval(tasks, n) {
+  let counterMap = new Array(26).fill(0);
+  let maxTaskCount = 0;
+  let noOfMaxTasks = 0;
+
+  for (const task of tasks) {
+    counterMap[task.charCodeAt(0) - "A".charCodeAt(0)]++;
+    if (maxTaskCount === counterMap[task.charCodeAt(0) - "A".charCodeAt(0)]) {
+      noOfMaxTasks++;
+    } else if (
+      maxTaskCount < counterMap[task.charCodeAt(0) - "A".charCodeAt(0)]
+    ) {
+      maxTaskCount = counterMap[task.charCodeAt(0) - "A".charCodeAt(0)];
+      noOfMaxTasks = 1;
+    }
+  }
+
+  console.log({ counterMap, maxTaskCount, noOfMaxTasks });
+
+  let partCount = maxTaskCount - 1;
+  let partLength = n - (noOfMaxTasks - 1);
+
+  let emptySlots = partCount * partLength;
+  let availableTasks = tasks.length - maxTaskCount * noOfMaxTasks;
+  let noOfIdleTimes = Math.max(0, emptySlots - availableTasks);
+
+  // leastNoOfUnits = noOfTasks + noOfIdleTimes ;
+  return tasks.length + noOfIdleTimes;
+}
+
+console.log(leastInterval(["A", "A", "A", "B", "B", "B"], 2)); // 8
+/*
+{
+  A : 3,
+  B : 3
+}
+
+{ maxTaskCount: 3, noOfMaxTasks: 2 }
+*/
+
+console.log(
+  leastInterval(["A", "A", "A", "B", "B", "B", "C", "C", "C", "C", "C"], 2)
+); // 13
+/*
+{
+  A : 3,
+  B : 3,
+  C : 5
+}
+
+{ maxTaskCount: 5, noOfMaxTasks: 1 }
+*/
+
+```
+{% endtab %}
+
+{% tab title="Soln2 \[BEST-EASY\]" %}
+```javascript
+/*
+// https://leetcode.com/submissions/detail/368487171/
+[BEST-EASY]
+
+TC: O(n)
+SC: O(1)
+*/
+
+function leastInterval1(tasks, n) {
+  let counterMap = new Array(26).fill(0);
+
+  // 1. populate: map { A: 3times, B: 2times }
+  // counterMap = [ idx0:A, idx1:B, idx3: C,......idx25:Z ]
+  for (t of tasks) counterMap[t.charCodeAt(0) - "A".charCodeAt(0)]++;
+
+  // 2. sort (desc order) // counterMap is constant, sorting is O(n) 
+  counterMap.sort((a, b) => b - a);
+
+  // 3. maxVal = maxTask - 1
+  let maxVal = counterMap[0] - 1;
+
+  // 4. noOfIdleSlots: 
+  let noOfIdleSlots = maxVal * n; // max: 'noOfIdleSlots' possible
+  for (i = 1; i < 26; i++) {
+    if (counterMap[i] === 0) break; // break: when we're done with available tasks
+    noOfIdleSlots -= Math.min(counterMap[i], maxVal); // reduce: 'noOfIdleSlots' by making use of 'otherTasks'
+  }
+
+  // leastNoOfUnits = noOfTasks + noOfIdleSlots;
+  return noOfIdleSlots > 0 ? noOfIdleSlots + tasks.length : tasks.length;
+}
 ```
 {% endtab %}
 {% endtabs %}
 
-## \#. Xxxxxx Yyyyy
+## [29. Rotate Image](https://leetcode.com/problems/rotate-image)
 
 {% tabs %}
 {% tab title="Question" %}
-...
+
+
+```javascript
+/*
+48. Rotate Image
+https://leetcode.com/problems/rotate-image/
+
+------------------------
+Example 1:
+------------------------
+Given input matrix = 
+[
+  [1,2,3],
+  [4,5,6],
+  [7,8,9]
+],
+
+rotate the input matrix in-place such that it becomes:
+[
+  [7,4,1],
+  [8,5,2],
+  [9,6,3]
+]
+
+------------------------
+Example 2:
+------------------------
+Given input matrix =
+[
+  [ 5, 1, 9,11],
+  [ 2, 4, 8,10],
+  [13, 3, 6, 7],
+  [15,14,12,16]
+], 
+
+rotate the input matrix in-place such that it becomes:
+[
+  [15,13, 2, 5],
+  [14, 3, 4, 1],
+  [12, 6, 8, 9],
+  [16, 7,10,11]
+]
+*/
+```
 {% endtab %}
 
 {% tab title="Video" %}
@@ -3909,7 +4052,60 @@ BST (validate implementation) :    (by maintaining -maxVal & minVal)
 
 {% tab title="Code" %}
 ```javascript
-....
+/*
+Sol1: [BEST-EASY]:
+https://leetcode.com/submissions/detail/368513157/
+
+TC: O()
+SC: O()
+*/
+
+function rotate1(matrix) {
+
+  // 1. Reverse:
+  matrix.reverse();
+
+  // 2. Transpose: swap(matrix[i][j], matrix[j][i])
+  for (let i = 0; i < matrix.length; i++) {
+    for (let j = 0; j < i; j++) {
+      let temp = matrix[i][j];
+      matrix[i][j] = matrix[j][i];
+      matrix[j][i] = temp;
+    }
+  }
+}
+
+const m2 = [[1, 2, 3], [4, 5, 6], [7, 8, 9]];
+rotate1(m2);
+console.log(m2);
+
+/*
+[
+  [1,2,3],
+  [4,5,6],
+  [7,8,9]
+]
+
+1. Reverse:
+[
+  [7,8,9],
+  [4,5,6],
+  [1,2,3]
+]
+
+2. Transpose: swap(matrix[i][j], matrix[j][i])
+[
+  [7,4,1],
+  [8,5,2],
+  [9,6,3]
+]
+
+*/
+
+
+// Sol2: [OK]
+// https://www.youtube.com/watch?v=gCciKhaK2v8&feature=youtu.be
+// https://leetcode.com/problems/rotate-image/discuss/18879/AC-Java-in-place-solution-with-explanation-Easy-to-understand.
 ```
 {% endtab %}
 {% endtabs %}
