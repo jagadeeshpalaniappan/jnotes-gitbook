@@ -33,7 +33,7 @@
 | 27 | 98 | [Validate Binary Search Tree](https://leetcode.com/problems/validate-binary-search-tree) | \*\*\* |
 | 28 | 621 | [Task Scheduler](https://leetcode.com/problems/task-scheduler) | \*\*\* |
 | 29 | 48 | [Rotate Image](https://leetcode.com/problems/rotate-image) | \*\*\* |
-| 30 | 152 | [Maximum Product Subarray    ](https://leetcode.com/problems/maximum-product-subarray) | \*\*\* |
+| 30 | 152 | [Maximum Product Subarray](https://leetcode.com/problems/maximum-product-subarray) | \*\*\* |
 | 31 | 236 | [Lowest Common Ancestor of a Binary Tree    ](https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree) | \*\*\* |
 | 32 | 207 | [Course Schedule    ](https://leetcode.com/problems/course-schedule) | \*\*\* |
 | 33 | 64 | [Minimum Path Sum    ](https://leetcode.com/problems/minimum-path-sum) | \*\*\* |
@@ -4110,7 +4110,7 @@ console.log(m2);
 {% endtab %}
 {% endtabs %}
 
-## \#. Xxxxxx Yyyyy
+## [30. Maximum Product Subarray](https://leetcode.com/problems/maximum-product-subarray)
 
 {% tabs %}
 {% tab title="Question" %}
@@ -4118,12 +4118,87 @@ console.log(m2);
 {% endtab %}
 
 {% tab title="Video" %}
+REF:
 
+* [https://www.youtube.com/watch?v=2MmGzdiKR9Y](https://www.youtube.com/watch?v=2MmGzdiKR9Y)
+* [https://backtobackswe.com/platform/content/max-contiguous-subarray-sum/solutions](https://backtobackswe.com/platform/content/max-contiguous-subarray-sum/solutions)
+* ...
 {% endtab %}
 
-{% tab title="Code" %}
+{% tab title="Sol3: \[BEST\]" %}
 ```javascript
-....
+/*
+Sol3: [BEST] [DP] [CORRECT-SOLN]
+
+TC: O(n)
+SC: O(1)
+*/
+
+var maxProduct3 = function(nums) {
+  if (!nums.length) return 0;
+
+  let sofarMax = nums[0];
+  let prevMin = nums[0];  // This is required to handle negativeVal. (negativeVal * negativeVal = postiveVal) // so we need to keep track of mixVal
+  let prevMax = nums[0];
+  
+  
+  for (i = 1; i < nums.length; i++) {
+
+    // currScan:
+    const extendedMaxArrVal = prevMax * nums[i]; // maxVal: if we extendMaxSubArr
+    const extendedMinArrVal = prevMin * nums[i]; // maxVal: if we extendMinSubArr
+    const restartedArrVal = nums[i]; // maxVal: if we restartArr
+
+    // shall we 'extendMinArr' or 'extendMaxArr' or 'restartArr' ?
+    let currMax = Math.max(extendedMaxArrVal, extendedMinArrVal, restartedArrVal);
+    let currMin = Math.min(extendedMaxArrVal, extendedMinArrVal, restartedArrVal);
+    
+    // store: 'cur' as 'prev -for the nextIter
+    prevMax = currMax;
+    prevMin = currMin;
+    
+
+    // Did we beat the 'sofarMax' with the 'curMax'?
+    sofarMax = Math.max(sofarMax, currMax);
+
+    console.log(nums.slice(0, i + 1), { extendedMaxArrVal, extendedMinArrVal, restartedArrVal, currMax, currMin, sofarMax });
+  }
+  return sofarMax;
+};
+
+```
+{% endtab %}
+
+{% tab title="Sol3: Walthrough" %}
+```javascript
+/*
+
+Walkthrough1: Input: [2, 3, -2, 4]
+##################################
+
+  subArr                                currPossibilities                              shall we 'extend: minArr or maxArr' or 'restartArr'
+ ---------                            ----------------------                          ---------------------------------------
+[2, 3]        ==> {extendedMaxArrVal: 6,    extendedMinArrVal: 6,   restartedArrVal: 3,   currMax: 6,  sofarMax: 6}  ==>       extendMaxArr/extendMinArr
+[2, 3, -2]    ==> {extendedMaxArrVal: -12,  extendedMinArrVal: -6,  restartedArrVal: -2,  currMax: -2, sofarMax: 6}  ==>       restartArr
+[2, 3, -2, 4] ==> {extendedMaxArrVal: -8,   extendedMinArrVal: -48, restartedArrVal: 4,   currMax: 4,  sofarMax: 6}  ==>       restartArr
+
+ANS: 6
+
+
+Walkthrough2: Input: [-2, 3, -4]
+##################################
+IMPORTANT: WALKTROUGH (NEGATIVE-VAL-WINS-HERE) // (negativeVal * negativeVal = postiveVal)
+
+  subArr                                    currPossibilities                                           shall we 'extend: minArr or maxArr' or 'restartArr'
+ ---------                                ----------------------                                        ---------------------------------------
+Input: [-2, 3, -4]
+[-2, 3]       ==> {extendedMaxArrVal: -6,   extendedMinArrVal: -6,  restartedArrVal: 3,   currMax: 3,  sofarMax: 3}  ==>    restartArr
+[-2, 3, -4]   ==> {extendedMaxArrVal: -12,   extendedMinArrVal: 24, restartedArrVal: -4,  currMax: 24, sofarMax: 3} ==>    extendedMinArr    
+
+ANS: 3
+
+*/
+
 ```
 {% endtab %}
 {% endtabs %}
