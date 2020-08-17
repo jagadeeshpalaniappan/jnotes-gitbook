@@ -34,7 +34,7 @@
 | 28 | 621 | [Task Scheduler](https://leetcode.com/problems/task-scheduler) | \*\*\* |
 | 29 | 48 | [Rotate Image](https://leetcode.com/problems/rotate-image) | \*\*\* |
 | 30 | 152 | [Maximum Product Subarray](https://leetcode.com/problems/maximum-product-subarray) | \*\*\* |
-| 31 | 236 | [Lowest Common Ancestor of a Binary Tree    ](https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree) | \*\*\* |
+| 31 | 236 | [Lowest Common Ancestor of a Binary Tree](https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree) | \*\*\* |
 | 32 | 207 | [Course Schedule    ](https://leetcode.com/problems/course-schedule) | \*\*\* |
 | 33 | 64 | [Minimum Path Sum    ](https://leetcode.com/problems/minimum-path-sum) | \*\*\* |
 | 34 | 240 | [Search a 2D Matrix II    ](https://leetcode.com/problems/search-a-2d-matrix-ii) | \*\*\* |
@@ -4203,7 +4203,7 @@ ANS: 3
 {% endtab %}
 {% endtabs %}
 
-## \#. Xxxxxx Yyyyy
+## [31. Lowest Common Ancestor of a Binary Tree](https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree)
 
 {% tabs %}
 {% tab title="Question" %}
