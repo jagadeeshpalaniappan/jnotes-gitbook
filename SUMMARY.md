@@ -209,3 +209,9 @@
     * [SysDesign](leet/companies/dropbox/sysdesign.md)
     * [More Insight](leet/companies/dropbox/more-insight.md)
 
+## alg-expert
+
+* [DS](alg-expert/ds/README.md)
+  * [Intro](alg-expert/ds/intro.md)
+* [QSTNS](alg-expert/qstns.md)
+
