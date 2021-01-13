@@ -76,7 +76,7 @@ createCustomer("bezkoder", 29, "male")
 ```
 {% endtab %}
 
-{% tab title="E.g. Data" %}
+{% tab title="O/p" %}
 ```javascript
 // Created new Customer
 {
@@ -206,7 +206,7 @@ createCustomer("bezkoder", 29, "male")
 ```
 {% endtab %}
 
-{% tab title="E.g. Data" %}
+{% tab title="O/p" %}
 ```javascript
 // Created new Customer
 {

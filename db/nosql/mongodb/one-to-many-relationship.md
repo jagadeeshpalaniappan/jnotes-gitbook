@@ -191,7 +191,7 @@ run();
 ```
 {% endtab %}
 
-{% tab title="E.g. Data" %}
+{% tab title="O/p" %}
 ```javascript
 // Created Tutorial:
 {
@@ -299,7 +299,7 @@ const createImage = function(tutorialId, image) {
 ```
 {% endtab %}
 
-{% tab title="E.g. Data" %}
+{% tab title="O/p" %}
 ```javascript
  // Created Tutorial:
  {
@@ -445,7 +445,7 @@ const run = async function() {
 ```
 {% endtab %}
 
-{% tab title="E.g. Data" %}
+{% tab title="O/p" %}
 ```javascript
 // >> Created Tutorial:
 {
@@ -604,7 +604,7 @@ const run = async function() {
 ```
 {% endtab %}
 
-{% tab title="E.g. Data" %}
+{% tab title="O/p" %}
 ```javascript
 // >> Created Tutorial:
 {
