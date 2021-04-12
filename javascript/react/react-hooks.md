@@ -4,7 +4,7 @@
 
 //-------------------------- State --------------------------
 # useState
-// when we have 'simple logic' to handle use 'useReducer'
+// when we have 'simple logic' to handle use 'useState'
 const [count, setCount] = useState(5);
 
 
@@ -70,6 +70,19 @@ const countRef = useRef(0); // countRef.current = countRef.current + 1
 // if we do not want to pass 'prop' to each and every component, we can make use of these hooks.
 
 const UserContext = createContext(null);
+
+const App = () => {
+  const [user, setUser] = useState(null);
+  const value = useMemo(() => ({ user, setUser }), [user, setUser]);
+  return (
+    <div>
+      <UserContext.Provider value={value}>
+        <Comp1 />
+        <Comp2 />
+      </UserContext.Provider>
+    </div>
+  );
+};
 
 // Comp1:
 const { user, setUser } = useContext(UserContext);  // we get or set user value from any component without passing to props
