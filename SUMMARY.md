@@ -66,6 +66,7 @@
     * [reselect](javascript/react/react-redux/reselect.md)
   * [React Performance](javascript/react/react-performance/README.md)
     * [Avoid - ReRender](javascript/react/react-performance/avoid-rerender.md)
+  * [React - Unit Test](javascript/react/react-unit-test.md)
   * [React Interview Qstns \[TODO\]](javascript/react/react-interview-qstns-todo.md)
 * [Angular.js](javascript/angularjs.md)
 * [Angular](javascript/angular/README.md)
