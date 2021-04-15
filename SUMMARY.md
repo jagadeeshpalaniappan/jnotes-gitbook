@@ -69,6 +69,7 @@
   * [React Interview Qstns](javascript/react/react-interview-qstns/README.md)
     * [React Interview Qstns \[TODO\]](javascript/react/react-interview-qstns/react-interview-qstns-todo.md)
     * [React Core Concepts](javascript/react/react-interview-qstns/react-core-concepts.md)
+    * [React Synthetic Events](javascript/react/react-interview-qstns/react-synthetic-events.md)
 * [Angular.js](javascript/angularjs.md)
 * [Angular](javascript/angular/README.md)
   * [1. TypeScript First](javascript/angular/1-ts.md)
