@@ -101,6 +101,35 @@ new Promise(function(resolve, reject) {
 {% endtab %}
 
 {% tab title="Error Handling" %}
+## `catch` all errors in one handler :
+
+* Promise chains are great at error handling. When a promise rejects, the control jumps to the closest rejection handler.
+* As you can see, the `.catch` doesn’t have to be immediate. It may appear after one or maybe several `.then`.
+* The easiest way to catch all errors is to append `.catch` to the end of chain:
+
+```javascript
+fetch('/article/promise-chaining/user.json')
+  .then(response => response.json())
+  .then(user => fetch(`https://api.github.com/users/${user.name}`))
+  .then(response => response.json())
+  .then(githubUser => new Promise((resolve, reject) => {
+    let img = document.createElement('img');
+    img.src = githubUser.avatar_url;
+    img.className = "promise-avatar-example";
+    document.body.append(img);
+
+    setTimeout(() => {
+      img.remove();
+      resolve(githubUser);
+    }, 3000);
+  }))
+  .catch(error => alert(error.message));
+```
+
+\*\*\*\*
+
+## Implicit try…catch
+
 * **'promise executor'** and **'promise handlers'** has an "`invisible try..catch`" around it
 * **promise executor:** new Promise\(\(resolve, reject\)=&gt; {`...`}\)
 * **promise handlers:** 
