@@ -105,7 +105,8 @@
 
 ## web
 
-* [UI Architecture \[MTODO\]](web/ui-architecture-mtodo.md)
+* [UI Architecture \[MTODO\]](web/ui-architecture-mtodo/README.md)
+  * [ES6 Modules, Webpack, Babel, Transpiler](web/ui-architecture-mtodo/es6-modules-webpack-babel-transpiler.md)
 * [GraphQL](web/graphql.md)
 * [Web Security](web/web-security.md)
 * [Web Performance \[MTODO\]](web/web-performance-todo.md)
