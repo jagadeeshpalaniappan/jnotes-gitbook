@@ -116,6 +116,12 @@
 * [CDN](web/cdn.md)
 * [Mono Repo](web/mono-repo.md)
 
+## java
+
+* [Core Java](java/core-java/README.md)
+  * [Collections \[TODO\]](java/core-java/core-java-todo.md)
+* [Spring \[TODO\]](java/spring-todo.md)
+
 ## SERVER
 
 * [Interview Questions \(ServerSide\)](server/interview-questions-serverside/README.md)
@@ -137,12 +143,6 @@
   * [DB- Read Replicas](server/serverside/db-read-replicas.md)
   * [Node.js \[eTODO\]](server/serverside/node.js.md)
   * [LoadBlancers](server/serverside/loadblancers.md)
-
-## java
-
-* [Core Java](java/core-java/README.md)
-  * [Collections \[TODO\]](java/core-java/core-java-todo.md)
-* [Spring \[TODO\]](java/spring-todo.md)
 
 ## SYS-DESIGN
 
