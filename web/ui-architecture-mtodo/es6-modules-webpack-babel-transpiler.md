@@ -214,7 +214,7 @@ const store = createStore(/* do stuff */)
 
 {% tabs %}
 {% tab title="First Tab" %}
-* [https://www.valentinog.com/blog/webpack/\#should-you-learn-webpack](https://www.valentinog.com/blog/webpack/#should-you-learn-webpack)
+* [https://www.valentinog.com/blog/webpack/\#should-you-learn-webpack](https://www.valentinog.com/blog/webpack/#should-you-learn-webpack) `****`
 {% endtab %}
 
 {% tab title="Second Tab" %}
