@@ -138,6 +138,12 @@
   * [Node.js \[eTODO\]](server/serverside/node.js.md)
   * [LoadBlancers](server/serverside/loadblancers.md)
 
+## java
+
+* [Core Java](java/core-java/README.md)
+  * [Collections \[TODO\]](java/core-java/core-java-todo.md)
+* [Spring \[TODO\]](java/spring-todo.md)
+
 ## SYS-DESIGN
 
 * [App Architecture](sys-design/app-architecture/README.md)
@@ -166,6 +172,15 @@
   * [CAP Therom](sys-design/database/cap-therom.md)
 * [Misc](sys-design/misc/README.md)
   * [CloudFoundry](sys-design/misc/cloudfoundry.md)
+
+## DB
+
+* [SQL](db/sql.md)
+* [NoSQL](db/nosql/README.md)
+  * [MongoDB](db/nosql/mongodb/README.md)
+    * [One to One Relationship](db/nosql/mongodb/one-to-one-relationship.md)
+    * [One to Many Relationship](db/nosql/mongodb/one-to-many-relationship.md)
+    * [Many to Many Relationship](db/nosql/mongodb/many-to-many-relationship.md)
 
 ## INFRA
 
@@ -218,18 +233,4 @@
 * [DS](alg-expert/ds/README.md)
   * [Intro](alg-expert/ds/intro.md)
 * [QSTNS](alg-expert/qstns.md)
-
-## DB
-
-* [SQL](db/sql.md)
-* [NoSQL](db/nosql/README.md)
-  * [MongoDB](db/nosql/mongodb/README.md)
-    * [One to One Relationship](db/nosql/mongodb/one-to-one-relationship.md)
-    * [One to Many Relationship](db/nosql/mongodb/one-to-many-relationship.md)
-    * [Many to Many Relationship](db/nosql/mongodb/many-to-many-relationship.md)
-
-## java
-
-* [Core Java \[TODO\]](java/core-java-todo.md)
-* [Spring \[TODO\]](java/spring-todo.md)
 
