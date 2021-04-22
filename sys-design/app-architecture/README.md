@@ -52,11 +52,108 @@
 ```
 {% endtab %}
 
-{% tab title="BE" %}
-```text
-- Micro Services
-- Micro Frontend
+{% tab title="App Design Patterns" %}
+```csharp
+# Application architecture patterns
+- Monolithic architecture
+- Microservice architecture
 
+
+
+// ------------------------------------------------------------------------------
+
+# Decomposition
+
+- Decompose by business capability
+- Decompose by subdomain
+- Self-contained Service
+- Service per team
+
+
+# Strangler Application
+- Anti-corruption layer
+
+
+# Data management
+- Database per Service
+- Shared database
+- Saga // distributed transactions
+- API Composition
+- CQRS
+- Domain event
+- Event sourcing
+
+
+# Transactional messaging
+- Transactional outbox
+Transaction log tailing
+Polling publisher
+
+
+# Testing
+- Service Component Test
+- Consumer-driven contract test
+- Consumer-side contract test
+
+
+# Deployment patterns
+- Multiple service instances per host
+- Service instance per host
+- Service instance per VM
+- Service instance per Container
+- Serverless deployment
+- Service deployment platform
+
+
+# Cross cutting concerns
+
+Microservice chassis
+Service Template
+Externalized configuration
+
+
+# Communication style
+
+Remote Procedure Invocation
+Messaging
+Domain-specific protocol
+Idempotent Consumer
+
+
+# External API
+- API gateway
+- Backend for front-end
+
+
+# Service discovery
+- Client-side discovery
+- Server-side discovery
+Service registry
+Self registration
+3rd party registration
+
+
+# Reliability
+- Circuit Breaker
+
+
+# Security
+- Access Token
+
+
+# Observability
+- Log aggregation
+- Application metrics
+- Audit logging
+- Distributed tracing
+- Exception tracking
+- Health check API
+- Log deployments and changes
+
+
+# UI patterns
+- Server-side page fragment composition
+- Client-side UI composition
 ```
 {% endtab %}
 
@@ -84,6 +181,34 @@
     - Strategies: (Operational Transformation / Differential Syncing)
 
 ```
+{% endtab %}
+{% endtabs %}
+
+
+
+
+
+## Design Patterns:
+
+{% tabs %}
+{% tab title="BE" %}
+```javascript
+1. Circuit Breaker
+2. Command and Query Responsibility Segregation (CQRS)
+3. Event Sourcing
+4. Sidecar
+5. Backend-for-Frontend
+6. Strangler
+```
+{% endtab %}
+
+{% tab title="Details" %}
+* [https://betterprogramming.pub/modern-day-architecture-design-patterns-for-software-professionals-9056ee1ed977](https://betterprogramming.pub/modern-day-architecture-design-patterns-for-software-professionals-9056ee1ed977)
+* [https://betterprogramming.pub/the-roles-of-service-mesh-and-api-gateways-in-microservice-architecture-f6e7dfd61043](https://betterprogramming.pub/the-roles-of-service-mesh-and-api-gateways-in-microservice-architecture-f6e7dfd61043)
+{% endtab %}
+
+{% tab title="" %}
+
 {% endtab %}
 {% endtabs %}
 
