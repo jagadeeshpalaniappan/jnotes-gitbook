@@ -1,27 +1,94 @@
 # NoSQL
 
 ```fsharp
-## NoSQL vs SQL
-- NoSQL: 
-    - 'BASE' (Basically Available, Soft state, Eventually consistent) 
+
+# NoSQL vs SQL:
+
+## NoSQL: 
+    - 'BASE' (Basically Available, Soft state, Eventually consistent)
+     
+    - Non-Relational, UnStructured/Semi-Structured, DeNormalized Data
     - No Table Structure (dynamic schema)
     - 'Distributed' -by nature (horizontally scalable) (cheap to scale)
     - can handle huge volume of data (structured/un-structured)
     - cannot gurantee ACID (not suitable where 'consistentcy is must') // e.g. financial transaction
+    
+    - Scalability: 
+        - verically scalable // (costly to scale)
+        - horizontally scalable // Natively Distributed // Easy to scale
+        
+    - NoSQL DB - Types:
+        - Key-Value DB // DynamoDB, Redis
+        - Document DB  // MongoDB, CouchDB
+        - Columnar DB  // Cassandra
+        - Graph DB     // Neo4J
 
-- SQL: 
-    - 'ACID' (Atomicity, Consistency, Isolation & Durability)
+## SQL: 
+    - Satisfy all 'ACID' Properties // Consistent
+        - 'ACID' (Atomicity, Consistency, Isolation & Durability)
+        
+    - Relational(RDBMS), Structured Data, Normalized Data
     - Table Structure (pre-defined schema)
+    
+    - Scalability: // Not natively Distributed // not easy to scale
+        - verically scalable // (costly to scale)
+        - horizontal scaling // Not natively Distributed // not easy to scale
+            - 'read-replicas' provides horizontal scaling // but it is limited
+            -  Database Partioning
+                - Horizontal Partioning (Database Sharding) // splitByRows
+                - Vertical Partioning // splitByColumns
+
+        
     - Not Distributed (verically scalable) (costly to scale) (read-replicas provides horizontal scaling)
     - cannot handle huge volume of data
     - 'can gurantee ACID' (consistent & durable) (suitable for financial transaction)
 
 
-## NoSQL Types
-- Document Based (MongoDB)
-- Key-Value Based (Redis)
-- Column Based (Cassandra)
-- Graph Based (Neo4j)
+// ---------------------------------------------------------------------------------------------
+
+# How do we scale `SQL` db ?
+ // SingleMachine is notScalabale - Distribute them manually 
+ - Using 'Read Replicas'
+ - Using 'Database Partioning' 
+     - // Note: NoSQL dbs are natively distributed
+
+
+
+## Distributed Database
+- Database Partioning // to handle 'Large Datasets'
+    ### Horizontal Partioning (Database Sharding) // Spliting the table horizontally 
+        - Split the Table By Row (store some rows of data in diferrent table (diff machine))
+        
+        # Techniques:
+        - Shard by UserId or Location or ...
+        - Consistent Hashing
+        - Hirerichal Sharding
+        
+    ### Vertical Partioning // Spliting the table vertically
+        - Split the Table By Column (store some colums in diferrent table (diff machine))
+        
+
+- Database Replication (Read Replicas) // to 'Read' Fast & Reliability
+
+
+## Distributed Database Problems:
+- Distributed Transactions
+- Distributed Locks
+- Load Balancing (LB) // uniformlyDistributeLoad
+    - Consistent Hashing Ring
+- CAP Theorem
+
+
+// ---------------------------------------------------------------------------------------------
+
+
+## Database Indexing
+- increases 'READ' performance
+    - searchFaster: specific column in sortedIndexTable
+- decreases 'WRITE' performance
+    - if we have multiple indexes on a table,
+        - whenever add/update a row data, 
+        - that needs to be updated in all the index tables data
 ```
 
 ## NoSQL
