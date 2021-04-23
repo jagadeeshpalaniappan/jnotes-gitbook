@@ -17,16 +17,16 @@
 
 # Distributed System Problems:
 ------------------------------
-- Load Balancing     // Soln: Load Balancers
-- Handle Failures    // Soln: Circuit Break Patterns, Bulkhead Pattern
+- Load Balancing     // Soln: Load Balancers or 'API Gateway'
 - Security (Authentication/Authorization) // Soln: API Gateway
 - Rate Limiting      // Soln: API Gateway
+- Handle Failures    // Soln: Circuit Break Patterns (Hystrix), Bulkhead Pattern
 
 Microservices:
-- Service Discovery  // Soln: API Gateway
-- Deployment // Soln: CI/CD, Jenins
-- Debugging/Logging/Tracing // Soln: API Gateway(traceId), Splunk
-- Monitoring // Son: Newrelic, AppDynamics
+- Service Discovery  // Soln: Service Registry (Eureka Server/Client)
+- Debugging/Logging/Tracing // Soln: API Gateway attaches (traceId), Splunk
+- Deployment // Soln: CI/CD, Jenkins
+- Monitoring // Son: Newrelic, AppDynamics, Splunk
 
 
 
@@ -44,7 +44,7 @@ Microservices:
     
 
 
-# API Gateway:
+# API Gateway: (Tyk, Kong)
 ------------------------------
 - Single Entry Point 
 - Security (AuthN/AuthZ, DDos, IP Whitelisting, needNotToExposeMicroserviceIPsOutside)
@@ -61,13 +61,28 @@ Microservices:
 
 # API Gateway Problems:
     - SPOF // Soln: Multiple Instances
-    
 
 
 # Must Discuss:
     - SPOF (Single Point Of Failure)
     - SSOT (Single Source Of Truth)
+
     
+# Load Balancers(LB): (Traefik, NGINX, HAProxy, Seesaw)
+------------------------------
+    - If we need to use multiple (instances/nodes/machines) 
+    - then we need LoadBalancers(LB)
+    - Routing Startegy? // How do we route each request?
+    
+        ## Random: (loadBalance HTTP)
+        - ***Round Robin*** // most used
+        - Weighted Round Robin (if server1 is double power than server2 & server3) 
+        - Least Connection
+        - Weighted Least Connection
+        
+        ## Consistent: (loadBalance DB or CacheNodes)
+        - Consistent Hashing
+        - Consistent Hashing Ring
 ```
 
 ## Why Distributed System:
@@ -129,6 +144,32 @@ Cons:
 
 ```
 
+## 
+
+{% tabs %}
+{% tab title="First Tab" %}
+
+
+```fsharp
+
+```
+{% endtab %}
+
+{% tab title="Second Tab" %}
+## Handle Failure in Distributed Environment
+
+* **Circuit Breaker Pattern** - Fault Tolerant Microservices
+
+  * [https://www.youtube.com/watch?v=ADHcBxEXvFA](https://www.youtube.com/watch?v=ADHcBxEXvFA)
+  * Libs: Hystrix \(maintenance mode\), resilience4j
+
+* **Bulkhead Pattern** - Fault Tolerant Microservices
+  * [https://www.youtube.com/watch?v=R2FT5edyKOg](https://www.youtube.com/watch?v=R2FT5edyKOg)
+  * Libs: Hystrix \(maintenance mode\), resilience4j
+* ...
+{% endtab %}
+{% endtabs %}
+
 ## AppServer\(AS\):
 
 ```fsharp
@@ -153,6 +194,10 @@ Cons:
 ```
 
 ## Caching:
+
+{% tabs %}
+{% tab title="First Tab" %}
+
 
 ```fsharp
 - fasterThanOriginalDataSource, shortTermMemory, limitedSpace
@@ -198,28 +243,105 @@ Cons:
 
 # CDN
     - Static media content (img, videos, html, css, js,...)
-    - stored/cached in your nearby Server Zones
+    - stored/cached in your nearby ServerZones and read from nearBy ServerZones
 
 ```
+{% endtab %}
+
+{% tab title="Second Tab" %}
+
+{% endtab %}
+{% endtabs %}
+
+
 
 ## Database:
 
+{% tabs %}
+{% tab title="Summary" %}
+
+
 ```fsharp
-#SQL vs NoSQL
-- SQL: 
-    - Relational(RDBMS), Structured, Normalized Data
-    - Satisfy ACID Properties // Consistent
-    - Difficult to Scale // Manually implement Distributed System
-    
-- NoSQL: 
+
+# NoSQL vs SQL:
+
+## NoSQL: 
+    - 'BASE' (Basically Available, Soft state, Eventually consistent)
+     
     - Non-Relational, UnStructured/Semi-Structured, DeNormalized Data
-    - Does NOT Satisfy ACID Properties // Eventually Consistent
-    - Easy to Scale // Natively Distributed System
-    - Types:
+    - No Table Structure (dynamic schema)
+    - 'Distributed' -by nature (horizontally scalable) (cheap to scale)
+    - can handle huge volume of data (structured/un-structured)
+    - cannot gurantee ACID (not suitable where 'consistentcy is must') // e.g. financial transaction
+    
+    - Scalability: 
+        - verically scalable // (costly to scale)
+        - horizontally scalable // Natively Distributed // Easy to scale
+        
+    - NoSQL DB - Types:
         - Key-Value DB // DynamoDB, Redis
         - Document DB  // MongoDB, CouchDB
         - Columnar DB  // Cassandra
         - Graph DB     // Neo4J
+
+## SQL: 
+    - Satisfy all 'ACID' Properties // Consistent
+        - 'ACID' (Atomicity, Consistency, Isolation & Durability)
+        
+    - Relational(RDBMS), Structured Data, Normalized Data
+    - Table Structure (pre-defined schema)
+    
+    - Scalability: // Not natively Distributed // not easy to scale
+        - verically scalable // (costly to scale)
+        - horizontal scaling // Not natively Distributed // not easy to scale
+            - 'read-replicas' provides horizontal scaling // but it is limited
+            -  Database Partioning
+                - Horizontal Partioning (Database Sharding) // splitByRows
+                - Vertical Partioning // splitByColumns
+
+        
+    - Not Distributed (verically scalable) (costly to scale) (read-replicas provides horizontal scaling)
+    - cannot handle huge volume of data
+    - 'can gurantee ACID' (consistent & durable) (suitable for financial transaction)
+
+
+// ---------------------------------------------------------------------------------------------
+
+# How do we scale `SQL` db ?
+ // SingleMachine is notScalabale - Distribute them manually 
+ - Using 'Read Replicas'
+ - Using 'Database Partioning' 
+     - // Note: NoSQL dbs are natively distributed
+
+
+
+## Distributed Database
+- Database Partioning // to handle 'Large Datasets'
+    ### Horizontal Partioning (Database Sharding) // Spliting the table horizontally 
+        - Split the Table By Row (store some rows of data in diferrent table (diff machine))
+        
+        # Techniques:
+        - Shard by UserId or Location or ...
+        - Consistent Hashing
+        - Hirerichal Sharding
+        
+    ### Vertical Partioning // Spliting the table vertically
+        - Split the Table By Column (store some colums in diferrent table (diff machine))
+        
+
+- Database Replication (Read Replicas) // to 'Read' Fast & Reliability
+
+
+## Distributed Database Problems:
+- Distributed Transactions
+- Distributed Locks
+- Load Balancing (LB) // uniformlyDistributeLoad
+    - Consistent Hashing Ring
+- CAP Theorem
+
+
+// ---------------------------------------------------------------------------------------------
+
 
 ## Database Indexing
 - increases 'READ' performance
@@ -228,26 +350,24 @@ Cons:
     - if we have multiple indexes on a table,
         - whenever add/update a row data, 
         - that needs to be updated in all the index tables data
-
-
-## Distributed Database
-- Database Partioning // to handle 'Large Datasets'
-    - Horizontal (Database Sharding)
-        - Shard by UserId or Location or ...
-        - Consistent Hashing
-        - Hirerichal Sharding
-    - Vertical
-
-- Datbase Replication (Read Replicas) // to 'Read' Fast & Reliability
-
-
-## Distributed Database Problems:
-- Load Balancing (LB) // uniformlyDistributeLoad
-- Consistent Hashing Ring
-- CAP Theorem
-- Distributed Transactions
-- Distributed Locks
 ```
+{% endtab %}
+
+{% tab title="Details" %}
+### Database Indexing:
+
+* [https://www.youtube.com/watch?v=-qNSXK7s7\_w](https://www.youtube.com/watch?v=-qNSXK7s7_w)
+* 
+### Database Partitioning
+
+* [https://www.youtube.com/watch?v=QA25cMWp9Tk](https://www.youtube.com/watch?v=QA25cMWp9Tk)
+* 
+{% endtab %}
+{% endtabs %}
+
+
+
+
 
 ## Concepts:
 
