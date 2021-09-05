@@ -1,4 +1,4 @@
-# 1. TypeScript First
+# 1. Basics \(TypeScript, ES6,..\)
 
 ## TypeScript Compiler
 
