@@ -57,6 +57,7 @@
   * [2](javascript/qstns/2.md)
   * [3](javascript/qstns/3.md)
 * [TypeScript](javascript/typescript/README.md)
+  * [Basics](javascript/typescript/basics.md)
   * [Typescript Generics](javascript/typescript/typescript-generics.md)
   * [TypeScript Decorators](javascript/typescript/typescript-decorators.md)
 * [React](javascript/react/README.md)
