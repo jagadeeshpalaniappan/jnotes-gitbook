@@ -3,6 +3,145 @@
 
 
 {% tabs %}
+{% tab title="All" %}
+```typescript
+
+
+// ------------------------- Class Decorator -------------------------
+function ExClassDecorator() {
+  return function(target: Function) {
+    console.log('ExClassDecorator:start');
+    target.prototype.id = Math.random();
+    target.prototype.created = new Date().toLocaleString('es-ES');
+    console.log('ExClassDecorator:end');
+  };
+}
+
+// ------------------------- Property Decorator -------------------------
+function ExPropertyDecorator(emoji) {
+  return function(target: Object, key: string | symbol) {
+    let val = target[key];
+
+    const getter = () => {
+      console.log(`ExPropertyDecorator:get:${key.toString()} , value:${val}`);
+      return val;
+    };
+    const setter = next => {
+      console.log(`ExPropertyDecorator:set:${key.toString()} , value:${next}`);
+      val = `${emoji} ${next} ${emoji}`;
+      console.log(`ExPropertyDecorator:set:${key.toString()} , newVal:${val}`);
+    };
+
+    Object.defineProperty(target, key, {
+      get: getter,
+      set: setter,
+      enumerable: true,
+      configurable: true
+    });
+  };
+}
+
+// ------------------------- Method Decorator -------------------------
+function ExMethodDecorator(logKey: string) {
+  return function(
+    target: Object,
+    key: string | symbol,
+    descriptor: PropertyDescriptor
+  ) {
+    const original = descriptor.value;
+
+    descriptor.value = function(...args: any[]) {
+      console.log(`${logKey}:start`);
+      console.time(logKey);
+      const resultVal = original.apply(this, args);
+      console.timeEnd(logKey);
+      console.log(`${logKey}:end`);
+      return resultVal;
+    };
+
+    return descriptor;
+  };
+}
+
+// ------------------------- :Usage: -------------------------
+
+@ExClassDecorator()
+class MyClass {
+  id: number;
+  created: string;
+
+  @ExPropertyDecorator('🍦')
+  myProp: String;
+
+  constructor() {
+    console.log('MyClass:constructor:start');
+    const { id, created } = this;
+    console.log({ id, created });
+    console.log('MyClass:constructor:end');
+  }
+
+  @ExMethodDecorator('exMethod1')
+  myMethod(param1: string) {
+    console.log('MyClass:myMethod:start:', param1);
+    for (let i = 0; i < 100000; i++) {}
+    console.log('MyClass:myMethod:end:', param1);
+  }
+}
+
+console.log('----------------------------------------');
+console.log('---MyClass:creatingNewInstance:start');
+const myInstance1 = new MyClass();
+console.log('---MyClass:creatingNewInstance:end');
+
+console.log('----------------------------------------');
+console.log('---MyClass:callingmyMethod:start');
+myInstance1.myMethod('Jagadeesh');
+console.log('---MyClass:callingmyMethod:end');
+
+console.log('----------------------------------------');
+console.log('---MyClass:settingmyProp:start');
+myInstance1.myProp = 'Jagadeesh Palaniappan';
+console.log('---MyClass:settingmyProp:end');
+
+console.log('----------------------------------------');
+console.log('---MyClass:gettingmyProp:start');
+console.log(myInstance1.myProp);
+console.log('---MyClass:gettingmyProp:end');
+
+/*
+
+ExClassDecorator:start
+ExClassDecorator:end
+----------------------------------------
+---MyClass:creatingNewInstance:start
+MyClass:constructor:start
+{id: 534, created: "4/9/2021 23:48:15"}
+MyClass:constructor:end
+---MyClass:creatingNewInstance:end
+----------------------------------------
+---MyClass:callingmyMethod:start
+exMethod1:start
+MyClass:myMethod:start: Jagadeesh
+MyClass:myMethod:end: Jagadeesh
+all.ts:52 exMethod1: 1.844970703125 ms
+exMethod1:end
+---MyClass:callingmyMethod:end
+----------------------------------------
+---MyClass:settingmyProp:start
+ExPropertyDecorator:set:myProp , value:Jagadeesh Palaniappan
+ExPropertyDecorator:set:myProp , newVal:🍦 Jagadeesh Palaniappan 🍦
+---MyClass:settingmyProp:end
+----------------------------------------
+---MyClass:gettingmyProp:start
+ExPropertyDecorator:get:myProp , value:🍦 Jagadeesh Palaniappan 🍦
+🍦 Jagadeesh Palaniappan 🍦
+---MyClass:gettingmyProp:end
+
+*/
+
+```
+{% endtab %}
+
 {% tab title="1. Class" %}
 ```typescript
 function getRandomNoUtil(min: number, max: number) {
