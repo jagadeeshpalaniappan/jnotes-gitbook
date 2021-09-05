@@ -128,12 +128,13 @@ console.log(o2.prop2); // Prop2
 ##### type vs interface ##### 
 
 type: (Type Alias)
-- types are static - it alias to a fixed shape
+- alias for a type (for reusability)
 - cannot extend another type (Type Alias)
 - but we can make new types using unions and intersections
 - but we cannot change the type itself
 
 interface: 
+- defines class/object structure
 - can extend another interface
 - use 'interface' as much as possible 
 - if you're building library exporting 'interface' is much better 
