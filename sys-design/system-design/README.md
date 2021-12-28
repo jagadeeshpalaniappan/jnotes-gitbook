@@ -144,33 +144,35 @@ Cons:
 
 ```
 
-## 
+##
 
 {% tabs %}
 {% tab title="First Tab" %}
 
 
 ```fsharp
-
 ```
 {% endtab %}
 
 {% tab title="Second Tab" %}
 ## Handle Failure in Distributed Environment
 
-* **Circuit Breaker Pattern** - Fault Tolerant Microservices
+*   **Circuit Breaker Pattern** - Fault Tolerant Microservices
 
-  * [https://www.youtube.com/watch?v=ADHcBxEXvFA](https://www.youtube.com/watch?v=ADHcBxEXvFA)
-  * Libs: Hystrix \(maintenance mode\), resilience4j
+    * [https://www.youtube.com/watch?v=ADHcBxEXvFA](https://www.youtube.com/watch?v=ADHcBxEXvFA)
+    * Libs: Hystrix (maintenance mode), resilience4j
+
 
 * **Bulkhead Pattern** - Fault Tolerant Microservices
   * [https://www.youtube.com/watch?v=R2FT5edyKOg](https://www.youtube.com/watch?v=R2FT5edyKOg)
-  * Libs: Hystrix \(maintenance mode\), resilience4j
+  * Libs: Hystrix (maintenance mode), resilience4j
 * ...
+
+
 {% endtab %}
 {% endtabs %}
 
-## AppServer\(AS\):
+## AppServer(AS):
 
 ```fsharp
 # Load Balancing (LB) // uniformlyDistributeLoad
@@ -353,15 +355,71 @@ Cons:
 ```
 {% endtab %}
 
+{% tab title="AC" %}
+ACID Transaction&#x20;
+
+A type of database transaction that has four important properties:&#x20;
+
+
+
+**Atomicity**: The operations that constitute the transaction will either all succeed or all fail. There is no in-between state. \
+Example: both update will succeed or both will fail
+
+```sql
+BEGIN TRANSACTION;
+UPDATE balances SET balance=balance-100 WHERE username = 'jag';
+// updated 1 record
+UPDATE balances SET balance=balance+100 WHERE username = 'sundar';
+// updated 1 record
+COMMIT;
+```
+
+**Consistency**: The transaction cannot bring the database to an invalid state. After the transaction is committed or rolled back, the rules for each record will still apply, and all future transactions will see the effect of the transaction. Also named Strong Consistency.&#x20;
+
+**Isolation**: The execution of multiple transactions concurrently will have the same effect as if they had been executed sequentially. \
+Example: &#x20;
+
+```sql
+// User 1 and User 2 executing the command in parallel 
+
+User1:
+------
+BEGIN TRANSACTION;
+UPDATE balances SET balance=balance-100 WHERE username = 'jag';
+// updated 1 record
+
+User2: 
+------
+BEGIN TRANSACTION;
+UPDATE balances SET balance=balance-100 WHERE username = 'jag';
+// .....pending..... (will wait until User1 commits the transaction)
+
+User1:
+------
+COMMIT;
+
+
+User2: 
+------
+// .....pending.....
+// updated 1 record
+COMMIT;
+
+```
+
+**Durability**: Any committed transaction is written to non-volatile storage. It will not be undone by a crash, power loss, or network partition.
+{% endtab %}
+
 {% tab title="Details" %}
 ### Database Indexing:
 
-* [https://www.youtube.com/watch?v=-qNSXK7s7\_w](https://www.youtube.com/watch?v=-qNSXK7s7_w)
-* 
+* [https://www.youtube.com/watch?v=-qNSXK7s7\_w](https://www.youtube.com/watch?v=-qNSXK7s7\_w)
+*
+
 ### Database Partitioning
 
 * [https://www.youtube.com/watch?v=QA25cMWp9Tk](https://www.youtube.com/watch?v=QA25cMWp9Tk)
-* 
+*
 {% endtab %}
 {% endtabs %}
 
@@ -412,7 +470,7 @@ For Larger Content,
 
 
 
-## System Design \(Example Apps\)
+## System Design (Example Apps)
 
 ```fsharp
 # URL shortner:
@@ -455,6 +513,4 @@ URL Reader >> URL Queue >> URL Filter (Invalid, Duplicate) >> Crawl Queue
 Distributed Locks
 
 ```fsharp
-
 ```
-
