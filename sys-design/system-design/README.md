@@ -355,7 +355,7 @@ Cons:
 ```
 {% endtab %}
 
-{% tab title="AC" %}
+{% tab title="ACID" %}
 ACID Transaction&#x20;
 
 A type of database transaction that has four important properties:&#x20;
