@@ -12,7 +12,29 @@ const [count, setCount] = useState(5);
 # useReducer
 // when we have 'more complex logic' to handle use 'useReducer'
 // reducerFn: is a pureFn, we can keep the logic outside of component
-const [{ todos, updatedCount }, dispatch] = useReducer(reducer, { todos: [], updatedCount: 0 });
+
+function reducerFn(currState, action) {
+  if (action.type === 'ADD_TODO') {
+    const newTodo = action.payload;
+    const newState = { todos: [...currState.todos, newTodo], updatedCount: state.updatedCount + 1 }
+    return newState;
+  }
+  return currState;
+}
+const intialState = { todos: [], updatedCount: 0 };
+
+function Btn({ label, increment }) {
+  const [newState, dispatch] = useReducer(reducerFn, intialState);
+  const { todos, updatedCount } = newState;
+  
+  const addTodo = () => dispatch({ type: 'ADD_TODO', payload: 'My new todo' });
+  return (<div>
+    <button onClick={addTodo}>Add</button>
+    <ul>{todos.map(todo => <li>{todo}</>)}
+    <p>{updatedCount}</p>
+  <div/>);
+});
+
 
 
 //-------------------------- onStateChange --------------------------
@@ -52,6 +74,15 @@ const incrementFn = useCallback(() => setCount(c => c + 1), [setCount]); // GOOD
 
 const longestUserId = findLongestUserIds(userIds); // BAD: executesFn on ever render
 const longestUserId = useMemo(() => findLongestUserIds(userIds), [userIds]); // GOOD: executesFn only when 'userIds' changes
+
+# React.memo(..)
+function Btn({ label, increment }) {
+  console.log("Btn:: render");
+  return <button onClick={() => increment(5)}>{label}</button>;
+});
+const BtnMemoized = React.memo(Btn);
+// React.memo: helps to 'render' the component only when 'prop' chnages
+// here: whenever 'label' or 'increment' prop changes - it renders the components, otherwise it doesn't render
 
 
 //-------------------------- Ref --------------------------
@@ -96,6 +127,4 @@ const { user, setUser } = useContext(UserContext);  // we get or set user value 
 
 
 {% embed url="https://stackblitz.com/edit/jnotes-react" %}
-
-
 
